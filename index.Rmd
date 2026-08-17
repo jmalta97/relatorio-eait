@@ -1,5 +1,5 @@
 ---
-title: "Jair Malta"
+title: "Jair Malta e Wesley Pinheiro"
 image: "logo.png"
 links:
   - label: GitHub
