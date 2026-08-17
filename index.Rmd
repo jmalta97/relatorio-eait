@@ -8,8 +8,7 @@ links:
     url: "j.malta97@hotmail.com"
   - label: Relatórios
     url: "./relatorio/index.html"
-  - label: LinkedIn
-    url: "https://www.linkedin.com/in/jair-malta/"
+
 output:
   postcards::jolla
 ---
