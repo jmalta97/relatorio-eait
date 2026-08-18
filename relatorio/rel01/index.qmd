@@ -107,7 +107,24 @@ Depois de inserido as informaçõe no arquivo **referencias.bib**, use:
 distancia <- c(10.2, 9.8, 10.5, 10.1, 9.9, 10.3)
 distancia
 ```
+```{r}
+corposdeprova <- read.csv("C:/Users/Dell/Desktop/relatórios/relatorio-eait/relatorio/rel01/corposdeprova.csv")
+corposdeprova
+```
+```{r}
+# Carregar dados
+corposdeprova <- read.csv("C:/Users/Dell/Desktop/relatórios/relatorio-eait/relatorio/rel01/corposdeprova.csv")
 
+# Tabela simples
+kable(
+  corposdeprova,
+  col.names = c("Grupo", "Resistência (kPa)"),
+  caption = "Resultados dos Ensaios de Compressão Axial - 28 dias",
+  align = c("c", "r"),
+  format = "html"
+)
+```
+```
 ## 🧠 Considerações finais
 
 Apresente uma síntese dos principais pontos observados no experimento.
