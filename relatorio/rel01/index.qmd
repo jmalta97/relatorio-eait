@@ -1,6 +1,6 @@
 ---
 # Só mude aqui!!!!
-author: "Jair Malta "
+author: "Jair Malta e Wesley Pinheiro "
 title: "Relatório de Aula Prática 01 - Teste"
 bibliography: referencias.bib
 # A partir daqui nao faca alteracoes!!!!!
@@ -28,25 +28,34 @@ execute:
 
 ## 📌 Introdução
 
-Descreva o contexto da prática e sua importância.
+<div style="text-align: justify;">
 
-> Exemplo: análise da variabilidade em experimentos físicos utilizando uma catapulta.
+A Estatística é uma área fundamental para a análise, interpretação e tomada de decisão com base em dados. No contexto das Engenharias e Ciências, essa área permite transformar informações brutas em resultados organizados, facilitando a compreensão de fenômenos, processos e problemas reais. Por meio da estatística, podemos tomar decisões sobre uma população através da amostra, importante pois poupa tempo e dinheiro. 
 
+Nesse primeiro momento, trataremos de Estatística Descritiva, apresentando conceitos como população, amostra, variável, dados, coleta, organização, tabelas de frequência, gráficos, medidas de posição, medidas de dispersão, assimetria e curtose. Esses conteúdos são essenciais para compreender como os dados podem ser tratados e resumidos antes da aplicação de técnicas estatísticas mais avançadas.  
 
+Além da estatística em sua essência, com o avanço das tecnologias a estatística manual e braçal cedeu espaço para softwares com grande capacidade de processamento de dados, como por exemplo o R Studio, que utiliza a linguagem de programação R em um ambiente computacional voltado principalmente para estatística, análise de dados e construção de gráficos. De forma simples, pode-se dizer que o R é a linguagem e o ambiente que executa os cálculos, enquanto o RStudio é a ferramenta que organiza e facilita o uso dessa linguagem. O RStudio permite escrever comandos, executar linhas de código, visualizar resultados, criar gráficos, consultar ajuda e gerenciar projetos. 
+
+</div>
 
 ## 🎯 Objetivos
 
 ### Objetivo geral
+<div style="text-align: justify;">
 
-Descrever o objetivo principal da prática.
+Resumir os principais conceitos apresentados nos quatro primeiros capítulos do livro Estatística & Probabilidade aplicada às Engenharias e Ciências; introduzir conceitos iniciais da linguagem R e do RStudio, por exemplo Sintaxe e Semântica; realizar uma aplicação prática unindo os 2 temas anteriores.
 
+</div>
 ### Objetivos específicos
-
-- Coletar dados experimentais  
-- Aplicar estatística descritiva  
-- Construir gráficos  
-- Interpretar resultados  
-
+<div style="text-align: justify;">
+- Apresentar as definições iniciais da Estatística, incluindo população, amostra, variável e dado; 
+- Explicar a importância da coleta, organização e apresentação dos dados; 
+- Descrever as principais medidas de posição, como média, mediana e moda; 
+- Apresentar as principais medidas de dispersão, como amplitude, variância, desvio padrão, coeficiente de variação e erro padrão da média; 
+- Apresentar os conceitos de assimetria e curtose; 
+- Explicar conceitos e ideias iniciais da linguagem R e do RStudio. Passos iniciais, aplicações e sua sintaxe e Semântica. 
+- Relacionar todos os itens e conceitos acima e realizar uma aplicação prática mesclando a estatística descritiva com a linguagem R e RStudio. 
+</div>
 ---
 
 ## 📚  Fundamentação Teórica
@@ -104,27 +113,29 @@ Depois de inserido as informaçõe no arquivo **referencias.bib**, use:
 ### 📊  Análise de Dados
 
 ```{r}
-distancia <- c(10.2, 9.8, 10.5, 10.1, 9.9, 10.3)
-distancia
-```
-```{r}
 corposdeprova <- read.csv("C:/Users/Dell/Desktop/relatórios/relatorio-eait/relatorio/rel01/corposdeprova.csv")
 corposdeprova
 ```
 ```{r}
-# Carregar dados
+library(knitr)
+library(kableExtra)
+
 corposdeprova <- read.csv("C:/Users/Dell/Desktop/relatórios/relatorio-eait/relatorio/rel01/corposdeprova.csv")
 
-# Tabela simples
-kable(
-  corposdeprova,
-  col.names = c("Grupo", "Resistência (kPa)"),
-  caption = "Resultados dos Ensaios de Compressão Axial - 28 dias",
-  align = c("c", "r"),
-  format = "html"
-)
+# Número de colunas (para aplicar centralização em todas)
+n_col <- ncol(corposdeprova)
+
+kable(corposdeprova, 
+      caption = "Dados dos Corpos de Prova",
+      booktabs = TRUE,
+      align = rep("c", n_col)) %>%  # garante todas as colunas centralizadas
+  kable_styling(bootstrap_options = c("striped", "hover", "condensed"),
+                full_width = FALSE,
+                position = "center") %>%  # centraliza a tabela na página
+  column_spec(1:n_col, extra_css = "text-align: center;") %>%  # força centralização
+  scroll_box(width = "100%", height = "400px")
 ```
-```
+
 ## 🧠 Considerações finais
 
 Apresente uma síntese dos principais pontos observados no experimento.
