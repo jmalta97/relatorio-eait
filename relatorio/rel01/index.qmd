@@ -25,10 +25,7 @@ execute:
   message: false
 ---
 
-
 ## 📌 Introdução
-
-<div style="text-align: justify;">
 
 A Estatística é uma área fundamental para a análise, interpretação e tomada de decisão com base em dados. No contexto das Engenharias e Ciências, essa área permite transformar informações brutas em resultados organizados, facilitando a compreensão de fenômenos, processos e problemas reais. Por meio da estatística, podemos tomar decisões sobre uma população através da amostra, importante pois poupa tempo e dinheiro. 
 
@@ -36,18 +33,18 @@ Nesse primeiro momento, trataremos de Estatística Descritiva, apresentando conc
 
 Além da estatística em sua essência, com o avanço das tecnologias a estatística manual e braçal cedeu espaço para softwares com grande capacidade de processamento de dados, como por exemplo o R Studio, que utiliza a linguagem de programação R em um ambiente computacional voltado principalmente para estatística, análise de dados e construção de gráficos. De forma simples, pode-se dizer que o R é a linguagem e o ambiente que executa os cálculos, enquanto o RStudio é a ferramenta que organiza e facilita o uso dessa linguagem. O RStudio permite escrever comandos, executar linhas de código, visualizar resultados, criar gráficos, consultar ajuda e gerenciar projetos. 
 
-</div>
+
 
 ## 🎯 Objetivos
 
 ### Objetivo geral
-<div style="text-align: justify;">
+
 
 Resumir os principais conceitos apresentados nos quatro primeiros capítulos do livro Estatística & Probabilidade aplicada às Engenharias e Ciências; introduzir conceitos iniciais da linguagem R e do RStudio, por exemplo Sintaxe e Semântica; realizar uma aplicação prática unindo os 2 temas anteriores.
 
-</div>
+
 ### Objetivos específicos
-<div style="text-align: justify;">
+
 - Apresentar as definições iniciais da Estatística, incluindo população, amostra, variável e dado; 
 - Explicar a importância da coleta, organização e apresentação dos dados; 
 - Descrever as principais medidas de posição, como média, mediana e moda; 
@@ -55,31 +52,15 @@ Resumir os principais conceitos apresentados nos quatro primeiros capítulos do 
 - Apresentar os conceitos de assimetria e curtose; 
 - Explicar conceitos e ideias iniciais da linguagem R e do RStudio. Passos iniciais, aplicações e sua sintaxe e Semântica. 
 - Relacionar todos os itens e conceitos acima e realizar uma aplicação prática mesclando a estatística descritiva com a linguagem R e RStudio. 
-</div>
----
 
-## 📚  Fundamentação Teórica
 
-Apresente os conceitos principais:
-
-- Média
-- Variância
-- Desvio padrão
-- Amostragem
-
-$$
-\bar{x} = \frac{1}{n}\sum_{i=1}^{n} x_i
-$$
-
----
 
 ## ⚙️ Metodologia
 
 <div style="text-align: justify;">
 Este relatório foi elaborado a partir da leitura e análise dos quatro primeiros capítulos do livro digital Estatística & Probabilidade aplicada às Engenharias e Ciências, da visualização e compreensão dos vídeos do Curso R Básico 2024 e conteúdos auxiliares como o R Studio, Pacote Leem e Rmarkdown. A metodologia utilizada consistiu em identificar os principais conceitos, definições e aplicações sintetizando as ideias centrais de forma objetiva e organizada. 
 A estrutura do relatório foi organizada em introdução, objetivos, metodologia, resultados e discussão, conclusão e referências. O foco foi produzir um resumo claro, com linguagem acadêmica simples e adequada. 
-</div>
----
+
 
 ## 🔍 Resultados e Discussão
 
@@ -112,13 +93,42 @@ Além das tabelas, o capítulo discute o agrupamento de variáveis quantitativas
 
 O terceiro capítulo apresenta as medidas de posição, também chamadas de medidas de tendência central. Essas medidas são utilizadas para resumir um conjunto de dados por meio de valores representativos, indicando em torno de qual ponto os dados se concentram. As principais medidas estudadas são a média aritmética, a mediana e a moda. 
 
-A média aritmética é apresentada como uma das medidas mais conhecidas e utilizadas. Ela representa um ponto de equilíbrio dos dados e pode ser calculada tanto para dados não agrupados quanto para dados agrupados. No entanto, o capítulo destaca que a média é sensível a valores discrepantes, ou seja, valores muito distantes da maioria das observações podem alterar significativamente seu resultado. Para esses casos sugere-se a utilização da média aparada, onde é excluído do cálculo o valor mínimo e máximo de um conjunto de dados. 
-**Inserir fórmula da média da população e da amostra aqui e da média aparada.** 
+A média aritmética, populacional (Equação 1) e amostral (Equação 2) é apresentada como uma das medidas mais conhecidas e utilizadas. Ela representa um ponto de equilíbrio dos dados e pode ser calculada tanto para dados não agrupados quanto para dados agrupados. No entanto, o capítulo destaca que a média é sensível a valores discrepantes, ou seja, valores muito distantes da maioria das observações podem alterar significativamente seu resultado. Para esses casos sugere-se a utilização da média aparada(Equação 3), onde é excluído do cálculo o valor mínimo e máximo de um conjunto de dados.
 
-A mediana é definida como o valor central de um conjunto de dados ordenado. Ela divide o conjunto em duas partes, de modo que aproximadamente 50% dos valores fiquem abaixo e 50% fiquem acima. Por considerar a posição dos dados e não diretamente seus valores extremos, a mediana é menos influenciada por dados discrepantes/extremos. Quando há dados agrupados em intervalos de classes o cálculo utiliza outros parâmetros, como limite inferior e superior da classe, frequência acumulada da classe anterior à classe em questão e frequência absoluta da classe mediana. 
+$$
+\mu = \frac{1}{N}\sum_{i=1}^{N} x_i \tag{1}
+$$
 
-**Inserir fórmula da mediana da população e da amostra**
+$$
+\bar{x} = \frac{1}{n}\sum_{i=1}^{n} x_i \tag{2}
+$$
+$$
+\bar{x}_{trim} =
+\frac{1}{n - 2k}
+\sum_{i=k+1}^{n-k} x_{(i)} \tag{3}
+$$
+A mediana é definida como o valor central de um conjunto de dados ordenado (Equações 4 e 5). Ela divide o conjunto em duas partes, de modo que aproximadamente 50% dos valores fiquem abaixo e 50% fiquem acima. Por considerar a posição dos dados e não diretamente seus valores extremos, a mediana é menos influenciada por dados discrepantes/extremos. Quando há dados agrupados em intervalos de classes o cálculo utiliza outros parâmetros, como limite inferior e superior da classe, frequência acumulada da classe anterior à classe em questão e frequência absoluta da classe mediana. 
 
+$$
+\begin{equation}
+\text{Mediana} =
+\begin{cases}
+x_{(\frac{N+1}{2})}, & \text{se } N \text{ ímpar} \\
+\frac{x_{(\frac{N}{2})} + x_{(\frac{N}{2}+1})}{2}, & \text{se } N \text{ par}
+\end{cases}
+\tag{4}
+\end{equation}
+$$
+$$
+\begin{equation}
+\tilde{x} =
+\begin{cases}
+x_{(\frac{n+1}{2})}, & \text{se } n \text{ ímpar} \\
+\frac{x_{(\frac{n}{2})} + x_{(\frac{n}{2}+1})}{2}, & \text{se } n \text{ par}
+\end{cases}
+\tag{5}
+\end{equation}
+$$
 A moda, por sua vez, representa o valor mais frequente em um conjunto de dados e pode ser aplicada a diferentes tipos de variáveis, inclusive qualitativas. Vale destacar que, um conjunto de dados poderá ter mais de uma moda, isto é, se observarmos dois valores mais frequentes e iguais, teremos uma distribuição bimodal. Da mesma forma que a mediana, a moda não é influenciada por valores extremos, desde que estes não pertençam a classe modal.
 
 O capítulo também mostra que média, mediana e moda podem oferecer interpretações diferentes de um mesmo conjunto de dados. Em distribuições mais simétricas, essas medidas tendem a se aproximar. Em distribuições assimétricas ou com valores extremos, elas podem apresentar diferenças importantes, sendo necessário escolher a medida mais adequada conforme a natureza dos dados e o objetivo da análise. 
@@ -215,7 +225,7 @@ Os corpos de prova foram:
 - Cura úmida em câmara úmida (temperatura 23 ± 2 °C e umidade relativa ≥ 95%) por 7 dias; 
 - Mantidos em condição ambiente do laboratório até a data do ensaio (aos 28 dias). 
 
-Os resultados obtidos podem ser observados na **tabela xx**
+Os resultados obtidos podem ser observados na 
 
 
 ```{r}
@@ -342,15 +352,6 @@ Os quatro primeiros capítulos do livro fornecem uma base importante para o estu
 A introdução ao R mostra a importância do uso de ferramentas computacionais na Estatística. O R, em conjunto com o RStudio, permite realizar cálculos, organizar dados, construir gráficos e aplicar técnicas estatísticas com eficiência. Além disso, entender a sintaxe e a semântica do R é essencial para escrever comandos corretamente e interpretar o significado das operações realizadas. Assim, o aprendizado dos conceitos teóricos aliado ao uso de softwares estatísticos contribui para uma formação mais completa e aplicada, especialmente nas áreas de Engenharia e Ciências.
 
 Conclui-se, com base na Estatística Descritiva, que o grupo C apresentou a maior resistência média e o menor coeficiente de variação, enquanto o grupo B apresentou resistência superior à do grupo A, mas também a maior dispersão. Entretanto, essas medidas permitem apenas organizar, resumir e comparar os dados observados, não sendo suficientes para generalizar os resultados ou tomar decisões sobre a população. Para verificar se as diferenças encontradas são estatisticamente significativas, torna-se necessária a aplicação da Estatística Inferencial, por meio de métodos como intervalos de confiança, testes de hipóteses e análise de variância. A decisão sobre o atendimento aos requisitos do projeto também deve considerar a resistência especificada, a idade de rompimento, o material, o plano de amostragem, a quantidade de exemplares e os critérios da norma técnica aplicável. Essas análises serão abordadas nos próximos relatórios. 
-
-
-
-
-
-
-
-
-
 
 
 ## 📖 Referências
