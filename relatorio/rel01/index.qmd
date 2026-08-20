@@ -75,47 +75,149 @@ $$
 
 ## ⚙️ Metodologia
 
-::: {.callout-note}
-Descreva como o experimento foi realizado.
-:::
-
-- Materiais utilizados  
-- Procedimento  
-- Número de repetições  
-
+<div style="text-align: justify;">
+Este relatório foi elaborado a partir da leitura e análise dos quatro primeiros capítulos do livro digital Estatística & Probabilidade aplicada às Engenharias e Ciências, da visualização e compreensão dos vídeos do Curso R Básico 2024 e conteúdos auxiliares como o R Studio, Pacote Leem e Rmarkdown. A metodologia utilizada consistiu em identificar os principais conceitos, definições e aplicações sintetizando as ideias centrais de forma objetiva e organizada. 
+A estrutura do relatório foi organizada em introdução, objetivos, metodologia, resultados e discussão, conclusão e referências. O foco foi produzir um resumo claro, com linguagem acadêmica simples e adequada. 
+</div>
 ---
 
 ## 🔍 Resultados e Discussão
 
-Apresente e interprete os resultados obtidos a partir dos dados coletados.
+### Capítulo 1: Definições Gerais da Estatística e técnicas de somatórios
 
-- Descreva os principais resultados numéricos (média, variabilidade, etc.).
-- Comente o comportamento dos dados observados nos gráficos.
-- Indique se há presença de valores discrepantes (outliers).
-- Avalie se os dados apresentam simetria ou tendência.
+O primeiro capítulo apresenta a Estatística como uma ciência voltada à coleta, organização, descrição, análise e interpretação de dados. Segunda Batista (2024) na era digital há uma grande produção de informações, especialmente em ambientes como redes sociais, plataformas digitais e sistemas corporativos, sendo necessário utilizar métodos estatísticos para compreender esses dados e auxiliar na tomada de decisões. 
 
-Em seguida, discuta os resultados à luz dos conceitos teóricos:
+O capítulo diferencia três grandes áreas da Estatística: Estatística Descritiva, Probabilidade e Estatística Inferencial. A Estatística Descritiva reúne técnicas de coleta, organização, tabulação, representação gráfica e cálculo de medidas que resumem os dados. A Probabilidade é apresentada como a teoria matemática voltada ao estudo da incerteza em fenômenos aleatórios. Já a Estatística Inferencial busca utilizar informações de uma amostra para tirar conclusões sobre uma população. 
 
-- Os resultados estão de acordo com o esperado?
-- Há grande variabilidade? O que isso significa no contexto do experimento?
-- Quais fatores podem ter influenciado os resultados?
-- Existem possíveis fontes de erro experimental?
+Também são introduzidos conceitos básicos como população, amostra, variável e dado. 
+- População é o conjunto de elementos de interesse da pesquisa e amostra é um subconjunto dessa população;
+- Variável é a característica que se deseja estudar, sendo dividida em Qualitativa (Nomina e ordinal) e Quantitativa (Discreta e Contínua);
+- Dado é o valor observado dessa característica em cada elemento. 
 
-Procure não apenas descrever, mas **interpretar os dados**.
+O capítulo ainda relaciona a Estatística ao método científico, destacando etapas como identificação do problema, formulação de hipóteses, revisão de literatura, coleta de dados, análise e apresentação dos resultados. 
 
-### 💬 Exemplo de como citar uma referência bibliográfica
+### Capítulo 2: Coleta, organização e apresentação dos dados
 
-Depois de inserido as informaçõe no arquivo **referencias.bib**, use:
+O segundo capítulo trata da etapa posterior à definição da população e das variáveis de interesse: a coleta e organização dos dados. O autor explica que os dados coletados sem ordenação ou arranjo sistemático são chamados de dados brutos. Quando esses dados são organizados em ordem crescente ou decrescente, passam a ser chamados de dados em rol ou dados elaborados. 
 
-- Segundo @Rbasico2022
-- Tudo é um objeto em R [@Rbasico2022]
+Um dos principais pontos do capítulo é a construção de tabelas de frequência. A frequência absoluta indica quantas vezes determinado valor aparece no conjunto de dados, enquanto a frequência relativa representa essa ocorrência em relação ao total de observações. A frequência percentual transforma a frequência relativa em porcentagem, facilitando a interpretação. O capítulo também apresenta frequências acumuladas, que permitem responder perguntas como “quantos valores estão abaixo de determinado ponto?” ou “quantos valores estão acima de determinado ponto?”. 
 
-### 📊  Análise de Dados
+O capítulo 2 apresenta como utilizar o pacote leem para tabular dados e também como instalar o pacote propriamente dito no RStudio.
 
-```{r}
-corposdeprova <- read.csv("C:/Users/Dell/Desktop/relatórios/relatorio-eait/relatorio/rel01/corposdeprova.csv")
-corposdeprova
-```
+Além das tabelas, o capítulo discute o agrupamento de variáveis quantitativas contínuas em intervalos de classe. Esse procedimento é importante quando há muitos dados ou quando os valores não são naturalmente discretos. O autor apresenta critérios para definir o número de classes, a amplitude total e a amplitude de cada classe, mostrando a importância da organização dos dados para facilitar sua leitura, interpretação e apresentação. 
+
+É apresentado também representações gráficas, ferramentas que facilitam a visualização mesmo em situações de complexidade, ajudando assim na análise e compreensão. São citados tipos de gráficos como gráfico de barras, histogramas, gráfico de linhas, gráfico de dispersão. É mencionado também, no ambiente R, o pacote “graphics” e o “ggplot2” que auxiliam no tratamento dos dados e criação dos gráficos no RStudio.  
+
+### Capítulo 3: Medidas de Posição
+
+O terceiro capítulo apresenta as medidas de posição, também chamadas de medidas de tendência central. Essas medidas são utilizadas para resumir um conjunto de dados por meio de valores representativos, indicando em torno de qual ponto os dados se concentram. As principais medidas estudadas são a média aritmética, a mediana e a moda. 
+
+A média aritmética é apresentada como uma das medidas mais conhecidas e utilizadas. Ela representa um ponto de equilíbrio dos dados e pode ser calculada tanto para dados não agrupados quanto para dados agrupados. No entanto, o capítulo destaca que a média é sensível a valores discrepantes, ou seja, valores muito distantes da maioria das observações podem alterar significativamente seu resultado. Para esses casos sugere-se a utilização da média aparada, onde é excluído do cálculo o valor mínimo e máximo de um conjunto de dados. 
+**Inserir fórmula da média da população e da amostra aqui e da média aparada.** 
+
+A mediana é definida como o valor central de um conjunto de dados ordenado. Ela divide o conjunto em duas partes, de modo que aproximadamente 50% dos valores fiquem abaixo e 50% fiquem acima. Por considerar a posição dos dados e não diretamente seus valores extremos, a mediana é menos influenciada por dados discrepantes/extremos. Quando há dados agrupados em intervalos de classes o cálculo utiliza outros parâmetros, como limite inferior e superior da classe, frequência acumulada da classe anterior à classe em questão e frequência absoluta da classe mediana. 
+
+**Inserir fórmula da mediana da população e da amostra**
+
+A moda, por sua vez, representa o valor mais frequente em um conjunto de dados e pode ser aplicada a diferentes tipos de variáveis, inclusive qualitativas. Vale destacar que, um conjunto de dados poderá ter mais de uma moda, isto é, se observarmos dois valores mais frequentes e iguais, teremos uma distribuição bimodal. Da mesma forma que a mediana, a moda não é influenciada por valores extremos, desde que estes não pertençam a classe modal.
+
+O capítulo também mostra que média, mediana e moda podem oferecer interpretações diferentes de um mesmo conjunto de dados. Em distribuições mais simétricas, essas medidas tendem a se aproximar. Em distribuições assimétricas ou com valores extremos, elas podem apresentar diferenças importantes, sendo necessário escolher a medida mais adequada conforme a natureza dos dados e o objetivo da análise. 
+
+Por fim é apresentado como o Pacote leem pode contribuir para o cálculo rápido das medidas média, mediana e moda utilizando as funções mean(), median() e mfreq(), respectivamente.
+
+### Capítulo 4: Medidas de dispersão
+
+O quarto capítulo complementa o estudo das medidas de posição ao apresentar as medidas de dispersão. É apresentado que conjuntos de dados diferentes podem possuir a mesma média, mas apresentar comportamentos distintos. Isso demonstra que apenas uma medida central não é suficiente para caracterizar adequadamente os dados. 
+
+A primeira medida apresentada é a amplitude, definida como a diferença entre o maior e o menor valor do conjunto. Embora seja simples de calcular e esteja na mesma unidade da variável, a amplitude possui limitações, pois considera apenas os valores extremos e ignora o comportamento dos demais dados. Por isso, a amplitude pode não representar adequadamente a variabilidade total de um conjunto. 
+
+Em seguida, o capítulo apresenta a variância, que mede a dispersão dos dados em relação à média por meio dos desvios ao quadrado. A variância considera todos os valores do conjunto, sendo uma medida mais completa do que a amplitude. Entretanto, sua unidade fica elevada ao quadrado, o que pode dificultar a interpretação prática. Por esse motivo, utiliza-se também o desvio padrão, que corresponde à raiz quadrada da variância e retorna a medida de dispersão para a mesma unidade da variável analisada. 
+
+É importante saber que quanto mais próximo de zero a variância e o desvio padrão for, mais concentrado e melhor representado os dados estão com relação à média. Além disso, para utilizar variância e desvio padrão para comparar grupos de dados, temos que verificar se a média desses grupos são iguais e se as observações estão na mesma unidade de mensuração. 
+
+O capítulo também aborda o coeficiente de variação, uma medida relativa de dispersão que expressa o desvio padrão em relação à média, geralmente em porcentagem. Essa medida permite comparar a variabilidade entre grupos diferentes, desde que a variável analisada possua uma escala adequada. Por fim, o autor apresenta o erro padrão da média, que está relacionado à precisão com que a média amostral estima a média populacional e será importante em conteúdos posteriores, como estimação e testes de hipóteses. 
+
+### Assimetria e curtose
+
+Além das medidas de posição e dispersão, a análise estatística também pode considerar medidas relacionadas ao formato da distribuição dos dados, como a assimetria e a curtose. Essas medidas ajudam a compreender não apenas onde os dados se concentram e o quanto variam, mas também como os valores estão distribuídos ao redor da média. A assimetria indica o grau de afastamento de uma distribuição em relação à simetria, ou seja, descreve o equilíbrio da distribuição. A curtose ajuda a avaliar o peso das caudas e a ocorrência de valores extremos.
+
+Uma distribuição é considerada aproximadamente simétrica quando os dados se distribuem de forma semelhante dos dois lados de uma medida central. Nesse caso, média, mediana e moda tendem a apresentar valores próximos. Quando a distribuição possui uma cauda mais alongada para a direita, ocorre assimetria positiva. Nesse tipo de situação, alguns valores altos podem puxar a média para cima. Quando a cauda é mais alongada para a esquerda, ocorre assimetria negativa, indicando a presença de valores baixos que influenciam a distribuição.
+
+A análise da assimetria é importante porque permite avaliar se a média representa bem o conjunto de dados. Em distribuições muito assimétricas, a média pode ser fortemente afetada por valores extremos, sendo recomendável observar também a mediana e a moda. Dessa forma, a assimetria se relaciona diretamente ao conteúdo do Capítulo 3 do livro, no qual são discutidas as medidas de posição e suas diferentes interpretações. 
+
+A curtose está relacionada ao grau de concentração dos dados em torno do centro da distribuição e ao peso das caudas. De forma geral, a curtose ajuda a identificar se uma distribuição apresenta maior concentração de valores próximos à média ou maior ocorrência de valores extremos. Uma distribuição com curtose mais elevada tende a indicar maior presença de valores extremos ou caudas mais pesadas. Já uma curtose menor indica uma distribuição mais achatada, com menor concentração central ou caudas menos intensas.
+
+Em suma, assimetria e curtose complementam as medidas de dispersão estudadas no Capítulo 4. Enquanto a variância, o desvio padrão e o coeficiente de variação indicam o nível de variabilidade, a assimetria e a curtose ajudam a interpretar o formato da distribuição e a presença de valores extremos. 
+
+### Introdução básica ao R (linguagem e software)
+
+O R é uma linguagem de programação e um ambiente computacional voltado principalmente para estatística, análise de dados e construção de gráficos. O projeto R apresenta o software como um ambiente gratuito para computação estatística e gráficos, disponível para diferentes sistemas operacionais. 
+
+Para utilizar o R, é necessário instalar inicialmente o programa R, que executa os comandos estatísticos. A instalação pode ser feita pelo site oficial do projeto R, por meio da rede CRAN. Após instalar o R, recomenda-se instalar também o RStudio, que é uma interface de desenvolvimento integrada. O RStudio facilita o uso do R, pois reúne editor de código, console, gráficos, ambiente de trabalho, arquivos, pacotes e ajuda integrada em uma única interface. 
+
+De forma simples, pode-se dizer que o R é a linguagem e o ambiente que executa os cálculos, enquanto o RStudio é a ferramenta que organiza e facilita o uso dessa linguagem. O RStudio permite escrever comandos, executar linhas de código, visualizar resultados, criar gráficos, consultar ajuda e gerenciar projetos, além de possuir pacotes com integração à internet, por exemplo o HTML, para criação de relatórios, apresentações e outros diversos itens. Sua interface é dividida em 4 quadrantes sendo:
+
+- 1º Quadrante – Script do R - Área utilizada para escrever, editar e salvar os códigos em arquivos com extensão .R; 
+- 2º Quadrante – Console do R - Local onde os comandos são efetivamente executados e os resultados aparecem. Também permite digitar comandos diretamente, porém esses comandos não ficam organizados em um script, a menos que sejam salvos separadamente;
+- 3º Quadrante – Ambiente Global - Exibe os objetos criados durante a análise, como vetores, tabelas, conjuntos de dados, funções e resultados de cálculos. Também apresenta o histórico dos comandos executados e permite acompanhar os dados armazenados na sessão atual;
+- 4º Quadrante – Área de plotagem - Utilizado para visualizar gráficos, consultar arquivos e pastas, gerenciar pacotes e acessar a documentação de ajuda das funções. 
+
+### Sintaxe e semântica do R
+
+A linguagem R, assim como outras linguagens de programação, possui sintaxe e semântica. A sintaxe está relacionada à forma correta de escrever os comandos. Em outras palavras, a sintaxe define as regras de escrita que o R reconhece. Se um comando for escrito de forma incorreta, o programa poderá apresentar erro.
+
+Por exemplo, para criar um conjunto de dados no R, pode-se usar o comando:
+
+- dados <- c (3, 1, 0, 1, 3, 2, 4, 1, 3, 1)
+	
+Nesse exemplo, dados é o nome do objeto criado, <- é o operador de atribuição, e c() é uma função usada para combinar valores em um vetor. A escrita correta dos parênteses, vírgulas e símbolos faz parte da sintaxe da linguagem.
+
+A semântica, por outro lado, diz respeito ao significado dos comandos. Ou seja, enquanto a sintaxe trata da forma correta de escrever, a semântica trata do que aquele comando representa ou executa. No exemplo anterior, o significado do comando é armazenar uma sequência de valores numéricos dentro de um objeto chamado dados.
+
+Após criar esse objeto, é possível aplicar funções estatísticas:
+- mean(dados) # calcula a média
+- median(dados) # calcula a mediana
+- var(dados) # calcula a variância
+- sd(dados) # calcula o desvio padrão
+
+A sintaxe desses comandos envolve o nome da função, como mean, median, var e sd, seguido dos parênteses com o objeto analisado. Já a semântica está no significado de cada função. A função mean() calcula a média aritmética, median() calcula a mediana, var() calcula a variância e sd() calcula o desvio padrão.
+
+Outro ponto importante da sintaxe do R é que a linguagem diferencia letras maiúsculas de minúsculas. Assim, um objeto chamado dados é diferente de outro chamado Dados. Também é comum usar comentários no código, iniciados pelo símbolo #. Os comentários não são executados pelo R, servindo apenas para explicar o código.
+
+Portanto, compreender sintaxe e semântica é essencial para utilizar o R corretamente. A sintaxe permite escrever comandos sem erros, enquanto a semântica permite entender o significado das operações realizadas. Esse conhecimento é importante para aplicar os conceitos estatísticos estudados, como organização de dados, medidas de posição, medidas de dispersão, assimetria e curtose.
+
+## Estudo de Caso e Aplicação
+### Contexto do Projeto
+
+A obra em questão consiste na execução de um muro de arrimo em concreto armado, com função estrutural de contenção de um talude de mineração (cava de extração de minério de ferro). O muro possui altura média de 12 m, extensão linear de 180 m e volume total estimado de concreto de 2.400 m³. 
+
+A resistência característica à compressão (fck) de projeto especificada no memorial de cálculo é de 30 MPa (30.000 kPa), para que o elemento suporte os empuxos de terra, sobrecargas de equipamentos e ações hidrostáticas. 
+
+O concreto foi dosado em usina própria da mineradora, com traço 1:2,5:3,0 (cimento:areia: brita), relação a/c = 0,48 e adição de superplastificante à base de policarboxilato para garantir trabalhabilidade (slump de 120 ± 20 mm) mesmo com alta densidade de armadura.
+
+### Plano de Amostragem e Produção 
+
+A concretagem do muro foi dividida em 3 dias consecutivos de produção, denominados Grupo A, B e C, correspondentes a: 
+
+- Grupo A (Dia 1 – 08/08/2026): concretagem da base e primeira elevação (1/3 do muro) – 17 corpos de prova. 
+- Grupo B (Dia 2 – 09/08/2026): concretagem da segunda elevação (trecho central) – 18 corpos de prova. 
+- Grupo C (Dia 3 – 10/08/2026): concretagem da coroa e fechamento superior – 15 corpos de prova. 
+
+Cada dia de produção correspondeu a um caminhão betoneira diferente (mesmo traço, mas com pequenas variações inerentes à umidade dos agregados e ao tempo de mistura), o que justifica a separação em grupos para fins de rastreabilidade.
+
+### Coleta e Preparação dos Corpos de Prova 
+
+Em cada dia de concretagem, foram moldados corpos de prova cilíndricos (dimensões: 10 cm × 20 cm), conforme prescrições da NBR 5738. A amostragem foi feita no ponto de descarga do caminhão betoneira, imediatamente antes do lançamento no muro, seguindo o critério de 1 corpo de prova a cada 50 m³ de concreto lançado (excedendo o mínimo normativo para garantir robustez estatística). 
+
+Os corpos de prova foram: 
+
+- Desmoldados após 24 horas; 
+- Cura úmida em câmara úmida (temperatura 23 ± 2 °C e umidade relativa ≥ 95%) por 7 dias; 
+- Mantidos em condição ambiente do laboratório até a data do ensaio (aos 28 dias). 
+
+Os resultados obtidos podem ser observados na **tabela xx**
+
+
 ```{r}
 library(knitr)
 library(kableExtra)
@@ -135,20 +237,126 @@ kable(corposdeprova,
   column_spec(1:n_col, extra_css = "text-align: center;") %>%  # força centralização
   scroll_box(width = "100%", height = "400px")
 ```
+### Análise prática de cada grupo
+ 
+ **inserir tabela**
+ 
+#### Grupo A
+
+O grupo A apresentou resistência média de **28,166 MPa e mediana de 28,190 MPa.** A proximidade entre essas duas medidas é um primeiro indício de que a distribuição é equilibrada e não está sendo fortemente afetada por valores extremos.
+O coeficiente de assimetria foi:
+
+**g_1=0,053**
+
+Como o resultado está muito próximo de zero, a distribuição do grupo A pode ser considerada aproximadamente simétrica. O pequeno sinal positivo indica uma tendência mínima de alongamento à direita, mas a magnitude é tão baixa que não possui relevância prática nesse conjunto.
+
+O desvio padrão foi de **1,428 MPa**, indicando o afastamento típico dos resultados em torno da média. A amplitude foi de **4,580 MPa**, correspondente à diferença entre o maior resultado, **30,550 MPa, e o menor, 25,970 MPa.**
+
+O coeficiente de variação foi:
+
+**CV=1,428/28,166×100=5,07%**
+
+Isso significa que o desvio padrão corresponde a aproximadamente **5,07% da média.** O grupo apresenta, portanto, uma variabilidade relativamente pequena em comparação com seu nível médio de resistência.
+
+O excesso de curtose foi de **-1,018.** O resultado negativo sugere que, nessa amostra, os valores se apresentam de forma relativamente mais distribuída e com caudas mais leves do que a distribuição normal. Não foram identificados valores atípicos pelo critério do intervalo interquartil.
+
+Em suma, o grupo A apresentou resistência média de **28,166 MPa**, baixa variabilidade relativa, distribuição aproximadamente simétrica e ausência de indícios estatísticos de valores discrepantes. A média e a mediana são praticamente iguais, indicando que ambas representam adequadamente o centro dos resultados.
+
+#### Grupo B
+
+O grupo B apresentou resistência média de **32,456 MPa e mediana de 32,475 MPa.** Novamente, observa-se grande proximidade entre as duas medidas, indicando que a média não está sendo fortemente deslocada por valores extremos.
+
+O coeficiente de assimetria foi:
+
+**g_1=0,291**
+
+O sinal positivo indica uma leve tendência de cauda à direita, causada pelos resultados mais elevados, como **35,670 MPa e 36,050 MPa. Entretanto, o valor de 0,291** ainda é relativamente próximo de zero. Portanto, a assimetria pode ser considerada pequena.
+
+O grupo B apresentou o maior desvio padrão entre os três grupos:
+
+**s=1,896" MPa"**
+
+Também apresentou a maior amplitude:
+
+**A=36,050-29,560=6,490" MPa"**
+
+Esses resultados indicam que o grupo B possui maior dispersão absoluta. O coeficiente de variação foi de 5,84%, também o maior entre os três grupos. Embora a diferença não seja muito elevada, o grupo B é relativamente o menos homogêneo.
+
+O excesso de curtose foi de-0,659, indicando uma distribuição relativamente achatada e sem forte concentração de resultados extremos. Pelo critério do intervalo interquartil, também não foram identificados valores atípicos.
+
+Em suma, o grupo B apresentou resistência média de 32,456 MPa e leve assimetria positiva. Embora não tenham sido identificados valores discrepantes, o grupo apresentou a maior amplitude, o maior desvio padrão e o maior coeficiente de variação, sendo o grupo com maior variabilidade entre os corpos de prova.
+
+#### Grupo C
+
+O grupo C apresentou a maior resistência média:
+
+**x ˉ=39,487" MPa"**
+
+Sua mediana foi de **39,670 MPa**, novamente muito próxima da média. Essa proximidade indica que a distribuição é equilibrada e que os valores altos ou baixos não estão deslocando significativamente a média.
+O coeficiente de assimetria foi:
+
+**g_1=0,020**
+
+O valor está praticamente igual a zero, indicando uma distribuição aproximadamente simétrica. Portanto, tanto a média quanto a mediana representam adequadamente o centro dos resultados do grupo C.
+
+O desvio padrão foi de **1,660 MPa**, valor intermediário entre os grupos A e B. A amplitude foi:
+
+**A=42,300-36,890=5,410" MPa"**
+
+Entretanto, para comparar a homogeneidade dos grupos, o coeficiente de variação é mais informativo do que o desvio padrão isolado, porque leva em consideração a média de cada grupo. Para o grupo C:
+
+**CV=1,660/39,487×100=4,20%**
+
+Esse foi o menor coeficiente de variação entre os três grupos. Assim, apesar de o desvio padrão do grupo C ser maior que o do grupo A, sua dispersão é menor quando comparada proporcionalmente à respectiva média.
+
+O excesso de curtose foi de **-0,801**, apontando uma distribuição relativamente mais achatada e sem caudas pesadas. Não foram identificados valores atípicos pelo critério do intervalo interquartil.
+
+Em suma, o grupo C apresentou a maior resistência média e o menor coeficiente de variação. Os dados possuem distribuição aproximadamente simétrica, sem evidência de valores discrepantes. Em termos relativos, o grupo C apresentou a maior homogeneidade entre os corpos de prova.
+
+#### Comparação prática dos grupos
+
+A ordem das resistências médias foi:
+
+**"Grupo C">"Grupo B">"Grupo A"**
+
+As diferenças entre as médias foram:
+
+- Grupo B em relação ao A: **4,290 MPa, aproximadamente 15,23% superior;**
+- Grupo C em relação ao A: **11,321 MPa, aproximadamente 40,20% superior;**
+- Grupo C em relação ao B: **7,031 MPa, aproximadamente 21,66% superior.**
+
+Portanto, se os três grupos representam diferentes traços, materiais, idades de cura ou condições de fabricação, o grupo C apresentou o melhor resultado médio de resistência.
+
+Com relação à homogeneidade, observando-se o coeficiente de variação:
+
+- Grupo C = **4,20% - Mais homogêneo;**
+- Grupo A = **5,07%;**
+- Grupo B = **5,84% - Menos homogêneo.**
+
+Em resumo, o grupo C combina a maior resistência média com a menor dispersão relativa. 
 
 ## 🧠 Considerações finais
 
-Apresente uma síntese dos principais pontos observados no experimento.
+Os quatro primeiros capítulos do livro fornecem uma base importante para o estudo da Estatística aplicada. Inicialmente, são apresentados conceitos fundamentais, como população, amostra, variável e dado. Em seguida, o livro aborda a organização dos dados por meio de tabelas, frequências e representações gráficas. Depois, são estudadas medidas que resumem os dados, como média, mediana e moda, além de medidas que avaliam a variabilidade, como amplitude, variância, desvio padrão, coeficiente de variação e erro padrão da média. Além disso, a inclusão dos conceitos de assimetria e curtose amplia a análise descritiva, pois permite compreender melhor o formato da distribuição dos dados complementando as medidas de posição e dispersão e oferecendo uma visão mais completa sobre o comportamento dos dados.
 
-- Retome o objetivo da prática e indique se ele foi alcançado.
-- Destaque os principais aprendizados obtidos.
-- Comente brevemente sobre a qualidade dos dados coletados.
-- Sugira possíveis melhorias no procedimento experimental.
+A introdução ao R mostra a importância do uso de ferramentas computacionais na Estatística. O R, em conjunto com o RStudio, permite realizar cálculos, organizar dados, construir gráficos e aplicar técnicas estatísticas com eficiência. Além disso, entender a sintaxe e a semântica do R é essencial para escrever comandos corretamente e interpretar o significado das operações realizadas. Assim, o aprendizado dos conceitos teóricos aliado ao uso de softwares estatísticos contribui para uma formação mais completa e aplicada, especialmente nas áreas de Engenharia e Ciências.
 
-Evite repetir apenas os resultados; foque nas **conclusões e reflexões** sobre a prática realizada.
+Conclui-se, com base na Estatística Descritiva, que o grupo C apresentou a maior resistência média e o menor coeficiente de variação, enquanto o grupo B apresentou resistência superior à do grupo A, mas também a maior dispersão. Entretanto, essas medidas permitem apenas organizar, resumir e comparar os dados observados, não sendo suficientes para generalizar os resultados ou tomar decisões sobre a população. Para verificar se as diferenças encontradas são estatisticamente significativas, torna-se necessária a aplicação da Estatística Inferencial, por meio de métodos como intervalos de confiança, testes de hipóteses e análise de variância. A decisão sobre o atendimento aos requisitos do projeto também deve considerar a resistência especificada, a idade de rompimento, o material, o plano de amostragem, a quantidade de exemplares e os critérios da norma técnica aplicável. Essas análises serão abordadas nos próximos relatórios. 
 
-## Aprenda Quarto
 
-Acesse [Quarto](https://quarto.org/).
+
+
+
+
+
+
+
+
 
 ## 📖 Referências
+
+Depois de inserido as informaçõe no arquivo **referencias.bib**, use:
+
+- Segundo @Rbasico2022
+- Tudo é um objeto em R [@Rbasico2022]
+@batista2026EPAEC
