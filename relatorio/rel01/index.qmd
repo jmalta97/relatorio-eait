@@ -247,20 +247,39 @@ kable(corposdeprova,
   column_spec(1:n_col, extra_css = "text-align: center;") %>%  # força centralização
   scroll_box(width = "100%", height = "400px")
 ```
+
 ### Análise prática de cada grupo
  
  **inserir tabela**
  
 #### Grupo A
+```{r}
+library(leem)
 
-O grupo A apresentou resistência média de **28,166 MPa e mediana de 28,190 MPa.** A proximidade entre essas duas medidas é um primeiro indício de que a distribuição é equilibrada e não está sendo fortemente afetada por valores extremos.
+# Carregar dados
+corposdeprova <- read.csv("C:/Users/Dell/Desktop/relatórios/relatorio-eait/relatorio/rel01/corposdeprova.csv")
+
+# Calcular média do Grupo A em MPa
+media_A_MPa <- mean(corposdeprova$Resistencia_kPa[corposdeprova$Grupo == "A"]) / 1000
+
+# Formatar com 2 casas decimais
+media_A_MPa_formatada <- round(media_A_MPa, 2)
+
+# Calcular mediana do Grupo A em MPa
+median_A_MPa <- median(corposdeprova$Resistencia_kPa[corposdeprova$Grupo == "A"]) / 1000
+
+# Formatar com 2 casas decimais
+median_A_MPa_formatada <- round(median_A_MPa, 2)
+```
+O grupo A apresentou resistência média de `r media_A_MPa_formatada` MPa e mediana de `r median_A_MPa_formatada` MPa. A proximidade entre essas duas medidas é um primeiro indício de que a distribuição é equilibrada e não está sendo fortemente afetada por valores extremos.
+
 O coeficiente de assimetria foi:
 
 **g_1=0,053**
 
 Como o resultado está muito próximo de zero, a distribuição do grupo A pode ser considerada aproximadamente simétrica. O pequeno sinal positivo indica uma tendência mínima de alongamento à direita, mas a magnitude é tão baixa que não possui relevância prática nesse conjunto.
 
-O desvio padrão foi de **1,428 MPa**, indicando o afastamento típico dos resultados em torno da média. A amplitude foi de **4,580 MPa**, correspondente à diferença entre o maior resultado, **30,550 MPa, e o menor, 25,970 MPa.**
+O desvio padrão foi de **1,428 MPa**, indicando o afastamento típico dos resultados em torno da média. A amplitude foi de **4,580 MPa**, correspondente à diferença entre o maior resultado,  **30,550 MPa, e o menor, 25,970 MPa.**
 
 O coeficiente de variação foi:
 
