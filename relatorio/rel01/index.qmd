@@ -42,7 +42,6 @@ Além da estatística em sua essência, com o avanço das tecnologias a estatís
 
 Resumir os principais conceitos apresentados nos quatro primeiros capítulos do livro Estatística & Probabilidade aplicada às Engenharias e Ciências; introduzir conceitos iniciais da linguagem R e do RStudio, por exemplo Sintaxe e Semântica; realizar uma aplicação prática unindo os 2 temas anteriores.
 
-
 ### Objetivos específicos
 
 - Apresentar as definições iniciais da Estatística, incluindo população, amostra, variável e dado; 
@@ -52,7 +51,6 @@ Resumir os principais conceitos apresentados nos quatro primeiros capítulos do 
 - Apresentar os conceitos de assimetria e curtose; 
 - Explicar conceitos e ideias iniciais da linguagem R e do RStudio. Passos iniciais, aplicações e sua sintaxe e Semântica. 
 - Relacionar todos os itens e conceitos acima e realizar uma aplicação prática mesclando a estatística descritiva com a linguagem R e RStudio. 
-
 
 
 ## ⚙️ Metodologia
@@ -248,97 +246,247 @@ kable(corposdeprova,
   scroll_box(width = "100%", height = "400px")
 ```
 
-### Análise prática de cada grupo
- 
- **inserir tabela**
- 
-#### Grupo A
 ```{r}
 library(leem)
 
 # Carregar dados
 corposdeprova <- read.csv("C:/Users/Dell/Desktop/relatórios/relatorio-eait/relatorio/rel01/corposdeprova.csv")
 
-# Calcular média do Grupo A em MPa
-media_A_MPa <- mean(corposdeprova$Resistencia_kPa[corposdeprova$Grupo == "A"]) / 1000
+# ==================== GRUPO A ====================
+dados_A <- corposdeprova$Resistencia_kPa[corposdeprova$Grupo == "A"]
 
-# Formatar com 2 casas decimais
+# Média (kPa → MPa)
+media_A_MPa <- mean(dados_A) / 1000
 media_A_MPa_formatada <- round(media_A_MPa, 2)
 
-# Calcular mediana do Grupo A em MPa
-median_A_MPa <- median(corposdeprova$Resistencia_kPa[corposdeprova$Grupo == "A"]) / 1000
+# Mediana (kPa → MPa)
+mediana_A_MPa <- median(dados_A) / 1000
+mediana_A_MPa_formatada <- round(mediana_A_MPa, 2)
 
-# Formatar com 2 casas decimais
-median_A_MPa_formatada <- round(median_A_MPa, 2)
+# Desvio Padrão (kPa → MPa)
+desvio_A <- sd(dados_A) / 1000
+desvio_A_formatado <- round(desvio_A, 2)
+
+# Variância (kPa² → MPa²)
+variancia_A <- var(dados_A) / (1000^2)
+variancia_A_formatada <- round(variancia_A, 2)
+
+# Coeficiente de Variação (mesmo em %)
+cv_A <- (sd(dados_A) / mean(dados_A)) * 100
+cv_A_formatado <- round(cv_A, 2)
+
+# Assimetria (adimensional)
+n <- length(dados_A)
+m3 <- sum((dados_A - mean(dados_A))^3) / n
+s3 <- (sum((dados_A - mean(dados_A))^2) / n)^(3/2)
+assimetria_A <- m3 / s3
+assimetria_A_formatada <- round(assimetria_A, 3)
+
+# Curtose (adimensional)
+m4 <- sum((dados_A - mean(dados_A))^4) / n
+s4 <- (sum((dados_A - mean(dados_A))^2) / n)^2
+curtose_A <- m4 / s4
+curtose_A_formatada <- round(curtose_A, 3)
+
+# Mínimo (kPa → MPa)
+min_A <- min(dados_A) / 1000
+min_A_formatado <- round(min_A, 2)
+
+# Máximo (kPa → MPa)
+max_A <- max(dados_A) / 1000
+max_A_formatado <- round(max_A, 2)
+
+# Amplitude Total (kPa → MPa)
+amplitude_A <- (max(dados_A) - min(dados_A)) / 1000
+amplitude_A_formatada <- round(amplitude_A, 2)
 ```
-O grupo A apresentou resistência média de `r media_A_MPa_formatada` MPa e mediana de `r median_A_MPa_formatada` MPa. A proximidade entre essas duas medidas é um primeiro indício de que a distribuição é equilibrada e não está sendo fortemente afetada por valores extremos.
+
+```{r}
+# ==================== GRUPO B ====================
+dados_B <- corposdeprova$Resistencia_kPa[corposdeprova$Grupo == "B"]
+
+# Média (kPa → MPa)
+media_B_MPa <- mean(dados_B) / 1000
+media_B_MPa_formatada <- round(media_B_MPa, 2)
+
+# Mediana (kPa → MPa)
+mediana_B_MPa <- median(dados_B) / 1000
+mediana_B_MPa_formatada <- round(mediana_B_MPa, 2)
+
+# Desvio Padrão (kPa → MPa)
+desvio_B <- sd(dados_B) / 1000
+desvio_B_formatado <- round(desvio_B, 2)
+
+# Variância (kPa² → MPa²)
+variancia_B <- var(dados_B) / (1000^2)
+variancia_B_formatada <- round(variancia_B, 2)
+
+# Coeficiente de Variação (mesmo em %)
+cv_B <- (sd(dados_B) / mean(dados_B)) * 100
+cv_B_formatado <- round(cv_B, 2)
+
+# Assimetria (adimensional)
+n <- length(dados_B)
+m3 <- sum((dados_B - mean(dados_B))^3) / n
+s3 <- (sum((dados_B - mean(dados_B))^2) / n)^(3/2)
+assimetria_B <- m3 / s3
+assimetria_B_formatada <- round(assimetria_B, 3)
+
+# Curtose (adimensional)
+m4 <- sum((dados_B - mean(dados_B))^4) / n
+s4 <- (sum((dados_B - mean(dados_B))^2) / n)^2
+curtose_B <- m4 / s4
+curtose_B_formatada <- round(curtose_B, 3)
+
+# Mínimo (kPa → MPa)
+min_B <- min(dados_B) / 1000
+min_B_formatado <- round(min_B, 2)
+
+# Máximo (kPa → MPa)
+max_B <- max(dados_B) / 1000
+max_B_formatado <- round(max_B, 2)
+
+# Amplitude Total (kPa → MPa)
+amplitude_B <- (max(dados_B) - min(dados_B)) / 1000
+amplitude_B_formatada <- round(amplitude_B, 2)
+```
+
+```{r}
+# ==================== GRUPO C ====================
+dados_C <- corposdeprova$Resistencia_kPa[corposdeprova$Grupo == "C"]
+
+# Média (kPa → MPa)
+media_C_MPa <- mean(dados_C) / 1000
+media_C_MPa_formatada <- round(media_C_MPa, 2)
+
+# Mediana (kPa → MPa)
+mediana_C_MPa <- median(dados_C) / 1000
+mediana_C_MPa_formatada <- round(mediana_C_MPa, 2)
+
+# Desvio Padrão (kPa → MPa)
+desvio_C <- sd(dados_C) / 1000
+desvio_C_formatado <- round(desvio_C, 2)
+
+# Variância (kPa² → MPa²)
+variancia_C <- var(dados_C) / (1000^2)
+variancia_C_formatada <- round(variancia_C, 2)
+
+# Coeficiente de Variação (mesmo em %)
+cv_C <- (sd(dados_C) / mean(dados_C)) * 100
+cv_C_formatado <- round(cv_C, 2)
+
+# Assimetria (adimensional)
+n <- length(dados_C)
+m3 <- sum((dados_C - mean(dados_C))^3) / n
+s3 <- (sum((dados_C - mean(dados_C))^2) / n)^(3/2)
+assimetria_C <- m3 / s3
+assimetria_C_formatada <- round(assimetria_C, 3)
+
+# Curtose (adimensional)
+m4 <- sum((dados_C - mean(dados_C))^4) / n
+s4 <- (sum((dados_C - mean(dados_C))^2) / n)^2
+curtose_C <- m4 / s4
+curtose_C_formatada <- round(curtose_C, 3)
+
+# Mínimo (kPa → MPa)
+min_C <- min(dados_C) / 1000
+min_C_formatado <- round(min_C, 2)
+
+# Máximo (kPa → MPa)
+max_C <- max(dados_C) / 1000
+max_C_formatado <- round(max_C, 2)
+
+# Amplitude Total (kPa → MPa)
+amplitude_C <- (max(dados_C) - min(dados_C)) / 1000
+amplitude_C_formatada <- round(amplitude_C, 2)
+```
+
+### Análise prática de cada grupo
+ 
+| Estatística | Grupo A | Grupo B | Grupo C |
+|-------------|---------|---------|---------|
+| Média (MPa) | `r media_A_MPa_formatada` | `r media_B_MPa_formatada` | `r media_C_MPa_formatada` |
+| Mediana (MPa) | `r mediana_A_MPa_formatada` | `r mediana_B_MPa_formatada` | `r mediana_C_MPa_formatada` |
+| Desvio Padrão (MPa) | `r desvio_A_formatado` | `r desvio_B_formatado` | `r desvio_C_formatado` |
+| Variância (MPa²) | `r variancia_A_formatada` | `r variancia_B_formatada` | `r variancia_C_formatada` |
+| CV (%) | `r cv_A_formatado` | `r cv_B_formatado` | `r cv_C_formatado` |
+| Assimetria | `r assimetria_A_formatada` | `r assimetria_B_formatada` | `r assimetria_C_formatada` |
+| Curtose | `r curtose_A_formatada` | `r curtose_B_formatada` | `r curtose_C_formatada` |
+| Mínimo (MPa) | `r min_A_formatado` | `r min_B_formatado` | `r min_C_formatado` |
+| Máximo (MPa) | `r max_A_formatado` | `r max_B_formatado` | `r max_C_formatado` |
+| Amplitude (MPa) | `r amplitude_A_formatada` | `r amplitude_B_formatada` | `r amplitude_C_formatada` |
+ 
+#### Grupo A
+
+
+O grupo A apresentou resistência média de `r media_A_MPa_formatada` MPa e mediana de `r mediana_A_MPa_formatada` MPa. A proximidade entre essas duas medidas é um primeiro indício de que a distribuição é equilibrada e não está sendo fortemente afetada por valores extremos.
 
 O coeficiente de assimetria foi:
 
-**g_1=0,053**
+`r assimetria_A_formatada`
 
 Como o resultado está muito próximo de zero, a distribuição do grupo A pode ser considerada aproximadamente simétrica. O pequeno sinal positivo indica uma tendência mínima de alongamento à direita, mas a magnitude é tão baixa que não possui relevância prática nesse conjunto.
 
-O desvio padrão foi de **1,428 MPa**, indicando o afastamento típico dos resultados em torno da média. A amplitude foi de **4,580 MPa**, correspondente à diferença entre o maior resultado,  **30,550 MPa, e o menor, 25,970 MPa.**
+O desvio padrão foi de `r desvio_A_formatado`, indicando o afastamento típico dos resultados em torno da média. A amplitude foi de `r amplitude_A_formatada` MPa, correspondente à diferença entre o maior resultado,  `r max_A_formatado` MPa, e o menor, `r min_A_formatado` MPa.
 
 O coeficiente de variação foi:
 
-**CV=1,428/28,166×100=5,07%**
+`r cv_A_formatado` %
 
-Isso significa que o desvio padrão corresponde a aproximadamente **5,07% da média.** O grupo apresenta, portanto, uma variabilidade relativamente pequena em comparação com seu nível médio de resistência.
+Isso significa que o desvio padrão corresponde a aproximadamente `r cv_A_formatado` % O grupo apresenta, portanto, uma variabilidade relativamente pequena em comparação com seu nível médio de resistência.
 
-O excesso de curtose foi de **-1,018.** O resultado negativo sugere que, nessa amostra, os valores se apresentam de forma relativamente mais distribuída e com caudas mais leves do que a distribuição normal. Não foram identificados valores atípicos pelo critério do intervalo interquartil.
+O excesso de curtose foi de `r curtose_A_formatada` O resultado negativo sugere que, nessa amostra, os valores se apresentam de forma relativamente mais distribuída e com caudas mais leves do que a distribuição normal. Não foram identificados valores atípicos pelo critério do intervalo interquartil.
 
-Em suma, o grupo A apresentou resistência média de **28,166 MPa**, baixa variabilidade relativa, distribuição aproximadamente simétrica e ausência de indícios estatísticos de valores discrepantes. A média e a mediana são praticamente iguais, indicando que ambas representam adequadamente o centro dos resultados.
+Em suma, o grupo A apresentou resistência média de `r media_A_MPa_formatada`, baixa variabilidade relativa, distribuição aproximadamente simétrica e ausência de indícios estatísticos de valores discrepantes. A média e a mediana são praticamente iguais, indicando que ambas representam adequadamente o centro dos resultados.
 
 #### Grupo B
 
-O grupo B apresentou resistência média de **32,456 MPa e mediana de 32,475 MPa.** Novamente, observa-se grande proximidade entre as duas medidas, indicando que a média não está sendo fortemente deslocada por valores extremos.
+O grupo B apresentou resistência média de `r media_B_MPa_formatada` MPa e mediana de `r mediana_B_MPa_formatada` MPa. Novamente, observa-se grande proximidade entre as duas medidas, indicando que a média não está sendo fortemente deslocada por valores extremos.
 
 O coeficiente de assimetria foi:
 
-**g_1=0,291**
+`r assimetria_B_formatada`
 
-O sinal positivo indica uma leve tendência de cauda à direita, causada pelos resultados mais elevados, como **35,670 MPa e 36,050 MPa. Entretanto, o valor de 0,291** ainda é relativamente próximo de zero. Portanto, a assimetria pode ser considerada pequena.
+O sinal positivo indica uma leve tendência de cauda à direita, causada pelos resultados mais elevados, como 35,670 MPa e 36,050 MPa. Entretanto, o valor de `r assimetria_B_formatada` ainda é relativamente próximo de zero. Portanto, a assimetria pode ser considerada pequena.
 
 O grupo B apresentou o maior desvio padrão entre os três grupos:
 
-**s=1,896" MPa"**
+`r desvio_B_formatado` MPa
 
 Também apresentou a maior amplitude:
 
-**A=36,050-29,560=6,490" MPa"**
+A=`r max_B_formatado`  - `r min_B_formatado`=6,490 MPa
 
-Esses resultados indicam que o grupo B possui maior dispersão absoluta. O coeficiente de variação foi de 5,84%, também o maior entre os três grupos. Embora a diferença não seja muito elevada, o grupo B é relativamente o menos homogêneo.
+Esses resultados indicam que o grupo B possui maior dispersão absoluta. O coeficiente de variação foi de `r cv_B_formatado` %, também o maior entre os três grupos. Embora a diferença não seja muito elevada, o grupo B é relativamente o menos homogêneo.
 
-O excesso de curtose foi de-0,659, indicando uma distribuição relativamente achatada e sem forte concentração de resultados extremos. Pelo critério do intervalo interquartil, também não foram identificados valores atípicos.
+O excesso de curtose foi de`r curtose_B_formatada`, indicando uma distribuição relativamente achatada e sem forte concentração de resultados extremos. Pelo critério do intervalo interquartil, também não foram identificados valores atípicos.
 
-Em suma, o grupo B apresentou resistência média de 32,456 MPa e leve assimetria positiva. Embora não tenham sido identificados valores discrepantes, o grupo apresentou a maior amplitude, o maior desvio padrão e o maior coeficiente de variação, sendo o grupo com maior variabilidade entre os corpos de prova.
+Em suma, o grupo B apresentou resistência média de `r media_B_MPa_formatada` MPa e leve assimetria positiva. Embora não tenham sido identificados valores discrepantes, o grupo apresentou a maior amplitude, o maior desvio padrão e o maior coeficiente de variação, sendo o grupo com maior variabilidade entre os corpos de prova.
 
 #### Grupo C
 
 O grupo C apresentou a maior resistência média:
 
-**x ˉ=39,487" MPa"**
+`r media_C_MPa_formatada` MPa
 
-Sua mediana foi de **39,670 MPa**, novamente muito próxima da média. Essa proximidade indica que a distribuição é equilibrada e que os valores altos ou baixos não estão deslocando significativamente a média.
+Sua mediana foi de `r mediana_C_MPa_formatada` MPa, novamente muito próxima da média. Essa proximidade indica que a distribuição é equilibrada e que os valores altos ou baixos não estão deslocando significativamente a média.
 O coeficiente de assimetria foi:
 
-**g_1=0,020**
+`r assimetria_C_formatada`
 
 O valor está praticamente igual a zero, indicando uma distribuição aproximadamente simétrica. Portanto, tanto a média quanto a mediana representam adequadamente o centro dos resultados do grupo C.
 
-O desvio padrão foi de **1,660 MPa**, valor intermediário entre os grupos A e B. A amplitude foi:
+O desvio padrão foi de `r desvio_C_formatado` MPa, valor intermediário entre os grupos A e B. A amplitude foi:
 
-**A=42,300-36,890=5,410" MPa"**
+A=`r max_C_formatado`-`r min_C_formatado`=5,410" MPa"
 
 Entretanto, para comparar a homogeneidade dos grupos, o coeficiente de variação é mais informativo do que o desvio padrão isolado, porque leva em consideração a média de cada grupo. Para o grupo C:
 
-**CV=1,660/39,487×100=4,20%**
+**CV=`r cv_C_formatado` %
 
 Esse foi o menor coeficiente de variação entre os três grupos. Assim, apesar de o desvio padrão do grupo C ser maior que o do grupo A, sua dispersão é menor quando comparada proporcionalmente à respectiva média.
 
-O excesso de curtose foi de **-0,801**, apontando uma distribuição relativamente mais achatada e sem caudas pesadas. Não foram identificados valores atípicos pelo critério do intervalo interquartil.
+O excesso de curtose foi de `r curtose_C_formatada`, apontando uma distribuição relativamente mais achatada e sem caudas pesadas. Não foram identificados valores atípicos pelo critério do intervalo interquartil.
 
 Em suma, o grupo C apresentou a maior resistência média e o menor coeficiente de variação. Os dados possuem distribuição aproximadamente simétrica, sem evidência de valores discrepantes. Em termos relativos, o grupo C apresentou a maior homogeneidade entre os corpos de prova.
 
@@ -346,7 +494,7 @@ Em suma, o grupo C apresentou a maior resistência média e o menor coeficiente 
 
 A ordem das resistências médias foi:
 
-**"Grupo C">"Grupo B">"Grupo A"**
+"Grupo C">"Grupo B">"Grupo A"
 
 As diferenças entre as médias foram:
 
