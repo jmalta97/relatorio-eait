@@ -26,19 +26,16 @@ execute:
 ---
 
 ## 📌 Introdução
-
+<div style="text-align: justify;">
 A Estatística é uma área fundamental para a análise, interpretação e tomada de decisão com base em dados. No contexto das Engenharias e Ciências, essa área permite transformar informações brutas em resultados organizados, facilitando a compreensão de fenômenos, processos e problemas reais. Por meio da estatística, podemos tomar decisões sobre uma população através da amostra, importante pois poupa tempo e dinheiro. 
 
 Nesse primeiro momento, trataremos de Estatística Descritiva, apresentando conceitos como população, amostra, variável, dados, coleta, organização, tabelas de frequência, gráficos, medidas de posição, medidas de dispersão, assimetria e curtose. Esses conteúdos são essenciais para compreender como os dados podem ser tratados e resumidos antes da aplicação de técnicas estatísticas mais avançadas.  
 
 Além da estatística em sua essência, com o avanço das tecnologias a estatística manual e braçal cedeu espaço para softwares com grande capacidade de processamento de dados, como por exemplo o R Studio, que utiliza a linguagem de programação R em um ambiente computacional voltado principalmente para estatística, análise de dados e construção de gráficos. De forma simples, pode-se dizer que o R é a linguagem e o ambiente que executa os cálculos, enquanto o RStudio é a ferramenta que organiza e facilita o uso dessa linguagem. O RStudio permite escrever comandos, executar linhas de código, visualizar resultados, criar gráficos, consultar ajuda e gerenciar projetos. 
 
-
-
 ## 🎯 Objetivos
 
 ### Objetivo geral
-
 
 Resumir os principais conceitos apresentados nos quatro primeiros capítulos do livro Estatística & Probabilidade aplicada às Engenharias e Ciências; introduzir conceitos iniciais da linguagem R e do RStudio, por exemplo Sintaxe e Semântica; realizar uma aplicação prática unindo os 2 temas anteriores.
 
@@ -52,13 +49,10 @@ Resumir os principais conceitos apresentados nos quatro primeiros capítulos do 
 - Explicar conceitos e ideias iniciais da linguagem R e do RStudio. Passos iniciais, aplicações e sua sintaxe e Semântica. 
 - Relacionar todos os itens e conceitos acima e realizar uma aplicação prática mesclando a estatística descritiva com a linguagem R e RStudio. 
 
-
 ## ⚙️ Metodologia
 
-<div style="text-align: justify;">
 Este relatório foi elaborado a partir da leitura e análise dos quatro primeiros capítulos do livro digital Estatística & Probabilidade aplicada às Engenharias e Ciências, da visualização e compreensão dos vídeos do Curso R Básico 2024 e conteúdos auxiliares como o R Studio, Pacote Leem e Rmarkdown. A metodologia utilizada consistiu em identificar os principais conceitos, definições e aplicações sintetizando as ideias centrais de forma objetiva e organizada. 
 A estrutura do relatório foi organizada em introdução, objetivos, metodologia, resultados e discussão, conclusão e referências. O foco foi produzir um resumo claro, com linguagem acadêmica simples e adequada. 
-
 
 ## 🔍 Resultados e Discussão
 
@@ -149,6 +143,8 @@ O capítulo também aborda o coeficiente de variação, uma medida relativa de d
 
 Além das medidas de posição e dispersão, a análise estatística também pode considerar medidas relacionadas ao formato da distribuição dos dados, como a assimetria e a curtose. Essas medidas ajudam a compreender não apenas onde os dados se concentram e o quanto variam, mas também como os valores estão distribuídos ao redor da média. A assimetria indica o grau de afastamento de uma distribuição em relação à simetria, ou seja, descreve o equilíbrio da distribuição. A curtose ajuda a avaliar o peso das caudas e a ocorrência de valores extremos.
 
+**inserir formulas de assimetria e curtose**
+
 Uma distribuição é considerada aproximadamente simétrica quando os dados se distribuem de forma semelhante dos dois lados de uma medida central. Nesse caso, média, mediana e moda tendem a apresentar valores próximos. Quando a distribuição possui uma cauda mais alongada para a direita, ocorre assimetria positiva. Nesse tipo de situação, alguns valores altos podem puxar a média para cima. Quando a cauda é mais alongada para a esquerda, ocorre assimetria negativa, indicando a presença de valores baixos que influenciam a distribuição.
 
 A análise da assimetria é importante porque permite avaliar se a média representa bem o conjunto de dados. Em distribuições muito assimétricas, a média pode ser fortemente afetada por valores extremos, sendo recomendável observar também a mediana e a moda. Dessa forma, a assimetria se relaciona diretamente ao conteúdo do Capítulo 3 do livro, no qual são discutidas as medidas de posição e suas diferentes interpretações. 
@@ -194,7 +190,7 @@ Outro ponto importante da sintaxe do R é que a linguagem diferencia letras mai�
 
 Portanto, compreender sintaxe e semântica é essencial para utilizar o R corretamente. A sintaxe permite escrever comandos sem erros, enquanto a semântica permite entender o significado das operações realizadas. Esse conhecimento é importante para aplicar os conceitos estatísticos estudados, como organização de dados, medidas de posição, medidas de dispersão, assimetria e curtose.
 
-## Estudo de Caso e Aplicação
+## 🏗️ Estudo de Caso e Aplicação
 ### Contexto do Projeto
 
 A obra em questão consiste na execução de um muro de arrimo em concreto armado, com função estrutural de contenção de um talude de mineração (cava de extração de minério de ferro). O muro possui altura média de 12 m, extensão linear de 180 m e volume total estimado de concreto de 2.400 m³. 
@@ -223,14 +219,14 @@ Os corpos de prova foram:
 - Cura úmida em câmara úmida (temperatura 23 ± 2 °C e umidade relativa ≥ 95%) por 7 dias; 
 - Mantidos em condição ambiente do laboratório até a data do ensaio (aos 28 dias). 
 
-Os resultados obtidos podem ser observados na 
+Os resultados obtidos podem ser observados na tabela a seguir.
 
 
 ```{r}
 library(knitr)
 library(kableExtra)
 
-corposdeprova <- read.csv("C:/Users/Dell/Desktop/relatórios/relatorio-eait/relatorio/rel01/corposdeprova.csv")
+corposdeprova <- read.csv("corposdeprova.csv")
 
 # Número de colunas (para aplicar centralização em todas)
 n_col <- ncol(corposdeprova)
@@ -246,271 +242,218 @@ kable(corposdeprova,
   scroll_box(width = "100%", height = "400px")
 ```
 
-```{r}
+```{r setup, include=FALSE}
 library(leem)
-
-# Carregar dados
-corposdeprova <- read.csv("C:/Users/Dell/Desktop/relatórios/relatorio-eait/relatorio/rel01/corposdeprova.csv")
-
-# ==================== GRUPO A ====================
-dados_A <- corposdeprova$Resistencia_kPa[corposdeprova$Grupo == "A"]
-
-# Média (kPa → MPa)
-media_A_MPa <- mean(dados_A) / 1000
-media_A_MPa_formatada <- round(media_A_MPa, 2)
-
-# Mediana (kPa → MPa)
-mediana_A_MPa <- median(dados_A) / 1000
-mediana_A_MPa_formatada <- round(mediana_A_MPa, 2)
-
-# Desvio Padrão (kPa → MPa)
-desvio_A <- sd(dados_A) / 1000
-desvio_A_formatado <- round(desvio_A, 2)
-
-# Variância (kPa² → MPa²)
-variancia_A <- var(dados_A) / (1000^2)
-variancia_A_formatada <- round(variancia_A, 2)
-
-# Coeficiente de Variação (mesmo em %)
-cv_A <- (sd(dados_A) / mean(dados_A)) * 100
-cv_A_formatado <- round(cv_A, 2)
-
-# Assimetria (adimensional)
-n <- length(dados_A)
-m3 <- sum((dados_A - mean(dados_A))^3) / n
-s3 <- (sum((dados_A - mean(dados_A))^2) / n)^(3/2)
-assimetria_A <- m3 / s3
-assimetria_A_formatada <- round(assimetria_A, 3)
-
-# Curtose (adimensional)
-m4 <- sum((dados_A - mean(dados_A))^4) / n
-s4 <- (sum((dados_A - mean(dados_A))^2) / n)^2
-curtose_A <- m4 / s4
-curtose_A_formatada <- round(curtose_A, 3)
-
-# Mínimo (kPa → MPa)
-min_A <- min(dados_A) / 1000
-min_A_formatado <- round(min_A, 2)
-
-# Máximo (kPa → MPa)
-max_A <- max(dados_A) / 1000
-max_A_formatado <- round(max_A, 2)
-
-# Amplitude Total (kPa → MPa)
-amplitude_A <- (max(dados_A) - min(dados_A)) / 1000
-amplitude_A_formatada <- round(amplitude_A, 2)
+knitr::opts_chunk$set(echo = FALSE, warning = FALSE, message = FALSE)
 ```
 
-```{r}
-# ==================== GRUPO B ====================
-dados_B <- corposdeprova$Resistencia_kPa[corposdeprova$Grupo == "B"]
-
-# Média (kPa → MPa)
-media_B_MPa <- mean(dados_B) / 1000
-media_B_MPa_formatada <- round(media_B_MPa, 2)
-
-# Mediana (kPa → MPa)
-mediana_B_MPa <- median(dados_B) / 1000
-mediana_B_MPa_formatada <- round(mediana_B_MPa, 2)
-
-# Desvio Padrão (kPa → MPa)
-desvio_B <- sd(dados_B) / 1000
-desvio_B_formatado <- round(desvio_B, 2)
-
-# Variância (kPa² → MPa²)
-variancia_B <- var(dados_B) / (1000^2)
-variancia_B_formatada <- round(variancia_B, 2)
-
-# Coeficiente de Variação (mesmo em %)
-cv_B <- (sd(dados_B) / mean(dados_B)) * 100
-cv_B_formatado <- round(cv_B, 2)
-
-# Assimetria (adimensional)
-n <- length(dados_B)
-m3 <- sum((dados_B - mean(dados_B))^3) / n
-s3 <- (sum((dados_B - mean(dados_B))^2) / n)^(3/2)
-assimetria_B <- m3 / s3
-assimetria_B_formatada <- round(assimetria_B, 3)
-
-# Curtose (adimensional)
-m4 <- sum((dados_B - mean(dados_B))^4) / n
-s4 <- (sum((dados_B - mean(dados_B))^2) / n)^2
-curtose_B <- m4 / s4
-curtose_B_formatada <- round(curtose_B, 3)
-
-# Mínimo (kPa → MPa)
-min_B <- min(dados_B) / 1000
-min_B_formatado <- round(min_B, 2)
-
-# Máximo (kPa → MPa)
-max_B <- max(dados_B) / 1000
-max_B_formatado <- round(max_B, 2)
-
-# Amplitude Total (kPa → MPa)
-amplitude_B <- (max(dados_B) - min(dados_B)) / 1000
-amplitude_B_formatada <- round(amplitude_B, 2)
+```{r carregar_dados}
+# Carregar dados dos três grupos
+dados_A <- read.csv("corposdeprova_A.csv")
+dados_B <- read.csv("corposdeprova_B.csv")
+dados_C <- read.csv("corposdeprova_C.csv")
 ```
 
-```{r}
-# ==================== GRUPO C ====================
-dados_C <- corposdeprova$Resistencia_kPa[corposdeprova$Grupo == "C"]
-
-# Média (kPa → MPa)
-media_C_MPa <- mean(dados_C) / 1000
-media_C_MPa_formatada <- round(media_C_MPa, 2)
-
-# Mediana (kPa → MPa)
-mediana_C_MPa <- median(dados_C) / 1000
-mediana_C_MPa_formatada <- round(mediana_C_MPa, 2)
-
-# Desvio Padrão (kPa → MPa)
-desvio_C <- sd(dados_C) / 1000
-desvio_C_formatado <- round(desvio_C, 2)
-
-# Variância (kPa² → MPa²)
-variancia_C <- var(dados_C) / (1000^2)
-variancia_C_formatada <- round(variancia_C, 2)
-
-# Coeficiente de Variação (mesmo em %)
-cv_C <- (sd(dados_C) / mean(dados_C)) * 100
-cv_C_formatado <- round(cv_C, 2)
-
-# Assimetria (adimensional)
-n <- length(dados_C)
-m3 <- sum((dados_C - mean(dados_C))^3) / n
-s3 <- (sum((dados_C - mean(dados_C))^2) / n)^(3/2)
-assimetria_C <- m3 / s3
-assimetria_C_formatada <- round(assimetria_C, 3)
-
-# Curtose (adimensional)
-m4 <- sum((dados_C - mean(dados_C))^4) / n
-s4 <- (sum((dados_C - mean(dados_C))^2) / n)^2
-curtose_C <- m4 / s4
-curtose_C_formatada <- round(curtose_C, 3)
-
-# Mínimo (kPa → MPa)
-min_C <- min(dados_C) / 1000
-min_C_formatado <- round(min_C, 2)
-
-# Máximo (kPa → MPa)
-max_C <- max(dados_C) / 1000
-max_C_formatado <- round(max_C, 2)
-
-# Amplitude Total (kPa → MPa)
-amplitude_C <- (max(dados_C) - min(dados_C)) / 1000
-amplitude_C_formatada <- round(amplitude_C, 2)
+```{r funcao_estatisticas}
+# Função para calcular estatísticas usando leem
+calcular_estatisticas <- function(dados, nome_grupo) {
+  # Extrair o vetor de resistência
+  valores <- dados$Resistencia_kPa
+  
+  # Criar objeto leem (variável contínua)
+  obj_leem <- new_leem(valores, variable = 2)
+  
+  # ===== ESTATÍSTICAS USANDO LEEM =====
+  
+  # Média (kPa → MPa)
+  media_MPa <- mean(obj_leem) / 1000
+  media_MPa_formatada <- round(media_MPa, 2)
+  
+  # Mediana (kPa → MPa)
+  mediana_MPa <- median(obj_leem) / 1000
+  mediana_MPa_formatada <- round(mediana_MPa, 2)
+  
+  # Desvio Padrão (kPa → MPa)
+  desvio_MPa <- sd(obj_leem) / 1000
+  desvio_MPa_formatado <- round(desvio_MPa, 2)
+  
+  # Variância (kPa² → MPa²)
+  variancia_MPa2 <- var(obj_leem) / (1000^2)
+  variancia_MPa2_formatada <- round(variancia_MPa2, 2)
+  
+  # ===== CORREÇÃO AQUI =====
+  # Coeficiente de Variação (%)
+  # A função cv() do leem já retorna em porcentagem
+  cv_percent <- cv(obj_leem)  # SEM multiplicar por 100
+  cv_percent_formatado <- round(cv_percent, 2)
+  
+  # ===== ESTATÍSTICAS MANUAIS =====
+  
+  # Assimetria
+  n <- length(valores)
+  m3 <- sum((valores - mean(valores))^3) / n
+  s3 <- (sum((valores - mean(valores))^2) / n)^(3/2)
+  assimetria <- m3 / s3
+  assimetria_formatada <- round(assimetria, 3)
+  
+  # Curtose
+  m4 <- sum((valores - mean(valores))^4) / n
+  s4 <- (sum((valores - mean(valores))^2) / n)^2
+  curtose <- m4 / s4
+  curtose_formatada <- round(curtose, 3)
+  
+  # Mínimo, Máximo e Amplitude
+  min_MPa <- min(valores) / 1000
+  min_MPa_formatado <- round(min_MPa, 2)
+  
+  max_MPa <- max(valores) / 1000
+  max_MPa_formatado <- round(max_MPa, 2)
+  
+  amplitude_MPa <- (max(valores) - min(valores)) / 1000
+  amplitude_MPa_formatada <- round(amplitude_MPa, 2)
+  
+  # ===== CRIAR TABELA DE RESULTADOS =====
+  resultados <- data.frame(
+    Grupo = nome_grupo,
+    Media_MPa = media_MPa_formatada,
+    Mediana_MPa = mediana_MPa_formatada,
+    Desvio_MPa = desvio_MPa_formatado,
+    Variancia_MPa2 = variancia_MPa2_formatada,
+    CV_percent = cv_percent_formatado,
+    Assimetria = assimetria_formatada,
+    Curtose = curtose_formatada,
+    Min_MPa = min_MPa_formatado,
+    Max_MPa = max_MPa_formatado,
+    Amplitude_MPa = amplitude_MPa_formatada
+  )
+  
+  return(resultados)
+}
 ```
 
-### Análise prática de cada grupo
- 
-| Estatística | Grupo A | Grupo B | Grupo C |
-|-------------|---------|---------|---------|
-| Média (MPa) | `r media_A_MPa_formatada` | `r media_B_MPa_formatada` | `r media_C_MPa_formatada` |
-| Mediana (MPa) | `r mediana_A_MPa_formatada` | `r mediana_B_MPa_formatada` | `r mediana_C_MPa_formatada` |
-| Desvio Padrão (MPa) | `r desvio_A_formatado` | `r desvio_B_formatado` | `r desvio_C_formatado` |
-| Variância (MPa²) | `r variancia_A_formatada` | `r variancia_B_formatada` | `r variancia_C_formatada` |
-| CV (%) | `r cv_A_formatado` | `r cv_B_formatado` | `r cv_C_formatado` |
-| Assimetria | `r assimetria_A_formatada` | `r assimetria_B_formatada` | `r assimetria_C_formatada` |
-| Curtose | `r curtose_A_formatada` | `r curtose_B_formatada` | `r curtose_C_formatada` |
-| Mínimo (MPa) | `r min_A_formatado` | `r min_B_formatado` | `r min_C_formatado` |
-| Máximo (MPa) | `r max_A_formatado` | `r max_B_formatado` | `r max_C_formatado` |
-| Amplitude (MPa) | `r amplitude_A_formatada` | `r amplitude_B_formatada` | `r amplitude_C_formatada` |
- 
-#### Grupo A
+```{r calcular_resultados}
+# Aplicar a função para cada grupo
+resultados_A <- calcular_estatisticas(dados_A, "A")
+resultados_B <- calcular_estatisticas(dados_B, "B")
+resultados_C <- calcular_estatisticas(dados_C, "C")
 
+# Combinar todos os resultados
+resultados_finais <- rbind(resultados_A, resultados_B, resultados_C)
+```
 
-O grupo A apresentou resistência média de `r media_A_MPa_formatada` MPa e mediana de `r mediana_A_MPa_formatada` MPa. A proximidade entre essas duas medidas é um primeiro indício de que a distribuição é equilibrada e não está sendo fortemente afetada por valores extremos.
+## Tabela de Estatísticas Descritivas
 
-O coeficiente de assimetria foi:
+```{r tabela_resultados}
+knitr::kable(resultados_finais, 
+             caption = "Estatísticas Descritivas por Grupo",
+             digits = 2)
+```
 
-`r assimetria_A_formatada`
+## Análise Gráfica
 
-Como o resultado está muito próximo de zero, a distribuição do grupo A pode ser considerada aproximadamente simétrica. O pequeno sinal positivo indica uma tendência mínima de alongamento à direita, mas a magnitude é tão baixa que não possui relevância prática nesse conjunto.
+### Histogramas por Grupo
 
-O desvio padrão foi de `r desvio_A_formatado`, indicando o afastamento típico dos resultados em torno da média. A amplitude foi de `r amplitude_A_formatada` MPa, correspondente à diferença entre o maior resultado,  `r max_A_formatado` MPa, e o menor, `r min_A_formatado` MPa.
+```{r histogramas}
+gerar_histograma <- function(dados, nome_grupo) {
+  # Converter para MPa (dividir por 1000)
+  valores_MPa <- dados$Resistencia_kPa / 1000
+  obj_leem <- new_leem(valores_MPa, variable = 2)
+  tab <- tabfreq(obj_leem)
+  
+  hist(tab, 
+       main = paste("Histograma - Grupo", nome_grupo),
+       xlab = "Resistência (MPa)",
+       ylab = "Frequência",
+       col = "lightblue",
+       border = "black")
+  
+  insert(tab, type = "mean", side = "right", lwd = 2, col = "red")
+  insert(tab, type = "median", side = "right", lwd = 2, col = "blue")
+  insert(tab, type = "sd", side = "right", lwd = 2, col = "green")
+  
+  legend("topright", 
+         legend = c("Média", "Mediana", "Desvio Padrão"),
+         col = c("red", "blue", "green"),
+         lwd = 2,
+         bg = "white")
+}
 
-O coeficiente de variação foi:
+# Gerar histograma para cada grupo
+gerar_histograma(dados_A, "A")
+gerar_histograma(dados_B, "B")
+gerar_histograma(dados_C, "C")
+```
 
-`r cv_A_formatado` %
+### Boxplot Comparativo
 
-Isso significa que o desvio padrão corresponde a aproximadamente `r cv_A_formatado` % O grupo apresenta, portanto, uma variabilidade relativamente pequena em comparação com seu nível médio de resistência.
+```{r boxplot}
+library(ggplot2)
 
-O excesso de curtose foi de `r curtose_A_formatada` O resultado negativo sugere que, nessa amostra, os valores se apresentam de forma relativamente mais distribuída e com caudas mais leves do que a distribuição normal. Não foram identificados valores atípicos pelo critério do intervalo interquartil.
+# Criar dataframe com todos os dados em MPa
+dados_completos <- data.frame(
+  Resistencia_MPa = c(dados_A$Resistencia_kPa / 1000, 
+                      dados_B$Resistencia_kPa / 1000, 
+                      dados_C$Resistencia_kPa / 1000),
+  Grupo = c(rep("A", nrow(dados_A)),
+            rep("B", nrow(dados_B)),
+            rep("C", nrow(dados_C)))
+)
 
-Em suma, o grupo A apresentou resistência média de `r media_A_MPa_formatada`, baixa variabilidade relativa, distribuição aproximadamente simétrica e ausência de indícios estatísticos de valores discrepantes. A média e a mediana são praticamente iguais, indicando que ambas representam adequadamente o centro dos resultados.
+# Criar boxplot em MPa
+ggplot(dados_completos, aes(x = Grupo, y = Resistencia_MPa, fill = Grupo)) +
+  geom_boxplot() +
+  labs(title = "Boxplot da Resistência por Grupo",
+       x = "Grupo",
+       y = "Resistência (MPa)") +
+  theme_minimal() +
+  scale_fill_brewer(palette = "Set2")
+```
 
-#### Grupo B
+## Análise por Grupo
 
-O grupo B apresentou resistência média de `r media_B_MPa_formatada` MPa e mediana de `r mediana_B_MPa_formatada` MPa. Novamente, observa-se grande proximidade entre as duas medidas, indicando que a média não está sendo fortemente deslocada por valores extremos.
+### Grupo A
 
-O coeficiente de assimetria foi:
+O grupo A apresentou resistência média de `r resultados_A$Media_MPa` MPa e mediana de `r resultados_A$Mediana_MPa` MPa. A proximidade entre essas duas medidas é um primeiro indício de que a distribuição é equilibrada e não está sendo fortemente afetada por valores extremos.
 
-`r assimetria_B_formatada`
+O coeficiente de assimetria foi `r resultados_A$Assimetria`. Como o resultado está muito próximo de zero, a distribuição do grupo A pode ser considerada aproximadamente simétrica.
 
-O sinal positivo indica uma leve tendência de cauda à direita, causada pelos resultados mais elevados, como 35,670 MPa e 36,050 MPa. Entretanto, o valor de `r assimetria_B_formatada` ainda é relativamente próximo de zero. Portanto, a assimetria pode ser considerada pequena.
+O desvio padrão foi de `r resultados_A$Desvio_MPa` MPa, indicando o afastamento típico dos resultados em torno da média. A amplitude foi de `r resultados_A$Amplitude_MPa` MPa, correspondente à diferença entre o maior resultado (`r resultados_A$Max_MPa` MPa) e o menor (`r resultados_A$Min_MPa` MPa).
 
-O grupo B apresentou o maior desvio padrão entre os três grupos:
+O coeficiente de variação foi de `r resultados_A$CV_percent`%, indicando uma variabilidade relativamente pequena, valores abaixo de 10% são geralmente considerados indicativos de boa homogeneidade. O excesso de curtose foi de `r resultados_A$Curtose`, sugerindo uma distribuição com caudas mais leves que a normal.
 
-`r desvio_B_formatado` MPa
+### Grupo B
 
-Também apresentou a maior amplitude:
+O grupo B apresentou resistência média de `r resultados_B$Media_MPa` MPa e mediana de `r resultados_B$Mediana_MPa` MPa. O coeficiente de assimetria foi `r resultados_B$Assimetria`, indicando uma leve tendência de cauda à direita.
 
-A=`r max_B_formatado`  - `r min_B_formatado`=6,490 MPa
+O grupo B apresentou o maior desvio padrão (`r resultados_B$Desvio_MPa` MPa) e a maior amplitude (`r resultados_B$Amplitude_MPa` MPa) entre os três grupos. O coeficiente de variação foi de `r resultados_B$CV_percent`%, sendo o maior entre os grupos.
 
-Esses resultados indicam que o grupo B possui maior dispersão absoluta. O coeficiente de variação foi de `r cv_B_formatado` %, também o maior entre os três grupos. Embora a diferença não seja muito elevada, o grupo B é relativamente o menos homogêneo.
+O excesso de curtose foi de `r resultados_B$Curtose`, indicando uma distribuição relativamente achatada.
 
-O excesso de curtose foi de`r curtose_B_formatada`, indicando uma distribuição relativamente achatada e sem forte concentração de resultados extremos. Pelo critério do intervalo interquartil, também não foram identificados valores atípicos.
+### Grupo C
 
-Em suma, o grupo B apresentou resistência média de `r media_B_MPa_formatada` MPa e leve assimetria positiva. Embora não tenham sido identificados valores discrepantes, o grupo apresentou a maior amplitude, o maior desvio padrão e o maior coeficiente de variação, sendo o grupo com maior variabilidade entre os corpos de prova.
+O grupo C apresentou a maior resistência média: `r resultados_C$Media_MPa` MPa. Sua mediana foi de `r resultados_C$Mediana_MPa` MPa. O coeficiente de assimetria foi `r resultados_C$Assimetria`, praticamente igual a zero.
 
-#### Grupo C
+O desvio padrão foi de `r resultados_C$Desvio_MPa` MPa e a amplitude de `r resultados_C$Amplitude_MPa` MPa. O coeficiente de variação foi de `r resultados_C$CV_percent`%, o menor entre os três grupos.
 
-O grupo C apresentou a maior resistência média:
+O excesso de curtose foi de `r resultados_C$Curtose`.
 
-`r media_C_MPa_formatada` MPa
+## Comparação Prática dos Grupos
 
-Sua mediana foi de `r mediana_C_MPa_formatada` MPa, novamente muito próxima da média. Essa proximidade indica que a distribuição é equilibrada e que os valores altos ou baixos não estão deslocando significativamente a média.
-O coeficiente de assimetria foi:
-
-`r assimetria_C_formatada`
-
-O valor está praticamente igual a zero, indicando uma distribuição aproximadamente simétrica. Portanto, tanto a média quanto a mediana representam adequadamente o centro dos resultados do grupo C.
-
-O desvio padrão foi de `r desvio_C_formatado` MPa, valor intermediário entre os grupos A e B. A amplitude foi:
-
-A=`r max_C_formatado`-`r min_C_formatado`=5,410" MPa"
-
-Entretanto, para comparar a homogeneidade dos grupos, o coeficiente de variação é mais informativo do que o desvio padrão isolado, porque leva em consideração a média de cada grupo. Para o grupo C:
-
-**CV=`r cv_C_formatado` %
-
-Esse foi o menor coeficiente de variação entre os três grupos. Assim, apesar de o desvio padrão do grupo C ser maior que o do grupo A, sua dispersão é menor quando comparada proporcionalmente à respectiva média.
-
-O excesso de curtose foi de `r curtose_C_formatada`, apontando uma distribuição relativamente mais achatada e sem caudas pesadas. Não foram identificados valores atípicos pelo critério do intervalo interquartil.
-
-Em suma, o grupo C apresentou a maior resistência média e o menor coeficiente de variação. Os dados possuem distribuição aproximadamente simétrica, sem evidência de valores discrepantes. Em termos relativos, o grupo C apresentou a maior homogeneidade entre os corpos de prova.
-
-#### Comparação prática dos grupos
-
-A ordem das resistências médias foi:
-
-"Grupo C">"Grupo B">"Grupo A"
+A ordem das resistências médias foi: **Grupo C > Grupo B > Grupo A**.
 
 As diferenças entre as médias foram:
 
-- Grupo B em relação ao A: **4,290 MPa, aproximadamente 15,23% superior;**
-- Grupo C em relação ao A: **11,321 MPa, aproximadamente 40,20% superior;**
-- Grupo C em relação ao B: **7,031 MPa, aproximadamente 21,66% superior.**
+- Grupo B em relação ao A: `r round(resultados_B$Media_MPa - resultados_A$Media_MPa, 3)` MPa, aproximadamente `r round(((resultados_B$Media_MPa - resultados_A$Media_MPa) / resultados_A$Media_MPa * 100), 2)`% superior;
+- Grupo C em relação ao A: `r round(resultados_C$Media_MPa - resultados_A$Media_MPa, 3)` MPa, aproximadamente `r round(((resultados_C$Media_MPa - resultados_A$Media_MPa) / resultados_A$Media_MPa * 100), 2)`% superior;
+- Grupo C em relação ao B: `r round(resultados_C$Media_MPa - resultados_B$Media_MPa, 3)` MPa, aproximadamente `r round(((resultados_C$Media_MPa - resultados_B$Media_MPa) / resultados_B$Media_MPa * 100), 2)`% superior.
 
-Portanto, se os três grupos representam diferentes traços, materiais, idades de cura ou condições de fabricação, o grupo C apresentou o melhor resultado médio de resistência.
+Com relação à homogeneidade (CV):
 
-Com relação à homogeneidade, observando-se o coeficiente de variação:
+- Grupo C = `r resultados_C$CV_percent`% - **Mais homogêneo**
+- Grupo A = `r resultados_A$CV_percent`%
+- Grupo B = `r resultados_B$CV_percent`% - **Menos homogêneo**
 
-- Grupo C = **4,20% - Mais homogêneo;**
-- Grupo A = **5,07%;**
-- Grupo B = **5,84% - Menos homogêneo.**
-
-Em resumo, o grupo C combina a maior resistência média com a menor dispersão relativa. 
+Em resumo, o grupo C combina a maior resistência média com a menor dispersão relativa.
 
 ## 🧠 Considerações finais
 
@@ -528,3 +471,7 @@ Depois de inserido as informaçõe no arquivo **referencias.bib**, use:
 - Segundo @Rbasico2022
 - Tudo é um objeto em R [@Rbasico2022]
 @batista2026EPAEC
+@RCore2026
+@Batista2024
+@Batista2026EPAEC
+
