@@ -131,19 +131,44 @@ Por fim é apresentado como o Pacote leem pode contribuir para o cálculo rápid
 
 O quarto capítulo complementa o estudo das medidas de posição ao apresentar as medidas de dispersão. É apresentado que conjuntos de dados diferentes podem possuir a mesma média, mas apresentar comportamentos distintos. Isso demonstra que apenas uma medida central não é suficiente para caracterizar adequadamente os dados. 
 
-A primeira medida apresentada é a amplitude, definida como a diferença entre o maior e o menor valor do conjunto. Embora seja simples de calcular e esteja na mesma unidade da variável, a amplitude possui limitações, pois considera apenas os valores extremos e ignora o comportamento dos demais dados. Por isso, a amplitude pode não representar adequadamente a variabilidade total de um conjunto. 
+A primeira medida apresentada é a amplitude (Equação 6), definida como a diferença entre o maior e o menor valor do conjunto. Embora seja simples de calcular e esteja na mesma unidade da variável, a amplitude possui limitações, pois considera apenas os valores extremos e ignora o comportamento dos demais dados. Por isso, a amplitude pode não representar adequadamente a variabilidade total de um conjunto. 
 
-Em seguida, o capítulo apresenta a variância, que mede a dispersão dos dados em relação à média por meio dos desvios ao quadrado. A variância considera todos os valores do conjunto, sendo uma medida mais completa do que a amplitude. Entretanto, sua unidade fica elevada ao quadrado, o que pode dificultar a interpretação prática. Por esse motivo, utiliza-se também o desvio padrão, que corresponde à raiz quadrada da variância e retorna a medida de dispersão para a mesma unidade da variável analisada. 
+$$AT = \max(X) - \min(X) \tag{6}$$
+Em seguida, o capítulo apresenta a variância (Equações 7 e 8), que mede a dispersão dos dados em relação à média por meio dos desvios ao quadrado. A variância considera todos os valores do conjunto, sendo uma medida mais completa do que a amplitude. Entretanto, sua unidade fica elevada ao quadrado, o que pode dificultar a interpretação prática. Por esse motivo, utiliza-se também o desvio padrão (Equações 9 e 10), que corresponde à raiz quadrada da variância e retorna a medida de dispersão para a mesma unidade da variável analisada. 
 
+$$\sigma^2 = \frac{1}{N} \sum_{i=1}^{N} (x_i - \mu)^2 \tag{7} $$
+
+$$s^2 = \frac{1}{n-1} \sum_{i=1}^{n} (x_i - \bar{x})^2 \tag{8}$$
+$$\sigma = \sqrt{\sigma^2} \tag{9}$$
+$$s = \sqrt{s^2}\tag{10}$$
 É importante saber que quanto mais próximo de zero a variância e o desvio padrão for, mais concentrado e melhor representado os dados estão com relação à média. Além disso, para utilizar variância e desvio padrão para comparar grupos de dados, temos que verificar se a média desses grupos são iguais e se as observações estão na mesma unidade de mensuração. 
 
-O capítulo também aborda o coeficiente de variação, uma medida relativa de dispersão que expressa o desvio padrão em relação à média, geralmente em porcentagem. Essa medida permite comparar a variabilidade entre grupos diferentes, desde que a variável analisada possua uma escala adequada. Por fim, o autor apresenta o erro padrão da média, que está relacionado à precisão com que a média amostral estima a média populacional e será importante em conteúdos posteriores, como estimação e testes de hipóteses. 
+O capítulo também aborda o coeficiente de variação (Equações 11 e 12), uma medida relativa de dispersão que expressa o desvio padrão em relação à média, geralmente em porcentagem. Essa medida permite comparar a variabilidade entre grupos diferentes, desde que a variável analisada possua uma escala adequada. Por fim, o autor apresenta o erro padrão da média (Equações 13 e 14), que está relacionado à precisão com que a média amostral estima a média populacional e será importante em conteúdos posteriores, como estimação e testes de hipóteses. 
 
+$$CV = \frac{\sigma}{\mu} \tag{11}$$
+$$CV = \frac{s}{\bar{x}} \tag{12}$$
+$$\sigma_{\bar{x}} = \frac{\sigma}{\sqrt{N}} \tag{13}$$
+$$SE_{\bar{x}} = \frac{s}{\sqrt{n}}\tag{14}$$
 ### Assimetria e curtose
 
-Além das medidas de posição e dispersão, a análise estatística também pode considerar medidas relacionadas ao formato da distribuição dos dados, como a assimetria e a curtose. Essas medidas ajudam a compreender não apenas onde os dados se concentram e o quanto variam, mas também como os valores estão distribuídos ao redor da média. A assimetria indica o grau de afastamento de uma distribuição em relação à simetria, ou seja, descreve o equilíbrio da distribuição. A curtose ajuda a avaliar o peso das caudas e a ocorrência de valores extremos.
+Além das medidas de posição e dispersão, a análise estatística também pode considerar medidas relacionadas ao formato da distribuição dos dados, como a assimetria (Equação 15) e a curtose (Equação 16). Essas medidas ajudam a compreender não apenas onde os dados se concentram e o quanto variam, mas também como os valores estão distribuídos ao redor da média. A assimetria indica o grau de afastamento de uma distribuição em relação à simetria, ou seja, descreve o equilíbrio da distribuição. A curtose ajuda a avaliar o peso das caudas e a ocorrência de valores extremos.
 
-**inserir formulas de assimetria e curtose**
+$$g_1 = \frac{\frac{1}{n} \sum_{i=1}^{n} (x_i - \bar{x})^3}{\left[ \frac{1}{n} \sum_{i=1}^{n} (x_i - \bar{x})^2 \right]^{3/2}} \tag{15} $$
+
+- $g_1 = 0$: Distribuição Simétrica (ex: Distribuição Normal).
+
+- $g_1 > 0$: Assimetria Positiva (cauda mais longa à direita).
+
+- $g_1 < 0$: Assimetria Negativa (cauda mais longa à esquerda).
+
+$$g_2 = \frac{\frac{1}{n} \sum_{i=1}^{n} (x_i - \bar{x})^4}{\left[ \frac{1}{n} \sum_{i=1}^{n} (x_i - \bar{x})^2 \right]^2} - 3 \tag{16}$$
+
+- $g_2 = 0$ (Mesocúrtica): Forma idêntica à Distribuição Normal.
+
+- $g_2 > 0$ (Leptocúrtica): Pico mais elevado e caudas mais pesadas (maior probabilidade de outliers / valores extremos).
+
+- $g_2 < 0$ (Platicúrtica): Distribuição mais achatada e caudas mais leves (menor probabilidade de outliers).
+
 
 Uma distribuição é considerada aproximadamente simétrica quando os dados se distribuem de forma semelhante dos dois lados de uma medida central. Nesse caso, média, mediana e moda tendem a apresentar valores próximos. Quando a distribuição possui uma cauda mais alongada para a direita, ocorre assimetria positiva. Nesse tipo de situação, alguns valores altos podem puxar a média para cima. Quando a cauda é mais alongada para a esquerda, ocorre assimetria negativa, indicando a presença de valores baixos que influenciam a distribuição.
 

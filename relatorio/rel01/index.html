@@ -144,19 +144,12 @@ window.Quarto = {
 </div>
 <main class="content" id="quarto-document-content">
 <div class="logos" style="display: flex; justify-content: center; align-items: center; height: 200px; gap: 20px;">
-
   <a href="https://ufsj.edu.br">
-
     <img src="imagens/ufsj.png" width="220px">
-
   </a>
-
   <a href="https://ufsj.edu.br/defim">
-
     <img src="imagens/defim.png" width="220px">
-
   </a>
-
 </div>
 
 <header id="title-block-header" class="quarto-title-block default">
@@ -179,7 +172,7 @@ window.Quarto = {
     <div>
     <div class="quarto-title-meta-heading">Data de Publicação</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">21/08/2026, 19:04</p>
+      <p class="date">21/08/2026, 21:51</p>
     </div>
   </div>
   
@@ -276,22 +269,32 @@ x_{(\frac{n+1}{2})}, &amp; \text{se } n \text{ ímpar} \\
 <section id="capítulo-4-medidas-de-dispersão" class="level3" data-number="4.4">
 <h3 data-number="4.4" class="anchored" data-anchor-id="capítulo-4-medidas-de-dispersão"><span class="header-section-number">4.4</span> Capítulo 4: Medidas de dispersão</h3>
 <p>O quarto capítulo complementa o estudo das medidas de posição ao apresentar as medidas de dispersão. É apresentado que conjuntos de dados diferentes podem possuir a mesma média, mas apresentar comportamentos distintos. Isso demonstra que apenas uma medida central não é suficiente para caracterizar adequadamente os dados.</p>
-<p>A primeira medida apresentada é a amplitude, definida como a diferença entre o maior e o menor valor do conjunto. Embora seja simples de calcular e esteja na mesma unidade da variável, a amplitude possui limitações, pois considera apenas os valores extremos e ignora o comportamento dos demais dados. Por isso, a amplitude pode não representar adequadamente a variabilidade total de um conjunto.</p>
-<p>Em seguida, o capítulo apresenta a variância, que mede a dispersão dos dados em relação à média por meio dos desvios ao quadrado. A variância considera todos os valores do conjunto, sendo uma medida mais completa do que a amplitude. Entretanto, sua unidade fica elevada ao quadrado, o que pode dificultar a interpretação prática. Por esse motivo, utiliza-se também o desvio padrão, que corresponde à raiz quadrada da variância e retorna a medida de dispersão para a mesma unidade da variável analisada.</p>
-<p>É importante saber que quanto mais próximo de zero a variância e o desvio padrão for, mais concentrado e melhor representado os dados estão com relação à média. Além disso, para utilizar variância e desvio padrão para comparar grupos de dados, temos que verificar se a média desses grupos são iguais e se as observações estão na mesma unidade de mensuração.</p>
-<p>O capítulo também aborda o coeficiente de variação, uma medida relativa de dispersão que expressa o desvio padrão em relação à média, geralmente em porcentagem. Essa medida permite comparar a variabilidade entre grupos diferentes, desde que a variável analisada possua uma escala adequada. Por fim, o autor apresenta o erro padrão da média, que está relacionado à precisão com que a média amostral estima a média populacional e será importante em conteúdos posteriores, como estimação e testes de hipóteses.</p>
-</section>
-<section id="assimetria-e-curtose" class="level3" data-number="4.5">
-<h3 data-number="4.5" class="anchored" data-anchor-id="assimetria-e-curtose"><span class="header-section-number">4.5</span> Assimetria e curtose</h3>
-<p>Além das medidas de posição e dispersão, a análise estatística também pode considerar medidas relacionadas ao formato da distribuição dos dados, como a assimetria e a curtose. Essas medidas ajudam a compreender não apenas onde os dados se concentram e o quanto variam, mas também como os valores estão distribuídos ao redor da média. A assimetria indica o grau de afastamento de uma distribuição em relação à simetria, ou seja, descreve o equilíbrio da distribuição. A curtose ajuda a avaliar o peso das caudas e a ocorrência de valores extremos.</p>
-<p><strong>inserir formulas de assimetria e curtose</strong></p>
+<p>A primeira medida apresentada é a amplitude (Equação 6), definida como a diferença entre o maior e o menor valor do conjunto. Embora seja simples de calcular e esteja na mesma unidade da variável, a amplitude possui limitações, pois considera apenas os valores extremos e ignora o comportamento dos demais dados. Por isso, a amplitude pode não representar adequadamente a variabilidade total de um conjunto.</p>
+<p><span class="math display">\[AT = \max(X) - \min(X) \tag{6}\]</span> Em seguida, o capítulo apresenta a variância (Equações 7 e 8), que mede a dispersão dos dados em relação à média por meio dos desvios ao quadrado. A variância considera todos os valores do conjunto, sendo uma medida mais completa do que a amplitude. Entretanto, sua unidade fica elevada ao quadrado, o que pode dificultar a interpretação prática. Por esse motivo, utiliza-se também o desvio padrão (Equações 9 e 10), que corresponde à raiz quadrada da variância e retorna a medida de dispersão para a mesma unidade da variável analisada.</p>
+<p><span class="math display">\[\sigma^2 = \frac{1}{N} \sum_{i=1}^{N} (x_i - \mu)^2 \tag{7} \]</span></p>
+<p><span class="math display">\[s^2 = \frac{1}{n-1} \sum_{i=1}^{n} (x_i - \bar{x})^2 \tag{8}\]</span> <span class="math display">\[\sigma = \sqrt{\sigma^2} \tag{9}\]</span> <span class="math display">\[s = \sqrt{s^2}\tag{10}\]</span> É importante saber que quanto mais próximo de zero a variância e o desvio padrão for, mais concentrado e melhor representado os dados estão com relação à média. Além disso, para utilizar variância e desvio padrão para comparar grupos de dados, temos que verificar se a média desses grupos são iguais e se as observações estão na mesma unidade de mensuração.</p>
+<p>O capítulo também aborda o coeficiente de variação (Equações 11 e 12), uma medida relativa de dispersão que expressa o desvio padrão em relação à média, geralmente em porcentagem. Essa medida permite comparar a variabilidade entre grupos diferentes, desde que a variável analisada possua uma escala adequada. Por fim, o autor apresenta o erro padrão da média (Equações 13 e 14), que está relacionado à precisão com que a média amostral estima a média populacional e será importante em conteúdos posteriores, como estimação e testes de hipóteses.</p>
+<p><span class="math display">\[CV = \frac{\sigma}{\mu} \tag{11}\]</span> <span class="math display">\[CV = \frac{s}{\bar{x}} \tag{12}\]</span> <span class="math display">\[\sigma_{\bar{x}} = \frac{\sigma}{\sqrt{N}} \tag{13}\]</span> <span class="math display">\[SE_{\bar{x}} = \frac{s}{\sqrt{n}}\tag{14}\]</span> ### Assimetria e curtose</p>
+<p>Além das medidas de posição e dispersão, a análise estatística também pode considerar medidas relacionadas ao formato da distribuição dos dados, como a assimetria (Equação 15) e a curtose (Equação 16). Essas medidas ajudam a compreender não apenas onde os dados se concentram e o quanto variam, mas também como os valores estão distribuídos ao redor da média. A assimetria indica o grau de afastamento de uma distribuição em relação à simetria, ou seja, descreve o equilíbrio da distribuição. A curtose ajuda a avaliar o peso das caudas e a ocorrência de valores extremos.</p>
+<p><span class="math display">\[g_1 = \frac{\frac{1}{n} \sum_{i=1}^{n} (x_i - \bar{x})^3}{\left[ \frac{1}{n} \sum_{i=1}^{n} (x_i - \bar{x})^2 \right]^{3/2}} \tag{15} \]</span></p>
+<ul>
+<li><p><span class="math inline">\(g_1 = 0\)</span>: Distribuição Simétrica (ex: Distribuição Normal).</p></li>
+<li><p><span class="math inline">\(g_1 &gt; 0\)</span>: Assimetria Positiva (cauda mais longa à direita).</p></li>
+<li><p><span class="math inline">\(g_1 &lt; 0\)</span>: Assimetria Negativa (cauda mais longa à esquerda).</p></li>
+</ul>
+<p><span class="math display">\[g_2 = \frac{\frac{1}{n} \sum_{i=1}^{n} (x_i - \bar{x})^4}{\left[ \frac{1}{n} \sum_{i=1}^{n} (x_i - \bar{x})^2 \right]^2} - 3 \tag{16}\]</span></p>
+<ul>
+<li><p><span class="math inline">\(g_2 = 0\)</span> (Mesocúrtica): Forma idêntica à Distribuição Normal.</p></li>
+<li><p><span class="math inline">\(g_2 &gt; 0\)</span> (Leptocúrtica): Pico mais elevado e caudas mais pesadas (maior probabilidade de outliers / valores extremos).</p></li>
+<li><p><span class="math inline">\(g_2 &lt; 0\)</span> (Platicúrtica): Distribuição mais achatada e caudas mais leves (menor probabilidade de outliers).</p></li>
+</ul>
 <p>Uma distribuição é considerada aproximadamente simétrica quando os dados se distribuem de forma semelhante dos dois lados de uma medida central. Nesse caso, média, mediana e moda tendem a apresentar valores próximos. Quando a distribuição possui uma cauda mais alongada para a direita, ocorre assimetria positiva. Nesse tipo de situação, alguns valores altos podem puxar a média para cima. Quando a cauda é mais alongada para a esquerda, ocorre assimetria negativa, indicando a presença de valores baixos que influenciam a distribuição.</p>
 <p>A análise da assimetria é importante porque permite avaliar se a média representa bem o conjunto de dados. Em distribuições muito assimétricas, a média pode ser fortemente afetada por valores extremos, sendo recomendável observar também a mediana e a moda. Dessa forma, a assimetria se relaciona diretamente ao conteúdo do Capítulo 3 do livro, no qual são discutidas as medidas de posição e suas diferentes interpretações.</p>
 <p>A curtose está relacionada ao grau de concentração dos dados em torno do centro da distribuição e ao peso das caudas. De forma geral, a curtose ajuda a identificar se uma distribuição apresenta maior concentração de valores próximos à média ou maior ocorrência de valores extremos. Uma distribuição com curtose mais elevada tende a indicar maior presença de valores extremos ou caudas mais pesadas. Já uma curtose menor indica uma distribuição mais achatada, com menor concentração central ou caudas menos intensas.</p>
 <p>Em suma, assimetria e curtose complementam as medidas de dispersão estudadas no Capítulo 4. Enquanto a variância, o desvio padrão e o coeficiente de variação indicam o nível de variabilidade, a assimetria e a curtose ajudam a interpretar o formato da distribuição e a presença de valores extremos.</p>
 </section>
-<section id="introdução-básica-ao-r-linguagem-e-software" class="level3" data-number="4.6">
-<h3 data-number="4.6" class="anchored" data-anchor-id="introdução-básica-ao-r-linguagem-e-software"><span class="header-section-number">4.6</span> Introdução básica ao R (linguagem e software)</h3>
+<section id="introdução-básica-ao-r-linguagem-e-software" class="level3" data-number="4.5">
+<h3 data-number="4.5" class="anchored" data-anchor-id="introdução-básica-ao-r-linguagem-e-software"><span class="header-section-number">4.5</span> Introdução básica ao R (linguagem e software)</h3>
 <p>O R é uma linguagem de programação e um ambiente computacional voltado principalmente para estatística, análise de dados e construção de gráficos. O projeto R apresenta o software como um ambiente gratuito para computação estatística e gráficos, disponível para diferentes sistemas operacionais.</p>
 <p>Para utilizar o R, é necessário instalar inicialmente o programa R, que executa os comandos estatísticos. A instalação pode ser feita pelo site oficial do projeto R, por meio da rede CRAN. Após instalar o R, recomenda-se instalar também o RStudio, que é uma interface de desenvolvimento integrada. O RStudio facilita o uso do R, pois reúne editor de código, console, gráficos, ambiente de trabalho, arquivos, pacotes e ajuda integrada em uma única interface.</p>
 <p>De forma simples, pode-se dizer que o R é a linguagem e o ambiente que executa os cálculos, enquanto o RStudio é a ferramenta que organiza e facilita o uso dessa linguagem. O RStudio permite escrever comandos, executar linhas de código, visualizar resultados, criar gráficos, consultar ajuda e gerenciar projetos, além de possuir pacotes com integração à internet, por exemplo o HTML, para criação de relatórios, apresentações e outros diversos itens. Sua interface é dividida em 4 quadrantes sendo:</p>
@@ -302,8 +305,8 @@ x_{(\frac{n+1}{2})}, &amp; \text{se } n \text{ ímpar} \\
 <li>4º Quadrante – Área de plotagem - Utilizado para visualizar gráficos, consultar arquivos e pastas, gerenciar pacotes e acessar a documentação de ajuda das funções.</li>
 </ul>
 </section>
-<section id="sintaxe-e-semântica-do-r" class="level3" data-number="4.7">
-<h3 data-number="4.7" class="anchored" data-anchor-id="sintaxe-e-semântica-do-r"><span class="header-section-number">4.7</span> Sintaxe e semântica do R</h3>
+<section id="sintaxe-e-semântica-do-r" class="level3" data-number="4.6">
+<h3 data-number="4.6" class="anchored" data-anchor-id="sintaxe-e-semântica-do-r"><span class="header-section-number">4.6</span> Sintaxe e semântica do R</h3>
 <p>A linguagem R, assim como outras linguagens de programação, possui sintaxe e semântica. A sintaxe está relacionada à forma correta de escrever os comandos. Em outras palavras, a sintaxe define as regras de escrita que o R reconhece. Se um comando for escrito de forma incorreta, o programa poderá apresentar erro.</p>
 <p>Por exemplo, para criar um conjunto de dados no R, pode-se usar o comando:</p>
 <ul>
@@ -1356,349 +1359,374 @@ BATISTA, B. D. O.; OLIVEIRA, D. A. B. J. <strong>R básico</strong>. 1. ed. Ouro
 <span id="cb2-131"><a href="#cb2-131" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-132"><a href="#cb2-132" aria-hidden="true" tabindex="-1"></a>O quarto capítulo complementa o estudo das medidas de posição ao apresentar as medidas de dispersão. É apresentado que conjuntos de dados diferentes podem possuir a mesma média, mas apresentar comportamentos distintos. Isso demonstra que apenas uma medida central não é suficiente para caracterizar adequadamente os dados. </span>
 <span id="cb2-133"><a href="#cb2-133" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-134"><a href="#cb2-134" aria-hidden="true" tabindex="-1"></a>A primeira medida apresentada é a amplitude, definida como a diferença entre o maior e o menor valor do conjunto. Embora seja simples de calcular e esteja na mesma unidade da variável, a amplitude possui limitações, pois considera apenas os valores extremos e ignora o comportamento dos demais dados. Por isso, a amplitude pode não representar adequadamente a variabilidade total de um conjunto. </span>
+<span id="cb2-134"><a href="#cb2-134" aria-hidden="true" tabindex="-1"></a>A primeira medida apresentada é a amplitude (Equação 6), definida como a diferença entre o maior e o menor valor do conjunto. Embora seja simples de calcular e esteja na mesma unidade da variável, a amplitude possui limitações, pois considera apenas os valores extremos e ignora o comportamento dos demais dados. Por isso, a amplitude pode não representar adequadamente a variabilidade total de um conjunto. </span>
 <span id="cb2-135"><a href="#cb2-135" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-136"><a href="#cb2-136" aria-hidden="true" tabindex="-1"></a>Em seguida, o capítulo apresenta a variância, que mede a dispersão dos dados em relação à média por meio dos desvios ao quadrado. A variância considera todos os valores do conjunto, sendo uma medida mais completa do que a amplitude. Entretanto, sua unidade fica elevada ao quadrado, o que pode dificultar a interpretação prática. Por esse motivo, utiliza-se também o desvio padrão, que corresponde à raiz quadrada da variância e retorna a medida de dispersão para a mesma unidade da variável analisada. </span>
-<span id="cb2-137"><a href="#cb2-137" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-138"><a href="#cb2-138" aria-hidden="true" tabindex="-1"></a>É importante saber que quanto mais próximo de zero a variância e o desvio padrão for, mais concentrado e melhor representado os dados estão com relação à média. Além disso, para utilizar variância e desvio padrão para comparar grupos de dados, temos que verificar se a média desses grupos são iguais e se as observações estão na mesma unidade de mensuração. </span>
-<span id="cb2-139"><a href="#cb2-139" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-140"><a href="#cb2-140" aria-hidden="true" tabindex="-1"></a>O capítulo também aborda o coeficiente de variação, uma medida relativa de dispersão que expressa o desvio padrão em relação à média, geralmente em porcentagem. Essa medida permite comparar a variabilidade entre grupos diferentes, desde que a variável analisada possua uma escala adequada. Por fim, o autor apresenta o erro padrão da média, que está relacionado à precisão com que a média amostral estima a média populacional e será importante em conteúdos posteriores, como estimação e testes de hipóteses. </span>
-<span id="cb2-141"><a href="#cb2-141" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-142"><a href="#cb2-142" aria-hidden="true" tabindex="-1"></a><span class="fu">### Assimetria e curtose</span></span>
-<span id="cb2-143"><a href="#cb2-143" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-144"><a href="#cb2-144" aria-hidden="true" tabindex="-1"></a>Além das medidas de posição e dispersão, a análise estatística também pode considerar medidas relacionadas ao formato da distribuição dos dados, como a assimetria e a curtose. Essas medidas ajudam a compreender não apenas onde os dados se concentram e o quanto variam, mas também como os valores estão distribuídos ao redor da média. A assimetria indica o grau de afastamento de uma distribuição em relação à simetria, ou seja, descreve o equilíbrio da distribuição. A curtose ajuda a avaliar o peso das caudas e a ocorrência de valores extremos.</span>
+<span id="cb2-136"><a href="#cb2-136" aria-hidden="true" tabindex="-1"></a>$$AT = \max(X) - \min(X) \tag{6}$$</span>
+<span id="cb2-137"><a href="#cb2-137" aria-hidden="true" tabindex="-1"></a>Em seguida, o capítulo apresenta a variância (Equações 7 e 8), que mede a dispersão dos dados em relação à média por meio dos desvios ao quadrado. A variância considera todos os valores do conjunto, sendo uma medida mais completa do que a amplitude. Entretanto, sua unidade fica elevada ao quadrado, o que pode dificultar a interpretação prática. Por esse motivo, utiliza-se também o desvio padrão (Equações 9 e 10), que corresponde à raiz quadrada da variância e retorna a medida de dispersão para a mesma unidade da variável analisada. </span>
+<span id="cb2-138"><a href="#cb2-138" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-139"><a href="#cb2-139" aria-hidden="true" tabindex="-1"></a>$$\sigma^2 = \frac{1}{N} \sum_{i=1}^{N} (x_i - \mu)^2 \tag{7} $$</span>
+<span id="cb2-140"><a href="#cb2-140" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-141"><a href="#cb2-141" aria-hidden="true" tabindex="-1"></a>$$s^2 = \frac{1}{n-1} \sum_{i=1}^{n} (x_i - \bar{x})^2 \tag{8}$$</span>
+<span id="cb2-142"><a href="#cb2-142" aria-hidden="true" tabindex="-1"></a>$$\sigma = \sqrt{\sigma^2} \tag{9}$$</span>
+<span id="cb2-143"><a href="#cb2-143" aria-hidden="true" tabindex="-1"></a>$$s = \sqrt{s^2}\tag{10}$$</span>
+<span id="cb2-144"><a href="#cb2-144" aria-hidden="true" tabindex="-1"></a>É importante saber que quanto mais próximo de zero a variância e o desvio padrão for, mais concentrado e melhor representado os dados estão com relação à média. Além disso, para utilizar variância e desvio padrão para comparar grupos de dados, temos que verificar se a média desses grupos são iguais e se as observações estão na mesma unidade de mensuração. </span>
 <span id="cb2-145"><a href="#cb2-145" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-146"><a href="#cb2-146" aria-hidden="true" tabindex="-1"></a>**inserir formulas de assimetria e curtose**</span>
+<span id="cb2-146"><a href="#cb2-146" aria-hidden="true" tabindex="-1"></a>O capítulo também aborda o coeficiente de variação (Equações 11 e 12), uma medida relativa de dispersão que expressa o desvio padrão em relação à média, geralmente em porcentagem. Essa medida permite comparar a variabilidade entre grupos diferentes, desde que a variável analisada possua uma escala adequada. Por fim, o autor apresenta o erro padrão da média (Equações 13 e 14), que está relacionado à precisão com que a média amostral estima a média populacional e será importante em conteúdos posteriores, como estimação e testes de hipóteses. </span>
 <span id="cb2-147"><a href="#cb2-147" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-148"><a href="#cb2-148" aria-hidden="true" tabindex="-1"></a>Uma distribuição é considerada aproximadamente simétrica quando os dados se distribuem de forma semelhante dos dois lados de uma medida central. Nesse caso, média, mediana e moda tendem a apresentar valores próximos. Quando a distribuição possui uma cauda mais alongada para a direita, ocorre assimetria positiva. Nesse tipo de situação, alguns valores altos podem puxar a média para cima. Quando a cauda é mais alongada para a esquerda, ocorre assimetria negativa, indicando a presença de valores baixos que influenciam a distribuição.</span>
-<span id="cb2-149"><a href="#cb2-149" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-150"><a href="#cb2-150" aria-hidden="true" tabindex="-1"></a>A análise da assimetria é importante porque permite avaliar se a média representa bem o conjunto de dados. Em distribuições muito assimétricas, a média pode ser fortemente afetada por valores extremos, sendo recomendável observar também a mediana e a moda. Dessa forma, a assimetria se relaciona diretamente ao conteúdo do Capítulo 3 do livro, no qual são discutidas as medidas de posição e suas diferentes interpretações. </span>
-<span id="cb2-151"><a href="#cb2-151" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-152"><a href="#cb2-152" aria-hidden="true" tabindex="-1"></a>A curtose está relacionada ao grau de concentração dos dados em torno do centro da distribuição e ao peso das caudas. De forma geral, a curtose ajuda a identificar se uma distribuição apresenta maior concentração de valores próximos à média ou maior ocorrência de valores extremos. Uma distribuição com curtose mais elevada tende a indicar maior presença de valores extremos ou caudas mais pesadas. Já uma curtose menor indica uma distribuição mais achatada, com menor concentração central ou caudas menos intensas.</span>
+<span id="cb2-148"><a href="#cb2-148" aria-hidden="true" tabindex="-1"></a>$$CV = \frac{\sigma}{\mu} \tag{11}$$</span>
+<span id="cb2-149"><a href="#cb2-149" aria-hidden="true" tabindex="-1"></a>$$CV = \frac{s}{\bar{x}} \tag{12}$$</span>
+<span id="cb2-150"><a href="#cb2-150" aria-hidden="true" tabindex="-1"></a>$$\sigma_{\bar{x}} = \frac{\sigma}{\sqrt{N}} \tag{13}$$</span>
+<span id="cb2-151"><a href="#cb2-151" aria-hidden="true" tabindex="-1"></a>$$SE_{\bar{x}} = \frac{s}{\sqrt{n}}\tag{14}$$</span>
+<span id="cb2-152"><a href="#cb2-152" aria-hidden="true" tabindex="-1"></a><span class="fu">### Assimetria e curtose</span></span>
 <span id="cb2-153"><a href="#cb2-153" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-154"><a href="#cb2-154" aria-hidden="true" tabindex="-1"></a>Em suma, assimetria e curtose complementam as medidas de dispersão estudadas no Capítulo 4. Enquanto a variância, o desvio padrão e o coeficiente de variação indicam o nível de variabilidade, a assimetria e a curtose ajudam a interpretar o formato da distribuição e a presença de valores extremos. </span>
+<span id="cb2-154"><a href="#cb2-154" aria-hidden="true" tabindex="-1"></a>Além das medidas de posição e dispersão, a análise estatística também pode considerar medidas relacionadas ao formato da distribuição dos dados, como a assimetria (Equação 15) e a curtose (Equação 16). Essas medidas ajudam a compreender não apenas onde os dados se concentram e o quanto variam, mas também como os valores estão distribuídos ao redor da média. A assimetria indica o grau de afastamento de uma distribuição em relação à simetria, ou seja, descreve o equilíbrio da distribuição. A curtose ajuda a avaliar o peso das caudas e a ocorrência de valores extremos.</span>
 <span id="cb2-155"><a href="#cb2-155" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-156"><a href="#cb2-156" aria-hidden="true" tabindex="-1"></a><span class="fu">### Introdução básica ao R (linguagem e software)</span></span>
+<span id="cb2-156"><a href="#cb2-156" aria-hidden="true" tabindex="-1"></a>$$g_1 = \frac{\frac{1}{n} \sum_{i=1}^{n} (x_i - \bar{x})^3}{\left<span class="co">[</span><span class="ot"> \frac{1}{n} \sum_{i=1}^{n} (x_i - \bar{x})^2 \right</span><span class="co">]</span>^{3/2}} \tag{15} $$</span>
 <span id="cb2-157"><a href="#cb2-157" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-158"><a href="#cb2-158" aria-hidden="true" tabindex="-1"></a>O R é uma linguagem de programação e um ambiente computacional voltado principalmente para estatística, análise de dados e construção de gráficos. O projeto R apresenta o software como um ambiente gratuito para computação estatística e gráficos, disponível para diferentes sistemas operacionais. </span>
+<span id="cb2-158"><a href="#cb2-158" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>$g_1 = 0$: Distribuição Simétrica (ex: Distribuição Normal).</span>
 <span id="cb2-159"><a href="#cb2-159" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-160"><a href="#cb2-160" aria-hidden="true" tabindex="-1"></a>Para utilizar o R, é necessário instalar inicialmente o programa R, que executa os comandos estatísticos. A instalação pode ser feita pelo site oficial do projeto R, por meio da rede CRAN. Após instalar o R, recomenda-se instalar também o RStudio, que é uma interface de desenvolvimento integrada. O RStudio facilita o uso do R, pois reúne editor de código, console, gráficos, ambiente de trabalho, arquivos, pacotes e ajuda integrada em uma única interface. </span>
+<span id="cb2-160"><a href="#cb2-160" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>$g_1 &gt; 0$: Assimetria Positiva (cauda mais longa à direita).</span>
 <span id="cb2-161"><a href="#cb2-161" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-162"><a href="#cb2-162" aria-hidden="true" tabindex="-1"></a>De forma simples, pode-se dizer que o R é a linguagem e o ambiente que executa os cálculos, enquanto o RStudio é a ferramenta que organiza e facilita o uso dessa linguagem. O RStudio permite escrever comandos, executar linhas de código, visualizar resultados, criar gráficos, consultar ajuda e gerenciar projetos, além de possuir pacotes com integração à internet, por exemplo o HTML, para criação de relatórios, apresentações e outros diversos itens. Sua interface é dividida em 4 quadrantes sendo:</span>
+<span id="cb2-162"><a href="#cb2-162" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>$g_1 &lt; 0$: Assimetria Negativa (cauda mais longa à esquerda).</span>
 <span id="cb2-163"><a href="#cb2-163" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-164"><a href="#cb2-164" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>1º Quadrante – Script do R - Área utilizada para escrever, editar e salvar os códigos em arquivos com extensão .R; </span>
-<span id="cb2-165"><a href="#cb2-165" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>2º Quadrante – Console do R - Local onde os comandos são efetivamente executados e os resultados aparecem. Também permite digitar comandos diretamente, porém esses comandos não ficam organizados em um script, a menos que sejam salvos separadamente;</span>
-<span id="cb2-166"><a href="#cb2-166" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>3º Quadrante – Ambiente Global - Exibe os objetos criados durante a análise, como vetores, tabelas, conjuntos de dados, funções e resultados de cálculos. Também apresenta o histórico dos comandos executados e permite acompanhar os dados armazenados na sessão atual;</span>
-<span id="cb2-167"><a href="#cb2-167" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>4º Quadrante – Área de plotagem - Utilizado para visualizar gráficos, consultar arquivos e pastas, gerenciar pacotes e acessar a documentação de ajuda das funções. </span>
-<span id="cb2-168"><a href="#cb2-168" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-169"><a href="#cb2-169" aria-hidden="true" tabindex="-1"></a><span class="fu">### Sintaxe e semântica do R</span></span>
-<span id="cb2-170"><a href="#cb2-170" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-171"><a href="#cb2-171" aria-hidden="true" tabindex="-1"></a>A linguagem R, assim como outras linguagens de programação, possui sintaxe e semântica. A sintaxe está relacionada à forma correta de escrever os comandos. Em outras palavras, a sintaxe define as regras de escrita que o R reconhece. Se um comando for escrito de forma incorreta, o programa poderá apresentar erro.</span>
+<span id="cb2-164"><a href="#cb2-164" aria-hidden="true" tabindex="-1"></a>$$g_2 = \frac{\frac{1}{n} \sum_{i=1}^{n} (x_i - \bar{x})^4}{\left<span class="co">[</span><span class="ot"> \frac{1}{n} \sum_{i=1}^{n} (x_i - \bar{x})^2 \right</span><span class="co">]</span>^2} - 3 \tag{16}$$</span>
+<span id="cb2-165"><a href="#cb2-165" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-166"><a href="#cb2-166" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>$g_2 = 0$ (Mesocúrtica): Forma idêntica à Distribuição Normal.</span>
+<span id="cb2-167"><a href="#cb2-167" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-168"><a href="#cb2-168" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>$g_2 &gt; 0$ (Leptocúrtica): Pico mais elevado e caudas mais pesadas (maior probabilidade de outliers / valores extremos).</span>
+<span id="cb2-169"><a href="#cb2-169" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-170"><a href="#cb2-170" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>$g_2 &lt; 0$ (Platicúrtica): Distribuição mais achatada e caudas mais leves (menor probabilidade de outliers).</span>
+<span id="cb2-171"><a href="#cb2-171" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-172"><a href="#cb2-172" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-173"><a href="#cb2-173" aria-hidden="true" tabindex="-1"></a>Por exemplo, para criar um conjunto de dados no R, pode-se usar o comando:</span>
+<span id="cb2-173"><a href="#cb2-173" aria-hidden="true" tabindex="-1"></a>Uma distribuição é considerada aproximadamente simétrica quando os dados se distribuem de forma semelhante dos dois lados de uma medida central. Nesse caso, média, mediana e moda tendem a apresentar valores próximos. Quando a distribuição possui uma cauda mais alongada para a direita, ocorre assimetria positiva. Nesse tipo de situação, alguns valores altos podem puxar a média para cima. Quando a cauda é mais alongada para a esquerda, ocorre assimetria negativa, indicando a presença de valores baixos que influenciam a distribuição.</span>
 <span id="cb2-174"><a href="#cb2-174" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-175"><a href="#cb2-175" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>dados &lt;- c (3, 1, 0, 1, 3, 2, 4, 1, 3, 1)</span>
-<span id="cb2-176"><a href="#cb2-176" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb2-177"><a href="#cb2-177" aria-hidden="true" tabindex="-1"></a>Nesse exemplo, dados é o nome do objeto criado, &lt;- é o operador de atribuição, e c() é uma função usada para combinar valores em um vetor. A escrita correta dos parênteses, vírgulas e símbolos faz parte da sintaxe da linguagem.</span>
+<span id="cb2-175"><a href="#cb2-175" aria-hidden="true" tabindex="-1"></a>A análise da assimetria é importante porque permite avaliar se a média representa bem o conjunto de dados. Em distribuições muito assimétricas, a média pode ser fortemente afetada por valores extremos, sendo recomendável observar também a mediana e a moda. Dessa forma, a assimetria se relaciona diretamente ao conteúdo do Capítulo 3 do livro, no qual são discutidas as medidas de posição e suas diferentes interpretações. </span>
+<span id="cb2-176"><a href="#cb2-176" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-177"><a href="#cb2-177" aria-hidden="true" tabindex="-1"></a>A curtose está relacionada ao grau de concentração dos dados em torno do centro da distribuição e ao peso das caudas. De forma geral, a curtose ajuda a identificar se uma distribuição apresenta maior concentração de valores próximos à média ou maior ocorrência de valores extremos. Uma distribuição com curtose mais elevada tende a indicar maior presença de valores extremos ou caudas mais pesadas. Já uma curtose menor indica uma distribuição mais achatada, com menor concentração central ou caudas menos intensas.</span>
 <span id="cb2-178"><a href="#cb2-178" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-179"><a href="#cb2-179" aria-hidden="true" tabindex="-1"></a>A semântica, por outro lado, diz respeito ao significado dos comandos. Ou seja, enquanto a sintaxe trata da forma correta de escrever, a semântica trata do que aquele comando representa ou executa. No exemplo anterior, o significado do comando é armazenar uma sequência de valores numéricos dentro de um objeto chamado dados.</span>
+<span id="cb2-179"><a href="#cb2-179" aria-hidden="true" tabindex="-1"></a>Em suma, assimetria e curtose complementam as medidas de dispersão estudadas no Capítulo 4. Enquanto a variância, o desvio padrão e o coeficiente de variação indicam o nível de variabilidade, a assimetria e a curtose ajudam a interpretar o formato da distribuição e a presença de valores extremos. </span>
 <span id="cb2-180"><a href="#cb2-180" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-181"><a href="#cb2-181" aria-hidden="true" tabindex="-1"></a>Após criar esse objeto, é possível aplicar funções estatísticas:</span>
-<span id="cb2-182"><a href="#cb2-182" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>mean(dados) # calcula a média</span>
-<span id="cb2-183"><a href="#cb2-183" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>median(dados) # calcula a mediana</span>
-<span id="cb2-184"><a href="#cb2-184" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>var(dados) # calcula a variância</span>
-<span id="cb2-185"><a href="#cb2-185" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>sd(dados) # calcula o desvio padrão</span>
+<span id="cb2-181"><a href="#cb2-181" aria-hidden="true" tabindex="-1"></a><span class="fu">### Introdução básica ao R (linguagem e software)</span></span>
+<span id="cb2-182"><a href="#cb2-182" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-183"><a href="#cb2-183" aria-hidden="true" tabindex="-1"></a>O R é uma linguagem de programação e um ambiente computacional voltado principalmente para estatística, análise de dados e construção de gráficos. O projeto R apresenta o software como um ambiente gratuito para computação estatística e gráficos, disponível para diferentes sistemas operacionais. </span>
+<span id="cb2-184"><a href="#cb2-184" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-185"><a href="#cb2-185" aria-hidden="true" tabindex="-1"></a>Para utilizar o R, é necessário instalar inicialmente o programa R, que executa os comandos estatísticos. A instalação pode ser feita pelo site oficial do projeto R, por meio da rede CRAN. Após instalar o R, recomenda-se instalar também o RStudio, que é uma interface de desenvolvimento integrada. O RStudio facilita o uso do R, pois reúne editor de código, console, gráficos, ambiente de trabalho, arquivos, pacotes e ajuda integrada em uma única interface. </span>
 <span id="cb2-186"><a href="#cb2-186" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-187"><a href="#cb2-187" aria-hidden="true" tabindex="-1"></a>A sintaxe desses comandos envolve o nome da função, como mean, median, var e sd, seguido dos parênteses com o objeto analisado. Já a semântica está no significado de cada função. A função mean() calcula a média aritmética, median() calcula a mediana, var() calcula a variância e sd() calcula o desvio padrão.</span>
+<span id="cb2-187"><a href="#cb2-187" aria-hidden="true" tabindex="-1"></a>De forma simples, pode-se dizer que o R é a linguagem e o ambiente que executa os cálculos, enquanto o RStudio é a ferramenta que organiza e facilita o uso dessa linguagem. O RStudio permite escrever comandos, executar linhas de código, visualizar resultados, criar gráficos, consultar ajuda e gerenciar projetos, além de possuir pacotes com integração à internet, por exemplo o HTML, para criação de relatórios, apresentações e outros diversos itens. Sua interface é dividida em 4 quadrantes sendo:</span>
 <span id="cb2-188"><a href="#cb2-188" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-189"><a href="#cb2-189" aria-hidden="true" tabindex="-1"></a>Outro ponto importante da sintaxe do R é que a linguagem diferencia letras maiúsculas de minúsculas. Assim, um objeto chamado dados é diferente de outro chamado Dados. Também é comum usar comentários no código, iniciados pelo símbolo #. Os comentários não são executados pelo R, servindo apenas para explicar o código.</span>
-<span id="cb2-190"><a href="#cb2-190" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-191"><a href="#cb2-191" aria-hidden="true" tabindex="-1"></a>Portanto, compreender sintaxe e semântica é essencial para utilizar o R corretamente. A sintaxe permite escrever comandos sem erros, enquanto a semântica permite entender o significado das operações realizadas. Esse conhecimento é importante para aplicar os conceitos estatísticos estudados, como organização de dados, medidas de posição, medidas de dispersão, assimetria e curtose.</span>
-<span id="cb2-192"><a href="#cb2-192" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-193"><a href="#cb2-193" aria-hidden="true" tabindex="-1"></a><span class="fu">## 🏗️ Estudo de Caso e Aplicação</span></span>
-<span id="cb2-194"><a href="#cb2-194" aria-hidden="true" tabindex="-1"></a><span class="fu">### Contexto do Projeto</span></span>
+<span id="cb2-189"><a href="#cb2-189" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>1º Quadrante – Script do R - Área utilizada para escrever, editar e salvar os códigos em arquivos com extensão .R; </span>
+<span id="cb2-190"><a href="#cb2-190" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>2º Quadrante – Console do R - Local onde os comandos são efetivamente executados e os resultados aparecem. Também permite digitar comandos diretamente, porém esses comandos não ficam organizados em um script, a menos que sejam salvos separadamente;</span>
+<span id="cb2-191"><a href="#cb2-191" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>3º Quadrante – Ambiente Global - Exibe os objetos criados durante a análise, como vetores, tabelas, conjuntos de dados, funções e resultados de cálculos. Também apresenta o histórico dos comandos executados e permite acompanhar os dados armazenados na sessão atual;</span>
+<span id="cb2-192"><a href="#cb2-192" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>4º Quadrante – Área de plotagem - Utilizado para visualizar gráficos, consultar arquivos e pastas, gerenciar pacotes e acessar a documentação de ajuda das funções. </span>
+<span id="cb2-193"><a href="#cb2-193" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-194"><a href="#cb2-194" aria-hidden="true" tabindex="-1"></a><span class="fu">### Sintaxe e semântica do R</span></span>
 <span id="cb2-195"><a href="#cb2-195" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-196"><a href="#cb2-196" aria-hidden="true" tabindex="-1"></a>A obra em questão consiste na execução de um muro de arrimo em concreto armado, com função estrutural de contenção de um talude de mineração (cava de extração de minério de ferro). O muro possui altura média de 12 m, extensão linear de 180 m e volume total estimado de concreto de 2.400 m³. </span>
+<span id="cb2-196"><a href="#cb2-196" aria-hidden="true" tabindex="-1"></a>A linguagem R, assim como outras linguagens de programação, possui sintaxe e semântica. A sintaxe está relacionada à forma correta de escrever os comandos. Em outras palavras, a sintaxe define as regras de escrita que o R reconhece. Se um comando for escrito de forma incorreta, o programa poderá apresentar erro.</span>
 <span id="cb2-197"><a href="#cb2-197" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-198"><a href="#cb2-198" aria-hidden="true" tabindex="-1"></a>A resistência característica à compressão (fck) de projeto especificada no memorial de cálculo é de 30 MPa (30.000 kPa), para que o elemento suporte os empuxos de terra, sobrecargas de equipamentos e ações hidrostáticas. </span>
+<span id="cb2-198"><a href="#cb2-198" aria-hidden="true" tabindex="-1"></a>Por exemplo, para criar um conjunto de dados no R, pode-se usar o comando:</span>
 <span id="cb2-199"><a href="#cb2-199" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-200"><a href="#cb2-200" aria-hidden="true" tabindex="-1"></a>O concreto foi dosado em usina própria da mineradora, com traço 1:2,5:3,0 (cimento<span class="sc">:areia:</span> brita), relação a/c = 0,48 e adição de superplastificante à base de policarboxilato para garantir trabalhabilidade (slump de 120 ± 20 mm) mesmo com alta densidade de armadura.</span>
-<span id="cb2-201"><a href="#cb2-201" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-202"><a href="#cb2-202" aria-hidden="true" tabindex="-1"></a><span class="fu">### Plano de Amostragem e Produção </span></span>
+<span id="cb2-200"><a href="#cb2-200" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>dados &lt;- c (3, 1, 0, 1, 3, 2, 4, 1, 3, 1)</span>
+<span id="cb2-201"><a href="#cb2-201" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb2-202"><a href="#cb2-202" aria-hidden="true" tabindex="-1"></a>Nesse exemplo, dados é o nome do objeto criado, &lt;- é o operador de atribuição, e c() é uma função usada para combinar valores em um vetor. A escrita correta dos parênteses, vírgulas e símbolos faz parte da sintaxe da linguagem.</span>
 <span id="cb2-203"><a href="#cb2-203" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-204"><a href="#cb2-204" aria-hidden="true" tabindex="-1"></a>A concretagem do muro foi dividida em 3 dias consecutivos de produção, denominados Grupo A, B e C, correspondentes a: </span>
+<span id="cb2-204"><a href="#cb2-204" aria-hidden="true" tabindex="-1"></a>A semântica, por outro lado, diz respeito ao significado dos comandos. Ou seja, enquanto a sintaxe trata da forma correta de escrever, a semântica trata do que aquele comando representa ou executa. No exemplo anterior, o significado do comando é armazenar uma sequência de valores numéricos dentro de um objeto chamado dados.</span>
 <span id="cb2-205"><a href="#cb2-205" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-206"><a href="#cb2-206" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Grupo A (Dia 1 – 08/08/2026): concretagem da base e primeira elevação (1/3 do muro) – 17 corpos de prova. </span>
-<span id="cb2-207"><a href="#cb2-207" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Grupo B (Dia 2 – 09/08/2026): concretagem da segunda elevação (trecho central) – 18 corpos de prova. </span>
-<span id="cb2-208"><a href="#cb2-208" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Grupo C (Dia 3 – 10/08/2026): concretagem da coroa e fechamento superior – 15 corpos de prova. </span>
-<span id="cb2-209"><a href="#cb2-209" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-210"><a href="#cb2-210" aria-hidden="true" tabindex="-1"></a>Cada dia de produção correspondeu a um caminhão betoneira diferente (mesmo traço, mas com pequenas variações inerentes à umidade dos agregados e ao tempo de mistura), o que justifica a separação em grupos para fins de rastreabilidade.</span>
+<span id="cb2-206"><a href="#cb2-206" aria-hidden="true" tabindex="-1"></a>Após criar esse objeto, é possível aplicar funções estatísticas:</span>
+<span id="cb2-207"><a href="#cb2-207" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>mean(dados) # calcula a média</span>
+<span id="cb2-208"><a href="#cb2-208" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>median(dados) # calcula a mediana</span>
+<span id="cb2-209"><a href="#cb2-209" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>var(dados) # calcula a variância</span>
+<span id="cb2-210"><a href="#cb2-210" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>sd(dados) # calcula o desvio padrão</span>
 <span id="cb2-211"><a href="#cb2-211" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-212"><a href="#cb2-212" aria-hidden="true" tabindex="-1"></a><span class="fu">### Coleta e Preparação dos Corpos de Prova </span></span>
+<span id="cb2-212"><a href="#cb2-212" aria-hidden="true" tabindex="-1"></a>A sintaxe desses comandos envolve o nome da função, como mean, median, var e sd, seguido dos parênteses com o objeto analisado. Já a semântica está no significado de cada função. A função mean() calcula a média aritmética, median() calcula a mediana, var() calcula a variância e sd() calcula o desvio padrão.</span>
 <span id="cb2-213"><a href="#cb2-213" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-214"><a href="#cb2-214" aria-hidden="true" tabindex="-1"></a>Em cada dia de concretagem, foram moldados corpos de prova cilíndricos (dimensões: 10 cm × 20 cm), conforme prescrições da NBR 5738. A amostragem foi feita no ponto de descarga do caminhão betoneira, imediatamente antes do lançamento no muro, seguindo o critério de 1 corpo de prova a cada 50 m³ de concreto lançado (excedendo o mínimo normativo para garantir robustez estatística). </span>
+<span id="cb2-214"><a href="#cb2-214" aria-hidden="true" tabindex="-1"></a>Outro ponto importante da sintaxe do R é que a linguagem diferencia letras maiúsculas de minúsculas. Assim, um objeto chamado dados é diferente de outro chamado Dados. Também é comum usar comentários no código, iniciados pelo símbolo #. Os comentários não são executados pelo R, servindo apenas para explicar o código.</span>
 <span id="cb2-215"><a href="#cb2-215" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-216"><a href="#cb2-216" aria-hidden="true" tabindex="-1"></a>Os corpos de prova foram: </span>
+<span id="cb2-216"><a href="#cb2-216" aria-hidden="true" tabindex="-1"></a>Portanto, compreender sintaxe e semântica é essencial para utilizar o R corretamente. A sintaxe permite escrever comandos sem erros, enquanto a semântica permite entender o significado das operações realizadas. Esse conhecimento é importante para aplicar os conceitos estatísticos estudados, como organização de dados, medidas de posição, medidas de dispersão, assimetria e curtose.</span>
 <span id="cb2-217"><a href="#cb2-217" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-218"><a href="#cb2-218" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Desmoldados após 24 horas; </span>
-<span id="cb2-219"><a href="#cb2-219" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Cura úmida em câmara úmida (temperatura 23 ± 2 °C e umidade relativa ≥ 95%) por 7 dias; </span>
-<span id="cb2-220"><a href="#cb2-220" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Mantidos em condição ambiente do laboratório até a data do ensaio (aos 28 dias). </span>
-<span id="cb2-221"><a href="#cb2-221" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-222"><a href="#cb2-222" aria-hidden="true" tabindex="-1"></a>Os resultados obtidos podem ser observados na tabela a seguir.</span>
-<span id="cb2-223"><a href="#cb2-223" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-218"><a href="#cb2-218" aria-hidden="true" tabindex="-1"></a><span class="fu">## 🏗️ Estudo de Caso e Aplicação</span></span>
+<span id="cb2-219"><a href="#cb2-219" aria-hidden="true" tabindex="-1"></a><span class="fu">### Contexto do Projeto</span></span>
+<span id="cb2-220"><a href="#cb2-220" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-221"><a href="#cb2-221" aria-hidden="true" tabindex="-1"></a>A obra em questão consiste na execução de um muro de arrimo em concreto armado, com função estrutural de contenção de um talude de mineração (cava de extração de minério de ferro). O muro possui altura média de 12 m, extensão linear de 180 m e volume total estimado de concreto de 2.400 m³. </span>
+<span id="cb2-222"><a href="#cb2-222" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-223"><a href="#cb2-223" aria-hidden="true" tabindex="-1"></a>A resistência característica à compressão (fck) de projeto especificada no memorial de cálculo é de 30 MPa (30.000 kPa), para que o elemento suporte os empuxos de terra, sobrecargas de equipamentos e ações hidrostáticas. </span>
 <span id="cb2-224"><a href="#cb2-224" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-227"><a href="#cb2-227" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb2-228"><a href="#cb2-228" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(knitr)</span>
-<span id="cb2-229"><a href="#cb2-229" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(kableExtra)</span>
+<span id="cb2-225"><a href="#cb2-225" aria-hidden="true" tabindex="-1"></a>O concreto foi dosado em usina própria da mineradora, com traço 1:2,5:3,0 (cimento<span class="sc">:areia:</span> brita), relação a/c = 0,48 e adição de superplastificante à base de policarboxilato para garantir trabalhabilidade (slump de 120 ± 20 mm) mesmo com alta densidade de armadura.</span>
+<span id="cb2-226"><a href="#cb2-226" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-227"><a href="#cb2-227" aria-hidden="true" tabindex="-1"></a><span class="fu">### Plano de Amostragem e Produção </span></span>
+<span id="cb2-228"><a href="#cb2-228" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-229"><a href="#cb2-229" aria-hidden="true" tabindex="-1"></a>A concretagem do muro foi dividida em 3 dias consecutivos de produção, denominados Grupo A, B e C, correspondentes a: </span>
 <span id="cb2-230"><a href="#cb2-230" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-231"><a href="#cb2-231" aria-hidden="true" tabindex="-1"></a>corposdeprova <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"corposdeprova.csv"</span>)</span>
-<span id="cb2-232"><a href="#cb2-232" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-233"><a href="#cb2-233" aria-hidden="true" tabindex="-1"></a><span class="co"># Número de colunas (para aplicar centralização em todas)</span></span>
-<span id="cb2-234"><a href="#cb2-234" aria-hidden="true" tabindex="-1"></a>n_col <span class="ot">&lt;-</span> <span class="fu">ncol</span>(corposdeprova)</span>
-<span id="cb2-235"><a href="#cb2-235" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-236"><a href="#cb2-236" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(corposdeprova, </span>
-<span id="cb2-237"><a href="#cb2-237" aria-hidden="true" tabindex="-1"></a>      <span class="at">caption =</span> <span class="st">"Dados dos Corpos de Prova"</span>,</span>
-<span id="cb2-238"><a href="#cb2-238" aria-hidden="true" tabindex="-1"></a>      <span class="at">booktabs =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb2-239"><a href="#cb2-239" aria-hidden="true" tabindex="-1"></a>      <span class="at">align =</span> <span class="fu">rep</span>(<span class="st">"c"</span>, n_col)) <span class="sc">%&gt;%</span>  <span class="co"># garante todas as colunas centralizadas</span></span>
-<span id="cb2-240"><a href="#cb2-240" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable_styling</span>(<span class="at">bootstrap_options =</span> <span class="fu">c</span>(<span class="st">"striped"</span>, <span class="st">"hover"</span>, <span class="st">"condensed"</span>),</span>
-<span id="cb2-241"><a href="#cb2-241" aria-hidden="true" tabindex="-1"></a>                <span class="at">full_width =</span> <span class="cn">FALSE</span>,</span>
-<span id="cb2-242"><a href="#cb2-242" aria-hidden="true" tabindex="-1"></a>                <span class="at">position =</span> <span class="st">"center"</span>) <span class="sc">%&gt;%</span>  <span class="co"># centraliza a tabela na página</span></span>
-<span id="cb2-243"><a href="#cb2-243" aria-hidden="true" tabindex="-1"></a>  <span class="fu">column_spec</span>(<span class="dv">1</span><span class="sc">:</span>n_col, <span class="at">extra_css =</span> <span class="st">"text-align: center;"</span>) <span class="sc">%&gt;%</span>  <span class="co"># força centralização</span></span>
-<span id="cb2-244"><a href="#cb2-244" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scroll_box</span>(<span class="at">width =</span> <span class="st">"100%"</span>, <span class="at">height =</span> <span class="st">"400px"</span>)</span>
-<span id="cb2-245"><a href="#cb2-245" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb2-231"><a href="#cb2-231" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Grupo A (Dia 1 – 08/08/2026): concretagem da base e primeira elevação (1/3 do muro) – 17 corpos de prova. </span>
+<span id="cb2-232"><a href="#cb2-232" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Grupo B (Dia 2 – 09/08/2026): concretagem da segunda elevação (trecho central) – 18 corpos de prova. </span>
+<span id="cb2-233"><a href="#cb2-233" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Grupo C (Dia 3 – 10/08/2026): concretagem da coroa e fechamento superior – 15 corpos de prova. </span>
+<span id="cb2-234"><a href="#cb2-234" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-235"><a href="#cb2-235" aria-hidden="true" tabindex="-1"></a>Cada dia de produção correspondeu a um caminhão betoneira diferente (mesmo traço, mas com pequenas variações inerentes à umidade dos agregados e ao tempo de mistura), o que justifica a separação em grupos para fins de rastreabilidade.</span>
+<span id="cb2-236"><a href="#cb2-236" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-237"><a href="#cb2-237" aria-hidden="true" tabindex="-1"></a><span class="fu">### Coleta e Preparação dos Corpos de Prova </span></span>
+<span id="cb2-238"><a href="#cb2-238" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-239"><a href="#cb2-239" aria-hidden="true" tabindex="-1"></a>Em cada dia de concretagem, foram moldados corpos de prova cilíndricos (dimensões: 10 cm × 20 cm), conforme prescrições da NBR 5738. A amostragem foi feita no ponto de descarga do caminhão betoneira, imediatamente antes do lançamento no muro, seguindo o critério de 1 corpo de prova a cada 50 m³ de concreto lançado (excedendo o mínimo normativo para garantir robustez estatística). </span>
+<span id="cb2-240"><a href="#cb2-240" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-241"><a href="#cb2-241" aria-hidden="true" tabindex="-1"></a>Os corpos de prova foram: </span>
+<span id="cb2-242"><a href="#cb2-242" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-243"><a href="#cb2-243" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Desmoldados após 24 horas; </span>
+<span id="cb2-244"><a href="#cb2-244" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Cura úmida em câmara úmida (temperatura 23 ± 2 °C e umidade relativa ≥ 95%) por 7 dias; </span>
+<span id="cb2-245"><a href="#cb2-245" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Mantidos em condição ambiente do laboratório até a data do ensaio (aos 28 dias). </span>
 <span id="cb2-246"><a href="#cb2-246" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-247"><a href="#cb2-247" aria-hidden="true" tabindex="-1"></a><span class="in">```{r setup, include=FALSE}</span></span>
-<span id="cb2-248"><a href="#cb2-248" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(leem)</span>
-<span id="cb2-249"><a href="#cb2-249" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span>opts_chunk<span class="sc">$</span><span class="fu">set</span>(<span class="at">echo =</span> <span class="cn">FALSE</span>, <span class="at">warning =</span> <span class="cn">FALSE</span>, <span class="at">message =</span> <span class="cn">FALSE</span>)</span>
-<span id="cb2-250"><a href="#cb2-250" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb2-251"><a href="#cb2-251" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-252"><a href="#cb2-252" aria-hidden="true" tabindex="-1"></a><span class="in">```{r carregar_dados}</span></span>
-<span id="cb2-253"><a href="#cb2-253" aria-hidden="true" tabindex="-1"></a><span class="co"># Carregar dados dos três grupos</span></span>
-<span id="cb2-254"><a href="#cb2-254" aria-hidden="true" tabindex="-1"></a>dados_A <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"corposdeprova_A.csv"</span>)</span>
-<span id="cb2-255"><a href="#cb2-255" aria-hidden="true" tabindex="-1"></a>dados_B <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"corposdeprova_B.csv"</span>)</span>
-<span id="cb2-256"><a href="#cb2-256" aria-hidden="true" tabindex="-1"></a>dados_C <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"corposdeprova_C.csv"</span>)</span>
-<span id="cb2-257"><a href="#cb2-257" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb2-258"><a href="#cb2-258" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-259"><a href="#cb2-259" aria-hidden="true" tabindex="-1"></a><span class="in">```{r funcao_estatisticas}</span></span>
-<span id="cb2-260"><a href="#cb2-260" aria-hidden="true" tabindex="-1"></a><span class="co"># Função para calcular estatísticas usando leem</span></span>
-<span id="cb2-261"><a href="#cb2-261" aria-hidden="true" tabindex="-1"></a>calcular_estatisticas <span class="ot">&lt;-</span> <span class="cf">function</span>(dados, nome_grupo) {</span>
-<span id="cb2-262"><a href="#cb2-262" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Extrair o vetor de resistência</span></span>
-<span id="cb2-263"><a href="#cb2-263" aria-hidden="true" tabindex="-1"></a>  valores <span class="ot">&lt;-</span> dados<span class="sc">$</span>Resistencia_kPa</span>
-<span id="cb2-264"><a href="#cb2-264" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb2-265"><a href="#cb2-265" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Criar objeto leem (variável contínua)</span></span>
-<span id="cb2-266"><a href="#cb2-266" aria-hidden="true" tabindex="-1"></a>  obj_leem <span class="ot">&lt;-</span> <span class="fu">new_leem</span>(valores, <span class="at">variable =</span> <span class="dv">2</span>)</span>
-<span id="cb2-267"><a href="#cb2-267" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb2-268"><a href="#cb2-268" aria-hidden="true" tabindex="-1"></a>  <span class="co"># ===== ESTATÍSTICAS USANDO LEEM =====</span></span>
-<span id="cb2-269"><a href="#cb2-269" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb2-270"><a href="#cb2-270" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Média (kPa → MPa)</span></span>
-<span id="cb2-271"><a href="#cb2-271" aria-hidden="true" tabindex="-1"></a>  media_MPa <span class="ot">&lt;-</span> <span class="fu">mean</span>(obj_leem) <span class="sc">/</span> <span class="dv">1000</span></span>
-<span id="cb2-272"><a href="#cb2-272" aria-hidden="true" tabindex="-1"></a>  media_MPa_formatada <span class="ot">&lt;-</span> <span class="fu">round</span>(media_MPa, <span class="dv">2</span>)</span>
-<span id="cb2-273"><a href="#cb2-273" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb2-274"><a href="#cb2-274" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Mediana (kPa → MPa)</span></span>
-<span id="cb2-275"><a href="#cb2-275" aria-hidden="true" tabindex="-1"></a>  mediana_MPa <span class="ot">&lt;-</span> <span class="fu">median</span>(obj_leem) <span class="sc">/</span> <span class="dv">1000</span></span>
-<span id="cb2-276"><a href="#cb2-276" aria-hidden="true" tabindex="-1"></a>  mediana_MPa_formatada <span class="ot">&lt;-</span> <span class="fu">round</span>(mediana_MPa, <span class="dv">2</span>)</span>
-<span id="cb2-277"><a href="#cb2-277" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb2-278"><a href="#cb2-278" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Desvio Padrão (kPa → MPa)</span></span>
-<span id="cb2-279"><a href="#cb2-279" aria-hidden="true" tabindex="-1"></a>  desvio_MPa <span class="ot">&lt;-</span> <span class="fu">sd</span>(obj_leem) <span class="sc">/</span> <span class="dv">1000</span></span>
-<span id="cb2-280"><a href="#cb2-280" aria-hidden="true" tabindex="-1"></a>  desvio_MPa_formatado <span class="ot">&lt;-</span> <span class="fu">round</span>(desvio_MPa, <span class="dv">2</span>)</span>
-<span id="cb2-281"><a href="#cb2-281" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb2-282"><a href="#cb2-282" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Variância (kPa² → MPa²)</span></span>
-<span id="cb2-283"><a href="#cb2-283" aria-hidden="true" tabindex="-1"></a>  variancia_MPa2 <span class="ot">&lt;-</span> <span class="fu">var</span>(obj_leem) <span class="sc">/</span> (<span class="dv">1000</span><span class="sc">^</span><span class="dv">2</span>)</span>
-<span id="cb2-284"><a href="#cb2-284" aria-hidden="true" tabindex="-1"></a>  variancia_MPa2_formatada <span class="ot">&lt;-</span> <span class="fu">round</span>(variancia_MPa2, <span class="dv">2</span>)</span>
-<span id="cb2-285"><a href="#cb2-285" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb2-286"><a href="#cb2-286" aria-hidden="true" tabindex="-1"></a>  <span class="co"># ===== CORREÇÃO AQUI =====</span></span>
-<span id="cb2-287"><a href="#cb2-287" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Coeficiente de Variação (%)</span></span>
-<span id="cb2-288"><a href="#cb2-288" aria-hidden="true" tabindex="-1"></a>  <span class="co"># A função cv() do leem já retorna em porcentagem</span></span>
-<span id="cb2-289"><a href="#cb2-289" aria-hidden="true" tabindex="-1"></a>  cv_percent <span class="ot">&lt;-</span> <span class="fu">cv</span>(obj_leem)  <span class="co"># SEM multiplicar por 100</span></span>
-<span id="cb2-290"><a href="#cb2-290" aria-hidden="true" tabindex="-1"></a>  cv_percent_formatado <span class="ot">&lt;-</span> <span class="fu">round</span>(cv_percent, <span class="dv">2</span>)</span>
-<span id="cb2-291"><a href="#cb2-291" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb2-292"><a href="#cb2-292" aria-hidden="true" tabindex="-1"></a>  <span class="co"># ===== ESTATÍSTICAS MANUAIS =====</span></span>
-<span id="cb2-293"><a href="#cb2-293" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb2-294"><a href="#cb2-294" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Assimetria</span></span>
-<span id="cb2-295"><a href="#cb2-295" aria-hidden="true" tabindex="-1"></a>  n <span class="ot">&lt;-</span> <span class="fu">length</span>(valores)</span>
-<span id="cb2-296"><a href="#cb2-296" aria-hidden="true" tabindex="-1"></a>  m3 <span class="ot">&lt;-</span> <span class="fu">sum</span>((valores <span class="sc">-</span> <span class="fu">mean</span>(valores))<span class="sc">^</span><span class="dv">3</span>) <span class="sc">/</span> n</span>
-<span id="cb2-297"><a href="#cb2-297" aria-hidden="true" tabindex="-1"></a>  s3 <span class="ot">&lt;-</span> (<span class="fu">sum</span>((valores <span class="sc">-</span> <span class="fu">mean</span>(valores))<span class="sc">^</span><span class="dv">2</span>) <span class="sc">/</span> n)<span class="sc">^</span>(<span class="dv">3</span><span class="sc">/</span><span class="dv">2</span>)</span>
-<span id="cb2-298"><a href="#cb2-298" aria-hidden="true" tabindex="-1"></a>  assimetria <span class="ot">&lt;-</span> m3 <span class="sc">/</span> s3</span>
-<span id="cb2-299"><a href="#cb2-299" aria-hidden="true" tabindex="-1"></a>  assimetria_formatada <span class="ot">&lt;-</span> <span class="fu">round</span>(assimetria, <span class="dv">3</span>)</span>
-<span id="cb2-300"><a href="#cb2-300" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb2-301"><a href="#cb2-301" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Curtose</span></span>
-<span id="cb2-302"><a href="#cb2-302" aria-hidden="true" tabindex="-1"></a>  m4 <span class="ot">&lt;-</span> <span class="fu">sum</span>((valores <span class="sc">-</span> <span class="fu">mean</span>(valores))<span class="sc">^</span><span class="dv">4</span>) <span class="sc">/</span> n</span>
-<span id="cb2-303"><a href="#cb2-303" aria-hidden="true" tabindex="-1"></a>  s4 <span class="ot">&lt;-</span> (<span class="fu">sum</span>((valores <span class="sc">-</span> <span class="fu">mean</span>(valores))<span class="sc">^</span><span class="dv">2</span>) <span class="sc">/</span> n)<span class="sc">^</span><span class="dv">2</span></span>
-<span id="cb2-304"><a href="#cb2-304" aria-hidden="true" tabindex="-1"></a>  curtose <span class="ot">&lt;-</span> m4 <span class="sc">/</span> s4</span>
-<span id="cb2-305"><a href="#cb2-305" aria-hidden="true" tabindex="-1"></a>  curtose_formatada <span class="ot">&lt;-</span> <span class="fu">round</span>(curtose, <span class="dv">3</span>)</span>
+<span id="cb2-247"><a href="#cb2-247" aria-hidden="true" tabindex="-1"></a>Os resultados obtidos podem ser observados na tabela a seguir.</span>
+<span id="cb2-248"><a href="#cb2-248" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-249"><a href="#cb2-249" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-252"><a href="#cb2-252" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb2-253"><a href="#cb2-253" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(knitr)</span>
+<span id="cb2-254"><a href="#cb2-254" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(kableExtra)</span>
+<span id="cb2-255"><a href="#cb2-255" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-256"><a href="#cb2-256" aria-hidden="true" tabindex="-1"></a>corposdeprova <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"corposdeprova.csv"</span>)</span>
+<span id="cb2-257"><a href="#cb2-257" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-258"><a href="#cb2-258" aria-hidden="true" tabindex="-1"></a><span class="co"># Número de colunas (para aplicar centralização em todas)</span></span>
+<span id="cb2-259"><a href="#cb2-259" aria-hidden="true" tabindex="-1"></a>n_col <span class="ot">&lt;-</span> <span class="fu">ncol</span>(corposdeprova)</span>
+<span id="cb2-260"><a href="#cb2-260" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-261"><a href="#cb2-261" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(corposdeprova, </span>
+<span id="cb2-262"><a href="#cb2-262" aria-hidden="true" tabindex="-1"></a>      <span class="at">caption =</span> <span class="st">"Dados dos Corpos de Prova"</span>,</span>
+<span id="cb2-263"><a href="#cb2-263" aria-hidden="true" tabindex="-1"></a>      <span class="at">booktabs =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb2-264"><a href="#cb2-264" aria-hidden="true" tabindex="-1"></a>      <span class="at">align =</span> <span class="fu">rep</span>(<span class="st">"c"</span>, n_col)) <span class="sc">%&gt;%</span>  <span class="co"># garante todas as colunas centralizadas</span></span>
+<span id="cb2-265"><a href="#cb2-265" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable_styling</span>(<span class="at">bootstrap_options =</span> <span class="fu">c</span>(<span class="st">"striped"</span>, <span class="st">"hover"</span>, <span class="st">"condensed"</span>),</span>
+<span id="cb2-266"><a href="#cb2-266" aria-hidden="true" tabindex="-1"></a>                <span class="at">full_width =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb2-267"><a href="#cb2-267" aria-hidden="true" tabindex="-1"></a>                <span class="at">position =</span> <span class="st">"center"</span>) <span class="sc">%&gt;%</span>  <span class="co"># centraliza a tabela na página</span></span>
+<span id="cb2-268"><a href="#cb2-268" aria-hidden="true" tabindex="-1"></a>  <span class="fu">column_spec</span>(<span class="dv">1</span><span class="sc">:</span>n_col, <span class="at">extra_css =</span> <span class="st">"text-align: center;"</span>) <span class="sc">%&gt;%</span>  <span class="co"># força centralização</span></span>
+<span id="cb2-269"><a href="#cb2-269" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scroll_box</span>(<span class="at">width =</span> <span class="st">"100%"</span>, <span class="at">height =</span> <span class="st">"400px"</span>)</span>
+<span id="cb2-270"><a href="#cb2-270" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb2-271"><a href="#cb2-271" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-272"><a href="#cb2-272" aria-hidden="true" tabindex="-1"></a><span class="in">```{r setup, include=FALSE}</span></span>
+<span id="cb2-273"><a href="#cb2-273" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(leem)</span>
+<span id="cb2-274"><a href="#cb2-274" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span>opts_chunk<span class="sc">$</span><span class="fu">set</span>(<span class="at">echo =</span> <span class="cn">FALSE</span>, <span class="at">warning =</span> <span class="cn">FALSE</span>, <span class="at">message =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb2-275"><a href="#cb2-275" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb2-276"><a href="#cb2-276" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-277"><a href="#cb2-277" aria-hidden="true" tabindex="-1"></a><span class="in">```{r carregar_dados}</span></span>
+<span id="cb2-278"><a href="#cb2-278" aria-hidden="true" tabindex="-1"></a><span class="co"># Carregar dados dos três grupos</span></span>
+<span id="cb2-279"><a href="#cb2-279" aria-hidden="true" tabindex="-1"></a>dados_A <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"corposdeprova_A.csv"</span>)</span>
+<span id="cb2-280"><a href="#cb2-280" aria-hidden="true" tabindex="-1"></a>dados_B <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"corposdeprova_B.csv"</span>)</span>
+<span id="cb2-281"><a href="#cb2-281" aria-hidden="true" tabindex="-1"></a>dados_C <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"corposdeprova_C.csv"</span>)</span>
+<span id="cb2-282"><a href="#cb2-282" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb2-283"><a href="#cb2-283" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-284"><a href="#cb2-284" aria-hidden="true" tabindex="-1"></a><span class="in">```{r funcao_estatisticas}</span></span>
+<span id="cb2-285"><a href="#cb2-285" aria-hidden="true" tabindex="-1"></a><span class="co"># Função para calcular estatísticas usando leem</span></span>
+<span id="cb2-286"><a href="#cb2-286" aria-hidden="true" tabindex="-1"></a>calcular_estatisticas <span class="ot">&lt;-</span> <span class="cf">function</span>(dados, nome_grupo) {</span>
+<span id="cb2-287"><a href="#cb2-287" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Extrair o vetor de resistência</span></span>
+<span id="cb2-288"><a href="#cb2-288" aria-hidden="true" tabindex="-1"></a>  valores <span class="ot">&lt;-</span> dados<span class="sc">$</span>Resistencia_kPa</span>
+<span id="cb2-289"><a href="#cb2-289" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb2-290"><a href="#cb2-290" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Criar objeto leem (variável contínua)</span></span>
+<span id="cb2-291"><a href="#cb2-291" aria-hidden="true" tabindex="-1"></a>  obj_leem <span class="ot">&lt;-</span> <span class="fu">new_leem</span>(valores, <span class="at">variable =</span> <span class="dv">2</span>)</span>
+<span id="cb2-292"><a href="#cb2-292" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb2-293"><a href="#cb2-293" aria-hidden="true" tabindex="-1"></a>  <span class="co"># ===== ESTATÍSTICAS USANDO LEEM =====</span></span>
+<span id="cb2-294"><a href="#cb2-294" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb2-295"><a href="#cb2-295" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Média (kPa → MPa)</span></span>
+<span id="cb2-296"><a href="#cb2-296" aria-hidden="true" tabindex="-1"></a>  media_MPa <span class="ot">&lt;-</span> <span class="fu">mean</span>(obj_leem) <span class="sc">/</span> <span class="dv">1000</span></span>
+<span id="cb2-297"><a href="#cb2-297" aria-hidden="true" tabindex="-1"></a>  media_MPa_formatada <span class="ot">&lt;-</span> <span class="fu">round</span>(media_MPa, <span class="dv">2</span>)</span>
+<span id="cb2-298"><a href="#cb2-298" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb2-299"><a href="#cb2-299" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Mediana (kPa → MPa)</span></span>
+<span id="cb2-300"><a href="#cb2-300" aria-hidden="true" tabindex="-1"></a>  mediana_MPa <span class="ot">&lt;-</span> <span class="fu">median</span>(obj_leem) <span class="sc">/</span> <span class="dv">1000</span></span>
+<span id="cb2-301"><a href="#cb2-301" aria-hidden="true" tabindex="-1"></a>  mediana_MPa_formatada <span class="ot">&lt;-</span> <span class="fu">round</span>(mediana_MPa, <span class="dv">2</span>)</span>
+<span id="cb2-302"><a href="#cb2-302" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb2-303"><a href="#cb2-303" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Desvio Padrão (kPa → MPa)</span></span>
+<span id="cb2-304"><a href="#cb2-304" aria-hidden="true" tabindex="-1"></a>  desvio_MPa <span class="ot">&lt;-</span> <span class="fu">sd</span>(obj_leem) <span class="sc">/</span> <span class="dv">1000</span></span>
+<span id="cb2-305"><a href="#cb2-305" aria-hidden="true" tabindex="-1"></a>  desvio_MPa_formatado <span class="ot">&lt;-</span> <span class="fu">round</span>(desvio_MPa, <span class="dv">2</span>)</span>
 <span id="cb2-306"><a href="#cb2-306" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb2-307"><a href="#cb2-307" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Mínimo, Máximo e Amplitude</span></span>
-<span id="cb2-308"><a href="#cb2-308" aria-hidden="true" tabindex="-1"></a>  min_MPa <span class="ot">&lt;-</span> <span class="fu">min</span>(valores) <span class="sc">/</span> <span class="dv">1000</span></span>
-<span id="cb2-309"><a href="#cb2-309" aria-hidden="true" tabindex="-1"></a>  min_MPa_formatado <span class="ot">&lt;-</span> <span class="fu">round</span>(min_MPa, <span class="dv">2</span>)</span>
+<span id="cb2-307"><a href="#cb2-307" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Variância (kPa² → MPa²)</span></span>
+<span id="cb2-308"><a href="#cb2-308" aria-hidden="true" tabindex="-1"></a>  variancia_MPa2 <span class="ot">&lt;-</span> <span class="fu">var</span>(obj_leem) <span class="sc">/</span> (<span class="dv">1000</span><span class="sc">^</span><span class="dv">2</span>)</span>
+<span id="cb2-309"><a href="#cb2-309" aria-hidden="true" tabindex="-1"></a>  variancia_MPa2_formatada <span class="ot">&lt;-</span> <span class="fu">round</span>(variancia_MPa2, <span class="dv">2</span>)</span>
 <span id="cb2-310"><a href="#cb2-310" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb2-311"><a href="#cb2-311" aria-hidden="true" tabindex="-1"></a>  max_MPa <span class="ot">&lt;-</span> <span class="fu">max</span>(valores) <span class="sc">/</span> <span class="dv">1000</span></span>
-<span id="cb2-312"><a href="#cb2-312" aria-hidden="true" tabindex="-1"></a>  max_MPa_formatado <span class="ot">&lt;-</span> <span class="fu">round</span>(max_MPa, <span class="dv">2</span>)</span>
-<span id="cb2-313"><a href="#cb2-313" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb2-314"><a href="#cb2-314" aria-hidden="true" tabindex="-1"></a>  amplitude_MPa <span class="ot">&lt;-</span> (<span class="fu">max</span>(valores) <span class="sc">-</span> <span class="fu">min</span>(valores)) <span class="sc">/</span> <span class="dv">1000</span></span>
-<span id="cb2-315"><a href="#cb2-315" aria-hidden="true" tabindex="-1"></a>  amplitude_MPa_formatada <span class="ot">&lt;-</span> <span class="fu">round</span>(amplitude_MPa, <span class="dv">2</span>)</span>
+<span id="cb2-311"><a href="#cb2-311" aria-hidden="true" tabindex="-1"></a>  <span class="co"># ===== CORREÇÃO AQUI =====</span></span>
+<span id="cb2-312"><a href="#cb2-312" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Coeficiente de Variação (%)</span></span>
+<span id="cb2-313"><a href="#cb2-313" aria-hidden="true" tabindex="-1"></a>  <span class="co"># A função cv() do leem já retorna em porcentagem</span></span>
+<span id="cb2-314"><a href="#cb2-314" aria-hidden="true" tabindex="-1"></a>  cv_percent <span class="ot">&lt;-</span> <span class="fu">cv</span>(obj_leem)  <span class="co"># SEM multiplicar por 100</span></span>
+<span id="cb2-315"><a href="#cb2-315" aria-hidden="true" tabindex="-1"></a>  cv_percent_formatado <span class="ot">&lt;-</span> <span class="fu">round</span>(cv_percent, <span class="dv">2</span>)</span>
 <span id="cb2-316"><a href="#cb2-316" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb2-317"><a href="#cb2-317" aria-hidden="true" tabindex="-1"></a>  <span class="co"># ===== CRIAR TABELA DE RESULTADOS =====</span></span>
-<span id="cb2-318"><a href="#cb2-318" aria-hidden="true" tabindex="-1"></a>  resultados <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
-<span id="cb2-319"><a href="#cb2-319" aria-hidden="true" tabindex="-1"></a>    <span class="at">Grupo =</span> nome_grupo,</span>
-<span id="cb2-320"><a href="#cb2-320" aria-hidden="true" tabindex="-1"></a>    <span class="at">Media_MPa =</span> media_MPa_formatada,</span>
-<span id="cb2-321"><a href="#cb2-321" aria-hidden="true" tabindex="-1"></a>    <span class="at">Mediana_MPa =</span> mediana_MPa_formatada,</span>
-<span id="cb2-322"><a href="#cb2-322" aria-hidden="true" tabindex="-1"></a>    <span class="at">Desvio_MPa =</span> desvio_MPa_formatado,</span>
-<span id="cb2-323"><a href="#cb2-323" aria-hidden="true" tabindex="-1"></a>    <span class="at">Variancia_MPa2 =</span> variancia_MPa2_formatada,</span>
-<span id="cb2-324"><a href="#cb2-324" aria-hidden="true" tabindex="-1"></a>    <span class="at">CV_percent =</span> cv_percent_formatado,</span>
-<span id="cb2-325"><a href="#cb2-325" aria-hidden="true" tabindex="-1"></a>    <span class="at">Assimetria =</span> assimetria_formatada,</span>
-<span id="cb2-326"><a href="#cb2-326" aria-hidden="true" tabindex="-1"></a>    <span class="at">Curtose =</span> curtose_formatada,</span>
-<span id="cb2-327"><a href="#cb2-327" aria-hidden="true" tabindex="-1"></a>    <span class="at">Min_MPa =</span> min_MPa_formatado,</span>
-<span id="cb2-328"><a href="#cb2-328" aria-hidden="true" tabindex="-1"></a>    <span class="at">Max_MPa =</span> max_MPa_formatado,</span>
-<span id="cb2-329"><a href="#cb2-329" aria-hidden="true" tabindex="-1"></a>    <span class="at">Amplitude_MPa =</span> amplitude_MPa_formatada</span>
-<span id="cb2-330"><a href="#cb2-330" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb2-317"><a href="#cb2-317" aria-hidden="true" tabindex="-1"></a>  <span class="co"># ===== ESTATÍSTICAS MANUAIS =====</span></span>
+<span id="cb2-318"><a href="#cb2-318" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb2-319"><a href="#cb2-319" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Assimetria</span></span>
+<span id="cb2-320"><a href="#cb2-320" aria-hidden="true" tabindex="-1"></a>  n <span class="ot">&lt;-</span> <span class="fu">length</span>(valores)</span>
+<span id="cb2-321"><a href="#cb2-321" aria-hidden="true" tabindex="-1"></a>  m3 <span class="ot">&lt;-</span> <span class="fu">sum</span>((valores <span class="sc">-</span> <span class="fu">mean</span>(valores))<span class="sc">^</span><span class="dv">3</span>) <span class="sc">/</span> n</span>
+<span id="cb2-322"><a href="#cb2-322" aria-hidden="true" tabindex="-1"></a>  s3 <span class="ot">&lt;-</span> (<span class="fu">sum</span>((valores <span class="sc">-</span> <span class="fu">mean</span>(valores))<span class="sc">^</span><span class="dv">2</span>) <span class="sc">/</span> n)<span class="sc">^</span>(<span class="dv">3</span><span class="sc">/</span><span class="dv">2</span>)</span>
+<span id="cb2-323"><a href="#cb2-323" aria-hidden="true" tabindex="-1"></a>  assimetria <span class="ot">&lt;-</span> m3 <span class="sc">/</span> s3</span>
+<span id="cb2-324"><a href="#cb2-324" aria-hidden="true" tabindex="-1"></a>  assimetria_formatada <span class="ot">&lt;-</span> <span class="fu">round</span>(assimetria, <span class="dv">3</span>)</span>
+<span id="cb2-325"><a href="#cb2-325" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb2-326"><a href="#cb2-326" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Curtose</span></span>
+<span id="cb2-327"><a href="#cb2-327" aria-hidden="true" tabindex="-1"></a>  m4 <span class="ot">&lt;-</span> <span class="fu">sum</span>((valores <span class="sc">-</span> <span class="fu">mean</span>(valores))<span class="sc">^</span><span class="dv">4</span>) <span class="sc">/</span> n</span>
+<span id="cb2-328"><a href="#cb2-328" aria-hidden="true" tabindex="-1"></a>  s4 <span class="ot">&lt;-</span> (<span class="fu">sum</span>((valores <span class="sc">-</span> <span class="fu">mean</span>(valores))<span class="sc">^</span><span class="dv">2</span>) <span class="sc">/</span> n)<span class="sc">^</span><span class="dv">2</span></span>
+<span id="cb2-329"><a href="#cb2-329" aria-hidden="true" tabindex="-1"></a>  curtose <span class="ot">&lt;-</span> m4 <span class="sc">/</span> s4</span>
+<span id="cb2-330"><a href="#cb2-330" aria-hidden="true" tabindex="-1"></a>  curtose_formatada <span class="ot">&lt;-</span> <span class="fu">round</span>(curtose, <span class="dv">3</span>)</span>
 <span id="cb2-331"><a href="#cb2-331" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb2-332"><a href="#cb2-332" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(resultados)</span>
-<span id="cb2-333"><a href="#cb2-333" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb2-334"><a href="#cb2-334" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb2-335"><a href="#cb2-335" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-336"><a href="#cb2-336" aria-hidden="true" tabindex="-1"></a><span class="in">```{r calcular_resultados}</span></span>
-<span id="cb2-337"><a href="#cb2-337" aria-hidden="true" tabindex="-1"></a><span class="co"># Aplicar a função para cada grupo</span></span>
-<span id="cb2-338"><a href="#cb2-338" aria-hidden="true" tabindex="-1"></a>resultados_A <span class="ot">&lt;-</span> <span class="fu">calcular_estatisticas</span>(dados_A, <span class="st">"A"</span>)</span>
-<span id="cb2-339"><a href="#cb2-339" aria-hidden="true" tabindex="-1"></a>resultados_B <span class="ot">&lt;-</span> <span class="fu">calcular_estatisticas</span>(dados_B, <span class="st">"B"</span>)</span>
-<span id="cb2-340"><a href="#cb2-340" aria-hidden="true" tabindex="-1"></a>resultados_C <span class="ot">&lt;-</span> <span class="fu">calcular_estatisticas</span>(dados_C, <span class="st">"C"</span>)</span>
-<span id="cb2-341"><a href="#cb2-341" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-342"><a href="#cb2-342" aria-hidden="true" tabindex="-1"></a><span class="co"># Combinar todos os resultados</span></span>
-<span id="cb2-343"><a href="#cb2-343" aria-hidden="true" tabindex="-1"></a>resultados_finais <span class="ot">&lt;-</span> <span class="fu">rbind</span>(resultados_A, resultados_B, resultados_C)</span>
-<span id="cb2-344"><a href="#cb2-344" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb2-345"><a href="#cb2-345" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-346"><a href="#cb2-346" aria-hidden="true" tabindex="-1"></a><span class="fu">## Tabela de Estatísticas Descritivas</span></span>
-<span id="cb2-347"><a href="#cb2-347" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-348"><a href="#cb2-348" aria-hidden="true" tabindex="-1"></a><span class="in">```{r tabela_resultados}</span></span>
-<span id="cb2-349"><a href="#cb2-349" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(resultados_finais, </span>
-<span id="cb2-350"><a href="#cb2-350" aria-hidden="true" tabindex="-1"></a>             <span class="at">caption =</span> <span class="st">"Estatísticas Descritivas por Grupo"</span>,</span>
-<span id="cb2-351"><a href="#cb2-351" aria-hidden="true" tabindex="-1"></a>             <span class="at">digits =</span> <span class="dv">2</span>)</span>
-<span id="cb2-352"><a href="#cb2-352" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb2-353"><a href="#cb2-353" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-354"><a href="#cb2-354" aria-hidden="true" tabindex="-1"></a><span class="fu">## Análise Gráfica</span></span>
-<span id="cb2-355"><a href="#cb2-355" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-356"><a href="#cb2-356" aria-hidden="true" tabindex="-1"></a><span class="fu">### Histogramas por Grupo</span></span>
-<span id="cb2-357"><a href="#cb2-357" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-358"><a href="#cb2-358" aria-hidden="true" tabindex="-1"></a><span class="in">```{r histogramas}</span></span>
-<span id="cb2-359"><a href="#cb2-359" aria-hidden="true" tabindex="-1"></a>gerar_histograma <span class="ot">&lt;-</span> <span class="cf">function</span>(dados, nome_grupo) {</span>
-<span id="cb2-360"><a href="#cb2-360" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Converter para MPa (dividir por 1000)</span></span>
-<span id="cb2-361"><a href="#cb2-361" aria-hidden="true" tabindex="-1"></a>  valores_MPa <span class="ot">&lt;-</span> dados<span class="sc">$</span>Resistencia_kPa <span class="sc">/</span> <span class="dv">1000</span></span>
-<span id="cb2-362"><a href="#cb2-362" aria-hidden="true" tabindex="-1"></a>  obj_leem <span class="ot">&lt;-</span> <span class="fu">new_leem</span>(valores_MPa, <span class="at">variable =</span> <span class="dv">2</span>)</span>
-<span id="cb2-363"><a href="#cb2-363" aria-hidden="true" tabindex="-1"></a>  tab <span class="ot">&lt;-</span> <span class="fu">tabfreq</span>(obj_leem)</span>
-<span id="cb2-364"><a href="#cb2-364" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb2-365"><a href="#cb2-365" aria-hidden="true" tabindex="-1"></a>  <span class="fu">hist</span>(tab, </span>
-<span id="cb2-366"><a href="#cb2-366" aria-hidden="true" tabindex="-1"></a>       <span class="at">main =</span> <span class="fu">paste</span>(<span class="st">"Histograma - Grupo"</span>, nome_grupo),</span>
-<span id="cb2-367"><a href="#cb2-367" aria-hidden="true" tabindex="-1"></a>       <span class="at">xlab =</span> <span class="st">"Resistência (MPa)"</span>,</span>
-<span id="cb2-368"><a href="#cb2-368" aria-hidden="true" tabindex="-1"></a>       <span class="at">ylab =</span> <span class="st">"Frequência"</span>,</span>
-<span id="cb2-369"><a href="#cb2-369" aria-hidden="true" tabindex="-1"></a>       <span class="at">col =</span> <span class="st">"lightblue"</span>,</span>
-<span id="cb2-370"><a href="#cb2-370" aria-hidden="true" tabindex="-1"></a>       <span class="at">border =</span> <span class="st">"black"</span>)</span>
-<span id="cb2-371"><a href="#cb2-371" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb2-372"><a href="#cb2-372" aria-hidden="true" tabindex="-1"></a>  <span class="fu">insert</span>(tab, <span class="at">type =</span> <span class="st">"mean"</span>, <span class="at">side =</span> <span class="st">"right"</span>, <span class="at">lwd =</span> <span class="dv">2</span>, <span class="at">col =</span> <span class="st">"red"</span>)</span>
-<span id="cb2-373"><a href="#cb2-373" aria-hidden="true" tabindex="-1"></a>  <span class="fu">insert</span>(tab, <span class="at">type =</span> <span class="st">"median"</span>, <span class="at">side =</span> <span class="st">"right"</span>, <span class="at">lwd =</span> <span class="dv">2</span>, <span class="at">col =</span> <span class="st">"blue"</span>)</span>
-<span id="cb2-374"><a href="#cb2-374" aria-hidden="true" tabindex="-1"></a>  <span class="fu">insert</span>(tab, <span class="at">type =</span> <span class="st">"sd"</span>, <span class="at">side =</span> <span class="st">"right"</span>, <span class="at">lwd =</span> <span class="dv">2</span>, <span class="at">col =</span> <span class="st">"green"</span>)</span>
-<span id="cb2-375"><a href="#cb2-375" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb2-376"><a href="#cb2-376" aria-hidden="true" tabindex="-1"></a>  <span class="fu">legend</span>(<span class="st">"topright"</span>, </span>
-<span id="cb2-377"><a href="#cb2-377" aria-hidden="true" tabindex="-1"></a>         <span class="at">legend =</span> <span class="fu">c</span>(<span class="st">"Média"</span>, <span class="st">"Mediana"</span>, <span class="st">"Desvio Padrão"</span>),</span>
-<span id="cb2-378"><a href="#cb2-378" aria-hidden="true" tabindex="-1"></a>         <span class="at">col =</span> <span class="fu">c</span>(<span class="st">"red"</span>, <span class="st">"blue"</span>, <span class="st">"green"</span>),</span>
-<span id="cb2-379"><a href="#cb2-379" aria-hidden="true" tabindex="-1"></a>         <span class="at">lwd =</span> <span class="dv">2</span>,</span>
-<span id="cb2-380"><a href="#cb2-380" aria-hidden="true" tabindex="-1"></a>         <span class="at">bg =</span> <span class="st">"white"</span>)</span>
-<span id="cb2-381"><a href="#cb2-381" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb2-332"><a href="#cb2-332" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Mínimo, Máximo e Amplitude</span></span>
+<span id="cb2-333"><a href="#cb2-333" aria-hidden="true" tabindex="-1"></a>  min_MPa <span class="ot">&lt;-</span> <span class="fu">min</span>(valores) <span class="sc">/</span> <span class="dv">1000</span></span>
+<span id="cb2-334"><a href="#cb2-334" aria-hidden="true" tabindex="-1"></a>  min_MPa_formatado <span class="ot">&lt;-</span> <span class="fu">round</span>(min_MPa, <span class="dv">2</span>)</span>
+<span id="cb2-335"><a href="#cb2-335" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb2-336"><a href="#cb2-336" aria-hidden="true" tabindex="-1"></a>  max_MPa <span class="ot">&lt;-</span> <span class="fu">max</span>(valores) <span class="sc">/</span> <span class="dv">1000</span></span>
+<span id="cb2-337"><a href="#cb2-337" aria-hidden="true" tabindex="-1"></a>  max_MPa_formatado <span class="ot">&lt;-</span> <span class="fu">round</span>(max_MPa, <span class="dv">2</span>)</span>
+<span id="cb2-338"><a href="#cb2-338" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb2-339"><a href="#cb2-339" aria-hidden="true" tabindex="-1"></a>  amplitude_MPa <span class="ot">&lt;-</span> (<span class="fu">max</span>(valores) <span class="sc">-</span> <span class="fu">min</span>(valores)) <span class="sc">/</span> <span class="dv">1000</span></span>
+<span id="cb2-340"><a href="#cb2-340" aria-hidden="true" tabindex="-1"></a>  amplitude_MPa_formatada <span class="ot">&lt;-</span> <span class="fu">round</span>(amplitude_MPa, <span class="dv">2</span>)</span>
+<span id="cb2-341"><a href="#cb2-341" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb2-342"><a href="#cb2-342" aria-hidden="true" tabindex="-1"></a>  <span class="co"># ===== CRIAR TABELA DE RESULTADOS =====</span></span>
+<span id="cb2-343"><a href="#cb2-343" aria-hidden="true" tabindex="-1"></a>  resultados <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb2-344"><a href="#cb2-344" aria-hidden="true" tabindex="-1"></a>    <span class="at">Grupo =</span> nome_grupo,</span>
+<span id="cb2-345"><a href="#cb2-345" aria-hidden="true" tabindex="-1"></a>    <span class="at">Media_MPa =</span> media_MPa_formatada,</span>
+<span id="cb2-346"><a href="#cb2-346" aria-hidden="true" tabindex="-1"></a>    <span class="at">Mediana_MPa =</span> mediana_MPa_formatada,</span>
+<span id="cb2-347"><a href="#cb2-347" aria-hidden="true" tabindex="-1"></a>    <span class="at">Desvio_MPa =</span> desvio_MPa_formatado,</span>
+<span id="cb2-348"><a href="#cb2-348" aria-hidden="true" tabindex="-1"></a>    <span class="at">Variancia_MPa2 =</span> variancia_MPa2_formatada,</span>
+<span id="cb2-349"><a href="#cb2-349" aria-hidden="true" tabindex="-1"></a>    <span class="at">CV_percent =</span> cv_percent_formatado,</span>
+<span id="cb2-350"><a href="#cb2-350" aria-hidden="true" tabindex="-1"></a>    <span class="at">Assimetria =</span> assimetria_formatada,</span>
+<span id="cb2-351"><a href="#cb2-351" aria-hidden="true" tabindex="-1"></a>    <span class="at">Curtose =</span> curtose_formatada,</span>
+<span id="cb2-352"><a href="#cb2-352" aria-hidden="true" tabindex="-1"></a>    <span class="at">Min_MPa =</span> min_MPa_formatado,</span>
+<span id="cb2-353"><a href="#cb2-353" aria-hidden="true" tabindex="-1"></a>    <span class="at">Max_MPa =</span> max_MPa_formatado,</span>
+<span id="cb2-354"><a href="#cb2-354" aria-hidden="true" tabindex="-1"></a>    <span class="at">Amplitude_MPa =</span> amplitude_MPa_formatada</span>
+<span id="cb2-355"><a href="#cb2-355" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb2-356"><a href="#cb2-356" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb2-357"><a href="#cb2-357" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(resultados)</span>
+<span id="cb2-358"><a href="#cb2-358" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb2-359"><a href="#cb2-359" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb2-360"><a href="#cb2-360" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-361"><a href="#cb2-361" aria-hidden="true" tabindex="-1"></a><span class="in">```{r calcular_resultados}</span></span>
+<span id="cb2-362"><a href="#cb2-362" aria-hidden="true" tabindex="-1"></a><span class="co"># Aplicar a função para cada grupo</span></span>
+<span id="cb2-363"><a href="#cb2-363" aria-hidden="true" tabindex="-1"></a>resultados_A <span class="ot">&lt;-</span> <span class="fu">calcular_estatisticas</span>(dados_A, <span class="st">"A"</span>)</span>
+<span id="cb2-364"><a href="#cb2-364" aria-hidden="true" tabindex="-1"></a>resultados_B <span class="ot">&lt;-</span> <span class="fu">calcular_estatisticas</span>(dados_B, <span class="st">"B"</span>)</span>
+<span id="cb2-365"><a href="#cb2-365" aria-hidden="true" tabindex="-1"></a>resultados_C <span class="ot">&lt;-</span> <span class="fu">calcular_estatisticas</span>(dados_C, <span class="st">"C"</span>)</span>
+<span id="cb2-366"><a href="#cb2-366" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-367"><a href="#cb2-367" aria-hidden="true" tabindex="-1"></a><span class="co"># Combinar todos os resultados</span></span>
+<span id="cb2-368"><a href="#cb2-368" aria-hidden="true" tabindex="-1"></a>resultados_finais <span class="ot">&lt;-</span> <span class="fu">rbind</span>(resultados_A, resultados_B, resultados_C)</span>
+<span id="cb2-369"><a href="#cb2-369" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb2-370"><a href="#cb2-370" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-371"><a href="#cb2-371" aria-hidden="true" tabindex="-1"></a><span class="fu">## Tabela de Estatísticas Descritivas</span></span>
+<span id="cb2-372"><a href="#cb2-372" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-373"><a href="#cb2-373" aria-hidden="true" tabindex="-1"></a><span class="in">```{r tabela_resultados}</span></span>
+<span id="cb2-374"><a href="#cb2-374" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(resultados_finais, </span>
+<span id="cb2-375"><a href="#cb2-375" aria-hidden="true" tabindex="-1"></a>             <span class="at">caption =</span> <span class="st">"Estatísticas Descritivas por Grupo"</span>,</span>
+<span id="cb2-376"><a href="#cb2-376" aria-hidden="true" tabindex="-1"></a>             <span class="at">digits =</span> <span class="dv">2</span>)</span>
+<span id="cb2-377"><a href="#cb2-377" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb2-378"><a href="#cb2-378" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-379"><a href="#cb2-379" aria-hidden="true" tabindex="-1"></a><span class="fu">## Análise Gráfica</span></span>
+<span id="cb2-380"><a href="#cb2-380" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-381"><a href="#cb2-381" aria-hidden="true" tabindex="-1"></a><span class="fu">### Histogramas por Grupo</span></span>
 <span id="cb2-382"><a href="#cb2-382" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-383"><a href="#cb2-383" aria-hidden="true" tabindex="-1"></a><span class="co"># Gerar histograma para cada grupo</span></span>
-<span id="cb2-384"><a href="#cb2-384" aria-hidden="true" tabindex="-1"></a><span class="fu">gerar_histograma</span>(dados_A, <span class="st">"A"</span>)</span>
-<span id="cb2-385"><a href="#cb2-385" aria-hidden="true" tabindex="-1"></a><span class="fu">gerar_histograma</span>(dados_B, <span class="st">"B"</span>)</span>
-<span id="cb2-386"><a href="#cb2-386" aria-hidden="true" tabindex="-1"></a><span class="fu">gerar_histograma</span>(dados_C, <span class="st">"C"</span>)</span>
-<span id="cb2-387"><a href="#cb2-387" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb2-388"><a href="#cb2-388" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-389"><a href="#cb2-389" aria-hidden="true" tabindex="-1"></a><span class="fu">### Boxplot Comparativo</span></span>
-<span id="cb2-390"><a href="#cb2-390" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-391"><a href="#cb2-391" aria-hidden="true" tabindex="-1"></a><span class="in">```{r boxplot}</span></span>
-<span id="cb2-392"><a href="#cb2-392" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
-<span id="cb2-393"><a href="#cb2-393" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-394"><a href="#cb2-394" aria-hidden="true" tabindex="-1"></a><span class="co"># Criar dataframe com todos os dados em MPa</span></span>
-<span id="cb2-395"><a href="#cb2-395" aria-hidden="true" tabindex="-1"></a>dados_completos <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
-<span id="cb2-396"><a href="#cb2-396" aria-hidden="true" tabindex="-1"></a>  <span class="at">Resistencia_MPa =</span> <span class="fu">c</span>(dados_A<span class="sc">$</span>Resistencia_kPa <span class="sc">/</span> <span class="dv">1000</span>, </span>
-<span id="cb2-397"><a href="#cb2-397" aria-hidden="true" tabindex="-1"></a>                      dados_B<span class="sc">$</span>Resistencia_kPa <span class="sc">/</span> <span class="dv">1000</span>, </span>
-<span id="cb2-398"><a href="#cb2-398" aria-hidden="true" tabindex="-1"></a>                      dados_C<span class="sc">$</span>Resistencia_kPa <span class="sc">/</span> <span class="dv">1000</span>),</span>
-<span id="cb2-399"><a href="#cb2-399" aria-hidden="true" tabindex="-1"></a>  <span class="at">Grupo =</span> <span class="fu">c</span>(<span class="fu">rep</span>(<span class="st">"A"</span>, <span class="fu">nrow</span>(dados_A)),</span>
-<span id="cb2-400"><a href="#cb2-400" aria-hidden="true" tabindex="-1"></a>            <span class="fu">rep</span>(<span class="st">"B"</span>, <span class="fu">nrow</span>(dados_B)),</span>
-<span id="cb2-401"><a href="#cb2-401" aria-hidden="true" tabindex="-1"></a>            <span class="fu">rep</span>(<span class="st">"C"</span>, <span class="fu">nrow</span>(dados_C)))</span>
-<span id="cb2-402"><a href="#cb2-402" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb2-403"><a href="#cb2-403" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-404"><a href="#cb2-404" aria-hidden="true" tabindex="-1"></a><span class="co"># Criar boxplot em MPa</span></span>
-<span id="cb2-405"><a href="#cb2-405" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(dados_completos, <span class="fu">aes</span>(<span class="at">x =</span> Grupo, <span class="at">y =</span> Resistencia_MPa, <span class="at">fill =</span> Grupo)) <span class="sc">+</span></span>
-<span id="cb2-406"><a href="#cb2-406" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>() <span class="sc">+</span></span>
-<span id="cb2-407"><a href="#cb2-407" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Boxplot da Resistência por Grupo"</span>,</span>
-<span id="cb2-408"><a href="#cb2-408" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"Grupo"</span>,</span>
-<span id="cb2-409"><a href="#cb2-409" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Resistência (MPa)"</span>) <span class="sc">+</span></span>
-<span id="cb2-410"><a href="#cb2-410" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
-<span id="cb2-411"><a href="#cb2-411" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_brewer</span>(<span class="at">palette =</span> <span class="st">"Set2"</span>)</span>
+<span id="cb2-383"><a href="#cb2-383" aria-hidden="true" tabindex="-1"></a><span class="in">```{r histogramas}</span></span>
+<span id="cb2-384"><a href="#cb2-384" aria-hidden="true" tabindex="-1"></a>gerar_histograma <span class="ot">&lt;-</span> <span class="cf">function</span>(dados, nome_grupo) {</span>
+<span id="cb2-385"><a href="#cb2-385" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Converter para MPa (dividir por 1000)</span></span>
+<span id="cb2-386"><a href="#cb2-386" aria-hidden="true" tabindex="-1"></a>  valores_MPa <span class="ot">&lt;-</span> dados<span class="sc">$</span>Resistencia_kPa <span class="sc">/</span> <span class="dv">1000</span></span>
+<span id="cb2-387"><a href="#cb2-387" aria-hidden="true" tabindex="-1"></a>  obj_leem <span class="ot">&lt;-</span> <span class="fu">new_leem</span>(valores_MPa, <span class="at">variable =</span> <span class="dv">2</span>)</span>
+<span id="cb2-388"><a href="#cb2-388" aria-hidden="true" tabindex="-1"></a>  tab <span class="ot">&lt;-</span> <span class="fu">tabfreq</span>(obj_leem)</span>
+<span id="cb2-389"><a href="#cb2-389" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb2-390"><a href="#cb2-390" aria-hidden="true" tabindex="-1"></a>  <span class="fu">hist</span>(tab, </span>
+<span id="cb2-391"><a href="#cb2-391" aria-hidden="true" tabindex="-1"></a>       <span class="at">main =</span> <span class="fu">paste</span>(<span class="st">"Histograma - Grupo"</span>, nome_grupo),</span>
+<span id="cb2-392"><a href="#cb2-392" aria-hidden="true" tabindex="-1"></a>       <span class="at">xlab =</span> <span class="st">"Resistência (MPa)"</span>,</span>
+<span id="cb2-393"><a href="#cb2-393" aria-hidden="true" tabindex="-1"></a>       <span class="at">ylab =</span> <span class="st">"Frequência"</span>,</span>
+<span id="cb2-394"><a href="#cb2-394" aria-hidden="true" tabindex="-1"></a>       <span class="at">col =</span> <span class="st">"lightblue"</span>,</span>
+<span id="cb2-395"><a href="#cb2-395" aria-hidden="true" tabindex="-1"></a>       <span class="at">border =</span> <span class="st">"black"</span>)</span>
+<span id="cb2-396"><a href="#cb2-396" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb2-397"><a href="#cb2-397" aria-hidden="true" tabindex="-1"></a>  <span class="fu">insert</span>(tab, <span class="at">type =</span> <span class="st">"mean"</span>, <span class="at">side =</span> <span class="st">"right"</span>, <span class="at">lwd =</span> <span class="dv">2</span>, <span class="at">col =</span> <span class="st">"red"</span>)</span>
+<span id="cb2-398"><a href="#cb2-398" aria-hidden="true" tabindex="-1"></a>  <span class="fu">insert</span>(tab, <span class="at">type =</span> <span class="st">"median"</span>, <span class="at">side =</span> <span class="st">"right"</span>, <span class="at">lwd =</span> <span class="dv">2</span>, <span class="at">col =</span> <span class="st">"blue"</span>)</span>
+<span id="cb2-399"><a href="#cb2-399" aria-hidden="true" tabindex="-1"></a>  <span class="fu">insert</span>(tab, <span class="at">type =</span> <span class="st">"sd"</span>, <span class="at">side =</span> <span class="st">"right"</span>, <span class="at">lwd =</span> <span class="dv">2</span>, <span class="at">col =</span> <span class="st">"green"</span>)</span>
+<span id="cb2-400"><a href="#cb2-400" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb2-401"><a href="#cb2-401" aria-hidden="true" tabindex="-1"></a>  <span class="fu">legend</span>(<span class="st">"topright"</span>, </span>
+<span id="cb2-402"><a href="#cb2-402" aria-hidden="true" tabindex="-1"></a>         <span class="at">legend =</span> <span class="fu">c</span>(<span class="st">"Média"</span>, <span class="st">"Mediana"</span>, <span class="st">"Desvio Padrão"</span>),</span>
+<span id="cb2-403"><a href="#cb2-403" aria-hidden="true" tabindex="-1"></a>         <span class="at">col =</span> <span class="fu">c</span>(<span class="st">"red"</span>, <span class="st">"blue"</span>, <span class="st">"green"</span>),</span>
+<span id="cb2-404"><a href="#cb2-404" aria-hidden="true" tabindex="-1"></a>         <span class="at">lwd =</span> <span class="dv">2</span>,</span>
+<span id="cb2-405"><a href="#cb2-405" aria-hidden="true" tabindex="-1"></a>         <span class="at">bg =</span> <span class="st">"white"</span>)</span>
+<span id="cb2-406"><a href="#cb2-406" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb2-407"><a href="#cb2-407" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-408"><a href="#cb2-408" aria-hidden="true" tabindex="-1"></a><span class="co"># Gerar histograma para cada grupo</span></span>
+<span id="cb2-409"><a href="#cb2-409" aria-hidden="true" tabindex="-1"></a><span class="fu">gerar_histograma</span>(dados_A, <span class="st">"A"</span>)</span>
+<span id="cb2-410"><a href="#cb2-410" aria-hidden="true" tabindex="-1"></a><span class="fu">gerar_histograma</span>(dados_B, <span class="st">"B"</span>)</span>
+<span id="cb2-411"><a href="#cb2-411" aria-hidden="true" tabindex="-1"></a><span class="fu">gerar_histograma</span>(dados_C, <span class="st">"C"</span>)</span>
 <span id="cb2-412"><a href="#cb2-412" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb2-413"><a href="#cb2-413" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-414"><a href="#cb2-414" aria-hidden="true" tabindex="-1"></a><span class="fu">## Análise por Grupo</span></span>
+<span id="cb2-414"><a href="#cb2-414" aria-hidden="true" tabindex="-1"></a><span class="fu">### Boxplot Comparativo</span></span>
 <span id="cb2-415"><a href="#cb2-415" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-416"><a href="#cb2-416" aria-hidden="true" tabindex="-1"></a><span class="fu">### Grupo A</span></span>
-<span id="cb2-417"><a href="#cb2-417" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-418"><a href="#cb2-418" aria-hidden="true" tabindex="-1"></a>O grupo A apresentou resistência média de <span class="in">`r resultados_A$Media_MPa`</span> MPa e mediana de <span class="in">`r resultados_A$Mediana_MPa`</span> MPa. A proximidade entre essas duas medidas é um primeiro indício de que a distribuição é equilibrada e não está sendo fortemente afetada por valores extremos.</span>
-<span id="cb2-419"><a href="#cb2-419" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-420"><a href="#cb2-420" aria-hidden="true" tabindex="-1"></a>O coeficiente de assimetria foi <span class="in">`r resultados_A$Assimetria`</span>. Como o resultado está muito próximo de zero, a distribuição do grupo A pode ser considerada aproximadamente simétrica.</span>
-<span id="cb2-421"><a href="#cb2-421" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-422"><a href="#cb2-422" aria-hidden="true" tabindex="-1"></a>O desvio padrão foi de <span class="in">`r resultados_A$Desvio_MPa`</span> MPa, indicando o afastamento típico dos resultados em torno da média. A amplitude foi de <span class="in">`r resultados_A$Amplitude_MPa`</span> MPa, correspondente à diferença entre o maior resultado (<span class="in">`r resultados_A$Max_MPa`</span> MPa) e o menor (<span class="in">`r resultados_A$Min_MPa`</span> MPa).</span>
-<span id="cb2-423"><a href="#cb2-423" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-424"><a href="#cb2-424" aria-hidden="true" tabindex="-1"></a>O coeficiente de variação foi de <span class="in">`r resultados_A$CV_percent`</span>%, indicando uma variabilidade relativamente pequena, valores abaixo de 10% são geralmente considerados indicativos de boa homogeneidade. O excesso de curtose foi de <span class="in">`r resultados_A$Curtose`</span>, sugerindo uma distribuição com caudas mais leves que a normal.</span>
-<span id="cb2-425"><a href="#cb2-425" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-426"><a href="#cb2-426" aria-hidden="true" tabindex="-1"></a><span class="fu">### Grupo B</span></span>
-<span id="cb2-427"><a href="#cb2-427" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-428"><a href="#cb2-428" aria-hidden="true" tabindex="-1"></a>O grupo B apresentou resistência média de <span class="in">`r resultados_B$Media_MPa`</span> MPa e mediana de <span class="in">`r resultados_B$Mediana_MPa`</span> MPa. O coeficiente de assimetria foi <span class="in">`r resultados_B$Assimetria`</span>, indicando uma leve tendência de cauda à direita.</span>
-<span id="cb2-429"><a href="#cb2-429" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-430"><a href="#cb2-430" aria-hidden="true" tabindex="-1"></a>O grupo B apresentou o maior desvio padrão (<span class="in">`r resultados_B$Desvio_MPa`</span> MPa) e a maior amplitude (<span class="in">`r resultados_B$Amplitude_MPa`</span> MPa) entre os três grupos. O coeficiente de variação foi de <span class="in">`r resultados_B$CV_percent`</span>%, sendo o maior entre os grupos.</span>
-<span id="cb2-431"><a href="#cb2-431" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-432"><a href="#cb2-432" aria-hidden="true" tabindex="-1"></a>O excesso de curtose foi de <span class="in">`r resultados_B$Curtose`</span>, indicando uma distribuição relativamente achatada.</span>
-<span id="cb2-433"><a href="#cb2-433" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-434"><a href="#cb2-434" aria-hidden="true" tabindex="-1"></a><span class="fu">### Grupo C</span></span>
-<span id="cb2-435"><a href="#cb2-435" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-436"><a href="#cb2-436" aria-hidden="true" tabindex="-1"></a>O grupo C apresentou a maior resistência média: <span class="in">`r resultados_C$Media_MPa`</span> MPa. Sua mediana foi de <span class="in">`r resultados_C$Mediana_MPa`</span> MPa. O coeficiente de assimetria foi <span class="in">`r resultados_C$Assimetria`</span>, praticamente igual a zero.</span>
-<span id="cb2-437"><a href="#cb2-437" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-438"><a href="#cb2-438" aria-hidden="true" tabindex="-1"></a>O desvio padrão foi de <span class="in">`r resultados_C$Desvio_MPa`</span> MPa e a amplitude de <span class="in">`r resultados_C$Amplitude_MPa`</span> MPa. O coeficiente de variação foi de <span class="in">`r resultados_C$CV_percent`</span>%, o menor entre os três grupos.</span>
-<span id="cb2-439"><a href="#cb2-439" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-440"><a href="#cb2-440" aria-hidden="true" tabindex="-1"></a>O excesso de curtose foi de <span class="in">`r resultados_C$Curtose`</span>.</span>
-<span id="cb2-441"><a href="#cb2-441" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-442"><a href="#cb2-442" aria-hidden="true" tabindex="-1"></a><span class="fu">## Comparação Prática dos Grupos</span></span>
-<span id="cb2-443"><a href="#cb2-443" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-444"><a href="#cb2-444" aria-hidden="true" tabindex="-1"></a>A ordem das resistências médias foi: **Grupo C &gt; Grupo B &gt; Grupo A**.</span>
-<span id="cb2-445"><a href="#cb2-445" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-446"><a href="#cb2-446" aria-hidden="true" tabindex="-1"></a>As diferenças entre as médias foram:</span>
-<span id="cb2-447"><a href="#cb2-447" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-448"><a href="#cb2-448" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Grupo B em relação ao A: <span class="in">`r round(resultados_B$Media_MPa - resultados_A$Media_MPa, 3)`</span> MPa, aproximadamente <span class="in">`r round(((resultados_B$Media_MPa - resultados_A$Media_MPa) / resultados_A$Media_MPa * 100), 2)`</span>% superior;</span>
-<span id="cb2-449"><a href="#cb2-449" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Grupo C em relação ao A: <span class="in">`r round(resultados_C$Media_MPa - resultados_A$Media_MPa, 3)`</span> MPa, aproximadamente <span class="in">`r round(((resultados_C$Media_MPa - resultados_A$Media_MPa) / resultados_A$Media_MPa * 100), 2)`</span>% superior;</span>
-<span id="cb2-450"><a href="#cb2-450" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Grupo C em relação ao B: <span class="in">`r round(resultados_C$Media_MPa - resultados_B$Media_MPa, 3)`</span> MPa, aproximadamente <span class="in">`r round(((resultados_C$Media_MPa - resultados_B$Media_MPa) / resultados_B$Media_MPa * 100), 2)`</span>% superior.</span>
-<span id="cb2-451"><a href="#cb2-451" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-452"><a href="#cb2-452" aria-hidden="true" tabindex="-1"></a>Com relação à homogeneidade (CV):</span>
-<span id="cb2-453"><a href="#cb2-453" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-454"><a href="#cb2-454" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Grupo C = <span class="in">`r resultados_C$CV_percent`</span>% - **Mais homogêneo**</span>
-<span id="cb2-455"><a href="#cb2-455" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Grupo A = <span class="in">`r resultados_A$CV_percent`</span>%</span>
-<span id="cb2-456"><a href="#cb2-456" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Grupo B = <span class="in">`r resultados_B$CV_percent`</span>% - **Menos homogêneo**</span>
-<span id="cb2-457"><a href="#cb2-457" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-458"><a href="#cb2-458" aria-hidden="true" tabindex="-1"></a>Em resumo, o grupo C combina a maior resistência média com a menor dispersão relativa.</span>
-<span id="cb2-459"><a href="#cb2-459" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-460"><a href="#cb2-460" aria-hidden="true" tabindex="-1"></a><span class="fu">## 🧠 Considerações finais</span></span>
-<span id="cb2-461"><a href="#cb2-461" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-462"><a href="#cb2-462" aria-hidden="true" tabindex="-1"></a>Os quatro primeiros capítulos do livro fornecem uma base importante para o estudo da Estatística aplicada. Inicialmente, são apresentados conceitos fundamentais, como população, amostra, variável e dado. Em seguida, o livro aborda a organização dos dados por meio de tabelas, frequências e representações gráficas. Depois, são estudadas medidas que resumem os dados, como média, mediana e moda, além de medidas que avaliam a variabilidade, como amplitude, variância, desvio padrão, coeficiente de variação e erro padrão da média. Além disso, a inclusão dos conceitos de assimetria e curtose amplia a análise descritiva, pois permite compreender melhor o formato da distribuição dos dados complementando as medidas de posição e dispersão e oferecendo uma visão mais completa sobre o comportamento dos dados.</span>
-<span id="cb2-463"><a href="#cb2-463" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-464"><a href="#cb2-464" aria-hidden="true" tabindex="-1"></a>A introdução ao R mostra a importância do uso de ferramentas computacionais na Estatística. O R, em conjunto com o RStudio, permite realizar cálculos, organizar dados, construir gráficos e aplicar técnicas estatísticas com eficiência. Além disso, entender a sintaxe e a semântica do R é essencial para escrever comandos corretamente e interpretar o significado das operações realizadas. Assim, o aprendizado dos conceitos teóricos aliado ao uso de softwares estatísticos contribui para uma formação mais completa e aplicada, especialmente nas áreas de Engenharia e Ciências.</span>
-<span id="cb2-465"><a href="#cb2-465" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-466"><a href="#cb2-466" aria-hidden="true" tabindex="-1"></a>Conclui-se, com base na Estatística Descritiva, que o grupo C apresentou a maior resistência média e o menor coeficiente de variação, enquanto o grupo B apresentou resistência superior à do grupo A, mas também a maior dispersão. Entretanto, essas medidas permitem apenas organizar, resumir e comparar os dados observados, não sendo suficientes para generalizar os resultados ou tomar decisões sobre a população. Para verificar se as diferenças encontradas são estatisticamente significativas, torna-se necessária a aplicação da Estatística Inferencial, por meio de métodos como intervalos de confiança, testes de hipóteses e análise de variância. A decisão sobre o atendimento aos requisitos do projeto também deve considerar a resistência especificada, a idade de rompimento, o material, o plano de amostragem, a quantidade de exemplares e os critérios da norma técnica aplicável. Essas análises serão abordadas nos próximos relatórios. </span>
-<span id="cb2-467"><a href="#cb2-467" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-416"><a href="#cb2-416" aria-hidden="true" tabindex="-1"></a><span class="in">```{r boxplot}</span></span>
+<span id="cb2-417"><a href="#cb2-417" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb2-418"><a href="#cb2-418" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-419"><a href="#cb2-419" aria-hidden="true" tabindex="-1"></a><span class="co"># Criar dataframe com todos os dados em MPa</span></span>
+<span id="cb2-420"><a href="#cb2-420" aria-hidden="true" tabindex="-1"></a>dados_completos <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb2-421"><a href="#cb2-421" aria-hidden="true" tabindex="-1"></a>  <span class="at">Resistencia_MPa =</span> <span class="fu">c</span>(dados_A<span class="sc">$</span>Resistencia_kPa <span class="sc">/</span> <span class="dv">1000</span>, </span>
+<span id="cb2-422"><a href="#cb2-422" aria-hidden="true" tabindex="-1"></a>                      dados_B<span class="sc">$</span>Resistencia_kPa <span class="sc">/</span> <span class="dv">1000</span>, </span>
+<span id="cb2-423"><a href="#cb2-423" aria-hidden="true" tabindex="-1"></a>                      dados_C<span class="sc">$</span>Resistencia_kPa <span class="sc">/</span> <span class="dv">1000</span>),</span>
+<span id="cb2-424"><a href="#cb2-424" aria-hidden="true" tabindex="-1"></a>  <span class="at">Grupo =</span> <span class="fu">c</span>(<span class="fu">rep</span>(<span class="st">"A"</span>, <span class="fu">nrow</span>(dados_A)),</span>
+<span id="cb2-425"><a href="#cb2-425" aria-hidden="true" tabindex="-1"></a>            <span class="fu">rep</span>(<span class="st">"B"</span>, <span class="fu">nrow</span>(dados_B)),</span>
+<span id="cb2-426"><a href="#cb2-426" aria-hidden="true" tabindex="-1"></a>            <span class="fu">rep</span>(<span class="st">"C"</span>, <span class="fu">nrow</span>(dados_C)))</span>
+<span id="cb2-427"><a href="#cb2-427" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb2-428"><a href="#cb2-428" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-429"><a href="#cb2-429" aria-hidden="true" tabindex="-1"></a><span class="co"># Criar boxplot em MPa</span></span>
+<span id="cb2-430"><a href="#cb2-430" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(dados_completos, <span class="fu">aes</span>(<span class="at">x =</span> Grupo, <span class="at">y =</span> Resistencia_MPa, <span class="at">fill =</span> Grupo)) <span class="sc">+</span></span>
+<span id="cb2-431"><a href="#cb2-431" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>() <span class="sc">+</span></span>
+<span id="cb2-432"><a href="#cb2-432" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Boxplot da Resistência por Grupo"</span>,</span>
+<span id="cb2-433"><a href="#cb2-433" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"Grupo"</span>,</span>
+<span id="cb2-434"><a href="#cb2-434" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Resistência (MPa)"</span>) <span class="sc">+</span></span>
+<span id="cb2-435"><a href="#cb2-435" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb2-436"><a href="#cb2-436" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_brewer</span>(<span class="at">palette =</span> <span class="st">"Set2"</span>)</span>
+<span id="cb2-437"><a href="#cb2-437" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb2-438"><a href="#cb2-438" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-439"><a href="#cb2-439" aria-hidden="true" tabindex="-1"></a><span class="fu">## Análise por Grupo</span></span>
+<span id="cb2-440"><a href="#cb2-440" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-441"><a href="#cb2-441" aria-hidden="true" tabindex="-1"></a><span class="fu">### Grupo A</span></span>
+<span id="cb2-442"><a href="#cb2-442" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-443"><a href="#cb2-443" aria-hidden="true" tabindex="-1"></a>O grupo A apresentou resistência média de <span class="in">`r resultados_A$Media_MPa`</span> MPa e mediana de <span class="in">`r resultados_A$Mediana_MPa`</span> MPa. A proximidade entre essas duas medidas é um primeiro indício de que a distribuição é equilibrada e não está sendo fortemente afetada por valores extremos.</span>
+<span id="cb2-444"><a href="#cb2-444" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-445"><a href="#cb2-445" aria-hidden="true" tabindex="-1"></a>O coeficiente de assimetria foi <span class="in">`r resultados_A$Assimetria`</span>. Como o resultado está muito próximo de zero, a distribuição do grupo A pode ser considerada aproximadamente simétrica.</span>
+<span id="cb2-446"><a href="#cb2-446" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-447"><a href="#cb2-447" aria-hidden="true" tabindex="-1"></a>O desvio padrão foi de <span class="in">`r resultados_A$Desvio_MPa`</span> MPa, indicando o afastamento típico dos resultados em torno da média. A amplitude foi de <span class="in">`r resultados_A$Amplitude_MPa`</span> MPa, correspondente à diferença entre o maior resultado (<span class="in">`r resultados_A$Max_MPa`</span> MPa) e o menor (<span class="in">`r resultados_A$Min_MPa`</span> MPa).</span>
+<span id="cb2-448"><a href="#cb2-448" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-449"><a href="#cb2-449" aria-hidden="true" tabindex="-1"></a>O coeficiente de variação foi de <span class="in">`r resultados_A$CV_percent`</span>%, indicando uma variabilidade relativamente pequena, valores abaixo de 10% são geralmente considerados indicativos de boa homogeneidade. O excesso de curtose foi de <span class="in">`r resultados_A$Curtose`</span>, sugerindo uma distribuição com caudas mais leves que a normal.</span>
+<span id="cb2-450"><a href="#cb2-450" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-451"><a href="#cb2-451" aria-hidden="true" tabindex="-1"></a><span class="fu">### Grupo B</span></span>
+<span id="cb2-452"><a href="#cb2-452" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-453"><a href="#cb2-453" aria-hidden="true" tabindex="-1"></a>O grupo B apresentou resistência média de <span class="in">`r resultados_B$Media_MPa`</span> MPa e mediana de <span class="in">`r resultados_B$Mediana_MPa`</span> MPa. O coeficiente de assimetria foi <span class="in">`r resultados_B$Assimetria`</span>, indicando uma leve tendência de cauda à direita.</span>
+<span id="cb2-454"><a href="#cb2-454" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-455"><a href="#cb2-455" aria-hidden="true" tabindex="-1"></a>O grupo B apresentou o maior desvio padrão (<span class="in">`r resultados_B$Desvio_MPa`</span> MPa) e a maior amplitude (<span class="in">`r resultados_B$Amplitude_MPa`</span> MPa) entre os três grupos. O coeficiente de variação foi de <span class="in">`r resultados_B$CV_percent`</span>%, sendo o maior entre os grupos.</span>
+<span id="cb2-456"><a href="#cb2-456" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-457"><a href="#cb2-457" aria-hidden="true" tabindex="-1"></a>O excesso de curtose foi de <span class="in">`r resultados_B$Curtose`</span>, indicando uma distribuição relativamente achatada.</span>
+<span id="cb2-458"><a href="#cb2-458" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-459"><a href="#cb2-459" aria-hidden="true" tabindex="-1"></a><span class="fu">### Grupo C</span></span>
+<span id="cb2-460"><a href="#cb2-460" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-461"><a href="#cb2-461" aria-hidden="true" tabindex="-1"></a>O grupo C apresentou a maior resistência média: <span class="in">`r resultados_C$Media_MPa`</span> MPa. Sua mediana foi de <span class="in">`r resultados_C$Mediana_MPa`</span> MPa. O coeficiente de assimetria foi <span class="in">`r resultados_C$Assimetria`</span>, praticamente igual a zero.</span>
+<span id="cb2-462"><a href="#cb2-462" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-463"><a href="#cb2-463" aria-hidden="true" tabindex="-1"></a>O desvio padrão foi de <span class="in">`r resultados_C$Desvio_MPa`</span> MPa e a amplitude de <span class="in">`r resultados_C$Amplitude_MPa`</span> MPa. O coeficiente de variação foi de <span class="in">`r resultados_C$CV_percent`</span>%, o menor entre os três grupos.</span>
+<span id="cb2-464"><a href="#cb2-464" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-465"><a href="#cb2-465" aria-hidden="true" tabindex="-1"></a>O excesso de curtose foi de <span class="in">`r resultados_C$Curtose`</span>.</span>
+<span id="cb2-466"><a href="#cb2-466" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-467"><a href="#cb2-467" aria-hidden="true" tabindex="-1"></a><span class="fu">## Comparação Prática dos Grupos</span></span>
 <span id="cb2-468"><a href="#cb2-468" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-469"><a href="#cb2-469" aria-hidden="true" tabindex="-1"></a><span class="fu">## 📖 Referências</span></span>
+<span id="cb2-469"><a href="#cb2-469" aria-hidden="true" tabindex="-1"></a>A ordem das resistências médias foi: **Grupo C &gt; Grupo B &gt; Grupo A**.</span>
 <span id="cb2-470"><a href="#cb2-470" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-471"><a href="#cb2-471" aria-hidden="true" tabindex="-1"></a>Depois de inserido as informaçõe no arquivo **referencias.bib**, use:</span>
+<span id="cb2-471"><a href="#cb2-471" aria-hidden="true" tabindex="-1"></a>As diferenças entre as médias foram:</span>
 <span id="cb2-472"><a href="#cb2-472" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-473"><a href="#cb2-473" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Segundo @Rbasico2022</span>
-<span id="cb2-474"><a href="#cb2-474" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Tudo é um objeto em R <span class="co">[</span><span class="ot">@Rbasico2022</span><span class="co">]</span></span>
-<span id="cb2-475"><a href="#cb2-475" aria-hidden="true" tabindex="-1"></a>@batista2026EPAEC</span>
-<span id="cb2-476"><a href="#cb2-476" aria-hidden="true" tabindex="-1"></a>@RCore2026</span>
-<span id="cb2-477"><a href="#cb2-477" aria-hidden="true" tabindex="-1"></a>@Batista2024</span>
-<span id="cb2-478"><a href="#cb2-478" aria-hidden="true" tabindex="-1"></a>@Batista2026EPAEC</span>
+<span id="cb2-473"><a href="#cb2-473" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Grupo B em relação ao A: <span class="in">`r round(resultados_B$Media_MPa - resultados_A$Media_MPa, 3)`</span> MPa, aproximadamente <span class="in">`r round(((resultados_B$Media_MPa - resultados_A$Media_MPa) / resultados_A$Media_MPa * 100), 2)`</span>% superior;</span>
+<span id="cb2-474"><a href="#cb2-474" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Grupo C em relação ao A: <span class="in">`r round(resultados_C$Media_MPa - resultados_A$Media_MPa, 3)`</span> MPa, aproximadamente <span class="in">`r round(((resultados_C$Media_MPa - resultados_A$Media_MPa) / resultados_A$Media_MPa * 100), 2)`</span>% superior;</span>
+<span id="cb2-475"><a href="#cb2-475" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Grupo C em relação ao B: <span class="in">`r round(resultados_C$Media_MPa - resultados_B$Media_MPa, 3)`</span> MPa, aproximadamente <span class="in">`r round(((resultados_C$Media_MPa - resultados_B$Media_MPa) / resultados_B$Media_MPa * 100), 2)`</span>% superior.</span>
+<span id="cb2-476"><a href="#cb2-476" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-477"><a href="#cb2-477" aria-hidden="true" tabindex="-1"></a>Com relação à homogeneidade (CV):</span>
+<span id="cb2-478"><a href="#cb2-478" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-479"><a href="#cb2-479" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Grupo C = <span class="in">`r resultados_C$CV_percent`</span>% - **Mais homogêneo**</span>
+<span id="cb2-480"><a href="#cb2-480" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Grupo A = <span class="in">`r resultados_A$CV_percent`</span>%</span>
+<span id="cb2-481"><a href="#cb2-481" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Grupo B = <span class="in">`r resultados_B$CV_percent`</span>% - **Menos homogêneo**</span>
+<span id="cb2-482"><a href="#cb2-482" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-483"><a href="#cb2-483" aria-hidden="true" tabindex="-1"></a>Em resumo, o grupo C combina a maior resistência média com a menor dispersão relativa.</span>
+<span id="cb2-484"><a href="#cb2-484" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-485"><a href="#cb2-485" aria-hidden="true" tabindex="-1"></a><span class="fu">## 🧠 Considerações finais</span></span>
+<span id="cb2-486"><a href="#cb2-486" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-487"><a href="#cb2-487" aria-hidden="true" tabindex="-1"></a>Os quatro primeiros capítulos do livro fornecem uma base importante para o estudo da Estatística aplicada. Inicialmente, são apresentados conceitos fundamentais, como população, amostra, variável e dado. Em seguida, o livro aborda a organização dos dados por meio de tabelas, frequências e representações gráficas. Depois, são estudadas medidas que resumem os dados, como média, mediana e moda, além de medidas que avaliam a variabilidade, como amplitude, variância, desvio padrão, coeficiente de variação e erro padrão da média. Além disso, a inclusão dos conceitos de assimetria e curtose amplia a análise descritiva, pois permite compreender melhor o formato da distribuição dos dados complementando as medidas de posição e dispersão e oferecendo uma visão mais completa sobre o comportamento dos dados.</span>
+<span id="cb2-488"><a href="#cb2-488" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-489"><a href="#cb2-489" aria-hidden="true" tabindex="-1"></a>A introdução ao R mostra a importância do uso de ferramentas computacionais na Estatística. O R, em conjunto com o RStudio, permite realizar cálculos, organizar dados, construir gráficos e aplicar técnicas estatísticas com eficiência. Além disso, entender a sintaxe e a semântica do R é essencial para escrever comandos corretamente e interpretar o significado das operações realizadas. Assim, o aprendizado dos conceitos teóricos aliado ao uso de softwares estatísticos contribui para uma formação mais completa e aplicada, especialmente nas áreas de Engenharia e Ciências.</span>
+<span id="cb2-490"><a href="#cb2-490" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-491"><a href="#cb2-491" aria-hidden="true" tabindex="-1"></a>Conclui-se, com base na Estatística Descritiva, que o grupo C apresentou a maior resistência média e o menor coeficiente de variação, enquanto o grupo B apresentou resistência superior à do grupo A, mas também a maior dispersão. Entretanto, essas medidas permitem apenas organizar, resumir e comparar os dados observados, não sendo suficientes para generalizar os resultados ou tomar decisões sobre a população. Para verificar se as diferenças encontradas são estatisticamente significativas, torna-se necessária a aplicação da Estatística Inferencial, por meio de métodos como intervalos de confiança, testes de hipóteses e análise de variância. A decisão sobre o atendimento aos requisitos do projeto também deve considerar a resistência especificada, a idade de rompimento, o material, o plano de amostragem, a quantidade de exemplares e os critérios da norma técnica aplicável. Essas análises serão abordadas nos próximos relatórios. </span>
+<span id="cb2-492"><a href="#cb2-492" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-493"><a href="#cb2-493" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-494"><a href="#cb2-494" aria-hidden="true" tabindex="-1"></a><span class="fu">## 📖 Referências</span></span>
+<span id="cb2-495"><a href="#cb2-495" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-496"><a href="#cb2-496" aria-hidden="true" tabindex="-1"></a>Depois de inserido as informaçõe no arquivo **referencias.bib**, use:</span>
+<span id="cb2-497"><a href="#cb2-497" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-498"><a href="#cb2-498" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Segundo @Rbasico2022</span>
+<span id="cb2-499"><a href="#cb2-499" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Tudo é um objeto em R <span class="co">[</span><span class="ot">@Rbasico2022</span><span class="co">]</span></span>
+<span id="cb2-500"><a href="#cb2-500" aria-hidden="true" tabindex="-1"></a>@batista2026EPAEC</span>
+<span id="cb2-501"><a href="#cb2-501" aria-hidden="true" tabindex="-1"></a>@RCore2026</span>
+<span id="cb2-502"><a href="#cb2-502" aria-hidden="true" tabindex="-1"></a>@Batista2024</span>
+<span id="cb2-503"><a href="#cb2-503" aria-hidden="true" tabindex="-1"></a>@Batista2026EPAEC</span>
 </code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
