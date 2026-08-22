@@ -1,7 +1,7 @@
 ---
 # Só mude aqui!!!!
 author: "Jair Malta e Wesley Pinheiro "
-title: "Relatório de Aula Prática 01 - Teste"
+title: "Relatório de Aula Prática 01"
 bibliography: referencias.bib
 # A partir daqui nao faca alteracoes!!!!!
 link-citations: true
@@ -37,7 +37,7 @@ Além da estatística em sua essência, com o avanço das tecnologias a estatís
 
 ### Objetivo geral
 
-Resumir os principais conceitos apresentados nos quatro primeiros capítulos do livro Estatística & Probabilidade aplicada às Engenharias e Ciências; introduzir conceitos iniciais da linguagem R e do RStudio, por exemplo Sintaxe e Semântica; realizar uma aplicação prática unindo os 2 temas anteriores.
+Resumir os principais conceitos apresentados nos quatro primeiros capítulos do livro Estatística & Probabilidade aplicada às Engenharias e Ciências escrito por @Batista2026EPAEC ; introduzir conceitos iniciais da linguagem R e do RStudio, por exemplo Sintaxe e Semântica; realizar uma aplicação prática unindo os 2 temas anteriores.
 
 ### Objetivos específicos
 
@@ -151,7 +151,7 @@ $$\sigma_{\bar{x}} = \frac{\sigma}{\sqrt{N}} \tag{13}$$
 $$SE_{\bar{x}} = \frac{s}{\sqrt{n}}\tag{14}$$
 ### Assimetria e curtose
 
-Além das medidas de posição e dispersão, a análise estatística também pode considerar medidas relacionadas ao formato da distribuição dos dados, como a assimetria (Equação 15) e a curtose (Equação 16). Essas medidas ajudam a compreender não apenas onde os dados se concentram e o quanto variam, mas também como os valores estão distribuídos ao redor da média. A assimetria indica o grau de afastamento de uma distribuição em relação à simetria, ou seja, descreve o equilíbrio da distribuição. A curtose ajuda a avaliar o peso das caudas e a ocorrência de valores extremos.
+Além das medidas de posição e dispersão, a análise estatística também pode considerar medidas relacionadas ao formato da distribuição dos dados, como a assimetria (Equação 15) e a curtose (Equação 16). Essas medidas ajudam a compreender não apenas onde os dados se concentram e o quanto variam, mas também como os valores estão distribuídos ao redor da média. Segundo @Bussab2024, a assimetria indica o grau de afastamento de uma distribuição em relação à simetria, ou seja, descreve o equilíbrio da distribuição. A curtose ajuda a avaliar o peso das caudas e a ocorrência de valores extremos.
 
 $$g_1 = \frac{\frac{1}{n} \sum_{i=1}^{n} (x_i - \bar{x})^3}{\left[ \frac{1}{n} \sum_{i=1}^{n} (x_i - \bar{x})^2 \right]^{3/2}} \tag{15} $$
 
@@ -180,9 +180,9 @@ Em suma, assimetria e curtose complementam as medidas de dispersão estudadas no
 
 ### Introdução básica ao R (linguagem e software)
 
-O R é uma linguagem de programação e um ambiente computacional voltado principalmente para estatística, análise de dados e construção de gráficos. O projeto R apresenta o software como um ambiente gratuito para computação estatística e gráficos, disponível para diferentes sistemas operacionais. 
+O R é uma linguagem de programação e um ambiente computacional voltado principalmente para estatística, análise de dados e construção de gráficos. De acordo com @RCoreTeam2026, o projeto R apresenta o software como um ambiente gratuito para computação estatística e gráficos, disponível para diferentes sistemas operacionais. 
 
-Para utilizar o R, é necessário instalar inicialmente o programa R, que executa os comandos estatísticos. A instalação pode ser feita pelo site oficial do projeto R, por meio da rede CRAN. Após instalar o R, recomenda-se instalar também o RStudio, que é uma interface de desenvolvimento integrada. O RStudio facilita o uso do R, pois reúne editor de código, console, gráficos, ambiente de trabalho, arquivos, pacotes e ajuda integrada em uma única interface. 
+Para utilizar o R, é necessário instalar inicialmente o programa R, que executa os comandos estatísticos. A instalação pode ser feita pelo site oficial do projeto R, por meio da rede CRAN. Após instalar o R, recomenda-se instalar também o RStudio, que é uma interface de desenvolvimento integrada criada pela empresa @PositGuide2026. O RStudio facilita o uso do R, pois reúne editor de código, console, gráficos, ambiente de trabalho, arquivos, pacotes e ajuda integrada em uma única interface. 
 
 De forma simples, pode-se dizer que o R é a linguagem e o ambiente que executa os cálculos, enquanto o RStudio é a ferramenta que organiza e facilita o uso dessa linguagem. O RStudio permite escrever comandos, executar linhas de código, visualizar resultados, criar gráficos, consultar ajuda e gerenciar projetos, além de possuir pacotes com integração à internet, por exemplo o HTML, para criação de relatórios, apresentações e outros diversos itens. Sua interface é dividida em 4 quadrantes sendo:
 
@@ -488,15 +488,4 @@ A introdução ao R mostra a importância do uso de ferramentas computacionais n
 
 Conclui-se, com base na Estatística Descritiva, que o grupo C apresentou a maior resistência média e o menor coeficiente de variação, enquanto o grupo B apresentou resistência superior à do grupo A, mas também a maior dispersão. Entretanto, essas medidas permitem apenas organizar, resumir e comparar os dados observados, não sendo suficientes para generalizar os resultados ou tomar decisões sobre a população. Para verificar se as diferenças encontradas são estatisticamente significativas, torna-se necessária a aplicação da Estatística Inferencial, por meio de métodos como intervalos de confiança, testes de hipóteses e análise de variância. A decisão sobre o atendimento aos requisitos do projeto também deve considerar a resistência especificada, a idade de rompimento, o material, o plano de amostragem, a quantidade de exemplares e os critérios da norma técnica aplicável. Essas análises serão abordadas nos próximos relatórios. 
 
-
 ## 📖 Referências
-
-Depois de inserido as informaçõe no arquivo **referencias.bib**, use:
-
-- Segundo @Rbasico2022
-- Tudo é um objeto em R [@Rbasico2022]
-@batista2026EPAEC
-@RCore2026
-@Batista2024
-@Batista2026EPAEC
-
