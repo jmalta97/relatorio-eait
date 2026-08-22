@@ -244,7 +244,7 @@ Os corpos de prova foram:
 - Cura úmida em câmara úmida (temperatura 23 ± 2 °C e umidade relativa ≥ 95%) por 7 dias; 
 - Mantidos em condição ambiente do laboratório até a data do ensaio (aos 28 dias). 
 
-Os resultados obtidos podem ser observados na tabela a seguir.
+Os resultados obtidos podem ser observados na tabela a seguir:
 
 
 ```{r}
@@ -392,7 +392,7 @@ gerar_histograma <- function(dados, nome_grupo) {
        col = "lightblue",
        border = "black")
   
-  insert(tab, type = "mean", side = "right", lwd = 2, col = "red")
+  insert(tab, type = "mean", side = "left", lwd = 2, col = "red")
   insert(tab, type = "median", side = "right", lwd = 2, col = "blue")
   insert(tab, type = "sd", side = "right", lwd = 2, col = "green")
   
@@ -440,27 +440,27 @@ ggplot(dados_completos, aes(x = Grupo, y = Resistencia_MPa, fill = Grupo)) +
 
 O grupo A apresentou resistência média de `r resultados_A$Media_MPa` MPa e mediana de `r resultados_A$Mediana_MPa` MPa. A proximidade entre essas duas medidas é um primeiro indício de que a distribuição é equilibrada e não está sendo fortemente afetada por valores extremos.
 
-O coeficiente de assimetria foi `r resultados_A$Assimetria`. Como o resultado está muito próximo de zero, a distribuição do grupo A pode ser considerada aproximadamente simétrica.
+O coeficiente de assimetria foi `r round(resultados_A$Assimetria, 2)`. Como o resultado está muito próximo de zero, a distribuição do grupo A pode ser considerada aproximadamente simétrica.
 
 O desvio padrão foi de `r resultados_A$Desvio_MPa` MPa, indicando o afastamento típico dos resultados em torno da média. A amplitude foi de `r resultados_A$Amplitude_MPa` MPa, correspondente à diferença entre o maior resultado (`r resultados_A$Max_MPa` MPa) e o menor (`r resultados_A$Min_MPa` MPa).
 
-O coeficiente de variação foi de `r resultados_A$CV_percent`%, indicando uma variabilidade relativamente pequena, valores abaixo de 10% são geralmente considerados indicativos de boa homogeneidade. O excesso de curtose foi de `r resultados_A$Curtose`, sugerindo uma distribuição com caudas mais leves que a normal.
+O coeficiente de variação foi de `r resultados_A$CV_percent`%, indicando uma variabilidade relativamente pequena, valores abaixo de 10% são geralmente considerados indicativos de boa homogeneidade. O excesso de curtose foi de `r round(resultados_A$Curtose, 2)`, sugerindo uma distribuição com caudas mais leves que a normal.
 
 ### Grupo B
 
-O grupo B apresentou resistência média de `r resultados_B$Media_MPa` MPa e mediana de `r resultados_B$Mediana_MPa` MPa. O coeficiente de assimetria foi `r resultados_B$Assimetria`, indicando uma leve tendência de cauda à direita.
+O grupo B apresentou resistência média de `r resultados_B$Media_MPa` MPa e mediana de `r resultados_B$Mediana_MPa` MPa. O coeficiente de assimetria foi `r round(resultados_B$Assimetria, 2)`, indicando uma leve tendência de cauda à direita.
 
 O grupo B apresentou o maior desvio padrão (`r resultados_B$Desvio_MPa` MPa) e a maior amplitude (`r resultados_B$Amplitude_MPa` MPa) entre os três grupos. O coeficiente de variação foi de `r resultados_B$CV_percent`%, sendo o maior entre os grupos.
 
-O excesso de curtose foi de `r resultados_B$Curtose`, indicando uma distribuição relativamente achatada.
+O excesso de curtose foi de `r round(resultados_B$Curtose, 2)`, indicando uma distribuição relativamente achatada.
 
 ### Grupo C
 
-O grupo C apresentou a maior resistência média: `r resultados_C$Media_MPa` MPa. Sua mediana foi de `r resultados_C$Mediana_MPa` MPa. O coeficiente de assimetria foi `r resultados_C$Assimetria`, praticamente igual a zero.
+O grupo C apresentou a maior resistência média: `r resultados_C$Media_MPa` MPa. Sua mediana foi de `r resultados_C$Mediana_MPa` MPa. O coeficiente de assimetria foi `r round(resultados_C$Assimetria, 2)`, praticamente igual a zero.
 
 O desvio padrão foi de `r resultados_C$Desvio_MPa` MPa e a amplitude de `r resultados_C$Amplitude_MPa` MPa. O coeficiente de variação foi de `r resultados_C$CV_percent`%, o menor entre os três grupos.
 
-O excesso de curtose foi de `r resultados_C$Curtose`.
+O excesso de curtose foi de `r round(resultados_C$Curtose, 2)`.
 
 ## Comparação Prática dos Grupos
 
