@@ -149,6 +149,7 @@ $$CV = \frac{\sigma}{\mu} \tag{11}$$
 $$CV = \frac{s}{\bar{x}} \tag{12}$$
 $$\sigma_{\bar{x}} = \frac{\sigma}{\sqrt{N}} \tag{13}$$
 $$SE_{\bar{x}} = \frac{s}{\sqrt{n}}\tag{14}$$
+
 ### Assimetria e curtose
 
 Além das medidas de posição e dispersão, a análise estatística também pode considerar medidas relacionadas ao formato da distribuição dos dados, como a assimetria (Equação 15) e a curtose (Equação 16). Essas medidas ajudam a compreender não apenas onde os dados se concentram e o quanto variam, mas também como os valores estão distribuídos ao redor da média. Segundo @Bussab2024, a assimetria indica o grau de afastamento de uma distribuição em relação à simetria, ou seja, descreve o equilíbrio da distribuição. A curtose ajuda a avaliar o peso das caudas e a ocorrência de valores extremos.
