@@ -125,6 +125,31 @@ na_por_variavel <- sapply(dados, function(x) sum(is.na(x)))
 print(na_por_variavel[na_por_variavel > 0])
 cat("Total de valores ausentes:", sum(na_por_variavel), "\n")
 ```
+# Encontrar a posição dos valores ausentes
+```{r}
+posicoes_na <- which(is.na(dados), arr.ind = TRUE)
+```
+# Mostrar o corpo de prova e a variável ausente
+```{r}
+data.frame(
+Corpo_de_prova = dados$id_corpo_prova[posicoes_na[, "row"]],
+Item_ausente = names(dados)[posicoes_na[, "col"]]
+)
+```
+## Questão 8: possíveis erros de digitação
+
+Os corpos de prova associados aos possíveis erros de preenchimento são selecionados com `subset()`, permitindo inspecionar a linha completa e compreender o contexto do valor.
+
+```{r}
+if ("id_corpo_prova" %in% names(dados)) {
+  erros_digitacao <- subset(
+    dados,
+    trimws(id_corpo_prova) %in% c("CP-008", "CP-019", "CP-045", "CP-064")
+  )
+  print(erros_digitacao)
+}
+```
+
 ### 💬 Exemplo de como citar uma referência bibliográfica
 
 Depois de inserido as informaçõe no arquivo **referencias.bib**, use:
