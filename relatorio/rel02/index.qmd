@@ -78,22 +78,53 @@ Descreva como o experimento foi realizado.
 
 ## 🔍 Resultados e Discussão
 
-Apresente e interprete os resultados obtidos a partir dos dados coletados.
+# Questão 1
+A base é importada com `read.csv2()`, função adequada a arquivos que usam ponto e vírgula como separador de campos e vírgula como separador decimal. O argumento `na.strings` informa quais registros devem ser reconhecidos como valores ausentes.
+```{r}
+dados <- read.csv2(
+  "base_processamento_dados_engenharia_civil.csv",
+  stringsAsFactors = FALSE,
+  check.names = FALSE,
+  na.strings = c("", " ", "NA", "N/A", "-", "null", "NULL")
+)
+```
 
-- Descreva os principais resultados numéricos (média, variabilidade, etc.).
-- Comente o comportamento dos dados observados nos gráficos.
-- Indique se há presença de valores discrepantes (outliers).
-- Avalie se os dados apresentam simetria ou tendência.
+# Questão 2
+O número de observações corresponde ao número de linhas, enquanto o número de variáveis corresponde ao número de colunas. A função dim() faz essa
+```{r}
+dim (dados)
+```
 
-Em seguida, discuta os resultados à luz dos conceitos teóricos:
+# Questão 3
+A função `str()` mostra a estrutura da base e a classe atribuída pelo R a cada coluna. Complementarmente, `sapply()` aplica `class()` a todas as colunas sem necessidade de repetir o comando variável por variável.
+```{r}
+str(dados)
+sapply(dados, class)
+```
 
-- Os resultados estão de acordo com o esperado?
-- Há grande variabilidade? O que isso significa no contexto do experimento?
-- Quais fatores podem ter influenciado os resultados?
-- Existem possíveis fontes de erro experimental?
+## Questão 4: resumo inicial
 
-Procure não apenas descrever, mas **interpretar os dados**.
+A função `summary()` fornece uma descrição inicial da base. Para colunas numéricas, apresenta mínimo, quartis, mediana, média e máximo; para outros tipos, o resultado depende da classe reconhecida pelo R.
 
+```{r}
+summary(dados)
+```
+## Questão 5: classificação em qualitativas e quantitativas
+
+A estrutura preliminar indica que algumas variáveis esperadas como numéricas podem ter sido importadas como texto. Isso ocorre quando uma coluna contém registros incompatíveis com números, como vírgulas decimais em configuração inadequada, letras inseridas por engano ou outros caracteres. Como cada vetor atômico do R armazena um único tipo de dado, um valor textual pode levar toda a coluna a ser classificada como character. Diante disso, o R reconheceu todas, exceto idade_dias como qualitativa. 
+
+As variáveis id_corpo_prova, obra e tipo_concreto são qualitativas. As variáveis idade_dias, resistencia_mpa, cimento_kg_m3, relacao_a_c, abatimento_mm, densidade_kg_m3 e absorção_agregado_pct são quantitativas e, após a limpeza, devem estar armazenadas como numéricas.
+
+```{r}
+str(dados)
+```
+## Questão 6: identificação dos valores ausentes
+Foram relatados cinco valores ausentes, localizados no abatimento do corpo de prova CP-015, na relação água/cimento do CP-038, na resistência do CP-092, na densidade do CP-077 e na absorção do CP-097. A contagem automática é apresentada a seguir.
+```{r}
+na_por_variavel <- sapply(dados, function(x) sum(is.na(x)))
+print(na_por_variavel[na_por_variavel > 0])
+cat("Total de valores ausentes:", sum(na_por_variavel), "\n")
+```
 ### 💬 Exemplo de como citar uma referência bibliográfica
 
 Depois de inserido as informaçõe no arquivo **referencias.bib**, use:
