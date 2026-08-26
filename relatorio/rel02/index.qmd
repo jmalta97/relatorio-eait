@@ -102,14 +102,14 @@ str(dados)
 sapply(dados, class)
 ```
 
-## Questão 4: resumo inicial
+# Questão 4: resumo inicial
 
 A função `summary()` fornece uma descrição inicial da base. Para colunas numéricas, apresenta mínimo, quartis, mediana, média e máximo; para outros tipos, o resultado depende da classe reconhecida pelo R.
 
 ```{r}
 summary(dados)
 ```
-## Questão 5: classificação em qualitativas e quantitativas
+# Questão 5: classificação em qualitativas e quantitativas
 
 A estrutura preliminar indica que algumas variáveis esperadas como numéricas podem ter sido importadas como texto. Isso ocorre quando uma coluna contém registros incompatíveis com números, como vírgulas decimais em configuração inadequada, letras inseridas por engano ou outros caracteres. Como cada vetor atômico do R armazena um único tipo de dado, um valor textual pode levar toda a coluna a ser classificada como character. Diante disso, o R reconheceu todas, exceto idade_dias como qualitativa. 
 
@@ -118,25 +118,25 @@ As variáveis id_corpo_prova, obra e tipo_concreto são qualitativas. As variáv
 ```{r}
 str(dados)
 ```
-## Questão 6: identificação dos valores ausentes
+# Questão 6: identificação dos valores ausentes
 Foram relatados cinco valores ausentes, localizados no abatimento do corpo de prova CP-015, na relação água/cimento do CP-038, na resistência do CP-092, na densidade do CP-077 e na absorção do CP-097. A contagem automática é apresentada a seguir.
 ```{r}
 na_por_variavel <- sapply(dados, function(x) sum(is.na(x)))
 print(na_por_variavel[na_por_variavel > 0])
 cat("Total de valores ausentes:", sum(na_por_variavel), "\n")
 ```
-# Encontrar a posição dos valores ausentes
+Encontrar a posição dos valores ausentes
 ```{r}
 posicoes_na <- which(is.na(dados), arr.ind = TRUE)
 ```
-# Mostrar o corpo de prova e a variável ausente
+Mostrar o corpo de prova e a variável ausente
 ```{r}
 data.frame(
 Corpo_de_prova = dados$id_corpo_prova[posicoes_na[, "row"]],
 Item_ausente = names(dados)[posicoes_na[, "col"]]
 )
 ```
-## Questão 8: possíveis erros de digitação
+# Questão 8: possíveis erros de digitação
 
 Os corpos de prova associados aos possíveis erros de preenchimento são selecionados com `subset()`, permitindo inspecionar a linha completa e compreender o contexto do valor.
 
@@ -149,6 +149,137 @@ if ("id_corpo_prova" %in% names(dados)) {
   print(erros_digitacao)
 }
 ```
+
+# Questão 9: Verifique se todas as categorias da variável obra estão escritas de forma padronizada.
+
+Através das fórmulas abaixo vemos que existe uma entrada registrada como "Bloco  B " com um espaço em branco extra ao final do texto, diferindo da categoria correta "Bloco B"
+
+Listar os valores únicos da variável 'obra'
+```{r}
+unique(dados$obra)
+```
+Exibir a contagem de cada categoria
+```{r}
+table(dados$obra)
+```
+Para corrigir podemos utilizar a formulação: dados$obra <- trimws(dados$obra)
+
+# Questão 10 
+Através das formulas abaixo podemos verificar que existe a categoria "c30" escrita com a letra "c" minúscula, que representa exatamente o mesmo tipo de concreto que a categoria "C30" (com "C" maiúsculo), sendo assim as categorias não estão padronizadas
+
+Listar os valores únicos da variável 'tipo_concreto'
+```{r}
+unique(dados$tipo_concreto)
+```
+
+Exibir a contagem de cada categoria
+```{r}
+table(dados$tipo_concreto)
+```
+Para padronizar e corrigir essa divergência transformando todas as letras em maiúsculas no RStudio, basta utilizar a função toupper() da seguinte forma: dados$tipo_concreto <- toupper(dados$tipo_concreto)
+
+# Questão 11
+Com as análises acima e replicando a função abaixo, percebemos alguns problemas devido a erros de digitação, por exemplo:
+
+- resistencia_mpa (chr em vez de numeric): Presença de vírgula como separador decimal ("38,7") e a letra "O" maiúscula digitada no lugar do número zero ("3O,4").
+
+- cimento_kg_m3 (chr em vez de integer/numeric): Digitação da letra "O" maiúscula ao final de um valor ("390O").
+
+- relacao_a_c (chr em vez de numeric): Presença de vírgula em vez de ponto ("0,55").
+
+- obra e tipo_concreto (chr): Lido corretamente como texto, mas contendo os erros de padronização citados anteriormente (espaço extra "Bloco B " e letra minúscula "c30").
+
+```{r}
+sapply(dados, class)
+```
+No R, cada coluna de um data frame é tratada internamente como um vetor atômico. Uma regra fundamental dos vetores atômicos é a homogeneidade de tipos: todos os elementos de uma mesma coluna precisam obrigatoriamente pertencer à mesma classe de dados.
+
+Quando o R importa um arquivo, ele aplica a regra de coerção implícita, ou seja, se uma coluna contém 99 números e apenas 1 caractere de texto (como a letra "O" em "390O" ou uma vírgula em "38,7"), o R não consegue converter essa entrada em número. Esse comportamento impede a realização imediata de cálculos estatísticos (como média ou desvio padrão) até que o dado seja limpo e corrigido.
+
+# Questão 12
+Agora vamos criar uma nova base de dados a partir da original para manipular e analisar sem perder a versão inicial. É importante mantermos a base de daddos original para:
+- Garantir Rastreabilidade e Auditabilidade de forma que possamos consultar os dados em seu estado bruto para verificar a origem de um valor ou validar se uma transformação foi feita corretamente.
+ - Recuperação de Erros: Caso uma função de limpeza, substituição de valores ou remoção de outliers seja executada de forma incorreta ou indesejada, você não precisa reimportar ou recarregar o arquivo do disco;
+- Reprodutibilidade do Análise: Permite comparar o "antes" e o "depois" do tratamento de dados (por exemplo, comparar quantas linhas foram removidas ou como os tipos de dados mudaram após o tratamento).
+
+```{r}
+# 1. Carregar o arquivo
+dados <- read.csv("base_processamento_dados_engenharia_civil.csv", sep = ";", stringsAsFactors = FALSE)
+
+# 2. Criar a cópia dados_limpos
+dados_limpos <- dados
+```
+
+Agora vamos corrigir os problemas encontrados nas variáveis qualitativas, de modo que suas categorias fiquem padronizadas.
+
+Padronizar a variável 'obra' (remove espaços no início e no final, corrigindo "Bloco B ")
+```{r}
+dados_limpos$obra <- trimws(dados_limpos$obra)
+```
+
+Padronizar a variável 'tipo_concreto' (converte tudo para maiúsculas, corrigindo "c30" para "C30")
+```{r}
+dados_limpos$tipo_concreto <- toupper(dados_limpos$tipo_concreto)
+```
+
+Verificação do resultado das correções
+```{r}
+table(dados_limpos$obra)
+table(dados_limpos$tipo_concreto)
+```
+
+Além disso,faz-se necessário converter as variáveis que deveriam ser quantitativas e estão como qualitativas. Para converter as variáveis resistencia_mpa, cimento_kg_m3 e relacao_a_c para os seus tipos quantitativos adequados (numeric / integer), primeiro precisamos tratar os caracteres de texto incorretos (substituir a letra "O" pelo número zero "0" e a vírgula "," pelo ponto decimal ".").
+
+Tratar caracteres incorretos e converter 'resistencia_mpa' para numérico (numeric)
+```{r}
+dados_limpos$resistencia_mpa <- gsub("O", "0", dados_limpos$resistencia_mpa) # troca 'O' por '0'
+dados_limpos$resistencia_mpa <- gsub(",", ".", dados_limpos$resistencia_mpa) # troca ',' por '.'
+dados_limpos$resistencia_mpa <- as.numeric(dados_limpos$resistencia_mpa)
+```
+
+Tratar caractere incorreto e converter 'cimento_kg_m3' para numérico (integer/numeric)
+```{r}
+dados_limpos$cimento_kg_m3 <- gsub("O", "0", dados_limpos$cimento_kg_m3)     # troca 'O' por '0'
+dados_limpos$cimento_kg_m3 <- as.integer(dados_limpos$cimento_kg_m3)
+```
+
+Tratar vírgula e converter 'relacao_a_c' para numérico (numeric)
+```{r}
+dados_limpos$relacao_a_c <- gsub(",", ".", dados_limpos$relacao_a_c)         # troca ',' por '.'
+dados_limpos$relacao_a_c <- as.numeric(dados_limpos$relacao_a_c)
+```
+Converter as variáveis restantes para numérico (num)
+```{r}
+dados_limpos$abatimento_mm <- as.numeric(dados_limpos$abatimento_mm)
+dados_limpos$densidade_kg_m3 <- as.numeric(dados_limpos$densidade_kg_m3)
+dados_limpos$absorção_agregado_pct <- as.numeric(dados_limpos$absorção_agregado_pct)
+```
+
+# ----------------------------------------------------------------------
+# VERIFICAÇÃO DA CONVERSÃO
+# ----------------------------------------------------------------------
+
+Verificar a estrutura e os tipos de dados resultantes das colunas
+```{r}
+str(dados_limpos[, c("resistencia_mpa", "cimento_kg_m3", "relacao_a_c", "abatimento_mm", "densidade_kg_m3", "absorção_agregado_pct")])
+```
+
+Confirmar as classes das variáveis
+```{r}
+sapply(dados_limpos[, c("resistencia_mpa", "cimento_kg_m3", "relacao_a_c", "abatimento_mm", "densidade_kg_m3", "absorção_agregado_pct")], class)
+```
+
+Visualizar o resumo estatístico para confirmar que os cálculos funcionam
+```{r}
+summary(dados_limpos[, c("resistencia_mpa", "cimento_kg_m3", "relacao_a_c", "abatimento_mm", "densidade_kg_m3", "absorção_agregado_pct")])
+```
+
+Verificando de forma geral as correções:
+```{r}
+str(dados_limpos)
+```
+
+Se compararmos com a base de dados original, apresentada no início desse relatório, podemos perceber as diferenças, onde, na base de dados original, devido aos erros de digitação e sintaxe, apenas a variável idade_dias estava como quantitativa. 
 
 ### 💬 Exemplo de como citar uma referência bibliográfica
 
