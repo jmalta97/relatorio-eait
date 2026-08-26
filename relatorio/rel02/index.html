@@ -177,7 +177,7 @@ window.Quarto = {
     <div>
     <div class="quarto-title-meta-heading">Data de Publicação</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">26/08/2026, 20:22</p>
+      <p class="date">26/08/2026, 20:44</p>
     </div>
   </div>
   
@@ -711,6 +711,33 @@ C25 C30 C35 C40
 </div>
 </div>
 <p>Se compararmos com a base de dados original, apresentada no início desse relatório, podemos perceber as diferenças, onde, na base de dados original, devido aos erros de digitação e sintaxe, apenas a variável idade_dias estava como quantitativa.</p>
+<p>Conforme já verificado anteriormente, há 5 observações de valores ausentes. Dentre as possíveis opções, para o caso prático em questão, segue argumentações sobre qual procedimento seria mais adequado para cada situação:</p>
+<ol type="1">
+<li><p>Consultar a Fonte Original dos Dados (Procedimento Ideal e Prioritário) Situação: Aplicável a todos os 5 corpos de prova (CP-015, CP-038, CP-077, CP-092 e CP-097). Justificativa: Como a amostragem é pequena (100 corpos de prova no total) e cada amostra possui identificação única (CP-xxx), o primeiro passo em um laboratório de engenharia civil é verificar a ficha física de rompimento ou o diário de bordo do ensaio. Quase sempre o dado foi mensurado, mas houve um erro de transcrição na montagem da planilha.</p></li>
+<li><p>Substituir o Valor / Imputação (Caso a fonte original não esteja disponível) Se a consulta à fonte não for possível, a substituição por métodos estatísticos ou físicos é o procedimento recomendado para variáveis secundárias ou correlacionadas:</p></li>
+</ol>
+<p>CP-038 (relacao_a_c ausente)- Procedimento: Imputação por regressão/modelo ou pela mediana/média de amostras do mesmo tipo (C25 a 28 dias). Justificativa: A relação água/cimento possui fortíssima correlação física com a dosagem de cimento (309 kg/m³) e a classe do concreto (C25). O valor estimado ficaria próximo de 0,61 a 0,62.</p>
+<p>CP-015 (abatimento_mm), CP-077 (densidade_kg_m3) e CP-097 (absorção_agregado_pct) - Procedimento: Imputação pela mediana do grupo (filtrando pela mesma classe de concreto tipo_concreto e obra). Justificativa: São características físicas de lote. Preencher com a mediana do grupo preserva a estrutura dos dados sem introduzir outliers.</p>
+<ol start="3" type="1">
+<li><p>Excluir a Observação (Caso Específico) Situação: Aplicável prioritariamente ao CP-092 (resistencia_mpa ausente). Justificativa: A resistência à compressão (resistencia_mpa) é a variável resposta principal do estudo. Imputar a variável dependente principal pode introduzir viés nas análises estatísticas e nos testes de hipótese. Se a ficha original do CP-092 tiver sido perdida, o mais rigoroso do ponto de vista estatístico é excluir essa observação das análises de resistência.</p></li>
+<li><p>Manter o NA (Opção Alternativa para Análises Específicas) Situação: Aplicável se as análises forem pontuais por variável. Justificativa: Se a análise for feita utilizando funções que suportam o argumento na.rm = TRUE no R (como mean(dados_limpos$abatimento_mm, na.rm = TRUE)), o R desconsidera a linha ausente apenas no cálculo daquela variável específica, permitindo reaproveitar todas as outras variáveis válidas da amostra.</p></li>
+</ol>
+<p>Nesta etapa inicial de limpeza iremos manter os valores ausentes (NA) registrados em dados_limpos, sem excluí-los nem imputar valores artificiais por enquanto. Isso se justifica pois, manter os NA preserva a integridade original das observações que contêm outras variáveis válidas. Além disso, evita introduzir viés nas métricas estatísticas antes de uma análise exploratória mais aprofundada.</p>
+<p>Após a limpeza geral e manutenção dos dados NA,as variáveis quantitativas (resistencia_mpa, cimento_kg_m3, relacao_a_c, abatimento_mm, densidade_kg_m3, absorção_agregado_pct) que eram lidas incorretamente como texto (chr) devido a erros de digitação (vírgulas e letras “O”) todas foram devidamente convertidas para numéricas (num e int), permitindo operações matemáticas.</p>
+<ul>
+<li>Padronização das Categorias (str / summary):</li>
+</ul>
+<p>obra: O espaço em branco extra em “Bloco B” foi removido, restando apenas 4 categorias limpas (Bloco A, Bloco B, Bloco C e Bloco D).</p>
+<p>tipo_concreto: A entrada minúscula “c30” foi convertida para maiúscula, unificando a categoria para “C30”.</p>
+<ul>
+<li>Geração de Estatísticas Descritivas (summary):</li>
+</ul>
+<p>Antes: O comando summary() exibia apenas a extensão (Length) e a classe (Class: character) para a maioria das variáveis, sem calcular nenhuma média ou mediana.</p>
+<p>Depois: O R agora exibe estatísticas descritivas completas para todas as quantitativas: Mínimo, 1º Quartil, Mediana, Média, 3º Quartil e Máximo.</p>
+<ul>
+<li>Identificação Transparente dos Valores Ausentes (summary):</li>
+</ul>
+<p>O summary() agora aponta explicitamente a presença de 1 NA’s em cada uma das 5 colunas que continham falha de registro (resistencia_mpa, relacao_a_c, abatimento_mm, densidade_kg_m3 e absorção_agregado_pct).</p>
 <section id="exemplo-de-como-citar-uma-referência-bibliográfica" class="level3" data-number="14.0.1">
 <h3 data-number="14.0.1" class="anchored" data-anchor-id="exemplo-de-como-citar-uma-referência-bibliográfica"><span class="header-section-number">14.0.1</span> 💬 Exemplo de como citar uma referência bibliográfica</h3>
 <p>Depois de inserido as informaçõe no arquivo <strong>referencias.bib</strong>, use:</p>
@@ -1490,36 +1517,81 @@ C25 C30 C35 C40
 <span id="cb52-333"><a href="#cb52-333" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb52-334"><a href="#cb52-334" aria-hidden="true" tabindex="-1"></a>Se compararmos com a base de dados original, apresentada no início desse relatório, podemos perceber as diferenças, onde, na base de dados original, devido aos erros de digitação e sintaxe, apenas a variável idade_dias estava como quantitativa. </span>
 <span id="cb52-335"><a href="#cb52-335" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb52-336"><a href="#cb52-336" aria-hidden="true" tabindex="-1"></a><span class="fu">### 💬 Exemplo de como citar uma referência bibliográfica</span></span>
+<span id="cb52-336"><a href="#cb52-336" aria-hidden="true" tabindex="-1"></a>Conforme já verificado anteriormente, há 5 observações de valores ausentes. Dentre as possíveis opções, para o caso prático em questão, segue argumentações sobre qual procedimento seria mais adequado para cada situação:</span>
 <span id="cb52-337"><a href="#cb52-337" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb52-338"><a href="#cb52-338" aria-hidden="true" tabindex="-1"></a>Depois de inserido as informaçõe no arquivo **referencias.bib**, use:</span>
-<span id="cb52-339"><a href="#cb52-339" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb52-340"><a href="#cb52-340" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Segundo @Rbasico2022</span>
-<span id="cb52-341"><a href="#cb52-341" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Tudo é um objeto em R <span class="co">[</span><span class="ot">@Rbasico2022</span><span class="co">]</span></span>
-<span id="cb52-342"><a href="#cb52-342" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb52-343"><a href="#cb52-343" aria-hidden="true" tabindex="-1"></a><span class="fu">### 📊  Análise de Dados</span></span>
+<span id="cb52-338"><a href="#cb52-338" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>Consultar a Fonte Original dos Dados (Procedimento Ideal e Prioritário)</span>
+<span id="cb52-339"><a href="#cb52-339" aria-hidden="true" tabindex="-1"></a>Situação: Aplicável a todos os 5 corpos de prova (CP-015, CP-038, CP-077, CP-092 e CP-097).</span>
+<span id="cb52-340"><a href="#cb52-340" aria-hidden="true" tabindex="-1"></a>Justificativa: Como a amostragem é pequena (100 corpos de prova no total) e cada amostra possui identificação única (CP-xxx), o primeiro passo em um laboratório de engenharia civil é verificar a ficha física de rompimento ou o diário de bordo do ensaio. Quase sempre o dado foi mensurado, mas houve um erro de transcrição na montagem da planilha.</span>
+<span id="cb52-341"><a href="#cb52-341" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb52-342"><a href="#cb52-342" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>Substituir o Valor / Imputação (Caso a fonte original não esteja disponível)</span>
+<span id="cb52-343"><a href="#cb52-343" aria-hidden="true" tabindex="-1"></a>Se a consulta à fonte não for possível, a substituição por métodos estatísticos ou físicos é o procedimento recomendado para variáveis secundárias ou correlacionadas:</span>
 <span id="cb52-344"><a href="#cb52-344" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb52-347"><a href="#cb52-347" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb52-348"><a href="#cb52-348" aria-hidden="true" tabindex="-1"></a>distancia <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fl">10.2</span>, <span class="fl">9.8</span>, <span class="fl">10.5</span>, <span class="fl">10.1</span>, <span class="fl">9.9</span>, <span class="fl">10.3</span>)</span>
-<span id="cb52-349"><a href="#cb52-349" aria-hidden="true" tabindex="-1"></a>distancia</span>
-<span id="cb52-350"><a href="#cb52-350" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb52-351"><a href="#cb52-351" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb52-352"><a href="#cb52-352" aria-hidden="true" tabindex="-1"></a><span class="fu">## 🧠 Considerações finais</span></span>
-<span id="cb52-353"><a href="#cb52-353" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb52-354"><a href="#cb52-354" aria-hidden="true" tabindex="-1"></a>Apresente uma síntese dos principais pontos observados no experimento.</span>
-<span id="cb52-355"><a href="#cb52-355" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb52-356"><a href="#cb52-356" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Retome o objetivo da prática e indique se ele foi alcançado.</span>
-<span id="cb52-357"><a href="#cb52-357" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Destaque os principais aprendizados obtidos.</span>
-<span id="cb52-358"><a href="#cb52-358" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Comente brevemente sobre a qualidade dos dados coletados.</span>
-<span id="cb52-359"><a href="#cb52-359" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Sugira possíveis melhorias no procedimento experimental.</span>
+<span id="cb52-345"><a href="#cb52-345" aria-hidden="true" tabindex="-1"></a>CP-038 (relacao_a_c ausente)- Procedimento: Imputação por regressão/modelo ou pela mediana/média de amostras do mesmo tipo (C25 a 28 dias).</span>
+<span id="cb52-346"><a href="#cb52-346" aria-hidden="true" tabindex="-1"></a>Justificativa: A relação água/cimento possui fortíssima correlação física com a dosagem de cimento (309 kg/m³) e a classe do concreto (C25). O valor estimado ficaria próximo de 0,61 a 0,62.</span>
+<span id="cb52-347"><a href="#cb52-347" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb52-348"><a href="#cb52-348" aria-hidden="true" tabindex="-1"></a>CP-015 (abatimento_mm), CP-077 (densidade_kg_m3) e CP-097 (absorção_agregado_pct) - Procedimento: Imputação pela mediana do grupo (filtrando pela mesma classe de concreto tipo_concreto e obra).</span>
+<span id="cb52-349"><a href="#cb52-349" aria-hidden="true" tabindex="-1"></a>Justificativa: São características físicas de lote. Preencher com a mediana do grupo preserva a estrutura dos dados sem introduzir outliers.</span>
+<span id="cb52-350"><a href="#cb52-350" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb52-351"><a href="#cb52-351" aria-hidden="true" tabindex="-1"></a><span class="ss">3. </span>Excluir a Observação (Caso Específico)</span>
+<span id="cb52-352"><a href="#cb52-352" aria-hidden="true" tabindex="-1"></a>Situação: Aplicável prioritariamente ao CP-092 (resistencia_mpa ausente).</span>
+<span id="cb52-353"><a href="#cb52-353" aria-hidden="true" tabindex="-1"></a>Justificativa: A resistência à compressão (resistencia_mpa) é a variável resposta principal do estudo. Imputar a variável dependente principal pode introduzir viés nas análises estatísticas e nos testes de hipótese. Se a ficha original do CP-092 tiver sido perdida, o mais rigoroso do ponto de vista estatístico é excluir essa observação das análises de resistência.</span>
+<span id="cb52-354"><a href="#cb52-354" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb52-355"><a href="#cb52-355" aria-hidden="true" tabindex="-1"></a><span class="ss">4. </span>Manter o NA (Opção Alternativa para Análises Específicas)</span>
+<span id="cb52-356"><a href="#cb52-356" aria-hidden="true" tabindex="-1"></a>Situação: Aplicável se as análises forem pontuais por variável.</span>
+<span id="cb52-357"><a href="#cb52-357" aria-hidden="true" tabindex="-1"></a>Justificativa: Se a análise for feita utilizando funções que suportam o argumento na.rm = TRUE no R (como mean(dados_limpos$abatimento_mm, na.rm = TRUE)), o R desconsidera a linha ausente apenas no cálculo daquela variável específica, permitindo reaproveitar todas as outras variáveis válidas da amostra.</span>
+<span id="cb52-358"><a href="#cb52-358" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb52-359"><a href="#cb52-359" aria-hidden="true" tabindex="-1"></a>Nesta etapa inicial de limpeza iremos manter os valores ausentes (NA) registrados em dados_limpos, sem excluí-los nem imputar valores artificiais por enquanto. Isso se justifica pois, manter os NA preserva a integridade original das observações que contêm outras variáveis válidas. Além disso, evita introduzir viés nas métricas estatísticas antes de uma análise exploratória mais aprofundada.</span>
 <span id="cb52-360"><a href="#cb52-360" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb52-361"><a href="#cb52-361" aria-hidden="true" tabindex="-1"></a>Evite repetir apenas os resultados; foque nas **conclusões e reflexões** sobre a prática realizada.</span>
-<span id="cb52-362"><a href="#cb52-362" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb52-363"><a href="#cb52-363" aria-hidden="true" tabindex="-1"></a><span class="fu">## Aprenda Quarto</span></span>
-<span id="cb52-364"><a href="#cb52-364" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb52-365"><a href="#cb52-365" aria-hidden="true" tabindex="-1"></a>Acesse <span class="co">[</span><span class="ot">Quarto</span><span class="co">](https://quarto.org/)</span>.</span>
-<span id="cb52-366"><a href="#cb52-366" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb52-367"><a href="#cb52-367" aria-hidden="true" tabindex="-1"></a><span class="fu">## 📖 Referências</span></span>
+<span id="cb52-361"><a href="#cb52-361" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb52-362"><a href="#cb52-362" aria-hidden="true" tabindex="-1"></a>Após a limpeza geral e manutenção dos dados NA,as variáveis quantitativas (resistencia_mpa, cimento_kg_m3, relacao_a_c, abatimento_mm, densidade_kg_m3, absorção_agregado_pct) que eram lidas incorretamente como texto (chr) devido a erros de digitação (vírgulas e letras "O") todas foram devidamente convertidas para numéricas (num e int), permitindo operações matemáticas.</span>
+<span id="cb52-363"><a href="#cb52-363" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb52-364"><a href="#cb52-364" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Padronização das Categorias (str / summary):</span>
+<span id="cb52-365"><a href="#cb52-365" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb52-366"><a href="#cb52-366" aria-hidden="true" tabindex="-1"></a>obra: O espaço em branco extra em "Bloco B " foi removido, restando apenas 4 categorias limpas (Bloco A, Bloco B, Bloco C e Bloco D).</span>
+<span id="cb52-367"><a href="#cb52-367" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb52-368"><a href="#cb52-368" aria-hidden="true" tabindex="-1"></a>tipo_concreto: A entrada minúscula "c30" foi convertida para maiúscula, unificando a categoria para "C30".</span>
+<span id="cb52-369"><a href="#cb52-369" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb52-370"><a href="#cb52-370" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Geração de Estatísticas Descritivas (summary):</span>
+<span id="cb52-371"><a href="#cb52-371" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb52-372"><a href="#cb52-372" aria-hidden="true" tabindex="-1"></a>Antes: O comando summary() exibia apenas a extensão (Length) e a classe (Class: character) para a maioria das variáveis, sem calcular nenhuma média ou mediana.</span>
+<span id="cb52-373"><a href="#cb52-373" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb52-374"><a href="#cb52-374" aria-hidden="true" tabindex="-1"></a>Depois: O R agora exibe estatísticas descritivas completas para todas as quantitativas: Mínimo, 1º Quartil, Mediana, Média, 3º Quartil e Máximo.</span>
+<span id="cb52-375"><a href="#cb52-375" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb52-376"><a href="#cb52-376" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Identificação Transparente dos Valores Ausentes (summary):</span>
+<span id="cb52-377"><a href="#cb52-377" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb52-378"><a href="#cb52-378" aria-hidden="true" tabindex="-1"></a>O summary() agora aponta explicitamente a presença de 1 NA's em cada uma das 5 colunas que continham falha de registro (resistencia_mpa, relacao_a_c, abatimento_mm, densidade_kg_m3 e absorção_agregado_pct).</span>
+<span id="cb52-379"><a href="#cb52-379" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb52-380"><a href="#cb52-380" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb52-381"><a href="#cb52-381" aria-hidden="true" tabindex="-1"></a><span class="fu">### 💬 Exemplo de como citar uma referência bibliográfica</span></span>
+<span id="cb52-382"><a href="#cb52-382" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb52-383"><a href="#cb52-383" aria-hidden="true" tabindex="-1"></a>Depois de inserido as informaçõe no arquivo **referencias.bib**, use:</span>
+<span id="cb52-384"><a href="#cb52-384" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb52-385"><a href="#cb52-385" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Segundo @Rbasico2022</span>
+<span id="cb52-386"><a href="#cb52-386" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Tudo é um objeto em R <span class="co">[</span><span class="ot">@Rbasico2022</span><span class="co">]</span></span>
+<span id="cb52-387"><a href="#cb52-387" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb52-388"><a href="#cb52-388" aria-hidden="true" tabindex="-1"></a><span class="fu">### 📊  Análise de Dados</span></span>
+<span id="cb52-389"><a href="#cb52-389" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb52-392"><a href="#cb52-392" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb52-393"><a href="#cb52-393" aria-hidden="true" tabindex="-1"></a>distancia <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fl">10.2</span>, <span class="fl">9.8</span>, <span class="fl">10.5</span>, <span class="fl">10.1</span>, <span class="fl">9.9</span>, <span class="fl">10.3</span>)</span>
+<span id="cb52-394"><a href="#cb52-394" aria-hidden="true" tabindex="-1"></a>distancia</span>
+<span id="cb52-395"><a href="#cb52-395" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb52-396"><a href="#cb52-396" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb52-397"><a href="#cb52-397" aria-hidden="true" tabindex="-1"></a><span class="fu">## 🧠 Considerações finais</span></span>
+<span id="cb52-398"><a href="#cb52-398" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb52-399"><a href="#cb52-399" aria-hidden="true" tabindex="-1"></a>Apresente uma síntese dos principais pontos observados no experimento.</span>
+<span id="cb52-400"><a href="#cb52-400" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb52-401"><a href="#cb52-401" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Retome o objetivo da prática e indique se ele foi alcançado.</span>
+<span id="cb52-402"><a href="#cb52-402" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Destaque os principais aprendizados obtidos.</span>
+<span id="cb52-403"><a href="#cb52-403" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Comente brevemente sobre a qualidade dos dados coletados.</span>
+<span id="cb52-404"><a href="#cb52-404" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Sugira possíveis melhorias no procedimento experimental.</span>
+<span id="cb52-405"><a href="#cb52-405" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb52-406"><a href="#cb52-406" aria-hidden="true" tabindex="-1"></a>Evite repetir apenas os resultados; foque nas **conclusões e reflexões** sobre a prática realizada.</span>
+<span id="cb52-407"><a href="#cb52-407" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb52-408"><a href="#cb52-408" aria-hidden="true" tabindex="-1"></a><span class="fu">## Aprenda Quarto</span></span>
+<span id="cb52-409"><a href="#cb52-409" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb52-410"><a href="#cb52-410" aria-hidden="true" tabindex="-1"></a>Acesse <span class="co">[</span><span class="ot">Quarto</span><span class="co">](https://quarto.org/)</span>.</span>
+<span id="cb52-411"><a href="#cb52-411" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb52-412"><a href="#cb52-412" aria-hidden="true" tabindex="-1"></a><span class="fu">## 📖 Referências</span></span>
 </code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
 </div></div></div></div></div>
 </div> <!-- /content -->

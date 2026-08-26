@@ -281,6 +281,51 @@ str(dados_limpos)
 
 Se compararmos com a base de dados original, apresentada no início desse relatório, podemos perceber as diferenças, onde, na base de dados original, devido aos erros de digitação e sintaxe, apenas a variável idade_dias estava como quantitativa. 
 
+Conforme já verificado anteriormente, há 5 observações de valores ausentes. Dentre as possíveis opções, para o caso prático em questão, segue argumentações sobre qual procedimento seria mais adequado para cada situação:
+
+1. Consultar a Fonte Original dos Dados (Procedimento Ideal e Prioritário)
+Situação: Aplicável a todos os 5 corpos de prova (CP-015, CP-038, CP-077, CP-092 e CP-097).
+Justificativa: Como a amostragem é pequena (100 corpos de prova no total) e cada amostra possui identificação única (CP-xxx), o primeiro passo em um laboratório de engenharia civil é verificar a ficha física de rompimento ou o diário de bordo do ensaio. Quase sempre o dado foi mensurado, mas houve um erro de transcrição na montagem da planilha.
+
+2. Substituir o Valor / Imputação (Caso a fonte original não esteja disponível)
+Se a consulta à fonte não for possível, a substituição por métodos estatísticos ou físicos é o procedimento recomendado para variáveis secundárias ou correlacionadas:
+
+CP-038 (relacao_a_c ausente)- Procedimento: Imputação por regressão/modelo ou pela mediana/média de amostras do mesmo tipo (C25 a 28 dias).
+Justificativa: A relação água/cimento possui fortíssima correlação física com a dosagem de cimento (309 kg/m³) e a classe do concreto (C25). O valor estimado ficaria próximo de 0,61 a 0,62.
+
+CP-015 (abatimento_mm), CP-077 (densidade_kg_m3) e CP-097 (absorção_agregado_pct) - Procedimento: Imputação pela mediana do grupo (filtrando pela mesma classe de concreto tipo_concreto e obra).
+Justificativa: São características físicas de lote. Preencher com a mediana do grupo preserva a estrutura dos dados sem introduzir outliers.
+
+3. Excluir a Observação (Caso Específico)
+Situação: Aplicável prioritariamente ao CP-092 (resistencia_mpa ausente).
+Justificativa: A resistência à compressão (resistencia_mpa) é a variável resposta principal do estudo. Imputar a variável dependente principal pode introduzir viés nas análises estatísticas e nos testes de hipótese. Se a ficha original do CP-092 tiver sido perdida, o mais rigoroso do ponto de vista estatístico é excluir essa observação das análises de resistência.
+
+4. Manter o NA (Opção Alternativa para Análises Específicas)
+Situação: Aplicável se as análises forem pontuais por variável.
+Justificativa: Se a análise for feita utilizando funções que suportam o argumento na.rm = TRUE no R (como mean(dados_limpos$abatimento_mm, na.rm = TRUE)), o R desconsidera a linha ausente apenas no cálculo daquela variável específica, permitindo reaproveitar todas as outras variáveis válidas da amostra.
+
+Nesta etapa inicial de limpeza iremos manter os valores ausentes (NA) registrados em dados_limpos, sem excluí-los nem imputar valores artificiais por enquanto. Isso se justifica pois, manter os NA preserva a integridade original das observações que contêm outras variáveis válidas. Além disso, evita introduzir viés nas métricas estatísticas antes de uma análise exploratória mais aprofundada.
+
+
+Após a limpeza geral e manutenção dos dados NA,as variáveis quantitativas (resistencia_mpa, cimento_kg_m3, relacao_a_c, abatimento_mm, densidade_kg_m3, absorção_agregado_pct) que eram lidas incorretamente como texto (chr) devido a erros de digitação (vírgulas e letras "O") todas foram devidamente convertidas para numéricas (num e int), permitindo operações matemáticas.
+
+- Padronização das Categorias (str / summary):
+
+obra: O espaço em branco extra em "Bloco B " foi removido, restando apenas 4 categorias limpas (Bloco A, Bloco B, Bloco C e Bloco D).
+
+tipo_concreto: A entrada minúscula "c30" foi convertida para maiúscula, unificando a categoria para "C30".
+
+- Geração de Estatísticas Descritivas (summary):
+
+Antes: O comando summary() exibia apenas a extensão (Length) e a classe (Class: character) para a maioria das variáveis, sem calcular nenhuma média ou mediana.
+
+Depois: O R agora exibe estatísticas descritivas completas para todas as quantitativas: Mínimo, 1º Quartil, Mediana, Média, 3º Quartil e Máximo.
+
+- Identificação Transparente dos Valores Ausentes (summary):
+
+O summary() agora aponta explicitamente a presença de 1 NA's em cada uma das 5 colunas que continham falha de registro (resistencia_mpa, relacao_a_c, abatimento_mm, densidade_kg_m3 e absorção_agregado_pct).
+
+
 ### 💬 Exemplo de como citar uma referência bibliográfica
 
 Depois de inserido as informaçõe no arquivo **referencias.bib**, use:
