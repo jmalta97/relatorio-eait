@@ -1,6 +1,6 @@
 ---
 # Só mude aqui!!!!
-author: "Nome do Aluno"
+author: "Jair Malta e Wesley Pinheiro"
 title: "Relatório de Aula Prática 02"
 bibliography: referencias.bib
 # A partir daqui nao faca alteracoes!!!!!
@@ -28,58 +28,141 @@ execute:
 
 ## 📌 Introdução
 
-Descreva o contexto da prática e sua importância.
+O controle tecnológico do concreto constitui etapa fundamental na garantia da qualidade e segurança das estruturas de concreto armado. Conforme estabelecido pela NBR 12655 (ABNT, 2015), o controle tecnológico envolve a verificação sistemática das propriedades do concreto, desde sua dosagem até seu endurecimento, assegurando que o material atenda aos requisitos de projeto.
 
-> Exemplo: análise da variabilidade em experimentos físicos utilizando uma catapulta.
+No contexto da Engenharia Civil, a análise estatística dos dados de controle tecnológico permite identificar padrões, avaliar a conformidade dos lotes produzidos e tomar decisões fundamentadas sobre a aceitação ou rejeição de materiais. No entanto, a confiabilidade dessas análises depende diretamente da qualidade dos dados utilizados, conforme destacado por Neville (2016).
 
+O presente trabalho tem como objeto de estudo uma base de dados contendo 100 observações de corpos de prova de concreto, provenientes de diferentes obras e blocos, com informações sobre resistência à compressão, consumo de cimento, relação água/cimento, abatimento, densidade e absorção do agregado. Esta base, embora aparentemente completa, apresenta diversos problemas de qualidade que comprometem sua utilização direta para análises estatísticas, tais como:
 
+- Erros de digitação (substituição do número zero pela letra "O");
+
+- Uso inadequado de separadores decimais (vírgula em vez de ponto);
+
+- Categorias não padronizadas em variáveis qualitativas;
+
+- Valores ausentes em cinco observações;
+
+- Variáveis quantitativas erroneamente classificadas como texto.
 
 ## 🎯 Objetivos
 
 ### Objetivo geral
 
-Descrever o objetivo principal da prática.
+Realizar o processamento, limpeza e análise exploratória de uma base de dados de controle tecnológico do concreto, identificando problemas de qualidade, padronizando informações e gerando estatísticas descritivas que possam auxiliar o engenheiro responsável na tomada de decisões.
 
 ### Objetivos específicos
 
-- Coletar dados experimentais  
-- Aplicar estatística descritiva  
-- Construir gráficos  
-- Interpretar resultados  
+- Importar e inspecionar a base de dados, verificando sua estrutura, tipos de variáveis e presença de valores ausentes;
 
----
+- Identificar problemas de qualidade, tais como erros de digitação, inconsistências categóricas e valores incompatíveis com o contexto da Engenharia Civil;
 
-## 📚  Fundamentação Teórica
+- Realizar a limpeza e padronização dos dados, corrigindo erros, convertendo variáveis para os tipos adequados e padronizando categorias;
 
-Apresente os conceitos principais:
+- Gerar estatísticas descritivas relevantes para o controle tecnológico do concreto;
 
-- Média
-- Variância
-- Desvio padrão
-- Amostragem
+- Criar variáveis derivadas que agreguem valor à análise, como resistência relativa e classificação do desempenho;
 
-$$
-\bar{x} = \frac{1}{n}\sum_{i=1}^{n} x_i
-$$
+- Produzir informações estratégicas que auxiliem o engenheiro na avaliação do desempenho dos concretos produzidos;
+
+- Desenvolver um script organizado e reproduzível que documente todas as etapas do processamento.
 
 ---
 
 ## ⚙️ Metodologia
 
-::: {.callout-note}
-Descreva como o experimento foi realizado.
-:::
+### Base de dados  
 
-- Materiais utilizados  
-- Procedimento  
-- Número de repetições  
+A base de dados utilizada neste estudo é um arquivo no formato CSV intitulado base_processamento_dados_engenharia_civil.csv, contendo 100 observações de corpos de prova de concreto. As variáveis presentes na base são descritas na Tabela 1.
+
+```{r}
+knitr::opts_chunk$set(echo = FALSE, warning = FALSE, message = FALSE)
+library(tibble)
+library(knitr)
+library(kableExtra)
+#| label: tab:variaveis
+#| tbl-cap: "Descrição das variáveis utilizadas no estudo"
+
+# Criando o dataframe com as variáveis
+tabela_variaveis <- tribble(
+  ~Variável,                ~Descrição,                                                    ~`Tipo Esperado`,
+  "id_corpo_prova",         "Identificador único do corpo de prova",                      "Qualitativa",
+  "obra",                   "Obra de origem do concreto",                                 "Qualitativa",
+  "tipo_concreto",          "Classe de resistência do concreto (C25, C30, C35, C40)",    "Qualitativa",
+  "idade_dias",             "Idade do corpo de prova no momento do ensaio (dias)",        "Quantitativa",
+  "resistencia_mpa",        "Resistência à compressão (MPa)",                             "Quantitativa",
+  "cimento_kg_m3",          "Consumo de cimento (kg/m³)",                                 "Quantitativa",
+  "relacao_a_c",            "Relação água/cimento",                                       "Quantitativa",
+  "abatimento_mm",          "Abatimento do concreto (mm)",                                "Quantitativa",
+  "densidade_kg_m3",        "Densidade do concreto (kg/m³)",                              "Quantitativa",
+  "absorcao_agregado_pct",  "Absorção do agregado (%)",                                   "Quantitativa"
+)
+
+# Número de colunas (para aplicar centralização em todas)
+n_col <- ncol(tabela_variaveis)
+
+kable(tabela_variaveis, 
+      caption = "Tabela 1: Descrição das variáveis do estudo",
+      booktabs = TRUE,
+      align = rep("c", n_col)) %>%  # garante todas as colunas centralizadas
+  kable_styling(bootstrap_options = c("striped", "hover", "condensed"),
+                full_width = FALSE,
+                position = "center") %>%  # centraliza a tabela na página
+  column_spec(1:n_col, extra_css = "text-align: center;") %>%  # força centralização
+  scroll_box(width = "100%", height = "400px")  # barra de rolagem
+```
+
+### Ferramentas Utilizadas
+
+Todas as análises foram realizadas utilizando a linguagem R, empregando funções da base nativa (Base R) e recursos gráficos do pacote leem, conforme. As principais funções utilizadas foram:
+
+- Leitura de dados: read.csv2()
+
+- Inspeção: str(), summary(), dim(), head()
+
+- Identificação de valores ausentes: is.na(), which(), colSums()
+
+- Limpeza e padronização: trimws(), toupper(), gsub(), as.numeric()
+
+- Estatísticas por grupo: tapply(), aggregate()
+
+- Manipulação avançada: apply(), lapply(), sapply(), split(), with(), ave()
+
+- Controle de fluxo: for, if, ifelse()
+
+- Visualização gráfica: leem::histogram(), leem::boxplot(), leem::barplot()
+
+### Procedimentos Metodológicos
+
+O trabalho foi conduzido em nove etapas principais, descritas a seguir.
+
+A base foi importada utilizando a função read.csv2(), adequada para arquivos com separador ponto e vírgula e vírgula como separador decimal. O parâmetro na.strings foi configurado para identificar automaticamente valores ausentes em diversas representações. A inspeção inicial foi realizada com as funções dim(), str(), summary() e sapply() para verificar a estrutura e os tipos das variáveis.
+
+Foi realizada uma análise crítica dos dados para identificar erros de digitação, inconsistências categóricas e valores incompatíveis com o contexto da Engenharia Civil. Utilizou-se unique() e table() para verificar a padronização das variáveis qualitativas, e subset() para localizar registros problemáticos.
+
+Criou-se uma cópia da base original com dados_limpos <- dados para preservar a integridade dos dados brutos. Em seguida, procedeu-se à padronização de categorias com trimws() e toupper(), e à correção de caracteres problemáticos com gsub(), substituindo a letra "O" pelo número zero "0" e a vírgula "," pelo ponto "." como separador decimal. As variáveis foram então convertidas para seus tipos adequados utilizando as.numeric(). Para os valores ausentes, optou-se por mantê-los, registrando sua localização e justificando a decisão.
+
+Calculou-se estatísticas descritivas para a resistência à compressão, incluindo médias gerais e por grupos (bloco da obra, tipo de concreto e idade). Utilizou-se tapply() para cálculos por grupos e aggregate() para análises multivariadas. Foram gerados gráficos com o pacote leem para visualização das distribuições.
+
+Foram criadas três novas variáveis: resistencia_relativa (razão entre a resistência observada e a resistência de referência da classe), classificacao (categorização do desempenho em Excelente, Bom, Regular ou Insatisfatório) e acima_media (indicador booleano se a resistência está acima da média da classe). Para a criação, utilizaram-se operações vetorizadas e a função ifelse().
+
+A base foi dividida por tipo de concreto com split(), e as resistências médias foram calculadas utilizando lapply() e sapply(), comparando-se os resultados obtidos.
+
+As variáveis quantitativas foram selecionadas e a média de cada uma foi calculada com apply() utilizando MARGIN = 2. Em seguida, calculou-se uma medida resumo por observação com apply() utilizando MARGIN = 1.
+
+Implementou-se um loop com for e if para identificar corpos de prova com resistência acima da média de sua classe, comparando os resultados com uma abordagem vetorizada utilizando ave().
+
+Foram realizadas análises direcionadas à prática profissional, incluindo comparação entre obras, investigação das relações entre variáveis (cimento vs. resistência, a/c vs. resistência) e análise do efeito da idade na resistência.
 
 ---
 
 ## 🔍 Resultados e Discussão
 
-# Questão 1
+### Conhecendo a base
+
+#### Importação e Estrutura Inicial
+
 A base é importada com `read.csv2()`, função adequada a arquivos que usam ponto e vírgula como separador de campos e vírgula como separador decimal. O argumento `na.strings` informa quais registros devem ser reconhecidos como valores ausentes.
+
 ```{r}
 dados <- read.csv2(
   "base_processamento_dados_engenharia_civil.csv",
@@ -89,54 +172,73 @@ dados <- read.csv2(
 )
 ```
 
-# Questão 2
-O número de observações corresponde ao número de linhas, enquanto o número de variáveis corresponde ao número de colunas. A função dim() faz essa
+A inspeção inicial com a função dim(dados) revelou que a base possui 100 observações e 10 variáveis.
 ```{r}
 dim (dados)
 ```
 
-# Questão 3
-A função `str()` mostra a estrutura da base e a classe atribuída pelo R a cada coluna. Complementarmente, `sapply()` aplica `class()` a todas as colunas sem necessidade de repetir o comando variável por variável.
+A estrutura preliminar indica que algumas variáveis esperadas como numéricas podem ter sido importadas como texto. Isso ocorre quando uma coluna contém registros incompatíveis com números, como vírgulas decimais em configuração inadequada, letras inseridas por engano ou outros caracteres. Como cada vetor atômico do R armazena um único tipo de dado, um valor textual pode levar toda a coluna a ser classificada como character. Diante disso, o R reconheceu todas, exceto idade_dias como qualitativa. 
+
 ```{r}
 str(dados)
 sapply(dados, class)
 ```
 
-# Questão 4: resumo inicial
+Este problema é causado pela presença de caracteres não numéricos nas colunas, como a letra "O" substituindo o zero em valores numéricos (ex: "3O,4") e o uso de vírgula como separador decimal ("38,7"). Conforme discutido por R Core Team (2023), no R, vetores atômicos são homogêneos, ou seja, uma única entrada não numérica em uma coluna força toda a coluna a ser tratada como texto.
 
-A função `summary()` fornece uma descrição inicial da base. Para colunas numéricas, apresenta mínimo, quartis, mediana, média e máximo; para outros tipos, o resultado depende da classe reconhecida pelo R.
+#### Resumo Inicial e Classificação das Variáveis
 
+A função summary(dados) apresentou informações limitadas, uma vez que as variáveis quantitativas estavam sendo tratadas como texto.
 ```{r}
 summary(dados)
 ```
-# Questão 5: classificação em qualitativas e quantitativas
 
-A estrutura preliminar indica que algumas variáveis esperadas como numéricas podem ter sido importadas como texto. Isso ocorre quando uma coluna contém registros incompatíveis com números, como vírgulas decimais em configuração inadequada, letras inseridas por engano ou outros caracteres. Como cada vetor atômico do R armazena um único tipo de dado, um valor textual pode levar toda a coluna a ser classificada como character. Diante disso, o R reconheceu todas, exceto idade_dias como qualitativa. 
+A classificação das variáveis, baseada na estrutura apresentada pela função str(dados), é:
 
-As variáveis id_corpo_prova, obra e tipo_concreto são qualitativas. As variáveis idade_dias, resistencia_mpa, cimento_kg_m3, relacao_a_c, abatimento_mm, densidade_kg_m3 e absorção_agregado_pct são quantitativas e, após a limpeza, devem estar armazenadas como numéricas.
+- Qualitativas: id_corpo_prova, obra, tipo_concreto
 
-```{r}
-str(dados)
-```
-# Questão 6: identificação dos valores ausentes
-Foram relatados cinco valores ausentes, localizados no abatimento do corpo de prova CP-015, na relação água/cimento do CP-038, na resistência do CP-092, na densidade do CP-077 e na absorção do CP-097. A contagem automática é apresentada a seguir.
+- Quantitativas: idade_dias, resistencia_mpa, cimento_kg_m3, relacao_a_c, abatimento_mm, densidade_kg_m3, absorção_agregado_pct (estas últimas, porém, importadas incorretamente como chr)
+
+
+#### Identificação de Valores Ausentes
+
+Foram relatados cinco valores ausentes, localizados no abatimento do corpo de prova CP-015, na relação água/cimento do CP-038, na resistência do CP-092, na densidade do CP-077 e na absorção do CP-097, conforme tabela a seguir. A contagem foi realizada a partir da função sapply().
+
 ```{r}
 na_por_variavel <- sapply(dados, function(x) sum(is.na(x)))
 print(na_por_variavel[na_por_variavel > 0])
 cat("Total de valores ausentes:", sum(na_por_variavel), "\n")
 ```
-Encontrar a posição dos valores ausentes
+
 ```{r}
+#Encontrar a posição dos valores ausentes
 posicoes_na <- which(is.na(dados), arr.ind = TRUE)
 ```
-Mostrar o corpo de prova e a variável ausente
+
 ```{r}
+#Mostrar o corpo de prova e a variável ausente
 data.frame(
 Corpo_de_prova = dados$id_corpo_prova[posicoes_na[, "row"]],
 Item_ausente = names(dados)[posicoes_na[, "col"]]
 )
 ```
-# Questão 8: possíveis erros de digitação
+
+### Investigação de Problemas
+
+#### Valores Incompatíveis
+
+Foram identificados valores que merecem atenção por serem fisicamente incompatíveis com o contexto da Engenharia Civil, conforme detalhado na Tabela 3.
+
+**Observação	Variável	Valor	Problema**
+CP-032	abatimento_mm	1250 mm	Abatimento excessivo (> 300 mm é incomum para concretos estruturais)
+CP-053	densidade_kg_m3	238 kg/m³	Densidade extremamente baixa (esperado ~2300-2500 kg/m³)
+CP-072	absorção_agregado_pct	18,4%	Absorção muito alta para agregados convencionais (valores típicos: 0,5-4%)
+CP-085	idade_dias	280 dias	Idade muito superior à média, possivelmente um outlier
+
+O valor de abatimento de 1250 mm no CP-032 sugere um possível erro de digitação (125 mm seria mais plausível). A densidade de 238 kg/m³ no CP-053 provavelmente deveria ser 2380 kg/m³ (falta um zero). A absorção de 18,4% no CP-072 está muito acima do esperado para agregados convencionais, podendo indicar um agregado de baixa qualidade ou erro de medição. Segundo Neville (2016), valores típicos de absorção para agregados convencionais variam entre 0,5% e 4%.
+
+
+#### Possíveis erros de digitação
 
 Os corpos de prova associados aos possíveis erros de preenchimento são selecionados com `subset()`, permitindo inspecionar a linha completa e compreender o contexto do valor.
 
@@ -149,36 +251,42 @@ if ("id_corpo_prova" %in% names(dados)) {
   print(erros_digitacao)
 }
 ```
+Estes erros são típicos de digitação manual de dados, onde o operador pode confundir o zero com a letra "O" ou utilizar vírgula como separador decimal em um sistema configurado para ponto. A correção é essencial para viabilizar as análises, conforme recomendado por Mehta & Monteiro (2014).
 
-# Questão 9: Verifique se todas as categorias da variável obra estão escritas de forma padronizada.
+#### Verificação de Escrita Padronizada
 
-Através das fórmulas abaixo vemos que existe uma entrada registrada como "Bloco  B " com um espaço em branco extra ao final do texto, diferindo da categoria correta "Bloco B"
+Utilizando as funções unique() e table(), foram identificadas as seguintes inconsistências:
 
-Listar os valores únicos da variável 'obra'
+- Variável obra: Foi identificada uma entrada "Bloco B " com um espaço em branco extra ao final, diferente da categoria padrão "Bloco B".
+
+- Variável tipo_concreto: Foi identificada a categoria "c30" com letra minúscula, representando a mesma classe que "C30".
+
+
 ```{r}
+#Listar os valores únicos da variável 'obra'
 unique(dados$obra)
 ```
-Exibir a contagem de cada categoria
+
 ```{r}
+#Exibir a contagem de cada categoria
 table(dados$obra)
 ```
 Para corrigir podemos utilizar a formulação: dados$obra <- trimws(dados$obra)
 
-# Questão 10 
 Através das formulas abaixo podemos verificar que existe a categoria "c30" escrita com a letra "c" minúscula, que representa exatamente o mesmo tipo de concreto que a categoria "C30" (com "C" maiúsculo), sendo assim as categorias não estão padronizadas
 
-Listar os valores únicos da variável 'tipo_concreto'
+
 ```{r}
+#Listar os valores únicos da variável 'tipo_concreto'
 unique(dados$tipo_concreto)
 ```
 
-Exibir a contagem de cada categoria
 ```{r}
+#Exibir a contagem de cada categoria
 table(dados$tipo_concreto)
 ```
 Para padronizar e corrigir essa divergência transformando todas as letras em maiúsculas no RStudio, basta utilizar a função toupper() da seguinte forma: dados$tipo_concreto <- toupper(dados$tipo_concreto)
 
-# Questão 11
 Com as análises acima e replicando a função abaixo, percebemos alguns problemas devido a erros de digitação, por exemplo:
 
 - resistencia_mpa (chr em vez de numeric): Presença de vírgula como separador decimal ("38,7") e a letra "O" maiúscula digitada no lugar do número zero ("3O,4").
@@ -196,8 +304,11 @@ No R, cada coluna de um data frame é tratada internamente como um vetor atômic
 
 Quando o R importa um arquivo, ele aplica a regra de coerção implícita, ou seja, se uma coluna contém 99 números e apenas 1 caractere de texto (como a letra "O" em "390O" ou uma vírgula em "38,7"), o R não consegue converter essa entrada em número. Esse comportamento impede a realização imediata de cálculos estatísticos (como média ou desvio padrão) até que o dado seja limpo e corrigido.
 
-# Questão 12
-Agora vamos criar uma nova base de dados a partir da original para manipular e analisar sem perder a versão inicial. É importante mantermos a base de daddos original para:
+
+### Limpeza de Dados
+
+Criou-se uma nova base de dados a partir da original para manipular e analisar sem perder a versão inicial. É importante mantermos a base de daddos original para:
+
 - Garantir Rastreabilidade e Auditabilidade de forma que possamos consultar os dados em seu estado bruto para verificar a origem de um valor ou validar se uma transformação foi feita corretamente.
  - Recuperação de Erros: Caso uma função de limpeza, substituição de valores ou remoção de outliers seja executada de forma incorreta ou indesejada, você não precisa reimportar ou recarregar o arquivo do disco;
 - Reprodutibilidade do Análise: Permite comparar o "antes" e o "depois" do tratamento de dados (por exemplo, comparar quantas linhas foram removidas ou como os tipos de dados mudaram após o tratamento).
@@ -210,76 +321,80 @@ dados <- read.csv("base_processamento_dados_engenharia_civil.csv", sep = ";", st
 dados_limpos <- dados
 ```
 
-Agora vamos corrigir os problemas encontrados nas variáveis qualitativas, de modo que suas categorias fiquem padronizadas.
+Corrigiu-se os problemas encontrados nas variáveis qualitativas, de modo que suas categorias fiquem padronizadas.
 
-Padronizar a variável 'obra' (remove espaços no início e no final, corrigindo "Bloco B ")
 ```{r}
+#Padronizar a variável 'obra' (remove espaços no início e no final, corrigindo "Bloco B ")
 dados_limpos$obra <- trimws(dados_limpos$obra)
 ```
 
-Padronizar a variável 'tipo_concreto' (converte tudo para maiúsculas, corrigindo "c30" para "C30")
 ```{r}
+#Padronizar a variável 'tipo_concreto' (converte tudo para maiúsculas, corrigindo "c30" para "C30")
 dados_limpos$tipo_concreto <- toupper(dados_limpos$tipo_concreto)
 ```
 
-Verificação do resultado das correções
 ```{r}
+#Verificação do resultado das correções
 table(dados_limpos$obra)
 table(dados_limpos$tipo_concreto)
 ```
 
-Além disso,faz-se necessário converter as variáveis que deveriam ser quantitativas e estão como qualitativas. Para converter as variáveis resistencia_mpa, cimento_kg_m3 e relacao_a_c para os seus tipos quantitativos adequados (numeric / integer), primeiro precisamos tratar os caracteres de texto incorretos (substituir a letra "O" pelo número zero "0" e a vírgula "," pelo ponto decimal ".").
+Além disso,faz-se necessário converter as variáveis que deveriam ser quantitativas e estão como qualitativas. Para converter as variáveis resistencia_mpa, cimento_kg_m3 e relacao_a_c para os seus tipos quantitativos adequados (numeric / integer), tratou-se os caracteres de texto incorretos (substituir a letra "O" pelo número zero "0" e a vírgula "," pelo ponto decimal ".").
 
-Tratar caracteres incorretos e converter 'resistencia_mpa' para numérico (numeric)
 ```{r}
+#Tratar caracteres incorretos e converter 'resistencia_mpa' para numérico (numeric)
 dados_limpos$resistencia_mpa <- gsub("O", "0", dados_limpos$resistencia_mpa) # troca 'O' por '0'
 dados_limpos$resistencia_mpa <- gsub(",", ".", dados_limpos$resistencia_mpa) # troca ',' por '.'
 dados_limpos$resistencia_mpa <- as.numeric(dados_limpos$resistencia_mpa)
 ```
 
-Tratar caractere incorreto e converter 'cimento_kg_m3' para numérico (integer/numeric)
 ```{r}
+#Tratar caractere incorreto e converter 'cimento_kg_m3' para numérico (integer/numeric)
 dados_limpos$cimento_kg_m3 <- gsub("O", "0", dados_limpos$cimento_kg_m3)     # troca 'O' por '0'
 dados_limpos$cimento_kg_m3 <- as.integer(dados_limpos$cimento_kg_m3)
 ```
 
-Tratar vírgula e converter 'relacao_a_c' para numérico (numeric)
 ```{r}
+#Tratar vírgula e converter 'relacao_a_c' para numérico (numeric)
 dados_limpos$relacao_a_c <- gsub(",", ".", dados_limpos$relacao_a_c)         # troca ',' por '.'
 dados_limpos$relacao_a_c <- as.numeric(dados_limpos$relacao_a_c)
 ```
-Converter as variáveis restantes para numérico (num)
+
 ```{r}
+#Converter as variáveis restantes para numérico (num)
 dados_limpos$abatimento_mm <- as.numeric(dados_limpos$abatimento_mm)
 dados_limpos$densidade_kg_m3 <- as.numeric(dados_limpos$densidade_kg_m3)
 dados_limpos$absorção_agregado_pct <- as.numeric(dados_limpos$absorção_agregado_pct)
 ```
 
-# ----------------------------------------------------------------------
-# VERIFICAÇÃO DA CONVERSÃO
-# ----------------------------------------------------------------------
+### Verificação da Conversão
 
-Verificar a estrutura e os tipos de dados resultantes das colunas
+
 ```{r}
+#Verificar a estrutura e os tipos de dados resultantes das colunas
 str(dados_limpos[, c("resistencia_mpa", "cimento_kg_m3", "relacao_a_c", "abatimento_mm", "densidade_kg_m3", "absorção_agregado_pct")])
 ```
 
-Confirmar as classes das variáveis
+
 ```{r}
+#Confirmar as classes das variáveis
 sapply(dados_limpos[, c("resistencia_mpa", "cimento_kg_m3", "relacao_a_c", "abatimento_mm", "densidade_kg_m3", "absorção_agregado_pct")], class)
 ```
 
-Visualizar o resumo estatístico para confirmar que os cálculos funcionam
 ```{r}
+#Visualizar o resumo estatístico para confirmar que os cálculos funcionam
 summary(dados_limpos[, c("resistencia_mpa", "cimento_kg_m3", "relacao_a_c", "abatimento_mm", "densidade_kg_m3", "absorção_agregado_pct")])
 ```
 
-Verificando de forma geral as correções:
 ```{r}
+#Verificando de forma geral as correções:
 str(dados_limpos)
 ```
 
-Se compararmos com a base de dados original, apresentada no início desse relatório, podemos perceber as diferenças, onde, na base de dados original, devido aos erros de digitação e sintaxe, apenas a variável idade_dias estava como quantitativa. 
+```{r}
+summary(dados_limpos)
+```
+Ao se comparar com a base de dados original, apresentada no início desse relatório, pode-se perceber as diferenças, onde, na base de dados original, devido aos erros de digitação e sintaxe, apenas a variável idade_dias estava como quantitativa. 
 
 Conforme já verificado anteriormente, há 5 observações de valores ausentes. Dentre as possíveis opções, para o caso prático em questão, segue argumentações sobre qual procedimento seria mais adequado para cada situação:
 
@@ -306,7 +421,6 @@ Justificativa: Se a análise for feita utilizando funções que suportam o argum
 
 Nesta etapa inicial de limpeza iremos manter os valores ausentes (NA) registrados em dados_limpos, sem excluí-los nem imputar valores artificiais por enquanto. Isso se justifica pois, manter os NA preserva a integridade original das observações que contêm outras variáveis válidas. Além disso, evita introduzir viés nas métricas estatísticas antes de uma análise exploratória mais aprofundada.
 
-
 Após a limpeza geral e manutenção dos dados NA,as variáveis quantitativas (resistencia_mpa, cimento_kg_m3, relacao_a_c, abatimento_mm, densidade_kg_m3, absorção_agregado_pct) que eram lidas incorretamente como texto (chr) devido a erros de digitação (vírgulas e letras "O") todas foram devidamente convertidas para numéricas (num e int), permitindo operações matemáticas.
 
 - Padronização das Categorias (str / summary):
@@ -325,20 +439,576 @@ Depois: O R agora exibe estatísticas descritivas completas para todas as quanti
 
 O summary() agora aponta explicitamente a presença de 1 NA's em cada uma das 5 colunas que continham falha de registro (resistencia_mpa, relacao_a_c, abatimento_mm, densidade_kg_m3 e absorção_agregado_pct).
 
+### Explorando os Dados
 
-### 💬 Exemplo de como citar uma referência bibliográfica
+####Resistência média 
 
-Depois de inserido as informaçõe no arquivo **referencias.bib**, use:
-
-- Segundo @Rbasico2022
-- Tudo é um objeto em R [@Rbasico2022]
-
-### 📊  Análise de Dados
+A resistência média geral foi calculada com a função mean():
 
 ```{r}
-distancia <- c(10.2, 9.8, 10.5, 10.1, 9.9, 10.3)
-distancia
+# Resistência média geral
+media_geral <- mean(dados_limpos$resistencia_mpa, na.rm = TRUE)
+cat("Resistência média geral:", round(media_geral, 2), "MPa\n")
 ```
+
+Os resultados por bloco são apresentados na Tabela 8, obtidos com a função tapply():
+
+```{r}
+# Resistência média por bloco da obra
+medias_por_bloco <- tapply(dados_limpos$resistencia_mpa, 
+                           dados_limpos$obra, 
+                           mean, na.rm = TRUE)
+print(medias_por_bloco)
+```
+Observa-se que o Bloco B apresenta a maior resistência média (35,7 MPa), enquanto o Bloco D apresenta a menor (32,39 MPa). Esta variação pode estar relacionada a diferenças nos materiais utilizados ou no controle de qualidade de cada obra (Mehta & Monteiro, 2014).
+
+#### Visualização por Bloco
+
+Utilizando o pacote leem, foi gerado o boxplot da resistência por bloco (Figura 2) com a função boxplot():
+```{r}
+boxplot(dados_limpos$resistencia_mpa ~ dados_limpos$obra,
+        main = "Resistência à Compressão por Bloco",
+        xlab = "Bloco",
+        ylab = "Resistência (MPa)",
+        col = c("#2E86C1", "#28B463", "#F39C12", "#E74C3C"))
+```
+
+#### Resistência por Classe de Concreto
+
+A Tabela 9 apresenta a resistência média por classe de concreto, obtida com a função tapply():
+
+```{r}
+# Resistência média por tipo de concreto
+medias_por_tipo <- tapply(dados_limpos$resistencia_mpa, 
+                          dados_limpos$tipo_concreto, 
+                          mean, na.rm = TRUE)
+print(medias_por_tipo)
+```
+A resistência média aumenta consistentemente com a classe do concreto, como esperado pela especificação técnica (NBR 6118, 2014). A classe C40 apresentou a maior resistência média (43,33 MPa), enquanto a C25 apresentou a menor (27,07 MPa). É importante notar que a resistência média de cada classe supera o valor característico de referência, o que indica bom desempenho geral.
+
+#### Visualização por Classe
+
+Utilizando o pacote leem, foi gerado o gráfico de barras da resistência média por classe (Figura 3) com a função barplot():
+
+```{r}
+medias_classes <- tapply(dados_limpos$resistencia_mpa, 
+                         dados_limpos$tipo_concreto, mean, na.rm = TRUE)
+barplot(medias_classes,
+        main = "Resistência Média por Classe de Concreto",
+        xlab = "Classe de Concreto",
+        ylab = "Resistência Média (MPa)",
+        col = c("#2E86C1", "#28B463", "#F39C12", "#E74C3C"),
+        ylim = c(0, 50))
+```       
+   
+      
+# Resistência média por idade
+medias_por_idade <- tapply(dados_limpos$resistencia_mpa, 
+                           dados_limpos$idade_dias, 
+                           mean, na.rm = TRUE)
+print(medias_por_idade)
+```
+
+
+
+# QUESTÃO 19
+
+```{r}
+# Definindo as classes de interesse
+classes <- c("C25", "C30", "C35", "C40")
+
+# Calculando médias para cada classe
+medias_por_classe <- tapply(dados_limpos$resistencia_mpa, 
+                            dados_limpos$tipo_concreto, 
+                            mean, na.rm = TRUE)
+
+# Exibindo apenas as classes de interesse
+medias_classes <- medias_por_classe[classes]
+print(medias_classes)
+
+# Classe com maior resistência média
+cat("Classe com MAIOR resistência média:", 
+    names(which.max(medias_classes)), 
+    "-", round(max(medias_classes), 2), "MPa\n")
+
+```
+
+# QUESTÃO 20
+
+```{r}
+# Usando aggregate para múltiplas variáveis por tipo de concreto
+aggregate(cbind(resistencia_mpa, cimento_kg_m3, relacao_a_c, 
+                abatimento_mm, densidade_kg_m3) ~ tipo_concreto,
+          data = dados_limpos,
+          FUN = mean, na.rm = TRUE)
+
+```
+Observa-se que concretos de maior classe (C40) apresentam maior resistência média, maior consumo de cimento, menor relação água/cimento e maior densidade. O abatimento não apresenta uma tendência clara com a classe do concreto.
+
+# QUESTÃO 21
+```{r}
+# Definindo resistência de referência por classe (valores característicos)
+# C25 = 25 MPa, C30 = 30 MPa, C35 = 35 MPa, C40 = 40 MPa
+referencia <- c(C25 = 25, C30 = 30, C35 = 35, C40 = 40)
+
+# Criando a variável resistencia_relativa
+dados_limpos$resistencia_relativa <- dados_limpos$resistencia_mpa / 
+                                     referencia[dados_limpos$tipo_concreto]
+
+# Visualizando
+head(dados_limpos[, c("id_corpo_prova", "tipo_concreto", 
+                      "resistencia_mpa", "resistencia_relativa")])
+
+```
+
+# QUESTÃO 22
+```{r}
+# Critério: relação entre resistência observada e a resistência de referência
+# Excelente: ≥ 1.10 (10% acima da referência)
+# Bom: ≥ 0.95 e < 1.10
+# Regular: ≥ 0.85 e < 0.95
+# Insatisfatório: < 0.85
+
+dados_limpos$classificacao <- ifelse(dados_limpos$resistencia_relativa >= 1.10, 
+                                     "Excelente",
+                                     ifelse(dados_limpos$resistencia_relativa >= 0.95,
+                                            "Bom",
+                                            ifelse(dados_limpos$resistencia_relativa >= 0.85,
+                                                   "Regular",
+                                                   "Insatisfatório")))
+
+# Verificando a distribuição
+table(dados_limpos$classificacao)
+
+```
+Os critérios foram definidos com base na NBR 6118, que estabelece que a resistência característica do concreto deve ser verificada. A classificação considera que valores próximos ou acima da resistência de referência indicam bom desempenho, enquanto valores muito abaixo merecem atenção.
+
+# QUESTÃO 23
+```{r}
+# Usando ave() para calcular a média por tipo (como no script)
+dados_limpos$media_por_tipo <- ave(dados_limpos$resistencia_mpa, 
+                                   dados_limpos$tipo_concreto, 
+                                   FUN = function(x) mean(x, na.rm = TRUE))
+
+# Criando a variável acima_media
+dados_limpos$acima_media <- dados_limpos$resistencia_mpa > 
+                            dados_limpos$media_por_tipo
+
+# Verificando
+table(dados_limpos$acima_media)
+
+# Ou usando with() como no script
+dados_limpos$acima_media2 <- with(dados_limpos,
+                                  resistencia_mpa > ave(resistencia_mpa, 
+                                                       tipo_concreto, 
+                                                       FUN = function(x) mean(x, na.rm = TRUE)))
+
+# Visualizando alguns exemplos
+head(dados_limpos[, c("id_corpo_prova", "tipo_concreto", 
+                      "resistencia_mpa", "media_por_tipo", "acima_media")])
+
+```
+
+# QUESTÃO 24
+```{r}
+# Dividindo por tipo_concreto
+dados_split <- split(dados_limpos, dados_limpos$tipo_concreto)
+
+# Quantas observações em cada grupo?
+sapply(dados_split, nrow)
+
+```
+
+# QUESTÃO 25
+```{r}
+# Calculando resistência média de cada grupo com lapply
+medias_lapply <- lapply(dados_split, function(df) {
+  mean(df$resistencia_mpa, na.rm = TRUE)
+})
+
+print(medias_lapply)
+
+```
+
+# QUESTÃO 26
+```{r}
+# Calculando com sapply (resultado simplificado)
+medias_sapply <- sapply(dados_split, function(df) {
+  mean(df$resistencia_mpa, na.rm = TRUE)
+})
+
+print(medias_sapply)
+
+```
+lapply() retorna uma lista, enquanto sapply() tenta simplificar o resultado para um vetor ou matriz quando possível. Neste caso, lapply() produz uma lista com 4 elementos (um para cada tipo de concreto), enquanto sapply() produz um vetor numérico nomeado, mais compacto e fácil de visualizar.
+
+# QUESTÃO 27
+```{r}
+# Selecionando variáveis quantitativas
+variaveis_quant <- dados_limpos[, c("resistencia_mpa", "cimento_kg_m3", 
+                                    "relacao_a_c", "abatimento_mm", 
+                                    "densidade_kg_m3", "absorção_agregado_pct")]
+
+# Calculando média de cada variável (MARGIN = 2 = colunas)
+medias_apply <- apply(variaveis_quant, 2, mean, na.rm = TRUE)
+print(medias_apply)
+
+```
+
+# QUESTÃO 28
+```{r}
+# Calculando média por linha (MARGIN = 1)
+dados_limpos$media_medidas <- apply(variaveis_quant, 1, mean, na.rm = TRUE)
+
+# Visualizando
+head(dados_limpos[, c("id_corpo_prova", "media_medidas")])
+
+# Resumo desta nova variável
+summary(dados_limpos$media_medidas)
+
+```
+Esta medida resumo (média simples das variáveis) não possui interpretação física direta, pois combina variáveis com diferentes unidades (MPa, kg/m³, mm, etc.) e escalas. Isso é um exemplo de como operações matemáticas podem ser aplicadas, mas os resultados devem ser interpretados com cautela, preferindo-se análises específicas por variável no contexto da Engenharia Civil.
+
+# QUESTÃO 29
+```{r}
+# Criando vetor para armazenar resultados
+acima_media_classe <- logical(nrow(dados_limpos))
+
+# Loop para identificar resistências acima da média da classe
+for (i in 1:nrow(dados_limpos)) {
+  
+  # Obtendo a classe do concreto
+  classe <- dados_limpos$tipo_concreto[i]
+  
+  # Calculando a média da classe (ignorando NAs)
+  media_classe <- mean(dados_limpos$resistencia_mpa[dados_limpos$tipo_concreto == classe], 
+                       na.rm = TRUE)
+  
+  # Verificando se a resistência está acima da média
+  if (!is.na(dados_limpos$resistencia_mpa[i])) {
+    if (dados_limpos$resistencia_mpa[i] > media_classe) {
+      acima_media_classe[i] <- TRUE
+    } else {
+      acima_media_classe[i] <- FALSE
+    }
+  } else {
+    acima_media_classe[i] <- NA
+  }
+}
+
+# Adicionando ao data frame
+dados_limpos$acima_media_classe_for <- acima_media_classe
+
+# Quantos estão acima da média?
+table(dados_limpos$acima_media_classe_for, useNA = "ifany")
+
+```
+
+# QUESTÃO 30
+```{r}
+# Usando a abordagem com ave (vetorizada)
+dados_limpos$media_classe <- ave(dados_limpos$resistencia_mpa, 
+                                 dados_limpos$tipo_concreto, 
+                                 FUN = function(x) mean(x, na.rm = TRUE))
+
+dados_limpos$acima_media_classe_vec <- dados_limpos$resistencia_mpa > 
+                                       dados_limpos$media_classe
+
+# Comparando os resultados
+table(dados_limpos$acima_media_classe_for, 
+      dados_limpos$acima_media_classe_vec, 
+      useNA = "ifany")
+
+```
+Comparação das soluções:
+
+Simplicidade: A abordagem vetorizada é mais simples, com menos linhas de código.
+
+Legibilidade: A versão vetorizada é mais legível, expressando diretamente a comparação sem necessidade de loops.
+
+Eficiência: A abordagem vetorizada é mais eficiente, pois evita iterações explícitas e aproveita a vetorização do R.
+
+Para bases grandes, a diferença de desempenho seria ainda mais significativa.
+
+# QUESTÃO 31
+```{r}
+# Calculando médias por bloco
+medias_bloco <- tapply(dados_limpos$resistencia_mpa, 
+                       dados_limpos$obra, 
+                       mean, na.rm = TRUE)
+
+# Visualizando
+print(medias_bloco)
+
+# Verificando se o Bloco C tem a maior média
+bloco_c_media <- medias_bloco["Bloco C"]
+maior_media <- max(medias_bloco, na.rm = TRUE)
+
+cat("Média do Bloco C:", round(bloco_c_media, 2), "MPa\n")
+cat("Maior média entre blocos:", round(maior_media, 2), "MPa\n")
+
+if (bloco_c_media == maior_media) {
+  cat("A afirmação é VERDADEIRA: Bloco C tem a maior média.\n")
+} else {
+  cat("A afirmação é FALSA: Bloco C NÃO tem a maior média.\n")
+  cat("O bloco com maior média é:", names(which.max(medias_bloco)), "\n")
+}
+
+# Análise adicional: distribuição por bloco
+boxplot(resistencia_mpa ~ obra, data = dados_limpos,
+        main = "Resistência por Bloco",
+        ylab = "Resistência (MPa)")
+
+```
+
+# QUESTÃO 32
+```{r}
+# Análise da relação entre cimento e resistência
+# Variáveis: cimento_kg_m3 e resistencia_mpa
+
+# Coeficiente de correlação
+correlacao <- cor(dados_limpos$cimento_kg_m3, 
+                  dados_limpos$resistencia_mpa, 
+                  use = "complete.obs")
+
+cat("Correlação entre consumo de cimento e resistência:", 
+    round(correlacao, 3), "\n")
+
+# Médias por tipo de concreto
+aggregate(cbind(resistencia_mpa, cimento_kg_m3) ~ tipo_concreto,
+          data = dados_limpos,
+          FUN = mean, na.rm = TRUE)
+
+# Visualizando a relação (se tiver ggplot2)
+# plot(dados_limpos$cimento_kg_m3, dados_limpos$resistencia_mpa)
+
+```
+
+# QUESTÃO 33
+```{r}
+# Análise da relação água/cimento
+correlacao_ac <- cor(dados_limpos$relacao_a_c, 
+                     dados_limpos$resistencia_mpa, 
+                     use = "complete.obs")
+
+cat("Correlação entre relação a/c e resistência:", 
+    round(correlacao_ac, 3), "\n")
+
+# Médias por tipo de concreto
+aggregate(cbind(resistencia_mpa, relacao_a_c) ~ tipo_concreto,
+          data = dados_limpos,
+          FUN = mean, na.rm = TRUE)
+
+```
+
+# QUESTÃO 34
+```{r}
+# Médias por idade
+medias_idade <- tapply(dados_limpos$resistencia_mpa, 
+                       dados_limpos$idade_dias, 
+                       mean, na.rm = TRUE)
+
+print(sort(medias_idade))
+
+# Analisando por tipo de concreto e idade
+aggregate(resistencia_mpa ~ tipo_concreto + idade_dias,
+          data = dados_limpos,
+          FUN = mean, na.rm = TRUE)
+
+```
+
+# QUESTÃO 35
+```{r}
+# 1. Estatísticas gerais da resistência
+summary(dados_limpos$resistencia_mpa)
+
+# 2. Média por tipo de concreto
+medias_tipo <- tapply(dados_limpos$resistencia_mpa, 
+                      dados_limpos$tipo_concreto, 
+                      mean, na.rm = TRUE)
+
+# 3. Média por bloco
+medias_bloco <- tapply(dados_limpos$resistencia_mpa, 
+                       dados_limpos$obra, 
+                       mean, na.rm = TRUE)
+
+# 4. Percentual de corpos de prova acima da média da classe
+table(dados_limpos$acima_media) / nrow(dados_limpos) * 100
+
+# 5. Correlação entre variáveis importantes
+cor(dados_limpos[, c("resistencia_mpa", "cimento_kg_m3", 
+                     "relacao_a_c", "idade_dias")], 
+    use = "complete.obs")
+
+```
+
+# DESAFIO
+
+################################################################
+# DESAFIO FINAL - CONTROLE TECNOLÓGICO DO CONCRETO
+# Disciplina: EAIT
+# Análise e Processamento de Dados da Engenharia Civil
+################################################################
+
+# 1. CARREGAMENTO E INSPEÇÃO INICIAL
+# -----------------------------------
+dados <- read.csv2(
+  "base_processamento_dados_engenharia_civil.csv",
+  stringsAsFactors = FALSE,
+  check.names = FALSE,
+  na.strings = c("", " ", "NA", "N/A", "-", "null", "NULL")
+)
+
+# Inspeção inicial
+cat("=== INSPEÇÃO INICIAL ===\n")
+cat("Dimensão:", dim(dados), "\n")
+str(dados)
+summary(dados)
+
+# 2. IDENTIFICAÇÃO DE PROBLEMAS
+# -----------------------------
+cat("\n=== IDENTIFICAÇÃO DE PROBLEMAS ===\n")
+
+# Valores ausentes
+na_por_variavel <- sapply(dados, function(x) sum(is.na(x)))
+cat("Valores ausentes por variável:\n")
+print(na_por_variavel[na_por_variavel > 0])
+
+# Inconsistências nas variáveis qualitativas
+cat("\nCategorias da variável 'obra':\n")
+print(unique(dados$obra))
+
+cat("\nCategorias da variável 'tipo_concreto':\n")
+print(unique(dados$tipo_concreto))
+
+# 3. LIMPEZA DOS DADOS
+# --------------------
+cat("\n=== LIMPEZA DOS DADOS ===\n")
+
+# Criando cópia
+dados_limpos <- dados
+
+# Padronizando variáveis qualitativas
+dados_limpos$obra <- trimws(dados_limpos$obra)
+dados_limpos$tipo_concreto <- toupper(dados_limpos$tipo_concreto)
+
+# Convertendo variáveis quantitativas
+# Resistência
+dados_limpos$resistencia_mpa <- gsub("O", "0", dados_limpos$resistencia_mpa)
+dados_limpos$resistencia_mpa <- gsub(",", ".", dados_limpos$resistencia_mpa)
+dados_limpos$resistencia_mpa <- as.numeric(dados_limpos$resistencia_mpa)
+
+# Cimento
+dados_limpos$cimento_kg_m3 <- gsub("O", "0", dados_limpos$cimento_kg_m3)
+dados_limpos$cimento_kg_m3 <- as.numeric(dados_limpos$cimento_kg_m3)
+
+# Relação a/c
+dados_limpos$relacao_a_c <- gsub(",", ".", dados_limpos$relacao_a_c)
+dados_limpos$relacao_a_c <- as.numeric(dados_limpos$relacao_a_c)
+
+# Demais variáveis
+dados_limpos$abatimento_mm <- as.numeric(dados_limpos$abatimento_mm)
+dados_limpos$densidade_kg_m3 <- as.numeric(dados_limpos$densidade_kg_m3)
+dados_limpos$absorção_agregado_pct <- as.numeric(dados_limpos$absorção_agregado_pct)
+
+# Verificando limpeza
+cat("Estrutura após limpeza:\n")
+str(dados_limpos)
+
+# 4. ESTATÍSTICAS DESCRITIVAS
+# ---------------------------
+cat("\n=== ESTATÍSTICAS DESCRITIVAS ===\n")
+
+# Resumo geral
+summary(dados_limpos)
+
+# Médias por grupo
+cat("\nResistência média por tipo de concreto:\n")
+print(tapply(dados_limpos$resistencia_mpa, 
+             dados_limpos$tipo_concreto, 
+             mean, na.rm = TRUE))
+
+cat("\nResistência média por bloco:\n")
+print(tapply(dados_limpos$resistencia_mpa, 
+             dados_limpos$obra, 
+             mean, na.rm = TRUE))
+
+# 5. VARIÁVEIS DERIVADAS
+# ----------------------
+cat("\n=== VARIÁVEIS DERIVADAS ===\n")
+
+# Resistência relativa
+referencia <- c(C25 = 25, C30 = 30, C35 = 35, C40 = 40)
+dados_limpos$resistencia_relativa <- dados_limpos$resistencia_mpa / 
+                                     referencia[dados_limpos$tipo_concreto]
+
+# Classificação
+dados_limpos$classificacao <- ifelse(dados_limpos$resistencia_relativa >= 1.10,
+                                     "Excelente",
+                                     ifelse(dados_limpos$resistencia_relativa >= 0.95,
+                                            "Bom",
+                                            ifelse(dados_limpos$resistencia_relativa >= 0.85,
+                                                   "Regular",
+                                                   "Insatisfatório")))
+
+cat("Distribuição da classificação:\n")
+print(table(dados_limpos$classificacao))
+
+# Acima da média da classe
+dados_limpos$acima_media_classe <- with(dados_limpos,
+                                        resistencia_mpa > 
+                                        ave(resistencia_mpa, tipo_concreto, 
+                                            FUN = function(x) mean(x, na.rm = TRUE)))
+
+cat("\nProporção acima da média da classe:\n")
+print(prop.table(table(dados_limpos$acima_media_classe)))
+
+# 6. INFORMAÇÕES PARA O ENGENHEIRO
+# --------------------------------
+cat("\n=== INFORMAÇÕES PARA O ENGENHEIRO ===\n")
+
+# Correlações importantes
+correlacoes <- cor(dados_limpos[, c("resistencia_mpa", "cimento_kg_m3", 
+                                    "relacao_a_c", "idade_dias", 
+                                    "abatimento_mm")], 
+                   use = "complete.obs")
+cat("Matriz de correlação:\n")
+print(round(correlacoes, 3))
+
+# Resumo executivo
+cat("\n=== RESUMO EXECUTIVO ===\n")
+cat("1. Resistência média geral:", round(mean(dados_limpos$resistencia_mpa, na.rm = TRUE), 2), "MPa\n")
+cat("2. Maior resistência média por bloco:", names(which.max(tapply(dados_limpos$resistencia_mpa, dados_limpos$obra, mean, na.rm = TRUE))), "\n")
+cat("3. Classe com maior resistência média:", names(which.max(tapply(dados_limpos$resistencia_mpa, dados_limpos$tipo_concreto, mean, na.rm = TRUE))), "\n")
+cat("4. Percentual de corpos de prova com classificação 'Excelente':", 
+    round(mean(dados_limpos$classificacao == "Excelente", na.rm = TRUE) * 100, 1), "%\n")
+cat("5. Correlação a/c vs resistência:", round(correlacoes["resistencia_mpa", "relacao_a_c"], 3), "\n")
+
+cat("\n=== FIM DO RELATÓRIO ===\n")
+
+
+#REFLEXÃO FINAL
+
+O processamento e a limpeza de dados são fundamentais  porque:
+
+Garantem a confiabilidade das análises: Dados com erros de digitação, como '3O,4' em vez de '30.4' ou '0,55' em vez de '0.55', podem levar a conclusões equivocadas sobre o desempenho do concreto.
+
+Permitem cálculos estatísticos corretos: Variáveis lidas como texto não permitem o cálculo de médias, desvios ou correlações.
+
+Facilitam a comparabilidade: Padronizar categorias ('c30' vs 'C30', 'Bloco B ' vs 'Bloco B') é essencial para agrupar dados corretamente.
+
+Previnem decisões técnicas erradas: Um valor de resistência incorreto pode levar a aceitar um lote que deveria ser rejeitado, comprometendo a segurança estrutural."
+
+Principal problema encontrado:
+
+"O principal problema foi a inconsistência de tipos de dados, onde variáveis quantitativas como resistencia_mpa, cimento_kg_m3 e relacao_a_c foram importadas como texto (character) devido a erros de digitação: uso de vírgula como separador decimal (ex: '38,7'), substituição do número zero pela letra 'O' (ex: '3O,4', '390O') e uso de vírgula para separar decimais em '0,55'. Isso impedia cálculos estatísticos básicos.
+
+
+
+
+
+
+
 
 ## 🧠 Considerações finais
 
