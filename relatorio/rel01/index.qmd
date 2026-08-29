@@ -1,6 +1,6 @@
 ---
 # Só mude aqui!!!!
-author: "Jair Malta e Wesley Pinheiro "
+author: "Jair Malta e Wesley Pinheiro"
 title: "Relatório de Aula Prática 01"
 bibliography: referencias.bib
 # A partir daqui nao faca alteracoes!!!!!

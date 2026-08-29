@@ -27,10 +27,13 @@ execute:
 
 <div style="text-align: justify;">
 # 📌 Introdução
+O controle tecnológico do concreto constitui etapa fundamental na
+garantia da qualidade e segurança das estruturas de concreto armado.
+Conforme estabelecido pela @ABNT12655, o controle tecnológico envolve a verificação sistemática das propriedades
+do concreto, desde sua dosagem até seu endurecimento, assegurando que o
+material atenda aos requisitos de projeto.
 
-O controle tecnológico do concreto constitui etapa fundamental na garantia da qualidade e segurança das estruturas de concreto armado. Conforme estabelecido pela NBR 12655 (ABNT, 2015), o controle tecnológico envolve a verificação sistemática das propriedades do concreto, desde sua dosagem até seu endurecimento, assegurando que o material atenda aos requisitos de projeto.
-
-No contexto da Engenharia Civil, a análise estatística dos dados de controle tecnológico permite identificar padrões, avaliar a conformidade dos lotes produzidos e tomar decisões fundamentadas sobre a aceitação ou rejeição de materiais. No entanto, a confiabilidade dessas análises depende diretamente da qualidade dos dados utilizados, conforme destacado por Neville (2016).
+No contexto da Engenharia Civil, a análise estatística dos dados de controle tecnológico permite identificar padrões, avaliar a conformidade dos lotes produzidos e tomar decisões fundamentadas sobre a aceitação ou rejeição de materiais. No entanto, a confiabilidade dessas análises depende diretamente da qualidade dos dados utilizados, conforme destacado por @Neville2016
 
 O presente trabalho tem como objeto de estudo uma base de dados contendo 100 observações de corpos de prova de concreto, com informações sobre resistência à compressão, consumo de cimento, relação água/cimento, abatimento, densidade e absorção do agregado. Esta base, embora aparentemente completa, apresenta diversos problemas de qualidade que comprometem sua utilização direta para análises estatísticas, tais como:
 
@@ -75,7 +78,7 @@ Realizar o processamento, limpeza e análise exploratória de uma base de dados 
 A base de dados utilizada neste estudo é um arquivo no formato CSV intitulado base_processamento_dados_engenharia_civil.csv, contendo 100 observações de corpos de prova de concreto. As variáveis presentes na base são descritas na Tabela 1.
 
 ```{r}
-knitr::opts_chunk$set(echo = FALSE, warning = FALSE, message = FALSE)
+knitr::opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE)
 library(tibble)
 library(knitr)
 library(kableExtra)
@@ -173,8 +176,11 @@ dados <- read.csv2(
 ```
 
 A inspeção inicial com a função dim(dados) revelou que a base possui 100 observações e 10 variáveis.
+
 ```{r}
-dim (dados)
+knitr::kable(as.data.frame(t(dim(dados))),
+col.names = c("Observações", "Variáveis"),
+align = "c")
 ```
 
 A estrutura preliminar indica que algumas variáveis esperadas como numéricas podem ter sido importadas como texto. Isso ocorre quando uma coluna contém registros incompatíveis com números, como vírgulas decimais em configuração inadequada, letras inseridas por engano ou outros caracteres. Como cada vetor atômico do R armazena um único tipo de dado, um valor textual pode levar toda a coluna a ser classificada como character. Diante disso, o R reconheceu todas, exceto idade_dias como qualitativa. 
