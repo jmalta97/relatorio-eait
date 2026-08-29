@@ -717,9 +717,17 @@ relacao_a_c, abatimento_mm, densidade_kg_m3 e absorção_agregado_pct).
 A resistência média geral foi calculada com a função mean():
 
 ```{r}
-# Resistência média geral
 media_geral <- mean(dados_limpos$resistencia_mpa, na.rm = TRUE)
-cat("Resistência média geral:", round(media_geral, 2), "MPa\n")
+tabela_media <- data.frame(
+Indicador = "Resistência média geral",
+Valor_MPa = round(media_geral, 2)
+)
+knitr::kable(
+tabela_media,
+col.names = c("Indicador", "Valor (MPa)"),
+align = "c"
+) %>%
+kableExtra::kable_styling(position = "center")
 ```
 
 ### Resistência média por Bloco
@@ -728,20 +736,22 @@ Os resultados por bloco são apresentados na Tabela 8, obtidos com a
 função tapply():
 
 ```{r}
-# Resistência média por bloco da obra
-medias_por_bloco <- tapply(dados_limpos$resistencia_mpa, 
-                           dados_limpos$obra, 
-                           mean, na.rm = TRUE)
-print(medias_por_bloco)
+medias_por_bloco <- tapply(dados_limpos$resistencia_mpa,
+dados_limpos$obra,
+mean, na.rm = TRUE)
+knitr::kable(
+as.data.frame(t(medias_por_bloco)),
+align = "c"
+) %>%
+kableExtra::kable_styling(position = "center")
 ```
 
 Observa-se que o Bloco B apresenta a maior resistência média (35,7 MPa),
 enquanto o Bloco D apresenta a menor (32,39 MPa). Esta variação pode
 estar relacionada a diferenças nos materiais utilizados ou no controle
-de qualidade de cada obra (Mehta & Monteiro, 2014).
+de qualidade de cada obra, conforme apresentado por @MehtaMonteiro2014.
 
-Utilizando o pacote leem, foi gerado o boxplot da resistência por bloco
-(Figura 2) com a função boxplot():
+Utilizando o pacote leem, foi gerado o boxplot da resistência por bloco com a função boxplot():
 
 ```{r}
 boxplot(dados_limpos$resistencia_mpa ~ dados_limpos$obra,
@@ -753,19 +763,25 @@ boxplot(dados_limpos$resistencia_mpa ~ dados_limpos$obra,
 
 ### Resistência por tipo de Concreto
 
-A Tabela 9 apresenta a resistência média por classe de concreto, obtida
+A resistência média por classe de concreto, obtida
 com a função tapply():
 
 ```{r}
-# Resistência média por tipo de concreto
-medias_por_tipo <- tapply(dados_limpos$resistencia_mpa, 
-                          dados_limpos$tipo_concreto, 
-                          mean, na.rm = TRUE)
-print(medias_por_tipo)
+medias_por_tipo <- tapply(dados_limpos$resistencia_mpa,
+dados_limpos$tipo_concreto,
+mean, na.rm = TRUE)
+knitr::kable(
+data.frame(
+Tipo_Concreto = names(medias_por_tipo),
+Media_MPa = round(medias_por_tipo, 2)
+),
+align = "c"
+) %>%
+kableExtra::kable_styling(position = "center")
 ```
 
 A resistência média aumenta consistentemente com a classe do concreto,
-como esperado pela especificação técnica (NBR 6118, 2014). A classe C40
+como esperado pela especificação técnica da @ABNT6118:2014. A classe C40
 apresentou a maior resistência média (43,33 MPa), enquanto a C25
 apresentou a menor (27,07 MPa). É importante notar que a resistência
 média de cada classe supera o valor característico de referência, o que
@@ -787,18 +803,22 @@ barplot(medias_classes,
 
 ## Resistência média por idade
 
-A Tabela 10 apresenta a resistência média por idade do concreto, obtida
+A resistência média por idade do concreto, obtida
 com a função tapply():
 
 ```{r}
-medias_por_idade <- tapply(dados_limpos$resistencia_mpa, 
-                           dados_limpos$idade_dias, 
-                           mean, na.rm = TRUE)
-print(medias_por_idade)
+medias_por_idade <- tapply(dados_limpos$resistencia_mpa,
+dados_limpos$idade_dias,
+mean, na.rm = TRUE)
+knitr::kable(
+as.data.frame(t(round(medias_por_idade, 2))),
+align = "c"
+) %>%
+kableExtra::kable_styling(position = "center")
 ```
 
 Utilizando o pacote leem, foi gerado o gráfico de barras da resistência
-média por idade (Figura 4) com a função barplot():
+média por idade com a função barplot():
 
 ```{r}
 medias_idade <- tapply(dados_limpos$resistencia_mpa, 
@@ -817,19 +837,22 @@ Utilizando a função aggregate obteve-se as médias de cada variável,
 conforme tabela a seguir.
 
 ```{r}
-aggregate(cbind(resistencia_mpa, cimento_kg_m3, relacao_a_c, 
-                abatimento_mm, densidade_kg_m3) ~ tipo_concreto,
-          data = dados_limpos, FUN = mean, na.rm = TRUE)
+knitr::kable(
+aggregate(cbind(resistencia_mpa, cimento_kg_m3, relacao_a_c,
+abatimento_mm, densidade_kg_m3) ~ tipo_concreto,
+data = dados_limpos, FUN = mean, na.rm = TRUE),
+align = "c"
+) %>%
+kableExtra::kable_styling(position = "center")
 ```
 
 Análise dos resultados:
 
 - Resistência: Aumenta com a classe do concreto (C25 → C40), como
-  esperado segundo Neville (2016).
+  esperado segundo @Neville2016.
 
 - Cimento: O consumo de cimento é maior para classes mais altas,
-  coerente com a necessidade de maior resistência (Mehta & Monteiro,
-  2014).
+  coerente com a necessidade de maior resistência, alinhado com @MehtaMonteiro2014.
 
 - Relação a/c: Diminui com o aumento da classe, confirmando a relação
   inversa entre a/c e resistência.
@@ -845,17 +868,14 @@ Análise dos resultados:
 ### Resistência Relativa
 
 A variável resistencia_relativa foi criada utilizando a fórmula:
-
-**inserir formula dda resistencia relativa que é
-R=resistencia_mpa/referencia de classe**
-
+$$R_{\text{relativa}} = \frac{\text{Resistência (MPa)}}{\text{Resistência de Referência da Classe (MPa)}}$$
 A resistência de referência foi definida com base no valor
 característico da classe de concreto (fck), conforme estabelecido pela
-NBR 6118 (ABNT, 2014). Assim, para a classe C25, a referência é 25 MPa;
+@ABNT6118:2014. Assim, para a classe C25, a referência é 25 MPa;
 para C30, 30 MPa; para C35, 35 MPa; e para C40, 40 MPa.
 
 A resistência relativa permite avaliar o desempenho de cada corpo de
-prova em relação ao valor esperado para sua classe (Neville, 2016).
+prova em relação ao valor esperado para sua classe (@Neville2016).
 Valores superiores a 1,0 indicam que a resistência observada superou a
 resistência característica, enquanto valores inferiores indicam
 desempenho abaixo do esperado.
@@ -894,7 +914,12 @@ dados_limpos <- within(dados_limpos, {
 })
 
 # Verificar
-table(dados_limpos$classificacao, useNA = "ifany")
+knitr::kable(
+as.data.frame(table(dados_limpos$classificacao, useNA = "ifany")),
+col.names = c("Classificação", "Frequência"),
+align = "c"
+) %>%
+kableExtra::kable_styling(position = "center")
 
 barplot(table(dados_limpos$classificacao, useNA = "no"),
         main = "Distribuição da Classificação de Desempenho",
@@ -904,11 +929,11 @@ barplot(table(dados_limpos$classificacao, useNA = "no"),
         ylim = c(0, 50))
 ```
 
-A predominância de classificações "Excelente" e "Bom" (73%) indica que,
+A predominância de classificações "Excelente" e "Bom" (86%%) indica que,
 em geral, os concretos estão atendendo às especificações. No entanto, os
-4% classificados como "Insatisfatório" merecem atenção, pois representam
+2% classificados como "Insatisfatório" merecem atenção, pois representam
 corpos de prova com resistência significativamente abaixo do esperado
-para sua classe, conforme recomendado por Mehta & Monteiro (2014).
+para sua classe, conforme recomendado por @MehtaMonteiro2014.
 
 ### Indicador de Desempenho Acima da Média por Classe
 
@@ -921,13 +946,17 @@ dados_limpos$acima_media <- with(dados_limpos,
                                  ave(resistencia_mpa, tipo_concreto, 
                                      FUN = function(x) mean(x, na.rm = TRUE)))
                                      
-table(dados_limpos$acima_media, useNA = "ifany")
+knitr::kable(
+as.data.frame(table(dados_limpos$acima_media, useNA = "ifany")),
+align = "c"
+) %>%
+kableExtra::kable_styling(position = "center")
 ```
 
 Aproximadamente metade dos corpos de prova está acima da média de sua
 classe, o que é esperado em uma distribuição aproximadamente normal. A
 distribuição equilibrada sugere que a produção está controlada, sem
-grandes assimetrias (Neville, 2016).
+grandes assimetrias (@Neville2016).
 
 ### Análise com Funções de Grupamento
 
@@ -935,28 +964,43 @@ grandes assimetrias (Neville, 2016).
 
 ```{r}
 dados_split <- split(dados_limpos, dados_limpos$tipo_concreto)
-sapply(dados_split, nrow)
+knitr::kable(
+as.data.frame(t(sapply(dados_split, nrow))),
+align = "c"
+) %>%
+kableExtra::kable_styling(position = "center")
 ```
 
 #### Cálculo de Médias com lapply()
 
 ```{r}
 medias_lapply <- lapply(dados_split, function(df) {
-  mean(df$resistencia_mpa, na.rm = TRUE)
+mean(df$resistencia_mpa, na.rm = TRUE)
 })
-print(medias_lapply)
+knitr::kable(
+data.frame(
+Item_da_Lista = paste0("$", names(medias_lapply)),
+Valor = round(unlist(medias_lapply), 2)
+),
+align = "c"
+) %>%
+kableExtra::kable_styling(position = "center")
 ```
 
 #### Cálculo de Médias com sapply()
 
 ```{r}
 medias_sapply <- sapply(dados_split, function(df) {
-  mean(df$resistencia_mpa, na.rm = TRUE)
+mean(df$resistencia_mpa, na.rm = TRUE)
 })
-print(medias_sapply)
+knitr::kable(
+as.data.frame(t(round(medias_sapply, 2))),
+align = "c"
+) %>%
+kableExtra::kable_styling(position = "center")
 ```
 
-Diferença entre lapply() e sapply():
+#### Diferença entre lapply() e sapply():
 
 A principal diferença entre as funções está no tipo de retorno. lapply()
 sempre retorna uma lista, independentemente do resultado, mantendo a
@@ -964,7 +1008,7 @@ estrutura completa e permitindo maior flexibilidade para resultados
 complexos. Por sua vez, sapply() tenta simplificar o resultado para a
 forma mais simples possível: se os resultados forem todos do mesmo tipo
 e tamanho, retorna um vetor ou matriz; caso contrário, retorna uma lista
-(R Core Team, 2023).
+(@RCore2026).
 
 Neste caso, como o resultado de cada grupo é um único número (a média),
 sapply() retornou um vetor numérico nomeado, mais compacto e de
@@ -982,7 +1026,14 @@ variaveis_quant <- dados_limpos[, c("resistencia_mpa", "cimento_kg_m3",
                                     "densidade_kg_m3", "absorção_agregado_pct")]
 
 medias_apply <- apply(variaveis_quant, 2, mean, na.rm = TRUE)
-print(medias_apply)
+knitr::kable(
+data.frame(
+Variavel = names(medias_apply),
+Media = round(medias_apply, 2)
+),
+align = "c"
+) %>%
+kableExtra::kable_styling(position = "center")
 ```
 
 A média geral de resistência (33,54 MPa) está acima do valor de
@@ -993,8 +1044,6 @@ recomendados para concretos estruturais (geralmente entre 0,40 e 0,65).
 ```{r}
 dados_limpos$media_medidas <- apply(variaveis_quant, 1, mean, na.rm = TRUE)
 ```
-
-Discussão sobre interpretação física:
 
 A medida resumo calculada (média simples de todas as variáveis
 quantitativas) não possui interpretação física direta no contexto da
@@ -1037,7 +1086,12 @@ for (i in 1:nrow(dados_limpos)) {
 ```
 
 ```{r}
-table(acima_media_classe, useNA = "ifany")
+knitr::kable(
+as.data.frame(table(acima_media_classe, useNA = "ifany")),
+col.names = c("Acima da Média da Classe", "Frequência"),
+align = "c"
+) %>%
+kableExtra::kable_styling(position = "center")
 ```
 
 Esta abordagem percorre cada linha individualmente, calcula a média da
@@ -1053,7 +1107,11 @@ dados_limpos$media_classe <- ave(dados_limpos$resistencia_mpa,
 dados_limpos$acima_media_classe_vec <- dados_limpos$resistencia_mpa > 
                                        dados_limpos$media_classe
 
-table(dados_limpos$acima_media_classe_vec, useNA = "ifany")
+knitr::kable(
+as.data.frame(table(dados_limpos$acima_media_classe_vec, useNA = "ifany")),
+align = "c"
+) %>%
+kableExtra::kable_styling(position = "center")
 ```
 
 ### Comparação entre as abordagens
@@ -1080,7 +1138,7 @@ tabela_comparacao <- tribble(
 n_col <- ncol(tabela_comparacao)
 
 kable(tabela_comparacao, 
-      caption = "Tabela 2: Comparação entre for + if e vetorização em R",
+      
       booktabs = TRUE,
       align = c("l", "c", "c")) %>%  # primeira coluna à esquerda, outras centralizadas
   kable_styling(bootstrap_options = c("striped", "hover", "condensed"),
@@ -1101,7 +1159,7 @@ Bloco C apresentam desempenho superior aos utilizados nos demais blocos"
 Para isso utilizou-se a função tapply(), para obtenção dos valores.
 
 ```{r}
-knitr::opts_chunk$set(echo = FALSE, warning = FALSE, message = FALSE)
+knitr::opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE)
 library(tibble)
 library(knitr)
 library(kableExtra)
@@ -1123,7 +1181,7 @@ tabela_medias <- tabela_medias[order(-tabela_medias$`Resistência Média (MPa)`)
 n_col <- ncol(tabela_medias)
 
 kable(tabela_medias, 
-      caption = "Tabela 3: Média de resistência à compressão por obra",
+      
       booktabs = TRUE,
       align = c("l", "c")) %>%
   kable_styling(bootstrap_options = c("striped", "hover", "condensed"),
@@ -1149,12 +1207,7 @@ correlacao_cimento_resistencia <- cor(dados_limpos$cimento_kg_m3,
 print(correlacao_cimento_resistencia)
 ```
 
-O valor obtido foi de 0,732.
-
-Análise: A correlação positiva forte (0,73) confirma a afirmação do
-engenheiro: "quanto maior o consumo de cimento, maior tende a ser a
-resistência do concreto". Esta relação é bem conhecida na tecnologia do
-concreto e é um dos fundamentos do método de dosagem.
+O coeficiente de correlação de Pearson obtido foi de -0,0533, o que indica uma correlação linear praticamente nula (e levemente negativa) entre o consumo de cimento e a resistência à compressão do concreto. Na tecnologia do concreto, a resistência é controlada principalmente pela relação água/cimento (a/c) e pelo grau de adensamento/cura, e não isoladamente pelo consumo absoluto de cimento por metro cúbico.
 
 As variáveis que devem ser analisadas conjuntamente são:
 
