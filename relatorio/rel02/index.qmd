@@ -255,6 +255,7 @@ col.names = c("Observações", "Variáveis"),
 align = "c")
 ```
 
+
 A estrutura preliminar indica que algumas variáveis esperadas como
 numéricas podem ter sido importadas como texto. Isso ocorre quando uma
 coluna contém registros incompatíveis com números, como vírgulas
@@ -1511,117 +1512,6 @@ kable(tabela_correlacao,
   scroll_box(width = "100%", height = "250px")
 ```
 
-## 🧠 Considerações finais
-
-### Síntese dos Resultados
-
-O presente trabalho demonstrou a importância do processamento e limpeza
-de dados no contexto da Engenharia Civil, particularmente no controle
-tecnológico do concreto. A análise da base de dados revelou que:
-
-- Problemas de qualidade nos dados podem comprometer gravemente as
-  análises estatísticas. Neste estudo, 7 das 10 variáveis (70%)
-  apresentaram problemas de qualidade que exigiam correção antes de
-  qualquer análise.
-
-- Erros de digitação (substituição de "0" por "O", uso de vírgula em vez
-  de ponto) levaram à classificação incorreta de variáveis quantitativas
-  como texto, inviabilizando cálculos estatísticos básicos.
-
-- Inconsistências categóricas (espaços extras, diferenças de
-  maiúsculas/minúsculas) criaram categorias artificiais para o mesmo
-  grupo, comprometendo a análise por grupos.
-
-- A relação água/cimento confirmou ser o principal fator de controle da
-  resistência do concreto, com correlação negativa forte (r = -0,76),
-  consistente com a Lei de Abrams.
-
-- O Bloco B apresentou a maior resistência média (34,27 MPa), enquanto o
-  Bloco A apresentou a menor (32,12 MPa), contrariando a percepção do
-  engenheiro sobre o Bloco C.
-
-- Aproximadamente 86% dos corpos de prova foram classificados como
-  "Excelente" ou "Bom" em relação à resistência esperada para sua
-  classe, indicando um bom controle de qualidade geral.
-
-### Reflexão Final
-
-Por que o processamento e a limpeza dos dados são etapas fundamentais
-antes da aplicação de métodos estatísticos na Engenharia Civil?
-
-O processamento e a limpeza de dados são etapas fundamentais antes da
-aplicação de métodos estatísticos na Engenharia Civil por diversas
-razões:
-
-- Garantia de Confiabilidade: Dados com erros de digitação, como "3O,4"
-  em vez de "30,4" ou "0,55" em vez de "0,55", podem levar a conclusões
-  equivocadas sobre o desempenho do concreto. Uma estrutura projetada
-  com base em dados incorretos pode estar sobredimensionada (custo
-  desnecessário) ou, pior, subdimensionada (risco estrutural).
-
-- Validade dos Cálculos Estatísticos: Variáveis lidas como texto não
-  permitem o cálculo de médias, desvios, correlações ou quaisquer outras
-  medidas estatísticas. Sem a conversão adequada, análises essenciais
-  para o controle tecnológico se tornam impossíveis.
-
-- Comparabilidade e Consistência: Padronizar categorias ("c30" vs "C30",
-  "Bloco B " vs "Bloco B") é essencial para agrupar dados corretamente.
-  Categorias não padronizadas criam grupos artificiais, distorcendo a
-  análise.
-
-- Prevenção de Decisões Técnicas Erradas: Um valor de resistência
-  incorreto pode levar a aceitar um lote que deveria ser rejeitado,
-  comprometendo a segurança estrutural, ou rejeitar um lote que seria
-  aceitável, gerando desperdício financeiro.
-
-- Base para Decisões de Projeto: Em Engenharia Civil, as decisões são
-  frequentemente baseadas em valores característicos e estatísticas de
-  amostras. A confiabilidade dessas estimativas depende diretamente da
-  qualidade dos dados de entrada.
-
-Principal problema encontrado e decisão adotada:
-
-O principal problema identificado foi a inconsistência generalizada de
-tipos de dados, onde variáveis quantitativas essenciais para o controle
-tecnológico do concreto foram importadas como texto (character) devido a
-erros de digitação sistemáticos:
-
-- Substituição do número zero (0) pela letra "O" maiúscula em valores
-  numéricos (ex: "3O,4" no CP-019, "390O" no CP-064);
-
-- Uso de vírgula como separador decimal em um sistema configurado para
-  ponto decimal (ex: "38,7" no CP-008, "0,55" no CP-045);
-
-- Espaços extras em categorias textuais ("Bloco B " em vez de "Bloco
-  B");
-
-- Diferenças de maiúsculas/minúsculas em variáveis categóricas ("c30" em
-  vez de "C30").
-
-A decisão adotada foi a limpeza sistemática com substituição de
-caracteres problemáticos e conversão de tipos, executada em etapas:
-
-- Substituição de caracteres: Utilizou-se gsub() para trocar a letra "O"
-  pelo número zero "0" e a vírgula "," pelo ponto "." como separador
-  decimal.
-
-- Conversão de tipos: Após a substituição, as variáveis foram
-  convertidas para numeric com as.numeric().
-
-- Padronização de categorias: trimws() para remover espaços extras e
-  toupper() para uniformizar maiúsculas/minúsculas.
-
-- Preservação de valores ausentes: Optou-se por manter os 5 NAs
-  identificados, justificando que a imputação poderia introduzir viés,
-  especialmente para a variável resposta (resistência).
-
-Esta abordagem demonstrou ser eficaz: após a limpeza, todas as variáveis
-quantitativas foram corretamente reconhecidas como numéricas, permitindo
-cálculos estatísticos completos, incluindo médias, desvios e
-correlações. A padronização das categorias possibilitou a análise
-correta por grupos (obras e tipos de concreto), gerando informações
-confiáveis para o engenheiro responsável pelo controle tecnológico.
-
 # DESAFIO
 
 O desafio consiste em apresentar um script para em R capaz de:
@@ -1786,3 +1676,113 @@ round(correlacoes\["resistencia_mpa", "relacao_a_c"\], 3), "\n")
 cat("\n=== FIM DO RELATÓRIO ===\n")
 :::
 ```
+# 🧠 Considerações finais
+
+## Síntese dos Resultados
+
+O presente trabalho demonstrou a importância do processamento e limpeza
+de dados no contexto da Engenharia Civil, particularmente no controle
+tecnológico do concreto. A análise da base de dados revelou que:
+
+- Problemas de qualidade nos dados podem comprometer gravemente as
+  análises estatísticas. Neste estudo, 7 das 10 variáveis (70%)
+  apresentaram problemas de qualidade que exigiam correção antes de
+  qualquer análise.
+
+- Erros de digitação (substituição de "0" por "O", uso de vírgula em vez
+  de ponto) levaram à classificação incorreta de variáveis quantitativas
+  como texto, inviabilizando cálculos estatísticos básicos.
+
+- Inconsistências categóricas (espaços extras, diferenças de
+  maiúsculas/minúsculas) criaram categorias artificiais para o mesmo
+  grupo, comprometendo a análise por grupos.
+
+- A relação água/cimento confirmou ser o principal fator de controle da
+  resistência do concreto, com correlação negativa forte (r = -0,76),
+  consistente com a Lei de Abrams.
+
+- O Bloco B apresentou a maior resistência média (34,27 MPa), enquanto o
+  Bloco A apresentou a menor (32,12 MPa), contrariando a percepção do
+  engenheiro sobre o Bloco C.
+
+- Aproximadamente 86% dos corpos de prova foram classificados como
+  "Excelente" ou "Bom" em relação à resistência esperada para sua
+  classe, indicando um bom controle de qualidade geral.
+
+## Reflexão Final
+
+Por que o processamento e a limpeza dos dados são etapas fundamentais
+antes da aplicação de métodos estatísticos na Engenharia Civil?
+
+O processamento e a limpeza de dados são etapas fundamentais antes da
+aplicação de métodos estatísticos na Engenharia Civil por diversas
+razões:
+
+- Garantia de Confiabilidade: Dados com erros de digitação, como "3O,4"
+  em vez de "30,4" ou "0,55" em vez de "0,55", podem levar a conclusões
+  equivocadas sobre o desempenho do concreto. Uma estrutura projetada
+  com base em dados incorretos pode estar sobredimensionada (custo
+  desnecessário) ou, pior, subdimensionada (risco estrutural).
+
+- Validade dos Cálculos Estatísticos: Variáveis lidas como texto não
+  permitem o cálculo de médias, desvios, correlações ou quaisquer outras
+  medidas estatísticas. Sem a conversão adequada, análises essenciais
+  para o controle tecnológico se tornam impossíveis.
+
+- Comparabilidade e Consistência: Padronizar categorias ("c30" vs "C30",
+  "Bloco B " vs "Bloco B") é essencial para agrupar dados corretamente.
+  Categorias não padronizadas criam grupos artificiais, distorcendo a
+  análise.
+
+- Prevenção de Decisões Técnicas Erradas: Um valor de resistência
+  incorreto pode levar a aceitar um lote que deveria ser rejeitado,
+  comprometendo a segurança estrutural, ou rejeitar um lote que seria
+  aceitável, gerando desperdício financeiro.
+
+- Base para Decisões de Projeto: Em Engenharia Civil, as decisões são
+  frequentemente baseadas em valores característicos e estatísticas de
+  amostras. A confiabilidade dessas estimativas depende diretamente da
+  qualidade dos dados de entrada.
+
+Principal problema encontrado e decisão adotada:
+
+O principal problema identificado foi a inconsistência generalizada de
+tipos de dados, onde variáveis quantitativas essenciais para o controle
+tecnológico do concreto foram importadas como texto (character) devido a
+erros de digitação sistemáticos:
+
+- Substituição do número zero (0) pela letra "O" maiúscula em valores
+  numéricos (ex: "3O,4" no CP-019, "390O" no CP-064);
+
+- Uso de vírgula como separador decimal em um sistema configurado para
+  ponto decimal (ex: "38,7" no CP-008, "0,55" no CP-045);
+
+- Espaços extras em categorias textuais ("Bloco B " em vez de "Bloco
+  B");
+
+- Diferenças de maiúsculas/minúsculas em variáveis categóricas ("c30" em
+  vez de "C30").
+
+A decisão adotada foi a limpeza sistemática com substituição de
+caracteres problemáticos e conversão de tipos, executada em etapas:
+
+- Substituição de caracteres: Utilizou-se gsub() para trocar a letra "O"
+  pelo número zero "0" e a vírgula "," pelo ponto "." como separador
+  decimal.
+
+- Conversão de tipos: Após a substituição, as variáveis foram
+  convertidas para numeric com as.numeric().
+
+- Padronização de categorias: trimws() para remover espaços extras e
+  toupper() para uniformizar maiúsculas/minúsculas.
+
+- Preservação de valores ausentes: Optou-se por manter os 5 NAs
+  identificados, justificando que a imputação poderia introduzir viés,
+  especialmente para a variável resposta (resistência).
+
+Esta abordagem demonstrou ser eficaz: após a limpeza, todas as variáveis
+quantitativas foram corretamente reconhecidas como numéricas, permitindo
+cálculos estatísticos completos, incluindo médias, desvios e
+correlações. A padronização das categorias possibilitou a análise
+correta por grupos (obras e tipos de concreto), gerando informações
+confiáveis para o engenheiro responsável pelo controle tecnológico.
