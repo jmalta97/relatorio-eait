@@ -134,7 +134,7 @@ tabela_variaveis <- tribble(
 n_col <- ncol(tabela_variaveis)
 
 kable(tabela_variaveis, 
-      caption = "Tabela 1: Descrição das variáveis do estudo",
+      
       booktabs = TRUE,
       align = rep("c", n_col)) %>%  # garante todas as colunas centralizadas
   kable_styling(bootstrap_options = c("striped", "hover", "condensed"),
@@ -643,13 +643,13 @@ cada situação:
     por métodos estatísticos ou físicos é o procedimento recomendado
     para variáveis secundárias ou correlacionadas:
 
-   - CP-038 (relacao_a_c ausente)- Procedimento: Imputação por
+- CP-038 (relacao_a_c ausente)- Procedimento: Imputação por
   regressão/modelo ou pela mediana/média de amostras do mesmo tipo (C25
   a 28 dias). Justificativa: A relação água/cimento possui fortíssima
   correlação física com a dosagem de cimento (309 kg/m³) e a classe do
   concreto (C25). O valor estimado ficaria próximo de 0,61 a 0,62.
 
-  - CP-015 (abatimento_mm), CP-077 (densidade_kg_m3) e CP-097
+- CP-015 (abatimento_mm), CP-077 (densidade_kg_m3) e CP-097
   (absorção_agregado_pct) - Procedimento: Imputação pela mediana do
   grupo (filtrando pela mesma classe de concreto tipo_concreto e obra).
   Justificativa: São características físicas de lote. Preencher com a
@@ -690,25 +690,27 @@ int), permitindo operações matemáticas.
 - Padronização das Categorias (str / summary):
 
   - obra: O espaço em branco extra em "Bloco B " foi removido, restando
-apenas 4 categorias limpas (Bloco A, Bloco B, Bloco C e Bloco D).
+    apenas 4 categorias limpas (Bloco A, Bloco B, Bloco C e Bloco D).
 
-  - tipo_concreto: A entrada minúscula "c30" foi convertida para maiúscula,
-unificando a categoria para "C30".
+  - tipo_concreto: A entrada minúscula "c30" foi convertida para
+    maiúscula, unificando a categoria para "C30".
 
 - Geração de Estatísticas Descritivas (summary):
 
-  - Antes: O comando summary() exibia apenas a extensão (Length) e a classe
-(Class: character) para a maioria das variáveis, sem calcular nenhuma
-média ou mediana.
+  - Antes: O comando summary() exibia apenas a extensão (Length) e a
+    classe (Class: character) para a maioria das variáveis, sem calcular
+    nenhuma média ou mediana.
 
-  - Depois: O R agora exibe estatísticas descritivas completas para todas as
-quantitativas: Mínimo, 1º Quartil, Mediana, Média, 3º Quartil e Máximo.
+  - Depois: O R agora exibe estatísticas descritivas completas para
+    todas as quantitativas: Mínimo, 1º Quartil, Mediana, Média, 3º
+    Quartil e Máximo.
 
 - Identificação Transparente dos Valores Ausentes (summary):
 
-  - O summary() agora aponta explicitamente a presença de 1 NA's em cada uma
-das 5 colunas que continham falha de registro (resistencia_mpa,
-relacao_a_c, abatimento_mm, densidade_kg_m3 e absorção_agregado_pct).
+  - O summary() agora aponta explicitamente a presença de 1 NA's em cada
+    uma das 5 colunas que continham falha de registro (resistencia_mpa,
+    relacao_a_c, abatimento_mm, densidade_kg_m3 e
+    absorção_agregado_pct).
 
 ## Explorando os Dados
 
@@ -751,7 +753,8 @@ enquanto o Bloco D apresenta a menor (32,39 MPa). Esta variação pode
 estar relacionada a diferenças nos materiais utilizados ou no controle
 de qualidade de cada obra, conforme apresentado por @MehtaMonteiro2014.
 
-Utilizando o pacote leem, foi gerado o boxplot da resistência por bloco com a função boxplot():
+Utilizando o pacote leem, foi gerado o boxplot da resistência por bloco
+com a função boxplot():
 
 ```{r}
 boxplot(dados_limpos$resistencia_mpa ~ dados_limpos$obra,
@@ -763,8 +766,8 @@ boxplot(dados_limpos$resistencia_mpa ~ dados_limpos$obra,
 
 ### Resistência por tipo de Concreto
 
-A resistência média por classe de concreto, obtida
-com a função tapply():
+A resistência média por classe de concreto, obtida com a função
+tapply():
 
 ```{r}
 medias_por_tipo <- tapply(dados_limpos$resistencia_mpa,
@@ -803,8 +806,7 @@ barplot(medias_classes,
 
 ## Resistência média por idade
 
-A resistência média por idade do concreto, obtida
-com a função tapply():
+A resistência média por idade do concreto, obtida com a função tapply():
 
 ```{r}
 medias_por_idade <- tapply(dados_limpos$resistencia_mpa,
@@ -852,7 +854,8 @@ Análise dos resultados:
   esperado segundo @Neville2016.
 
 - Cimento: O consumo de cimento é maior para classes mais altas,
-  coerente com a necessidade de maior resistência, alinhado com @MehtaMonteiro2014.
+  coerente com a necessidade de maior resistência, alinhado com
+  @MehtaMonteiro2014.
 
 - Relação a/c: Diminui com o aumento da classe, confirmando a relação
   inversa entre a/c e resistência.
@@ -871,8 +874,8 @@ A variável resistencia_relativa foi criada utilizando a fórmula:
 $$R_{\text{relativa}} = \frac{\text{Resistência (MPa)}}{\text{Resistência de Referência da Classe (MPa)}}$$
 A resistência de referência foi definida com base no valor
 característico da classe de concreto (fck), conforme estabelecido pela
-@ABNT6118:2014. Assim, para a classe C25, a referência é 25 MPa;
-para C30, 30 MPa; para C35, 35 MPa; e para C40, 40 MPa.
+@ABNT6118:2014. Assim, para a classe C25, a referência é 25 MPa; para
+C30, 30 MPa; para C35, 35 MPa; e para C40, 40 MPa.
 
 A resistência relativa permite avaliar o desempenho de cada corpo de
 prova em relação ao valor esperado para sua classe (@Neville2016).
@@ -1204,10 +1207,21 @@ cimento, maior tende a ser a resistência do concreto.”
 correlacao_cimento_resistencia <- cor(dados_limpos$cimento_kg_m3, 
                                       dados_limpos$resistencia_mpa, 
                                       use = "complete.obs")
-print(correlacao_cimento_resistencia)
+knitr::kable(
+data.frame(
+Correlacao = round(correlacao_cimento_resistencia, 4)
+),
+align = "c"
+) %>%
+kableExtra::kable_styling(position = "center")
 ```
 
-O coeficiente de correlação de Pearson obtido foi de -0,0533, o que indica uma correlação linear praticamente nula (e levemente negativa) entre o consumo de cimento e a resistência à compressão do concreto. Na tecnologia do concreto, a resistência é controlada principalmente pela relação água/cimento (a/c) e pelo grau de adensamento/cura, e não isoladamente pelo consumo absoluto de cimento por metro cúbico.
+O coeficiente de correlação de Pearson obtido foi de -0,0533, o que
+indica uma correlação linear praticamente nula (e levemente negativa)
+entre o consumo de cimento e a resistência à compressão do concreto. Na
+tecnologia do concreto, a resistência é controlada principalmente pela
+relação água/cimento (a/c) e pelo grau de adensamento/cura, e não
+isoladamente pelo consumo absoluto de cimento por metro cúbico.
 
 As variáveis que devem ser analisadas conjuntamente são:
 
@@ -1230,10 +1244,16 @@ A seguir apresenta-se a análise da relação água/cimento e resistência:
 correlacao_ac_resistencia <- cor(dados_limpos$relacao_a_c, 
                                  dados_limpos$resistencia_mpa, 
                                  use = "complete.obs")
-print(correlacao_ac_resistencia)
+knitr::kable(
+data.frame(
+Correlacao = round(correlacao_ac_resistencia, 4)
+),
+align = "c"
+) %>%
+kableExtra::kable_styling(position = "center")
 ```
 
-Análise: A correlação negativa forte (-0,85) indica que quanto menor a
+Análise: A correlação negativa forte (-0,76) indica que quanto menor a
 relação água/cimento, maior a resistência à compressão, confirmando a
 Lei de Abrams. Este é um dos resultados mais importantes para o controle
 tecnológico do concreto.
@@ -1247,7 +1267,7 @@ Padrão observado:
 
 - Concretos com a/c \> 0,56 (geralmente C25): resistência \< 30 MPa
 
-Utilizando o pacote leem, foi gerado o gráfico de dispersão (Figura 6):
+Utilizando o pacote leem, foi gerado o gráfico de dispersão:
 
 ```{r}
 plot(dados_limpos$relacao_a_c, dados_limpos$resistencia_mpa,
@@ -1269,18 +1289,27 @@ A seguir será analisado a resistência do concreto em razão de sua idade.
 ```{r}
 medias_por_idade <- tapply(dados_limpos$resistencia_mpa, 
                            dados_limpos$idade_dias, mean, na.rm = TRUE)
-print(medias_por_idade)
+knitr::kable(
+data.frame(
+Idade_dias = names(medias_por_idade),
+Media_Resistencia_MPa = round(medias_por_idade, 2)
+),
+align = "c"
+) %>%
+kableExtra::kable_styling(position = "center")
 ```
 
-Utilizando o pacote leem, foi gerado o boxplot da resistência por idade
-(Figura 7) com a função boxplot():
+Utilizando o pacote leem, foi gerado o gráfico de barras da resistência
+por idade:
 
 ```{r}
-boxplot(dados_limpos$resistencia_mpa ~ dados_limpos$idade_dias,
-        main = "Resistência por Idade do Corpo de Prova",
-        xlab = "Idade (dias)",
-        ylab = "Resistência (MPa)",
-        col = "#2E86C1")
+barplot(medias_por_idade,
+col = "steelblue",
+border = "black",
+main = "Resistência Média por Idade",
+xlab = "Idade (dias)",
+ylab = "Resistência Média (MPa)",
+ylim = c(0, max(medias_por_idade) * 1.1))
 ```
 
 Observações importantes:
@@ -1299,11 +1328,10 @@ Observações importantes:
 - A observação de 280 dias (CP-085) apresenta resistência de 38,30 MPa,
   demonstrando ganho contínuo de resistência a longo prazo.
 
-Discussão: O ganho de resistência com a idade é um fenômeno conhecido e
-esperado, resultante da continuação das reações de hidratação do
-cimento. Para concretos estruturais, a resistência de referência
-geralmente é a de 28 dias, conforme estabelecido pelas normas técnicas
-(NBR 6118, 2014).
+O ganho de resistência com a idade é um fenômeno conhecido e esperado,
+resultante da continuação das reações de hidratação do cimento. Para
+concretos estruturais, a resistência de referência geralmente é a de 28
+dias, conforme estabelecido pelas normas técnicas (@ABNT6118:2014).
 
 #### Informações para o Relatório do Engenheiro
 
@@ -1313,7 +1341,7 @@ engenheiro responsável pelo controle tecnológico são:
 **1. Resistência Média por Classe de Concreto**
 
 ```{r}
-knitr::opts_chunk$set(echo = FALSE, warning = FALSE, message = FALSE)
+knitr::opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE)
 library(tibble)
 library(knitr)
 library(kableExtra)
@@ -1332,7 +1360,7 @@ tabela_conformidade <- tribble(
 n_col <- ncol(tabela_conformidade)
 
 kable(tabela_conformidade, 
-      caption = "Tabela 4: Conformidade da resistência à compressão por classe de concreto",
+      
       booktabs = TRUE,
       align = c("c", "c", "l")) %>%
   kable_styling(bootstrap_options = c("striped", "hover", "condensed"),
@@ -1348,7 +1376,7 @@ kable(tabela_conformidade,
 **2. Relação Água/Cimento por Classe**
 
 ```{r}
-knitr::opts_chunk$set(echo = FALSE, warning = FALSE, message = FALSE)
+knitr::opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE)
 library(tibble)
 library(knitr)
 library(kableExtra)
@@ -1367,7 +1395,7 @@ tabela_ac <- tribble(
 n_col <- ncol(tabela_ac)
 
 kable(tabela_ac, 
-      caption = "Tabela 5: Relação água/cimento por classe de concreto",
+      
       booktabs = TRUE,
       align = c("c", "c", "c", "c")) %>%
   kable_styling(bootstrap_options = c("striped", "hover", "condensed"),
@@ -1384,7 +1412,7 @@ kable(tabela_ac,
 **3. Coeficiente de Variação da Resistência**
 
 ```{r}
-knitr::opts_chunk$set(echo = FALSE, warning = FALSE, message = FALSE)
+knitr::opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE)
 library(tibble)
 library(knitr)
 library(kableExtra)
@@ -1415,7 +1443,7 @@ formattable(tabela_variabilidade,
 **4. Distribuição da Classificação de Desempenho**
 
 ```{r}
-knitr::opts_chunk$set(echo = FALSE, warning = FALSE, message = FALSE)
+knitr::opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE)
 library(tibble)
 library(knitr)
 library(kableExtra)
@@ -1449,7 +1477,7 @@ formattable(tabela_classificacao,
 **5. Correlações Críticas**
 
 ```{r}
-knitr::opts_chunk$set(echo = FALSE, warning = FALSE, message = FALSE)
+knitr::opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE)
 library(tibble)
 library(knitr)
 library(kableExtra)
@@ -1467,7 +1495,7 @@ tabela_correlacao <- tribble(
 n_col <- ncol(tabela_correlacao)
 
 kable(tabela_correlacao, 
-      caption = "Tabela 8: Correlação entre variáveis do estudo",
+      
       booktabs = TRUE,
       align = c("l", "c", "l", "c")) %>%
   kable_styling(bootstrap_options = c("striped", "hover", "condensed"),
@@ -1491,33 +1519,30 @@ O presente trabalho demonstrou a importância do processamento e limpeza
 de dados no contexto da Engenharia Civil, particularmente no controle
 tecnológico do concreto. A análise da base de dados revelou que:
 
-Problemas de qualidade nos dados podem comprometer gravemente as
-análises estatísticas. Neste estudo, 7 das 10 variáveis (70%)
-apresentaram problemas de qualidade que exigiam correção antes de
-qualquer análise.
+- Problemas de qualidade nos dados podem comprometer gravemente as
+  análises estatísticas. Neste estudo, 7 das 10 variáveis (70%)
+  apresentaram problemas de qualidade que exigiam correção antes de
+  qualquer análise.
 
-Erros de digitação (substituição de "0" por "O", uso de vírgula em vez
-de ponto) levaram à classificação incorreta de variáveis quantitativas
-como texto, inviabilizando cálculos estatísticos básicos.
+- Erros de digitação (substituição de "0" por "O", uso de vírgula em vez
+  de ponto) levaram à classificação incorreta de variáveis quantitativas
+  como texto, inviabilizando cálculos estatísticos básicos.
 
-Inconsistências categóricas (espaços extras, diferenças de
-maiúsculas/minúsculas) criaram categorias artificiais para o mesmo
-grupo, comprometendo a análise por grupos.
+- Inconsistências categóricas (espaços extras, diferenças de
+  maiúsculas/minúsculas) criaram categorias artificiais para o mesmo
+  grupo, comprometendo a análise por grupos.
 
-A relação água/cimento confirmou ser o principal fator de controle da
-resistência do concreto, com correlação negativa forte (r = -0,85),
-consistente com a Lei de Abrams.
+- A relação água/cimento confirmou ser o principal fator de controle da
+  resistência do concreto, com correlação negativa forte (r = -0,76),
+  consistente com a Lei de Abrams.
 
-O consumo de cimento apresentou correlação positiva forte (r = 0,73) com
-a resistência, confirmando a intuição técnica.
+- O Bloco B apresentou a maior resistência média (34,27 MPa), enquanto o
+  Bloco A apresentou a menor (32,12 MPa), contrariando a percepção do
+  engenheiro sobre o Bloco C.
 
-O Bloco B apresentou a maior resistência média (34,27 MPa), enquanto o
-Bloco A apresentou a menor (32,12 MPa), contrariando a percepção do
-engenheiro sobre o Bloco C.
-
-Aproximadamente 73% dos corpos de prova foram classificados como
-"Excelente" ou "Bom" em relação à resistência esperada para sua classe,
-indicando um bom controle de qualidade geral.
+- Aproximadamente 86% dos corpos de prova foram classificados como
+  "Excelente" ou "Bom" em relação à resistência esperada para sua
+  classe, indicando um bom controle de qualidade geral.
 
 ### Reflexão Final
 
@@ -1613,6 +1638,7 @@ O desafio consiste em apresentar um script para em R capaz de:
 
 A seguir é apresentado o script para alcançar os objtivos citados.
 
+```r
 ## CARREGAMENTO E INSPEÇÃO INICIAL
 
 dados \<- read.csv2( "base_processamento_dados_engenharia_civil.csv",
@@ -1652,6 +1678,7 @@ dados_limpos \<- dados
 ### Padronizando variáveis qualitativas
 
 dados_limpos$obra <- trimws(dados_limpos$obra)
+
 dados_limpos$tipo_concreto <- toupper(dados_limpos$tipo_concreto)
 
 ### Convertendo variáveis quantitativas
@@ -1659,7 +1686,9 @@ dados_limpos$tipo_concreto <- toupper(dados_limpos$tipo_concreto)
 #### Resistência
 
 dados_limpos$resistencia_mpa <- gsub("O", "0", dados_limpos$resistencia_mpa)
+
 dados_limpos$resistencia_mpa <- gsub(",", ".", dados_limpos$resistencia_mpa)
+
 dados_limpos$resistencia_mpa <- as.numeric(dados_limpos$resistencia_mpa)
 
 #### Cimento
@@ -1756,3 +1785,4 @@ round(correlacoes\["resistencia_mpa", "relacao_a_c"\], 3), "\n")
 
 cat("\n=== FIM DO RELATÓRIO ===\n")
 :::
+```
