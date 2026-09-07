@@ -262,19 +262,6 @@ kable(categorias_brutas, align = c("l", "l", "c")) |>
 ```
 A função count() substitui a combinação table() e conversões posteriores para data frame. Sua vantagem é retornar diretamente um tibble que pode continuar no fluxo de transformação.
 
-```{r}
-#| label: tab-espacos
-#| tbl-cap: "Registros com espaços extras em variáveis categóricas"
-
-dados |>
-  filter(
-    obra != str_trim(obra) |
-      tipo_concreto != str_trim(tipo_concreto)
-  ) |>
-  select(id_corpo_prova, obra, tipo_concreto) |>
-  kable(align = "c") |>
-  kable_styling(full_width = FALSE, position = "center")
-```
 ### Problemas de representação numérica
 
 ```{r}
