@@ -53,9 +53,10 @@ tema_relatorio <- theme_minimal(base_size = 12) +
 ::: {style="text-align: justify;"}
 
 # 📌 Introdução
-O controle tecnológico do concreto constitui etapa fundamental para a garantia da qualidade e da segurança das estruturas de concreto armado. Esse controle envolve a verificação sistemática das propriedades do concreto desde a dosagem até o endurecimento, buscando assegurar que o material atenda aos requisitos definidos em projeto.
+O controle tecnológico do concreto constitui etapa fundamental para a garantia da qualidade e da segurança das estruturas de concreto armado. Conforme estabelecido pela @ABNT12655 esse controle envolve a verificação sistemática das propriedades do concreto desde a dosagem até o endurecimento, buscando assegurar que o material atenda aos requisitos definidos em projeto.
 
-No contexto da Engenharia Civil, a análise estatística dos dados de controle tecnológico permite identificar padrões, avaliar a conformidade dos lotes produzidos e apoiar decisões sobre aceitação, investigação ou rejeição de materiais. Entretanto, a confiabilidade dessas análises depende diretamente da qualidade dos dados utilizados.
+No contexto da Engenharia Civil, a análise estatística dos dados de controle tecnológico permite identificar padrões, avaliar a conformidade dos lotes produzidos e apoiar decisões sobre aceitação, investigação ou rejeição de materiais. Entretanto, a confiabilidade dessas análises depende diretamente da qualidade dos dados utilizados, conforme destacado por @Neville2016
+
 
 O presente trabalho utiliza uma base contendo 100 observações de corpos de prova de concreto, com informações sobre resistência à compressão, consumo de cimento, relação água/cimento, abatimento, densidade e absorção do agregado. A base apresenta problemas de qualidade que impedem sua utilização direta, incluindo:
 
@@ -73,7 +74,7 @@ O presente trabalho utiliza uma base contendo 100 observações de corpos de pro
 
 # 🎯 Objetivos
 ## Objetivo geral
-Realizar o diagnóstico, a limpeza e a análise exploratória de uma base de controle tecnológico do concreto utilizando prioritariamente ferramentas do ecossistema Tidyverse, gerando informações úteis para a tomada de decisão na Engenharia Civil.
+Realizar o diagnóstico, a limpeza e a análise exploratória de uma base de controle tecnológico do concreto utilizando prioritariamente ferramentas do ecossistema **Tidyverse**, @tidyverse, gerando informações úteis para a tomada de decisão na Engenharia Civil.
 
 ## Objetivos específicos
 - importar a base sem alterar os dados brutos;
@@ -92,7 +93,7 @@ Realizar o diagnóstico, a limpeza e a análise exploratória de uma base de con
 
 - produzir informações que auxiliem o engenheiro responsável;
 
-- comparar a lógica do Base R com o paradigma do Tidyverse.
+- comparar a lógica do Base R, @RCore2026, com o paradigma do Tidyverse, @tidyverse.
 
 # ⚙️ Metodologia
 ## Base de dados
@@ -179,7 +180,7 @@ A função glimpse() desempenha papel semelhante a str(), mas apresenta as colun
 dimensoes <- dados |>
   summarise(
     Observacoes = n(),
-    Variaveis = ncol(pick(everything()))
+    Variaveis = ncol(dados)
   )
 
 kable(dimensoes, align = "c") |>
@@ -430,7 +431,7 @@ dados_corrigidos <- dados_limpos |>
   )
 ```
 ## Tratamento dos valores ausentes
-###Decisão adotada para valores ausentes
+### Decisão adotada para valores ausentes
 
 Optou-se por manter todos os valores ausentes (NA) sem imputação ou exclusão, pelas seguintes razões:
 
@@ -587,6 +588,8 @@ kable(resumo_por_tipo, digits = 2, align = "c") |>
   kable_styling(full_width = FALSE, position = "center") |>
   scroll_box(width = "100%")
 ```
+A resistência média aumenta consistentemente com a classe do concreto, como esperado pela especificação técnica da @ABNT6118:2014. A classe C40 apresentou a maior resistência média (43,33 MPa), enquanto a C25 apresentou a menor (27,07 MPa). É importante notar que a resistência média de cada classe supera o valor característico de referência, o que indica bom desempenho geral.
+
 ```{r}
 #| label: fig-media-tipo
 #| fig-cap: "Resistência média por classe de concreto"
@@ -1063,7 +1066,7 @@ kable(verificacao_final, align = c("l", "c")) |>
 
 O bloco abaixo reúne a lógica essencial em um único fluxo reproduzível. Ele pode ser utilizado como versão resumida da solução.
 
-```{r}
+```r
 #| label: script-consolidado
 #| eval: false
 
@@ -1183,13 +1186,11 @@ ggplot(dados_limpos, aes(relacao_a_c, resistencia_mpa, color = tipo_concreto)) +
 
 # 🧠 Considerações finais
 
-## Síntese
-
 A aplicação do Tidyverse permitiu organizar o processamento em uma sequência clara: importação, diagnóstico, padronização, conversão, investigação, criação de variáveis, agrupamento, resumo e visualização. Os dados brutos foram preservados, e a base limpa foi criada em um objeto independente.
 
 A principal mudança em relação ao Base R não está apenas nos nomes das funções, mas na lógica de organização. Em vez de executar operações isoladas e armazenar diversos objetos intermediários, o Tidyverse favorece fluxos encadeados, nos quais cada etapa recebe o resultado da etapa anterior.
 
-O diagnóstico confirmou a necessidade de tratar representações numéricas inconsistentes, padronizar categorias e registrar valores ausentes. Também foram identificados registros que exigem investigação técnica. Esses valores não foram corrigidos automaticamente, pois a plausibilidade estatística não substitui a consulta às fichas originais de ensaio.
+O diagnóstico confirmou a necessidade de tratar representações numéricas inconsistentes, padronizar categorias e registrar valores ausentes. Também foram identificados registros que exigem investigação técnica. 
 
 A análise demonstra que uma ferramenta de programação pode facilitar o tratamento, mas não decide sozinha se um valor é erro, condição especial do material ou observação válida. Essa decisão depende da integração entre estatística, rastreabilidade e conhecimento de Engenharia Civil.
 
@@ -1200,13 +1201,6 @@ A análise demonstra que uma ferramenta de programação pode facilitar o tratam
 A principal diferença está na filosofia de organização do código. No Base R, as operações são geralmente executadas de forma isolada, com funções como tapply(), aggregate() e apply() que resolvem tarefas específicas, mas frequentemente exigem a criação de objetos intermediários e o aninhamento de funções. O código tende a ser mais fragmentado e menos intuitivo para quem não está familiarizado com a sintaxe.
 
 No Tidyverse, a análise é organizada como um fluxo contínuo utilizando o operador |>. Os verbos do dplyr (filter(), mutate(), summarise(), group_by()) descrevem explicitamente cada ação realizada, e o encadeamento permite ler o código de cima para baixo, seguindo a ordem lógica do processamento. Isso torna o código mais legível, modular e fácil de auditar.
-
-Exemplo prático da diferença:
-
-Base R	Tidyverse
-tapply(dados$resistencia, dados$obra, mean)	dados |> group_by(obra) |> summarise(media = mean(resistencia))
-aggregate(resistencia ~ obra, dados, mean)	dados |> group_by(obra) |> summarise(media = mean(resistencia))
-apply(dados[,4:10], 2, mean)	dados |> summarise(across(where(is.numeric), mean))
 
 ## Por que o processamento e a limpeza dos dados são etapas fundamentais antes da aplicação de métodos estatísticos na Engenharia Civil?
 O processamento e a limpeza de dados são fundamentais por diversas razões:
@@ -1274,6 +1268,8 @@ kable(tabela_funcoes,
   row_spec(0, bold = TRUE, background = "#F8F9FA") |>  # cabeçalho
   scroll_box(width = "100%", height = "400px")
 ```
+
+
 
 **Por que a solução é adequada:**
 
