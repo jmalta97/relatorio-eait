@@ -54,7 +54,6 @@ Resumir os principais conceitos apresentados nos quatro primeiros capítulos do 
 Este relatório foi elaborado a partir da leitura e análise dos quatro primeiros capítulos do livro digital Estatística & Probabilidade aplicada às Engenharias e Ciências, da visualização e compreensão dos vídeos do Curso R Básico 2024 e conteúdos auxiliares como o R Studio, Pacote Leem e Rmarkdown. A metodologia utilizada consistiu em identificar os principais conceitos, definições e aplicações sintetizando as ideias centrais de forma objetiva e organizada. 
 A estrutura do relatório foi organizada em introdução, objetivos, metodologia, resultados e discussão, conclusão e referências. O foco foi produzir um resumo claro, com linguagem acadêmica simples e adequada. 
 
-## 🔍 Resultados e Discussão
 
 ### Capítulo 1: Definições Gerais da Estatística e técnicas de somatórios
 
@@ -181,42 +180,246 @@ Em suma, assimetria e curtose complementam as medidas de dispersão estudadas no
 
 ### Introdução básica ao R (linguagem e software)
 
-O R é uma linguagem de programação e um ambiente computacional voltado principalmente para estatística, análise de dados e construção de gráficos. De acordo com @RCoreTeam2026, o projeto R apresenta o software como um ambiente gratuito para computação estatística e gráficos, disponível para diferentes sistemas operacionais. 
+O R é uma linguagem de programação e um ambiente computacional voltado principalmente para estatística, análise de dados e construção de gráficos. De acordo com R Core Team (2026), o projeto R apresenta o software como um ambiente gratuito para computação estatística e gráficos, disponível para diferentes sistemas operacionais. O R não é um software fechado com funções engessadas, mas um ambiente de software livre e de código aberto para computação estatística e gráfica.
 
-Para utilizar o R, é necessário instalar inicialmente o programa R, que executa os comandos estatísticos. A instalação pode ser feita pelo site oficial do projeto R, por meio da rede CRAN. Após instalar o R, recomenda-se instalar também o RStudio, que é uma interface de desenvolvimento integrada criada pela empresa @PositGuide2026. O RStudio facilita o uso do R, pois reúne editor de código, console, gráficos, ambiente de trabalho, arquivos, pacotes e ajuda integrada em uma única interface. 
+Para utilizar o R, é necessário instalar inicialmente o programa R, que executa os comandos estatísticos. A instalação pode ser feita pelo site oficial do projeto R, por meio da rede CRAN. Após instalar o R, recomenda-se instalar também o RStudio, que é uma interface de desenvolvimento integrada criada pela empresa Posit (2026). O RStudio facilita o uso do R, pois reúne editor de código, console, gráficos, ambiente de trabalho, arquivos, pacotes e ajuda integrada em uma única interface. 
 
-De forma simples, pode-se dizer que o R é a linguagem e o ambiente que executa os cálculos, enquanto o RStudio é a ferramenta que organiza e facilita o uso dessa linguagem. O RStudio permite escrever comandos, executar linhas de código, visualizar resultados, criar gráficos, consultar ajuda e gerenciar projetos, além de possuir pacotes com integração à internet, por exemplo o HTML, para criação de relatórios, apresentações e outros diversos itens. Sua interface é dividida em 4 quadrantes sendo:
+De forma simples, pode-se dizer que o R é a linguagem e o ambiente que executa os cálculos, enquanto o RStudio é a ferramenta que organiza e facilita o uso dessa linguagem. O RStudio permite escrever comandos, executar linhas de código, visualizar resultados, criar gráficos, consultar ajuda e gerenciar projetos, além de possuir pacotes com integração à internet, por exemplo o HTML, para criação de relatórios, apresentações e outros diversos itens.
 
-- 1º Quadrante – Script do R - Área utilizada para escrever, editar e salvar os códigos em arquivos com extensão .R; 
-- 2º Quadrante – Console do R - Local onde os comandos são efetivamente executados e os resultados aparecem. Também permite digitar comandos diretamente, porém esses comandos não ficam organizados em um script, a menos que sejam salvos separadamente;
-- 3º Quadrante – Ambiente Global - Exibe os objetos criados durante a análise, como vetores, tabelas, conjuntos de dados, funções e resultados de cálculos. Também apresenta o histórico dos comandos executados e permite acompanhar os dados armazenados na sessão atual;
-- 4º Quadrante – Área de plotagem - Utilizado para visualizar gráficos, consultar arquivos e pastas, gerenciar pacotes e acessar a documentação de ajuda das funções. 
+A linguagem R, assim como outras linguagens de programação, possui sintaxe e semântica. A sintaxe está relacionada à forma correta de escrever os comandos. Em outras palavras, a sintaxe define as regras de escrita que o R reconhece. Se um comando for escrito de forma incorreta, o programa poderá apresentar erro. A semântica, por outro lado, diz respeito ao significado dos comandos. Ou seja, enquanto a sintaxe trata da forma correta de escrever, a semântica trata do que aquele comando representa ou executa.  
 
-### Sintaxe e semântica do R
+#### Princípios do R  
 
-A linguagem R, assim como outras linguagens de programação, possui sintaxe e semântica. A sintaxe está relacionada à forma correta de escrever os comandos. Em outras palavras, a sintaxe define as regras de escrita que o R reconhece. Se um comando for escrito de forma incorreta, o programa poderá apresentar erro.
+A linguagem R possui três princípios derivados dos conceitos de John Chambers (criador da linguagem S, na qual o R se baseia): 
 
-Por exemplo, para criar um conjunto de dados no R, pode-se usar o comando:
+- Princípio do Objeto – “Tudo o que existe no R é um objeto": 
 
-- dados <- c (3, 1, 0, 1, 3, 2, 4, 1, 3, 1)
-	
-Nesse exemplo, dados é o nome do objeto criado, <- é o operador de atribuição, e c() é uma função usada para combinar valores em um vetor. A escrita correta dos parênteses, vírgulas e símbolos faz parte da sintaxe da linguagem.
+Semântica: O R armazena dados e estruturas na memória virtual na forma de objetos nativos (existem 24 estruturas básicas nativas no R) ; 
 
-A semântica, por outro lado, diz respeito ao significado dos comandos. Ou seja, enquanto a sintaxe trata da forma correta de escrever, a semântica trata do que aquele comando representa ou executa. No exemplo anterior, o significado do comando é armazenar uma sequência de valores numéricos dentro de um objeto chamado dados.
+Estrutura de Dados vs. Objeto Nativo: Estruturas populares como data.frame ou tibble não são objetos nativos raiz, mas sim estruturas construídas sobre o objeto nativo lista (list); 
 
-Após criar esse objeto, é possível aplicar funções estatísticas:
-- mean(dados) # calcula a média
-- median(dados) # calcula a mediana
-- var(dados) # calcula a variância
-- sd(dados) # calcula o desvio padrão
+Todo objeto possui três propriedades intrínsecas: tipo (typeof()), modo (mode()) e comprimento (length()). 
 
-A sintaxe desses comandos envolve o nome da função, como mean, median, var e sd, seguido dos parênteses com o objeto analisado. Já a semântica está no significado de cada função. A função mean() calcula a média aritmética, median() calcula a mediana, var() calcula a variância e sd() calcula o desvio padrão.
+- Princípio da Função - "Tudo o que acontece no R é uma chamada de função": 
 
-Outro ponto importante da sintaxe do R é que a linguagem diferencia letras maiúsculas de minúsculas. Assim, um objeto chamado dados é diferente de outro chamado Dados. Também é comum usar comentários no código, iniciados pelo símbolo #. Os comentários não são executados pelo R, servindo apenas para explicar o código.
+Atribuição de Variáveis: O operador recomendado para associar nomes a objetos é a flecha <- (ex: x <- 10).  
 
-Portanto, compreender sintaxe e semântica é essencial para utilizar o R corretamente. A sintaxe permite escrever comandos sem erros, enquanto a semântica permite entender o significado das operações realizadas. Esse conhecimento é importante para aplicar os conceitos estatísticos estudados, como organização de dados, medidas de posição, medidas de dispersão, assimetria e curtose.
+- Princípio da Interface - "O R se comunica com outras linguagens": 
 
-## 🏗️ Estudo de Caso e Aplicação
+#### Diferenciação Sintática e Operacional: R vs. RStudio 
+
+- R (Linguagem/Interpretador): O motor de execução onde os códigos são de fato processados e avaliados no console. 
+
+- RStudio (IDE): A interface gráfica de desenvolvimento. Organiza o trabalho em 4 quadrantes: 
+
+1º Quadrante – Script do R - Área utilizada para escrever, editar e salvar os códigos em arquivos com extensão .R; 
+
+2º Quadrante – Console do R - Local onde os comandos são efetivamente executados e os resultados aparecem. Também permite digitar comandos diretamente, porém esses comandos não ficam organizados em um script, a menos que sejam salvos separadamente; 
+
+3º Quadrante – Ambiente Global - Exibe os objetos criados durante a análise, como vetores, tabelas, conjuntos de dados, funções e resultados de cálculos. Também apresenta o histórico dos comandos executados e permite acompanhar os dados armazenados na sessão atual; 
+
+4º Quadrante – Área de plotagem - Utilizado para visualizar gráficos, consultar arquivos e pastas, gerenciar pacotes e acessar a documentação de ajuda das funções. 
+
+#### Sintaxe Básica  
+
+Nomes Sintáticos: O R diferencia maiúsculas de minúsculas e possui palavras reservadas que não podem ser usadas como nomes (TRUE, FALSE, if, else, for, function, NULL, NA). No R nomes não podem começar por número nem por ponto seguido de número.  
+
+Atribuição vs. Igualdade: O operador idiomático e correto para associar nomes a objetos é a seta <- (atribuição). O sinal de igualdade (=) é reservado para a definição de argumentos dentro de chamadas de funções 
+
+Comentários: Qualquer linha ou trecho iniciado pelo caractere cerquilha (#) é interpretado como comentário e ignorado pelo interpretador; 
+
+#### O Conceito Semântico de Escopo Léxico (Lexical Scoping) 
+
+Mecanismo de Busca de Objetos: Uma das principais diferenças semânticas entre o R e a linguagem S nativa é que o R utiliza escopo léxico, ou seja, quando uma função busca por uma variável/objeto não definido localmente no seu próprio corpo (environment local), ela procura recursivamente nos ambientes superiores (enclosing environments) onde a função foi criada, até chegar ao Global Environment. 
+
+#### Objetos e Estrutura de Dados – 1º Princípio do R 
+
+Objetos e estruturas de dados constituem um dos fundamentos da linguagem R. No R, os dados, as funções e outros elementos computacionais são representados como objetos. Esses objetos podem ser organizados em diferentes estruturas, como vetores, matrizes, arrays, listas e quadros de dados, de acordo com a natureza, a dimensionalidade e a forma de organização das informações. 
+
+##### Atributos Intrínsecos (mode e length): 
+
+Todo objeto possui obrigatoriamente modo/tipo e comprimento. 
+
+- mode(): Identifica a tipagem na perspectiva da linguagem S (ex: numeric, character, logical, function). 
+
+- typeof(): Identifica a tipagem na perspectiva da linguagem C subjacente (ex: integer, double, closure, symbol). 
+
+- length(): Retorna a dimensão/quantidade de elementos do objeto. 
+
+- A função attributes() exibe atributos adicionais (como nomes e dimensões), mas omite os intrínsecos. 
+
+##### Estrutura Interna vs. Estrutura Externa 
+
+- Estrutura Interna (Objetos Raiz em C): Existem nativamente apenas 24 tipos básicos de objetos no submundo do R (ex: intSXP, REALSXP, LGLSXP, VECSXP). Apenas os desenvolvedores do R Core Team podem criar novos objetos nativos. 
+
+- Estrutura Externa (Estruturas de Dados): É a forma como o objeto é apresentado ao usuário ou no paradigma de Orientação a Objetos (vetores, matrizes, data.frames, tibbles). 
+
+##### Coerção Implícita e Explícita 
+
+- Coerção Implícita: Em vetores atômicos (que devem ser homogêneos), elementos de diferentes tipos são convertidos automaticamente segundo a hierarquia de precedência: logical $\to$ integer $\to$ double $\to$ character. 
+
+- Coerção Explícita: Realizada via funções com prefixo as. (ex: as.numeric(), as.character(), as.factor()). 
+
+##### Vetores 
+
+Vetores Atômicos são estruturas unidimensionais homogêneas. Os tipos principais são:  
+
+- Lógico (logical) – TRUE / FALSE; 
+
+- Inteiro (integer),  
+
+- Real de dupla precisão (double); 
+
+- Caractere (character); 
+
+- Complexo (complex); 
+
+- Bruto (raw). 
+
+Com relação à sintaxe de vetores do tipo inteiros, para forçar um número como integer puro em vez de double, utiliza-se o sufixo L (ex: 1L, 10L). 
+
+Já com relação à semântica de valores especiais (NA, NaN, Inf, NULL), têm-se 
+
+- NA (Not Available): Representa dado ausente/faltante. Ocupa posição na estrutura e preserva o comprimento do vetor (length() inclui os NA). Possui tipagens específicas internamente (NA_integer_, NA_real_, NA_character_). 
+
+- NaN (Not a Number): Representa indeterminações matemáticas (ex: 0/0, Inf - Inf). Internamente é do tipo double. 
+
+- Inf / -Inf: Representam infinito positivo e negativo em operações numéricas de ponto flutuante. 
+
+- NULL: Representa a ausência de objeto (vazio absoluto). Não ocupa espaço nem altera o comprimento de vetores concatenados (length(c(1, 2, NULL)) retorna 2).  
+
+##### Matrizes 
+
+Em se tratando de semântica, uma matriz não é um objeto nativo diferente na memória; é um vetor atômico ao qual foi adicionado o atributo de dimensão dim (um vetor numérico de 2 elementos: c(linhas, colunas)): 
+
+- matrix(data, nrow, ncol, byrow = FALSE): Transforma o vetor de dados na estrutura matricial. 
+
+- Preenchimento Padrão por Colunas: Por padrão (byrow = FALSE), o R preenche a matriz coluna por coluna. Se byrow = TRUE, o preenchimento é feito linha por linha. 
+
+- Funções cbind() e rbind(): Combinam vetores ou matrizes acrescentando novas colunas ou linhas, respectivamente. 
+
+##### Arrays 
+
+O array é uma estrutura de dados multidimensional (funciona como um conjunto ou empilhamento de matrizes). Internamente, o array nada mais é do que um vetor atômico contínuo na memória virtual. O que altera sua apresentação e comportamento externo é a presença do atributo de dimensão dim. 
+
+Enquanto uma matriz possui um atributo dim de comprimento 2 (c(linhas, colunas)), um array possui um atributo dim com comprimento igual a 3 ou mais (c(linhas, colunas, camadas/matrizes)). 
+
+##### Listas 
+
+Ao contrário dos vetores atômicos (que exigem estrita homogeneidade de tipos), a lista (list) permite armazenar elementos de naturezas e tipos de objetos completamente distintos (vetores, matrizes, funções, expressões, quadros de dados e outras listas). Cada elemento de uma lista atua como um ponteiro que aponta para o endereço do objeto correspondente na memória. 
+
+##### Quadro de Dados (Data Frames) 
+
+O quadro de dados (data frame) é internamente uma lista de vetores de mesmo comprimento, pertencente à classe S3 "data.frame". Simula o formato clássico de tabela/planilha eletrônica, ou seja, cada coluna representa uma variável, que pode ter tipo diferente das outras colunas, mas homogêneo internamente, e as linhas correspondem às observações. 
+
+Vale destacar que todos os vetores/colunas que compõem um data frame devem obrigatoriamente possuir o mesmo número de elementos (linhas). 
+
+#### Funções – 2º Princípio do R 
+
+Como apresentado acima e vinculado ao 2º Princípio Chambers (2016), apesar de udo que acontece no R ser uma chamada de função, a função é um objeto como estrutura definida como qualquer outro. Entendemos que uma função no R é um objetivo do tipo: 
+
+- closure: Funções convencionais criadas pelo usuário ou por pacotes através da instrução function(). 
+
+- special e builtin: Funções primitivas de baixo nível desenvolvidas pelo R Core Team, geralmente escritas em C para alto desempenho, invocadas via interfaces como .Primitive() ou .Internal(). 
+
+Em programação, uma função expande a definição matemática simples, representando um conjunto estruturado de rotinas/passos que recebe entradas (inputs), processa regras e retorna uma saída (output). Essas funções podem ser divididas em três componentes: 
+
+- formals(f): Os argumentos formais de entrada e seus valores padrão. 
+
+- body(f): O corpo executável contendo o código/algoritmo da função. 
+
+- environment(f): O ambiente de criação/envolvente que determina o escopo léxico de busca de variáveis. 
+
+Já com relação às chamadas de funções, essas podem ocorrer de 3 formas: 
+
+- Aninhada: Chamadas compostas do tipo sqrt(var(x)), avaliadas internamente de dentro para fora. 
+
+- Intermediária: Atribuição de etapas a variáveis temporárias no ambiente global. 
+
+- Operador Pipe (|>) Nativo / Magrittr (%>%): Direciona a saída do comando à esquerda como a primeira entrada da função à direita (x |> var() |> sqrt()), simplificando a leitura e eliminando a necessidade de objetos intermediários. 
+
+##### Estruturas de Controle 
+
+As estruturas de controle, também chamadas de estruturas de controle de fluxo, servem para determinar quando, quantas vezes e em quais condições um trecho de código será executado. Na prática, permitem automatizar decisões e tarefas repetitivas em um programa. 
+
+- if e else: executam uma ação dependendo de uma condição.  
+
+- ifelse(): aplica uma decisão condicional aos elementos de um vetor.  
+
+- switch(): seleciona uma ação entre várias alternativas.  
+
+- for: repete uma operação para cada elemento de uma sequência.  
+
+- while: repete uma operação enquanto determinada condição for verdadeira.  
+
+- repeat: repete continuamente um bloco até que uma condição de interrupção seja alcançada.  
+
+- break: interrompe uma repetição.  
+
+- next: ignora a iteração atual e segue para a próxima. 
+
+ 
+#### Princípio da Interface – 3º Princípio do R 
+
+Uma grande vantagem do R é possuir uma arquitetura Aberta, ou seja, o R traz em sua estrutura nativa suporte para comunicar-se com linguagens de baixo nível (C e Fortran) e com a linguagem S para rotinas de alto desempenho computacional, abaixo exemplo: 
+
+- Python (reticulate): Permite executar scripts em Python e invocar suas funções e bibliotecas diretamente na sessão do R. 
+
+- C++ (Rcpp): Compila código em C/C++ e o disponibiliza para chamada nativa no R com alto desempenho. 
+
+- Interfaces Gráficas (tcltk): Utiliza o pacote nativo tcltk para gerar janelas, botões e controles interativos de desktop. 
+
+- Geração de Saídas Dinâmicas: A capacidade de interface do R estende-se à geração de documentos, apresentações (via reveal.js, R Markdown e Quarto) e aplicações web estáticas ou dinâmicas. 
+
+#### Gerenciamento de Projetos, Dados e Pacotes no R 
+
+##### Arquivos .RData e .Rhistory 
+
+- RData: Arquivo binário responsável por armazenar a imagem do ambiente de trabalho (workspace), contendo todos os objetos e vinculações criadas e presentes no Global Environment durante uma sessão. 
+
+- Rhistory: Arquivo de texto plano que armazena o histórico cronológico de todas as linhas de comando executadas no console durante a sessão. 
+
+##### Criando e Salvando um Script 
+
+Um Script é um arquivo de texto simples com extensão .R que guarda a sequência estruturada de linhas de comando que serão enviadas e avaliadas pelo interpretador do R. É a forma padronizada de documentar e reexecutar códigos, tornando o usuário independente dos salvamentos automáticos do .RData / .Rhistory. 
+
+Para executá-lo basta utilizar Ctrl + Enter (no RStudio) ou botão Run. Dessa forma, a linha selecionada ou o bloco de código do editor é enviada para execução no console. 
+
+Em se tratando de semântica, o editor de scripts não interpreta o código por si só; ele apenas armazena as instruções e as envia para o console, onde o interpretador processa a chamada. 
+
+Por fim, com relação a boas práticas na escrita de código, recomenda-se a utilização de comentários através do caractere # para documentar o raciocínio das rotinas e consultar futuras, sendo que o interpretador ignora qualquer instrução escrita após a cerquilha e não o utiliza como executável. Além disso, recomenda-se adotar nomes curtos, concisos e descritivos em caixa baixa, evitar acentuação, cedilhas ou caracteres especiais que possam falhar em diferentes codificações de texto para garantir compatibilidade entre diferentes sistemas operacionais (Windows, Linux, macOS). 
+
+##### Importação e Exportação de Dados 
+
+Vai de encontro e aplica o terceiro princípio da linguagem R (Interface) para ler dados armazenados em disco (arquivos locais, planilhas) ou fontes remotas (APIs, páginas web).  
+
+Para importar dados utiliza-se a função read.table() para ler arquivos de texto delimitados (TXT, CSV) e os converter automaticamente para a estrutura de dados data.frame. Deve-se utilizar também o pacote readxl para leitura de planilhas nos formatos proprietários do Excel (.xls, .xlsx), permitindo selecionar abas específicas (sheets). 
+
+Para exportar dados utiliza-se funções write.table() / write.csv() para gravar objetos do R em arquivos de texto no disco. Além disso, deve-se utilizar o pacote writexl (write_xlsx()) para exportar data frames ou listas de data frames, onde cada elemento vira uma aba para arquivos Excel .xlsx. e o pacote xtable (xtable()) para converter a estrutura de dados em tabelas formatadas em código LaTeX/HTML para inclusão direta em relatórios acadêmicos. 
+
+##### Pacotes no R 
+
+Pacotes são “contêineres” padronizados que organizam funções, bases de dados, documentação e códigos compilados em C/Fortran de forma modular. O CRAN (Comprehensive R Archive Network) é o repositório oficial e auditado do R. Os pacotes submetidos passam por testes rigorosos de compatibilidade antes de ficarem disponíveis publicamente. Por sua vez, o GitHub é utilizado para hospedagem de código-fonte em desenvolvimento ativo ou versões experimentais, instaladas via devtools::install_github(). 
+
+Para sua instalação basta utilizar install.packages("pacote") e o RStudio baixa, compila e instala pacotes disponíveis no CRAN. Caso haja duvidas sobre os pacotes e suas funções basta consultar a ajuda via ?funcao ou help("funcao") para visualizar argumentos, descrição e exemplos executáveis. 
+
+#### Síntese  
+
+R constitui uma linguagem e um ambiente computacional livre, voltado à análise estatística, ao tratamento de dados e à produção de gráficos. Sua utilização é facilitada pelo RStudio, que integra ferramentas para escrita de scripts, execução de comandos, visualização de resultados e gerenciamento de projetos. 
+
+A compreensão da sintaxe, da semântica e do escopo léxico é fundamental para a elaboração e a interpretação correta dos códigos. 
+
+Os princípios do objeto, da função e da interface explicam como os dados são representados, como as operações são executadas e como o R se comunica com outras tecnologias. 
+
+Vetores, matrizes, arrays, listas e quadros de dados possibilitam organizar informações conforme sua natureza e dimensionalidade. 
+
+As funções e estruturas de controle permitem modularizar procedimentos, automatizar decisões e executar tarefas repetitivas. 
+
+Os scripts, a importação e exportação de dados e o gerenciamento de pacotes favorecem a organização e a reprodutibilidade das análises. 
+
+Assim, o conhecimento desses fundamentos permite utilizar o R de forma estruturada, eficiente e adequada ao desenvolvimento de análises e relatórios técnicos. 
+
+## 🏗️ Estudo de Caso, Resultados e discussões
 ### Contexto do Projeto
 
 A obra em questão consiste na execução de um muro de arrimo em concreto armado, com função estrutural de contenção de um talude de mineração (cava de extração de minério de ferro). O muro possui altura média de 12 m, extensão linear de 180 m e volume total estimado de concreto de 2.400 m³. 
