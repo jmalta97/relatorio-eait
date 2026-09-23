@@ -1,6 +1,6 @@
 ---
 # Só mude aqui!!!!
-author: "Jair Malta"
+author: "Jair Malta e Wesley Pinheiro"
 title: "Relatório de Aula Prática 04"
 bibliography: referencias.bib
 # A partir daqui nao faca alteracoes!!!!!
@@ -76,6 +76,168 @@ Descreva como o experimento foi realizado.
 ---
 
 ## 🔍 Resultados e Discussão
+
+
+```{r q1}
+library(knitr)
+
+# Leitura da base de dados
+dados <- read.csv("dados_engenharia_civil.csv", fileEncoding = "UTF-8")
+
+# Exibição das primeiras 6 linhas
+kable(head(dados), caption = "Primeiras linhas do conjunto de dados")
+
+# Exibição das últimas 6 linhas
+kable(tail(dados), caption = "Últimas linhas do conjunto de dados")
+
+# Dimensões da base de dados (Linhas x Colunas)
+dim(dados)
+```
+
+```{r q2, results="markup"}
+nrow(dados) #nº total de linhas - Observações
+ncol(dados) # nº total de colunas - Variáveis
+cat("Observações:", nrow(dados), "\nVariáveis:", ncol(dados))
+```
+```{r q3_estrutura, results="markup"}
+library(dplyr)
+library(knitr)
+str(dados)
+glimpse(dados)
+sapply(dados, class)
+
+# Conversão das variáveis categóricas em fatores
+dados <- dados |>
+  mutate(tipo_obra = factor(tipo_obra),
+         regiao = factor(regiao, levels = c("Norte", "Nordeste", "Centro-Oeste", "Sudeste", "Sul")),
+         sustentavel = factor(sustentavel, levels = c("Não", "Sim")))
+
+# Tabela formatada dos tipos de dados atualizados
+kable(
+  data.frame(
+    Variável = names(dados),
+    `Tipo de Dado` = sapply(dados, class),
+    row.names = NULL
+  ),
+  caption = "Resumo do tipo de dado de cada variável",
+  align = c("l", "c")
+)
+```
+As variáveis `area_construida`, `custo_total`, `prazo_meses`, `resistencia_mpa`, `consumo_cimento`, `indice_falhas` e `satisfacao` são quantitativas. `tipo_obra`, `regiao` e `sustentavel` são qualitativas. Embora `id_obra` seja armazenada como inteiro, sua função é identificar registros, não medir uma grandeza.
+
+```{r q4}
+summary(dados)
+
+# Tabela formatada das estatísticas numéricas
+dados |> 
+  summarise(across(where(is.numeric), list(min = ~min(.x), media = ~mean(.x), max = ~max(.x)))) |> 
+  kable(caption = "Estatísticas Descritivas das Variáveis Numéricas")
+```
+
+### Interpretação técnica
+
+Os dados apresentam áreas entre 45,9 e 1.855,9 m², custos entre R$ 112,4 mil e R$ 6,526 milhões, prazos entre 6 e 36 meses e resistências entre 17,82 e 44,43 MPa. A resistência mínima de 17,82 MPa merece verificação técnica, mas nenhum extremo deve ser descartado sem consultar o projeto e o controle tecnológico.
+
+```{r q5}
+sum(is.na(dados))
+colSums(is.na(dados)) |> 
+  kable(col.names = "Quantidade de NAs", 
+        caption = "Contagem de valores ausentes por variável")
+
+# Posições exatas (linha e coluna) dos NAs em tabela
+which(is.na(dados), arr.ind = TRUE) |> 
+  kable(caption = "Localização dos valores ausentes (Linha e Coluna)")
+
+# Linhas da base que contêm pelo menos um valor ausente em tabela
+dados[!complete.cases(dados), ] |> 
+  kable(caption = "Observações com dados incompletos na base")
+```
+
+### Interpretação técnica
+
+Não existem valores ausentes na base. Assim, as 300 observações podem ser usadas nas análises sem remoção ou imputação.
+
+# Etapa 2 — Gráficos no Base R
+
+
+## Questão 6 — Dispersão
+
+
+```{r q6, results="markup"}
+plot(dados$area_construida, dados$custo_total, main = "Área construída x custo total", xlab = "Área construída (m²)", ylab = "Custo total (R$)", pch = 19, col = rgb(0.1, 0.35, 0.7, 0.6), cex = 0.9)
+modelo_area_custo <- lm(custo_total ~ area_construida, data = dados)
+abline(modelo_area_custo, col = "red3", lwd = 2)
+cor(dados$area_construida, dados$custo_total)
+summary(modelo_area_custo)$r.squared
+dados_q6 <- dados |> mutate(custo_estimado = predict(modelo_area_custo), residuo = custo_total - custo_estimado) |> arrange(desc(abs(residuo)))
+head(dados_q6 |> select(id_obra, tipo_obra, regiao, area_construida, custo_total, residuo), 10)
+```
+
+
+### Interpretação técnica
+
+Há forte relação positiva entre área e custo, com correlação aproximada de 0,806 e R² de 0,649. As obras 201 e 243 apresentam custos muito acima da tendência geral, enquanto as obras 92 e 285 estão entre as que apresentam custos abaixo do esperado para suas áreas. Essas diferenças podem decorrer de tipologia, complexidade, padrão, região e escopo.
+
+
+```{r q7}
+media_res <- mean(dados$resistencia_mpa, na.rm = TRUE)
+mediana_res <- median(dados$resistencia_mpa, na.rm = TRUE)
+
+hist(dados$resistencia_mpa, 
+     breaks = 12, 
+     col = "steelblue2", 
+     border = "white", 
+     main = "Distribuição da Resistência", 
+     xlab = "Resistência (MPa)",
+     ylab = "Frequência")
+
+# Linhas de Média e Mediana
+abline(v = media_res, col = "red3", lwd = 2, lty = 2) 
+
+# Legenda do gráfico
+legend("topright", 
+       legend = c(paste("Média:", round(media_res, 2)), 
+                  paste("Mediana:", round(mediana_res, 2))), 
+       col = c("red3", "darkgreen"), 
+       lty = c(2, 1), 
+       lwd = 2, 
+       bty = "n")
+```
+### Interpretação técnica
+
+A resistência é aproximadamente simétrica, com média de 32,18 MPa e mediana de 31,94 MPa.Porém, há valores que fogem da distribuição / intervalo típico do projeto em ambos os extremos, com resistência de cerca de 17MPa e tambem 45 Mpa. 
+
+## Questão 8 — Boxplot
+
+
+```{r q8}
+boxplot(custo_total ~ tipo_obra, data = dados, col = c("#0072B2", "#E69F00", "#D55E00", "#009E73"), main = "Custo por tipo de obra", xlab = "Tipo", ylab = "Custo (R$)", las = 2)
+dados |> group_by(tipo_obra) |> summarise(n = n(), media = mean(custo_total), mediana = median(custo_total), desvio = sd(custo_total), .groups = "drop") |> arrange(desc(mediana))
+```
+
+
+### Interpretação técnica
+
+Infraestrutura apresenta a maior mediana de custo, aproximadamente R$ 3,874 milhões, e a maior dispersão absoluta. Industrial apresenta a menor mediana. Não há outliers de custo identificados pelo critério padrão do boxplot dentro dos grupos, ou seja, a variação de custo de cada grupo está dentro de uma faixa contínua e esperada. Nenhuma obra teve um custo absurdamente alto ou muito baixo quando comparada às outras do mesmo grupo. Todas as obras "conversam" entre si dentro da distribuição de seus respetivos tipos.
+
+```{r q9}
+par(mar = c(7, 4, 4, 2))
+obras_regiao <- table(dados$regiao)
+bp <- barplot(obras_regiao, 
+              col = heat.colors(length(obras_regiao)), 
+              main = "Obras por região", 
+              ylab = "Quantidade", 
+              las = 2,
+              ylim = c(0, max(obras_regiao) * 1.15))
+# Adiciona o número de ocorrências no topo de cada barra
+text(x = bp, y = obras_regiao, labels = obras_regiao, pos = 3, cex = 0.9)
+title(xlab = "Região", line = 6)
+```
+
+### Interpretação técnica
+
+O Sudeste concentra 101 obras, seguido por Nordeste, com 78, Sul, com 69, Centro-Oeste, com 34, e Norte, com 18. O padrão é plausível, mas representa a carteira analisada e não deve ser generalizado automaticamente para toda a construção civil brasileira.
+
 
 Apresente e interprete os resultados obtidos a partir dos dados coletados.
 
