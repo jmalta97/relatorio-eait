@@ -221,7 +221,7 @@ dados |> group_by(tipo_obra) |> summarise(n = n(), media = mean(custo_total), me
 Infraestrutura apresenta a maior mediana de custo, aproximadamente R$ 3,874 milhões, e a maior dispersão absoluta. Industrial apresenta a menor mediana. Não há outliers de custo identificados pelo critério padrão do boxplot dentro dos grupos, ou seja, a variação de custo de cada grupo está dentro de uma faixa contínua e esperada. Nenhuma obra teve um custo absurdamente alto ou muito baixo quando comparada às outras do mesmo grupo. Todas as obras "conversam" entre si dentro da distribuição de seus respetivos tipos.
 
 ```{r q9}
-par(mar = c(7, 4, 4, 2))
+par(mar = c(8, 4, 4, 2))
 obras_regiao <- table(dados$regiao)
 bp <- barplot(obras_regiao, 
               col = heat.colors(length(obras_regiao)), 
@@ -231,12 +231,76 @@ bp <- barplot(obras_regiao,
               ylim = c(0, max(obras_regiao) * 1.15))
 # Adiciona o número de ocorrências no topo de cada barra
 text(x = bp, y = obras_regiao, labels = obras_regiao, pos = 3, cex = 0.9)
-title(xlab = "Região", line = 6)
+title(xlab = "Região", line = 7)
 ```
-
 ### Interpretação técnica
 
 O Sudeste concentra 101 obras, seguido por Nordeste, com 78, Sul, com 69, Centro-Oeste, com 34, e Norte, com 18. O padrão é plausível, mas representa a carteira analisada e não deve ser generalizado automaticamente para toda a construção civil brasileira.
+
+# Etapa 3 — Gráficos com ggplot2
+
+```{r q10}
+library(ggplot2)
+library(scales)
+# Definição da paleta de cores para os 4 tipos de obra
+paleta_tipos <- c("Comercial" = "#0072B2", 
+                  "Industrial" = "#E69F00", 
+                  "Infraestrutura" = "#D55E00", 
+                  "Residencial" = "#009E73")
+
+# Tema padrão caso o tema_relatorio não esteja criado
+tema_relatorio <- theme_minimal()
+g_q10 <- ggplot(dados, aes(area_construida, custo_total, color = tipo_obra)) + geom_point(size = 2.3, alpha = 0.75) + geom_smooth(method = "lm", se = FALSE) + scale_color_manual(values = paleta_tipos) + scale_y_continuous(labels = label_currency(prefix = "R$ ", big.mark = ".", decimal.mark = ",")) + labs(title = "Área e custo por tipo", subtitle = "Tendências lineares por tipologia", x = "Área (m²)", y = "Custo", color = "Tipo") + tema_relatorio
+g_q10
+```
+A relação positiva permanece em todas as tipologias. Infraestrutura se destaca pelo maior custo para áreas semelhantes. As tendências por categoria mostram que o tipo de obra ajuda a explicar diferenças que ficam ocultas no gráfico geral.
+
+
+```{r q11}
+g_q11 <- ggplot(dados, aes(tipo_obra, custo_total, fill = tipo_obra)) + geom_boxplot(alpha = 0.8) + scale_fill_manual(values = paleta_tipos) + scale_y_continuous(labels = label_number(scale = 1e-6, suffix = " mi")) + labs(title = "Custo por tipo", x = "Tipo", y = "Custo (R$ milhões)") + theme_minimal() + theme(legend.position = "none")
+g_q11
+```
+
+O resultado estatístico é equivalente ao boxplot do Base R. O ggplot2 oferece maior controle de cores, escalas, títulos, temas e camadas, além de facilitar a padronização visual do relatório.
+
+
+```{r q12}
+g_q12 <- ggplot(dados, aes(resistencia_mpa)) + geom_histogram(aes(y = after_stat(density)), bins = 12, fill = "steelblue", color = "white", alpha = 0.75) + geom_density(color = "red3", linewidth = 1.1) + geom_vline(xintercept = mean(dados$resistencia_mpa), linetype = 2) + labs(title = "Distribuição e densidade da resistência", x = "Resistência (MPa)", y = "Densidade") + tema_relatorio
+g_q12
+```
+A densidade reforça a leitura do histograma: a distribuição é aproximadamente simétrica e concentrada em torno de 30 a 35 MPa. 
+
+```{r q13, results="markup"}
+library(dplyr)
+library(ggplot2)
+library(scales)
+
+# Prepara os dados calculando contagens e proporções (%) dentro de cada tipo de obra
+dados_sust <- dados |> 
+  count(tipo_obra, sustentavel) |> 
+  group_by(tipo_obra) |> 
+  mutate(proporcao = n / sum(n),
+         label_pct = percent(proporcao, accuracy = 0.1, decimal.mark = ","))
+
+# Gráfico exibindo a porcentagem no topo de cada barra
+g_q13 <- ggplot(dados_sust, aes(x = tipo_obra, y = n, fill = sustentavel)) + 
+  geom_col(position = position_dodge(width = 0.9)) + 
+  geom_text(aes(label = label_pct), 
+            position = position_dodge(width = 0.9), 
+            vjust = -0.5, 
+            size = 3.5) + 
+  scale_fill_manual(values = c("Não" = "grey60", "Sim" = "#009E73")) + 
+  scale_y_continuous(limits = c(0, max(dados_sust$n) * 1.15)) + 
+  labs(title = "Sustentabilidade por tipo de obra", 
+       x = "Tipo", 
+       y = "Número de obras", 
+       fill = "Sustentável") + 
+  tema_relatorio
+
+g_q13
+```
+
+Em nenhum dos quatro tipos de obra a adoção de práticas sustentáveis é maioria (todas as barras verdes possuem taxa inferior a 50%). No entanto, as obras comerciais lideram em engajamento proporcional (48,8%), enquanto as obras de infraestrutura registram a menor adesão (31,0%), indicando que os projetos de infraestrutura demandam maior incentivo para a incorporação de práticas socioambientais.
 
 
 Apresente e interprete os resultados obtidos a partir dos dados coletados.
