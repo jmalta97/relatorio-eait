@@ -792,14 +792,14 @@ A ordem escolhida segue a lógica do **macro para o micro**. O primeiro gráfico
 
 A atividade permitiu concluir que a visualização de dados é uma **etapa analítica**, não meramente estética. Cada sistema gráfico tem um papel definido: o Base R serve à exploração rápida e didática; o ggplot2 permite comunicação estática sofisticada por meio de camadas, facetas e temas; o plotly e o highcharter agregam interatividade e recursos de apresentação; e o leaflet viabiliza a dimensão geográfica. O engenheiro civil que domina essa escolha transforma planilhas extensas em evidência visual confiável para a tomada de decisão técnica.
 
-**Qual é a principal diferença entre produzir um gráfico no Base R e produzir um gráfico no ggplot2?**
+## Qual é a principal diferença entre produzir um gráfico no Base R e produzir um gráfico no ggplot2?
 
 O Base R opera de forma **procedural**: cada função (`plot()`, `hist()`, `boxplot()`) gera diretamente uma saída, com controle limitado e sem separação explícita entre dados e representação visual. O ggplot2 adota a **gramática de gráficos**, na qual os dados são mapeados a estéticas (`aes()`) e combinados com geometrias (`geom_*()`) em camadas, permitindo reuso, facetas e padronização. Em termos práticos, o ggplot2 é mais expressivo e reprodutível, enquanto o Base R é mais rápido e didático.
 
-**Por que a escolha do sistema gráfico e da geometria é uma decisão técnica importante na Engenharia Civil?**
+## Por que a escolha do sistema gráfico e da geometria é uma decisão técnica importante na Engenharia Civil?
 
 Porque o gráfico é um **instrumento de decisão**. Um boxplot comunica dispersão e outliers; um histograma comunica a forma da distribuição; um mapa comunica geografia. Escolher a geometria errada — como usar pizza para comparar quatro categorias com proporções próximas — pode levar a interpretações equivocadas e, consequentemente, a decisões equivocadas sobre traço de concreto, cronograma ou orçamento. A escolha visual, portanto, não é neutra: ela condiciona o que o gestor enxerga e decide.
 
-**Qual foi o gráfico que você considerou mais informativo, qual sistema gráfico você utilizou para produzi-lo, por que você considera que essa escolha foi adequada e o que esse gráfico revela sobre as obras analisadas?**
+## Qual foi o gráfico que você considerou mais informativo, qual sistema gráfico você utilizou para produzi-lo, por que você considera que essa escolha foi adequada e o que esse gráfico revela sobre as obras analisadas?
 
 O gráfico mais informativo foi o de **dispersão com facetas por região**, produzido no **ggplot2**. Ele permitiu visualizar simultaneamente a relação positiva entre área e custo, o comportamento diferenciado de cada região e a existência de obras atípicas no Nordeste e Sudeste com custo acima de R$ 6 milhões. A escolha foi adequada porque as facetas comparam contextos regionais sem misturar os dados, e a camada `geom_smooth()` evidencia a tendência em cada painel. Esse gráfico revela que **o custo por metro quadrado não é uniforme no Brasil**, informação essencial para orçamentação em diferentes praças e para o planejamento de obras futuras.
