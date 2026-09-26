@@ -28,7 +28,7 @@ execute:
 
 # 📌 Introdução
 
-A análise gráfica de dados ocupa posição central na prática profissional do engenheiro civil contemporâneo. Em obras de qualquer porte, decisões técnicas como escolha de traço, dimensionamento de equipes, aquisição de materiais ou definição de cronogramas dependem diretamente da capacidade de transformar números brutos em evidência visual capaz de subsidiar escolhas técnicas.
+A análise gráfica de dados ocupa posição central na prática profissional do engenheiro civil contemporâneo. Em obras de qualquer porte, decisões técnicas como escolha de traço, dimensionamento de equipes, aquisição de materiais ou definição de cronogramas dependem diretamente da capacidade de transformar números brutos em evidência visual capaz de subsidiar escolhas técnicas @wilke2019fundamentals.
 
 Este relatório tem como contexto o controle tecnológico do concreto em uma empresa de Engenharia Civil que executou 300 obras distribuídas pelas cinco regiões brasileiras. A base reúne informações sobre tipologia da obra, área construída, custo total, prazo de execução, resistência à compressão do concreto, consumo de cimento, índice de falhas, satisfação do cliente e adoção de práticas sustentáveis.
 
@@ -61,7 +61,7 @@ A escolha do sistema gráfico deve ser guiada pelo **propósito comunicativo** d
 | highcharter | Interativo avançado | Temas, animações, exportação | Documentação extensa |
 | leaflet | Mapas interativos | Marcadores, popups, tiles | Exige coordenadas |
 
-Segundo Wickham (2010), a gramática de gráficos separa a estrutura dos dados (estética) da representação visual (geometria), permitindo reuso e composição em camadas. Essa separação é o que diferencia o ggplot2 do Base R e viabiliza a construção de gráficos complexos de forma reprodutível.
+Segundo @wickham2010layered, a gramática de gráficos separa a estrutura dos dados (estética) da representação visual (geometria), permitindo reuso e composição em camadas. Essa separação é o que diferencia o ggplot2 do Base R e viabiliza a construção de gráficos complexos de forma reprodutível.
 
 # ⚙️ Metodologia
 
@@ -69,7 +69,7 @@ A condução da atividade foi organizada em sete etapas sequenciais e complement
 
 ## Preparação do ambiente computacional
 
-Toda a análise foi desenvolvida na linguagem R, em ambiente RStudio, com adoção do R Markdown como formato de relatório reprodutível. Essa escolha garante que o texto, o código e os resultados gráficos sejam gerados a partir de uma única fonte, eliminando o risco de inconsistência entre o que foi executado e o que foi relatado — prática alinhada aos princípios de pesquisa reprodutível.
+Toda a análise foi desenvolvida na linguagem R, em ambiente RStudio, com adoção do R Markdown como formato de relatório reprodutível. Essa escolha garante que o texto, o código e os resultados gráficos sejam gerados a partir de uma única fonte, eliminando o risco de inconsistência entre o que foi executado e o que foi relatado — prática alinhada aos princípios de pesquisa reprodutível.Foram seguidas as diretrizes de @Rbasico2022, @Batista2024 e @RCore2026.
 
 Inicialmente foram instalados e carregados os pacotes necessários:
 
@@ -802,4 +802,4 @@ Porque o gráfico é um **instrumento de decisão**. Um boxplot comunica dispers
 
 **Qual foi o gráfico que você considerou mais informativo, qual sistema gráfico você utilizou para produzi-lo, por que você considera que essa escolha foi adequada e o que esse gráfico revela sobre as obras analisadas?**
 
-O gráfico mais informativo foi o de **dispersão com facetas por região**, produzido no **ggplot2**. Ele permitiu visualizar simultaneamente a relação positiva entre área e custo, o comportamento diferenciado de cada região e a existência de uma obra atípica no Nordeste com custo acima de R$ 6 milhões. A escolha foi adequada porque as facetas comparam contextos regionais sem misturar os dados, e a camada `geom_smooth()` evidencia a tendência em cada painel. Esse gráfico revela que **o custo por metro quadrado não é uniforme no Brasil**, informação essencial para orçamentação em diferentes praças e para o planejamento de obras futuras.
+O gráfico mais informativo foi o de **dispersão com facetas por região**, produzido no **ggplot2**. Ele permitiu visualizar simultaneamente a relação positiva entre área e custo, o comportamento diferenciado de cada região e a existência de obras atípicas no Nordeste e Sudeste com custo acima de R$ 6 milhões. A escolha foi adequada porque as facetas comparam contextos regionais sem misturar os dados, e a camada `geom_smooth()` evidencia a tendência em cada painel. Esse gráfico revela que **o custo por metro quadrado não é uniforme no Brasil**, informação essencial para orçamentação em diferentes praças e para o planejamento de obras futuras.
