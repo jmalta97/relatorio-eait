@@ -69,7 +69,7 @@ A condução da atividade foi organizada em sete etapas sequenciais e complement
 
 ## Preparação do ambiente computacional
 
-Toda a análise foi desenvolvida na linguagem R, em ambiente RStudio, com adoção do R Markdown como formato de relatório reprodutível. Essa escolha garante que o texto, o código e os resultados gráficos sejam gerados a partir de uma única fonte, eliminando o risco de inconsistência entre o que foi executado e o que foi relatado — prática alinhada aos princípios de pesquisa reprodutível.Foram seguidas as diretrizes de @Rbasico2022, @Batista2024 e @RCore2026.
+Toda a análise foi desenvolvida na linguagem R, em ambiente RStudio, com adoção do R Markdown como formato de relatório reprodutível. Essa escolha garante que o texto, o código e os resultados gráficos sejam gerados a partir de uma única fonte, eliminando o risco de inconsistência entre o que foi executado e o que foi relatado, prática alinhada aos princípios de pesquisa reprodutível. Foram seguidas as diretrizes de @Rbasico2022, @Batista2024 e @RCore2026.
 
 Inicialmente foram instalados e carregados os pacotes necessários:
 
@@ -798,7 +798,7 @@ O Base R opera de forma **procedural**: cada função (`plot()`, `hist()`, `boxp
 
 ## Por que a escolha do sistema gráfico e da geometria é uma decisão técnica importante na Engenharia Civil?
 
-Porque o gráfico é um **instrumento de decisão**. Um boxplot comunica dispersão e outliers; um histograma comunica a forma da distribuição; um mapa comunica geografia. Escolher a geometria errada — como usar pizza para comparar quatro categorias com proporções próximas — pode levar a interpretações equivocadas e, consequentemente, a decisões equivocadas sobre traço de concreto, cronograma ou orçamento. A escolha visual, portanto, não é neutra: ela condiciona o que o gestor enxerga e decide.
+Porque o gráfico é um **instrumento de decisão**. Um boxplot comunica dispersão e outliers; um histograma comunica a forma da distribuição; um mapa comunica geografia. Escolher a geometria errada, como usar pizza para comparar quatro categorias com proporções próximas, pode levar a interpretações equivocadas e, consequentemente, a decisões equivocadas sobre traço de concreto, cronograma ou orçamento. A escolha visual, portanto, não é neutra: ela condiciona o que o gestor enxerga e decide.
 
 ## Qual foi o gráfico que você considerou mais informativo, qual sistema gráfico você utilizou para produzi-lo, por que você considera que essa escolha foi adequada e o que esse gráfico revela sobre as obras analisadas?
 
