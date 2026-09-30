@@ -46,6 +46,12 @@ pct <- function(x, casas = 2) {
 set.seed(123)
 ```
 
+<style>
+body {
+  text-align: justify;
+}
+</style>
+
 # Introdução
 
 A construção de uma Pequena Central Hidrelétrica (PCH) envolve decisões que precisam considerar a variabilidade dos materiais, dos processos executivos, dos equipamentos, das condições geotécnicas e dos fenômenos hidrológicos. Mesmo quando o projeto é desenvolvido com critérios técnicos e procedimentos de controle, variáveis como resistência do concreto, ocorrência de defeitos, número de fissuras, tempo até a falha de equipamentos, capacidade de suporte do solo e precipitação não apresentam resultados perfeitamente determinísticos. Por esse motivo, a probabilidade e a estatística constituem instrumentos importantes para quantificar incertezas e apoiar decisões de engenharia.

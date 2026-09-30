@@ -201,6 +201,11 @@ window.Quarto = {
 <span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button"><i class="bi"></i></button></div>
 </details>
 </div>
+<style>
+body {
+  text-align: justify;
+}
+</style>
 <section id="introdução" class="level1" data-number="1">
 <h1 data-number="1"><span class="header-section-number">1</span> Introdução</h1>
 <p>A construção de uma Pequena Central Hidrelétrica (PCH) envolve decisões que precisam considerar a variabilidade dos materiais, dos processos executivos, dos equipamentos, das condições geotécnicas e dos fenômenos hidrológicos. Mesmo quando o projeto é desenvolvido com critérios técnicos e procedimentos de controle, variáveis como resistência do concreto, ocorrência de defeitos, número de fissuras, tempo até a falha de equipamentos, capacidade de suporte do solo e precipitação não apresentam resultados perfeitamente determinísticos. Por esse motivo, a probabilidade e a estatística constituem instrumentos importantes para quantificar incertezas e apoiar decisões de engenharia.</p>
@@ -1596,440 +1601,446 @@ window.Quarto = {
 <span id="cb18-46"><a href="#cb18-46" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
 <span id="cb18-47"><a href="#cb18-47" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb18-48"><a href="#cb18-48" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-49"><a href="#cb18-49" aria-hidden="true" tabindex="-1"></a><span class="fu"># Introdução</span></span>
-<span id="cb18-50"><a href="#cb18-50" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-51"><a href="#cb18-51" aria-hidden="true" tabindex="-1"></a>A construção de uma Pequena Central Hidrelétrica (PCH) envolve decisões que precisam considerar a variabilidade dos materiais, dos processos executivos, dos equipamentos, das condições geotécnicas e dos fenômenos hidrológicos. Mesmo quando o projeto é desenvolvido com critérios técnicos e procedimentos de controle, variáveis como resistência do concreto, ocorrência de defeitos, número de fissuras, tempo até a falha de equipamentos, capacidade de suporte do solo e precipitação não apresentam resultados perfeitamente determinísticos. Por esse motivo, a probabilidade e a estatística constituem instrumentos importantes para quantificar incertezas e apoiar decisões de engenharia.</span>
-<span id="cb18-52"><a href="#cb18-52" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-53"><a href="#cb18-53" aria-hidden="true" tabindex="-1"></a>Segundo Bussab e Morettin, os modelos probabilísticos permitem representar fenômenos aleatórios por meio de variáveis e distribuições de probabilidade. Montgomery e Runger destacam a aplicação desses modelos em problemas de engenharia, especialmente no controle da qualidade, na confiabilidade e na análise de riscos. Neste trabalho, distribuições discretas e contínuas são aplicadas a situações associadas à implantação de uma PCH, com cálculos teóricos e simulações desenvolvidos na linguagem R, mantida pelo R Core Team.</span>
+<span id="cb18-49"><a href="#cb18-49" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;</span><span class="kw">style</span><span class="dt">&gt;</span></span>
+<span id="cb18-50"><a href="#cb18-50" aria-hidden="true" tabindex="-1"></a>body {</span>
+<span id="cb18-51"><a href="#cb18-51" aria-hidden="true" tabindex="-1"></a>  <span class="kw">text-align</span><span class="ch">:</span> <span class="dv">justify</span><span class="op">;</span></span>
+<span id="cb18-52"><a href="#cb18-52" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb18-53"><a href="#cb18-53" aria-hidden="true" tabindex="-1"></a><span class="dt">&lt;/</span><span class="kw">style</span><span class="dt">&gt;</span></span>
 <span id="cb18-54"><a href="#cb18-54" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-55"><a href="#cb18-55" aria-hidden="true" tabindex="-1"></a>O objetivo geral é identificar a distribuição adequada para cada fenômeno, calcular probabilidades, medidas de posição e dispersão e quantis, além de empregar simulações de Monte Carlo para verificar os resultados teóricos. As interpretações relacionam os valores obtidos ao controle tecnológico, à segurança, à confiabilidade operacional, ao planejamento e à tomada de decisão na engenharia civil.</span>
+<span id="cb18-55"><a href="#cb18-55" aria-hidden="true" tabindex="-1"></a><span class="fu"># Introdução</span></span>
 <span id="cb18-56"><a href="#cb18-56" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-57"><a href="#cb18-57" aria-hidden="true" tabindex="-1"></a><span class="fu"># Desenvolvimento</span></span>
+<span id="cb18-57"><a href="#cb18-57" aria-hidden="true" tabindex="-1"></a>A construção de uma Pequena Central Hidrelétrica (PCH) envolve decisões que precisam considerar a variabilidade dos materiais, dos processos executivos, dos equipamentos, das condições geotécnicas e dos fenômenos hidrológicos. Mesmo quando o projeto é desenvolvido com critérios técnicos e procedimentos de controle, variáveis como resistência do concreto, ocorrência de defeitos, número de fissuras, tempo até a falha de equipamentos, capacidade de suporte do solo e precipitação não apresentam resultados perfeitamente determinísticos. Por esse motivo, a probabilidade e a estatística constituem instrumentos importantes para quantificar incertezas e apoiar decisões de engenharia.</span>
 <span id="cb18-58"><a href="#cb18-58" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-59"><a href="#cb18-59" aria-hidden="true" tabindex="-1"></a><span class="fu">## Procedimento metodológico</span></span>
+<span id="cb18-59"><a href="#cb18-59" aria-hidden="true" tabindex="-1"></a>Segundo Bussab e Morettin, os modelos probabilísticos permitem representar fenômenos aleatórios por meio de variáveis e distribuições de probabilidade. Montgomery e Runger destacam a aplicação desses modelos em problemas de engenharia, especialmente no controle da qualidade, na confiabilidade e na análise de riscos. Neste trabalho, distribuições discretas e contínuas são aplicadas a situações associadas à implantação de uma PCH, com cálculos teóricos e simulações desenvolvidos na linguagem R, mantida pelo R Core Team.</span>
 <span id="cb18-60"><a href="#cb18-60" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-61"><a href="#cb18-61" aria-hidden="true" tabindex="-1"></a>O relatório foi elaborado nas seguintes etapas:</span>
+<span id="cb18-61"><a href="#cb18-61" aria-hidden="true" tabindex="-1"></a>O objetivo geral é identificar a distribuição adequada para cada fenômeno, calcular probabilidades, medidas de posição e dispersão e quantis, além de empregar simulações de Monte Carlo para verificar os resultados teóricos. As interpretações relacionam os valores obtidos ao controle tecnológico, à segurança, à confiabilidade operacional, ao planejamento e à tomada de decisão na engenharia civil.</span>
 <span id="cb18-62"><a href="#cb18-62" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-63"><a href="#cb18-63" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>identificação da variável aleatória e classificação como discreta ou contínua;</span>
-<span id="cb18-64"><a href="#cb18-64" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>escolha da distribuição indicada pelo enunciado;</span>
-<span id="cb18-65"><a href="#cb18-65" aria-hidden="true" tabindex="-1"></a><span class="ss">3. </span>definição dos parâmetros de cada distribuição;</span>
-<span id="cb18-66"><a href="#cb18-66" aria-hidden="true" tabindex="-1"></a><span class="ss">4. </span>cálculo das probabilidades teóricas pelas funções de distribuição disponíveis no R;</span>
-<span id="cb18-67"><a href="#cb18-67" aria-hidden="true" tabindex="-1"></a><span class="ss">5. </span>cálculo de esperança, variância, desvio padrão e quantis, quando solicitados;</span>
-<span id="cb18-68"><a href="#cb18-68" aria-hidden="true" tabindex="-1"></a><span class="ss">6. </span>geração de amostras pseudoaleatórias com semente fixa, garantindo a reprodutibilidade;</span>
-<span id="cb18-69"><a href="#cb18-69" aria-hidden="true" tabindex="-1"></a><span class="ss">7. </span>elaboração de tabelas e gráficos para comparar teoria e simulação;</span>
-<span id="cb18-70"><a href="#cb18-70" aria-hidden="true" tabindex="-1"></a><span class="ss">8. </span>interpretação dos resultados no contexto do projeto da PCH.</span>
-<span id="cb18-71"><a href="#cb18-71" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-72"><a href="#cb18-72" aria-hidden="true" tabindex="-1"></a>Foram adotados os parâmetros indicados no enunciado e nos exemplos de código: Normal com média 35 MPa e desvio padrão 4 MPa; Binomial com 15 estacas e probabilidade de defeito de 0,08; Poisson com taxa de 2,5 fissuras por quilômetro; Exponencial com média de 200 horas; Weibull com forma 2 e escala 150 kPa; e Gama com forma 3 e taxa 0,5. Na distribuição Gama, o R usa a parametrização por **taxa**, de modo que a escala corresponde a <span class="in">`1/taxa`</span>.</span>
-<span id="cb18-73"><a href="#cb18-73" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-74"><a href="#cb18-74" aria-hidden="true" tabindex="-1"></a><span class="fu">## Funções empregadas no R</span></span>
-<span id="cb18-75"><a href="#cb18-75" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-76"><a href="#cb18-76" aria-hidden="true" tabindex="-1"></a>As funções iniciadas por <span class="in">`d`</span> calculam densidades ou probabilidades pontuais; as iniciadas por <span class="in">`p`</span> calculam probabilidades acumuladas; as iniciadas por <span class="in">`q`</span> calculam quantis; e as iniciadas por <span class="in">`r`</span> geram valores pseudoaleatórios. Assim, por exemplo, <span class="in">`pnorm()`</span> calcula probabilidades acumuladas da Normal, <span class="in">`dbinom()`</span> calcula probabilidades pontuais da Binomial e <span class="in">`rpois()`</span> gera observações Poisson.</span>
+<span id="cb18-63"><a href="#cb18-63" aria-hidden="true" tabindex="-1"></a><span class="fu"># Desenvolvimento</span></span>
+<span id="cb18-64"><a href="#cb18-64" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-65"><a href="#cb18-65" aria-hidden="true" tabindex="-1"></a><span class="fu">## Procedimento metodológico</span></span>
+<span id="cb18-66"><a href="#cb18-66" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-67"><a href="#cb18-67" aria-hidden="true" tabindex="-1"></a>O relatório foi elaborado nas seguintes etapas:</span>
+<span id="cb18-68"><a href="#cb18-68" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-69"><a href="#cb18-69" aria-hidden="true" tabindex="-1"></a><span class="ss">1. </span>identificação da variável aleatória e classificação como discreta ou contínua;</span>
+<span id="cb18-70"><a href="#cb18-70" aria-hidden="true" tabindex="-1"></a><span class="ss">2. </span>escolha da distribuição indicada pelo enunciado;</span>
+<span id="cb18-71"><a href="#cb18-71" aria-hidden="true" tabindex="-1"></a><span class="ss">3. </span>definição dos parâmetros de cada distribuição;</span>
+<span id="cb18-72"><a href="#cb18-72" aria-hidden="true" tabindex="-1"></a><span class="ss">4. </span>cálculo das probabilidades teóricas pelas funções de distribuição disponíveis no R;</span>
+<span id="cb18-73"><a href="#cb18-73" aria-hidden="true" tabindex="-1"></a><span class="ss">5. </span>cálculo de esperança, variância, desvio padrão e quantis, quando solicitados;</span>
+<span id="cb18-74"><a href="#cb18-74" aria-hidden="true" tabindex="-1"></a><span class="ss">6. </span>geração de amostras pseudoaleatórias com semente fixa, garantindo a reprodutibilidade;</span>
+<span id="cb18-75"><a href="#cb18-75" aria-hidden="true" tabindex="-1"></a><span class="ss">7. </span>elaboração de tabelas e gráficos para comparar teoria e simulação;</span>
+<span id="cb18-76"><a href="#cb18-76" aria-hidden="true" tabindex="-1"></a><span class="ss">8. </span>interpretação dos resultados no contexto do projeto da PCH.</span>
 <span id="cb18-77"><a href="#cb18-77" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-78"><a href="#cb18-78" aria-hidden="true" tabindex="-1"></a><span class="fu"># Resultados e discussão</span></span>
+<span id="cb18-78"><a href="#cb18-78" aria-hidden="true" tabindex="-1"></a>Foram adotados os parâmetros indicados no enunciado e nos exemplos de código: Normal com média 35 MPa e desvio padrão 4 MPa; Binomial com 15 estacas e probabilidade de defeito de 0,08; Poisson com taxa de 2,5 fissuras por quilômetro; Exponencial com média de 200 horas; Weibull com forma 2 e escala 150 kPa; e Gama com forma 3 e taxa 0,5. Na distribuição Gama, o R usa a parametrização por **taxa**, de modo que a escala corresponde a <span class="in">`1/taxa`</span>.</span>
 <span id="cb18-79"><a href="#cb18-79" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-80"><a href="#cb18-80" aria-hidden="true" tabindex="-1"></a><span class="fu">## Parte 1 – Controle de qualidade do concreto: distribuição Normal</span></span>
+<span id="cb18-80"><a href="#cb18-80" aria-hidden="true" tabindex="-1"></a><span class="fu">## Funções empregadas no R</span></span>
 <span id="cb18-81"><a href="#cb18-81" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-82"><a href="#cb18-82" aria-hidden="true" tabindex="-1"></a>Seja $X$ a resistência à compressão do concreto, em MPa. Considera-se:</span>
+<span id="cb18-82"><a href="#cb18-82" aria-hidden="true" tabindex="-1"></a>As funções iniciadas por <span class="in">`d`</span> calculam densidades ou probabilidades pontuais; as iniciadas por <span class="in">`p`</span> calculam probabilidades acumuladas; as iniciadas por <span class="in">`q`</span> calculam quantis; e as iniciadas por <span class="in">`r`</span> geram valores pseudoaleatórios. Assim, por exemplo, <span class="in">`pnorm()`</span> calcula probabilidades acumuladas da Normal, <span class="in">`dbinom()`</span> calcula probabilidades pontuais da Binomial e <span class="in">`rpois()`</span> gera observações Poisson.</span>
 <span id="cb18-83"><a href="#cb18-83" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-84"><a href="#cb18-84" aria-hidden="true" tabindex="-1"></a>$$X \sim N(35, 4^2).$$</span>
+<span id="cb18-84"><a href="#cb18-84" aria-hidden="true" tabindex="-1"></a><span class="fu"># Resultados e discussão</span></span>
 <span id="cb18-85"><a href="#cb18-85" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-86"><a href="#cb18-86" aria-hidden="true" tabindex="-1"></a>A média é 35 MPa e o desvio padrão é 4 MPa. A distribuição Normal é apropriada para representar uma variável contínua concentrada em torno de um valor médio, com variações para ambos os lados.</span>
+<span id="cb18-86"><a href="#cb18-86" aria-hidden="true" tabindex="-1"></a><span class="fu">## Parte 1 – Controle de qualidade do concreto: distribuição Normal</span></span>
 <span id="cb18-87"><a href="#cb18-87" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-88"><a href="#cb18-88" aria-hidden="true" tabindex="-1"></a><span class="in">```{r normal-calculos}</span></span>
-<span id="cb18-89"><a href="#cb18-89" aria-hidden="true" tabindex="-1"></a><span class="co"># Parâmetros</span></span>
-<span id="cb18-90"><a href="#cb18-90" aria-hidden="true" tabindex="-1"></a>media_concreto <span class="ot">&lt;-</span> <span class="dv">35</span></span>
-<span id="cb18-91"><a href="#cb18-91" aria-hidden="true" tabindex="-1"></a>dp_concreto <span class="ot">&lt;-</span> <span class="dv">4</span></span>
-<span id="cb18-92"><a href="#cb18-92" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-93"><a href="#cb18-93" aria-hidden="true" tabindex="-1"></a><span class="co"># a) P(X &lt; 30)</span></span>
-<span id="cb18-94"><a href="#cb18-94" aria-hidden="true" tabindex="-1"></a>p1a <span class="ot">&lt;-</span> <span class="fu">pnorm</span>(<span class="dv">30</span>, <span class="at">mean =</span> media_concreto, <span class="at">sd =</span> dp_concreto)</span>
-<span id="cb18-95"><a href="#cb18-95" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-96"><a href="#cb18-96" aria-hidden="true" tabindex="-1"></a><span class="co"># b) P(32 &lt; X &lt; 38)</span></span>
-<span id="cb18-97"><a href="#cb18-97" aria-hidden="true" tabindex="-1"></a>p1b <span class="ot">&lt;-</span> <span class="fu">pnorm</span>(<span class="dv">38</span>, <span class="at">mean =</span> media_concreto, <span class="at">sd =</span> dp_concreto) <span class="sc">-</span></span>
-<span id="cb18-98"><a href="#cb18-98" aria-hidden="true" tabindex="-1"></a>       <span class="fu">pnorm</span>(<span class="dv">32</span>, <span class="at">mean =</span> media_concreto, <span class="at">sd =</span> dp_concreto)</span>
-<span id="cb18-99"><a href="#cb18-99" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-100"><a href="#cb18-100" aria-hidden="true" tabindex="-1"></a><span class="co"># c) Percentil 5</span></span>
-<span id="cb18-101"><a href="#cb18-101" aria-hidden="true" tabindex="-1"></a>q1c <span class="ot">&lt;-</span> <span class="fu">qnorm</span>(<span class="fl">0.05</span>, <span class="at">mean =</span> media_concreto, <span class="at">sd =</span> dp_concreto)</span>
-<span id="cb18-102"><a href="#cb18-102" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-103"><a href="#cb18-103" aria-hidden="true" tabindex="-1"></a><span class="co"># d) P(média de 10 amostras &lt; 33)</span></span>
-<span id="cb18-104"><a href="#cb18-104" aria-hidden="true" tabindex="-1"></a>n_amostras <span class="ot">&lt;-</span> <span class="dv">10</span></span>
-<span id="cb18-105"><a href="#cb18-105" aria-hidden="true" tabindex="-1"></a>erro_padrao <span class="ot">&lt;-</span> dp_concreto <span class="sc">/</span> <span class="fu">sqrt</span>(n_amostras)</span>
-<span id="cb18-106"><a href="#cb18-106" aria-hidden="true" tabindex="-1"></a>p1d <span class="ot">&lt;-</span> <span class="fu">pnorm</span>(<span class="dv">33</span>, <span class="at">mean =</span> media_concreto, <span class="at">sd =</span> erro_padrao)</span>
-<span id="cb18-107"><a href="#cb18-107" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-108"><a href="#cb18-108" aria-hidden="true" tabindex="-1"></a>resultados_normal <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
-<span id="cb18-109"><a href="#cb18-109" aria-hidden="true" tabindex="-1"></a>  <span class="at">Item =</span> <span class="fu">c</span>(<span class="st">"a"</span>, <span class="st">"b"</span>, <span class="st">"c"</span>, <span class="st">"d"</span>),</span>
-<span id="cb18-110"><a href="#cb18-110" aria-hidden="true" tabindex="-1"></a>  <span class="at">Resultado =</span> <span class="fu">c</span>(p1a, p1b, q1c, p1d),</span>
-<span id="cb18-111"><a href="#cb18-111" aria-hidden="true" tabindex="-1"></a>  <span class="at">Unidade =</span> <span class="fu">c</span>(<span class="st">"probabilidade"</span>, <span class="st">"probabilidade"</span>, <span class="st">"MPa"</span>, <span class="st">"probabilidade"</span>)</span>
-<span id="cb18-112"><a href="#cb18-112" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb18-113"><a href="#cb18-113" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(resultados_normal, <span class="at">digits =</span> <span class="dv">4</span>,</span>
-<span id="cb18-114"><a href="#cb18-114" aria-hidden="true" tabindex="-1"></a>             <span class="at">caption =</span> <span class="st">"Resultados teóricos da distribuição Normal"</span>)</span>
-<span id="cb18-115"><a href="#cb18-115" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb18-116"><a href="#cb18-116" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-117"><a href="#cb18-117" aria-hidden="true" tabindex="-1"></a>**Interpretação.** A probabilidade de uma amostra apresentar resistência inferior a 30 MPa é <span class="in">`r pct(p1a)`</span>. Esse resultado representa a parcela esperada da produção abaixo do limite considerado e deve ser analisado em conjunto com as especificações, os critérios de aceitação e os resultados do controle tecnológico. A probabilidade de a resistência ficar entre 32 e 38 MPa é <span class="in">`r pct(p1b)`</span>, indicando a concentração de resultados em uma faixa próxima da média.</span>
-<span id="cb18-118"><a href="#cb18-118" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-119"><a href="#cb18-119" aria-hidden="true" tabindex="-1"></a>O percentil de 5% é <span class="in">`r round(q1c, 2)`</span> MPa. Portanto, teoricamente, 5% das resistências ficam abaixo desse valor. Para a média de 10 amostras, a dispersão é reduzida de 4 MPa para um erro padrão de <span class="in">`r round(erro_padrao, 3)`</span> MPa; por isso, a probabilidade de a média ser inferior a 33 MPa é <span class="in">`r pct(p1d)`</span>. A redução decorre do uso da distribuição amostral da média, cujo desvio padrão é $\sigma/\sqrt{n}$.</span>
-<span id="cb18-120"><a href="#cb18-120" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-121"><a href="#cb18-121" aria-hidden="true" tabindex="-1"></a><span class="in">```{r normal-simulacao}</span></span>
-<span id="cb18-122"><a href="#cb18-122" aria-hidden="true" tabindex="-1"></a><span class="co"># e) Simulação de 1.000 resistências</span></span>
-<span id="cb18-123"><a href="#cb18-123" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
-<span id="cb18-124"><a href="#cb18-124" aria-hidden="true" tabindex="-1"></a>x_normal <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">1000</span>, <span class="at">mean =</span> media_concreto, <span class="at">sd =</span> dp_concreto)</span>
-<span id="cb18-125"><a href="#cb18-125" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-126"><a href="#cb18-126" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(x_normal, <span class="at">probability =</span> <span class="cn">TRUE</span>, <span class="at">breaks =</span> <span class="dv">25</span>,</span>
-<span id="cb18-127"><a href="#cb18-127" aria-hidden="true" tabindex="-1"></a>     <span class="at">col =</span> <span class="st">"lightblue"</span>, <span class="at">border =</span> <span class="st">"white"</span>,</span>
-<span id="cb18-128"><a href="#cb18-128" aria-hidden="true" tabindex="-1"></a>     <span class="at">main =</span> <span class="st">"Resistência simulada do concreto"</span>,</span>
-<span id="cb18-129"><a href="#cb18-129" aria-hidden="true" tabindex="-1"></a>     <span class="at">xlab =</span> <span class="st">"Resistência à compressão (MPa)"</span>,</span>
-<span id="cb18-130"><a href="#cb18-130" aria-hidden="true" tabindex="-1"></a>     <span class="at">ylab =</span> <span class="st">"Densidade"</span>)</span>
-<span id="cb18-131"><a href="#cb18-131" aria-hidden="true" tabindex="-1"></a><span class="fu">curve</span>(<span class="fu">dnorm</span>(x, <span class="at">mean =</span> media_concreto, <span class="at">sd =</span> dp_concreto),</span>
-<span id="cb18-132"><a href="#cb18-132" aria-hidden="true" tabindex="-1"></a>      <span class="at">add =</span> <span class="cn">TRUE</span>, <span class="at">col =</span> <span class="st">"red"</span>, <span class="at">lwd =</span> <span class="dv">2</span>)</span>
-<span id="cb18-133"><a href="#cb18-133" aria-hidden="true" tabindex="-1"></a><span class="fu">legend</span>(<span class="st">"topright"</span>, <span class="at">legend =</span> <span class="fu">c</span>(<span class="st">"Histograma simulado"</span>, <span class="st">"Densidade teórica"</span>),</span>
-<span id="cb18-134"><a href="#cb18-134" aria-hidden="true" tabindex="-1"></a>       <span class="at">fill =</span> <span class="fu">c</span>(<span class="st">"lightblue"</span>, <span class="cn">NA</span>), <span class="at">border =</span> <span class="fu">c</span>(<span class="st">"white"</span>, <span class="cn">NA</span>),</span>
-<span id="cb18-135"><a href="#cb18-135" aria-hidden="true" tabindex="-1"></a>       <span class="at">lty =</span> <span class="fu">c</span>(<span class="cn">NA</span>, <span class="dv">1</span>), <span class="at">col =</span> <span class="fu">c</span>(<span class="cn">NA</span>, <span class="st">"red"</span>), <span class="at">lwd =</span> <span class="fu">c</span>(<span class="cn">NA</span>, <span class="dv">2</span>), <span class="at">bty =</span> <span class="st">"n"</span>)</span>
-<span id="cb18-136"><a href="#cb18-136" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-137"><a href="#cb18-137" aria-hidden="true" tabindex="-1"></a>comparacao_normal <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
-<span id="cb18-138"><a href="#cb18-138" aria-hidden="true" tabindex="-1"></a>  <span class="at">Medida =</span> <span class="fu">c</span>(<span class="st">"Média"</span>, <span class="st">"Desvio padrão"</span>),</span>
-<span id="cb18-139"><a href="#cb18-139" aria-hidden="true" tabindex="-1"></a>  <span class="at">Teorico =</span> <span class="fu">c</span>(media_concreto, dp_concreto),</span>
-<span id="cb18-140"><a href="#cb18-140" aria-hidden="true" tabindex="-1"></a>  <span class="at">Simulado =</span> <span class="fu">c</span>(<span class="fu">mean</span>(x_normal), <span class="fu">sd</span>(x_normal))</span>
-<span id="cb18-141"><a href="#cb18-141" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb18-142"><a href="#cb18-142" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(comparacao_normal, <span class="at">digits =</span> <span class="dv">3</span>,</span>
-<span id="cb18-143"><a href="#cb18-143" aria-hidden="true" tabindex="-1"></a>             <span class="at">caption =</span> <span class="st">"Comparação entre parâmetros teóricos e simulados"</span>)</span>
-<span id="cb18-144"><a href="#cb18-144" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb18-145"><a href="#cb18-145" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-146"><a href="#cb18-146" aria-hidden="true" tabindex="-1"></a>O histograma deve acompanhar aproximadamente a curva Normal teórica. Pequenas diferenças são esperadas, pois a simulação contém erro aleatório. A proximidade entre a média e o desvio padrão simulados e os valores teóricos reforça a adequação do procedimento.</span>
-<span id="cb18-147"><a href="#cb18-147" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-148"><a href="#cb18-148" aria-hidden="true" tabindex="-1"></a><span class="fu">## Parte 2 – Qualidade de estacas pré-moldadas: distribuição Binomial</span></span>
-<span id="cb18-149"><a href="#cb18-149" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-150"><a href="#cb18-150" aria-hidden="true" tabindex="-1"></a>Seja $X$ o número de estacas defeituosas em um lote de 15 unidades. Considera-se independência entre as unidades e probabilidade constante de defeito igual a 8%:</span>
+<span id="cb18-88"><a href="#cb18-88" aria-hidden="true" tabindex="-1"></a>Seja $X$ a resistência à compressão do concreto, em MPa. Considera-se:</span>
+<span id="cb18-89"><a href="#cb18-89" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-90"><a href="#cb18-90" aria-hidden="true" tabindex="-1"></a>$$X \sim N(35, 4^2).$$</span>
+<span id="cb18-91"><a href="#cb18-91" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-92"><a href="#cb18-92" aria-hidden="true" tabindex="-1"></a>A média é 35 MPa e o desvio padrão é 4 MPa. A distribuição Normal é apropriada para representar uma variável contínua concentrada em torno de um valor médio, com variações para ambos os lados.</span>
+<span id="cb18-93"><a href="#cb18-93" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-94"><a href="#cb18-94" aria-hidden="true" tabindex="-1"></a><span class="in">```{r normal-calculos}</span></span>
+<span id="cb18-95"><a href="#cb18-95" aria-hidden="true" tabindex="-1"></a><span class="co"># Parâmetros</span></span>
+<span id="cb18-96"><a href="#cb18-96" aria-hidden="true" tabindex="-1"></a>media_concreto <span class="ot">&lt;-</span> <span class="dv">35</span></span>
+<span id="cb18-97"><a href="#cb18-97" aria-hidden="true" tabindex="-1"></a>dp_concreto <span class="ot">&lt;-</span> <span class="dv">4</span></span>
+<span id="cb18-98"><a href="#cb18-98" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-99"><a href="#cb18-99" aria-hidden="true" tabindex="-1"></a><span class="co"># a) P(X &lt; 30)</span></span>
+<span id="cb18-100"><a href="#cb18-100" aria-hidden="true" tabindex="-1"></a>p1a <span class="ot">&lt;-</span> <span class="fu">pnorm</span>(<span class="dv">30</span>, <span class="at">mean =</span> media_concreto, <span class="at">sd =</span> dp_concreto)</span>
+<span id="cb18-101"><a href="#cb18-101" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-102"><a href="#cb18-102" aria-hidden="true" tabindex="-1"></a><span class="co"># b) P(32 &lt; X &lt; 38)</span></span>
+<span id="cb18-103"><a href="#cb18-103" aria-hidden="true" tabindex="-1"></a>p1b <span class="ot">&lt;-</span> <span class="fu">pnorm</span>(<span class="dv">38</span>, <span class="at">mean =</span> media_concreto, <span class="at">sd =</span> dp_concreto) <span class="sc">-</span></span>
+<span id="cb18-104"><a href="#cb18-104" aria-hidden="true" tabindex="-1"></a>       <span class="fu">pnorm</span>(<span class="dv">32</span>, <span class="at">mean =</span> media_concreto, <span class="at">sd =</span> dp_concreto)</span>
+<span id="cb18-105"><a href="#cb18-105" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-106"><a href="#cb18-106" aria-hidden="true" tabindex="-1"></a><span class="co"># c) Percentil 5</span></span>
+<span id="cb18-107"><a href="#cb18-107" aria-hidden="true" tabindex="-1"></a>q1c <span class="ot">&lt;-</span> <span class="fu">qnorm</span>(<span class="fl">0.05</span>, <span class="at">mean =</span> media_concreto, <span class="at">sd =</span> dp_concreto)</span>
+<span id="cb18-108"><a href="#cb18-108" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-109"><a href="#cb18-109" aria-hidden="true" tabindex="-1"></a><span class="co"># d) P(média de 10 amostras &lt; 33)</span></span>
+<span id="cb18-110"><a href="#cb18-110" aria-hidden="true" tabindex="-1"></a>n_amostras <span class="ot">&lt;-</span> <span class="dv">10</span></span>
+<span id="cb18-111"><a href="#cb18-111" aria-hidden="true" tabindex="-1"></a>erro_padrao <span class="ot">&lt;-</span> dp_concreto <span class="sc">/</span> <span class="fu">sqrt</span>(n_amostras)</span>
+<span id="cb18-112"><a href="#cb18-112" aria-hidden="true" tabindex="-1"></a>p1d <span class="ot">&lt;-</span> <span class="fu">pnorm</span>(<span class="dv">33</span>, <span class="at">mean =</span> media_concreto, <span class="at">sd =</span> erro_padrao)</span>
+<span id="cb18-113"><a href="#cb18-113" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-114"><a href="#cb18-114" aria-hidden="true" tabindex="-1"></a>resultados_normal <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb18-115"><a href="#cb18-115" aria-hidden="true" tabindex="-1"></a>  <span class="at">Item =</span> <span class="fu">c</span>(<span class="st">"a"</span>, <span class="st">"b"</span>, <span class="st">"c"</span>, <span class="st">"d"</span>),</span>
+<span id="cb18-116"><a href="#cb18-116" aria-hidden="true" tabindex="-1"></a>  <span class="at">Resultado =</span> <span class="fu">c</span>(p1a, p1b, q1c, p1d),</span>
+<span id="cb18-117"><a href="#cb18-117" aria-hidden="true" tabindex="-1"></a>  <span class="at">Unidade =</span> <span class="fu">c</span>(<span class="st">"probabilidade"</span>, <span class="st">"probabilidade"</span>, <span class="st">"MPa"</span>, <span class="st">"probabilidade"</span>)</span>
+<span id="cb18-118"><a href="#cb18-118" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb18-119"><a href="#cb18-119" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(resultados_normal, <span class="at">digits =</span> <span class="dv">4</span>,</span>
+<span id="cb18-120"><a href="#cb18-120" aria-hidden="true" tabindex="-1"></a>             <span class="at">caption =</span> <span class="st">"Resultados teóricos da distribuição Normal"</span>)</span>
+<span id="cb18-121"><a href="#cb18-121" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb18-122"><a href="#cb18-122" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-123"><a href="#cb18-123" aria-hidden="true" tabindex="-1"></a>**Interpretação.** A probabilidade de uma amostra apresentar resistência inferior a 30 MPa é <span class="in">`r pct(p1a)`</span>. Esse resultado representa a parcela esperada da produção abaixo do limite considerado e deve ser analisado em conjunto com as especificações, os critérios de aceitação e os resultados do controle tecnológico. A probabilidade de a resistência ficar entre 32 e 38 MPa é <span class="in">`r pct(p1b)`</span>, indicando a concentração de resultados em uma faixa próxima da média.</span>
+<span id="cb18-124"><a href="#cb18-124" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-125"><a href="#cb18-125" aria-hidden="true" tabindex="-1"></a>O percentil de 5% é <span class="in">`r round(q1c, 2)`</span> MPa. Portanto, teoricamente, 5% das resistências ficam abaixo desse valor. Para a média de 10 amostras, a dispersão é reduzida de 4 MPa para um erro padrão de <span class="in">`r round(erro_padrao, 3)`</span> MPa; por isso, a probabilidade de a média ser inferior a 33 MPa é <span class="in">`r pct(p1d)`</span>. A redução decorre do uso da distribuição amostral da média, cujo desvio padrão é $\sigma/\sqrt{n}$.</span>
+<span id="cb18-126"><a href="#cb18-126" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-127"><a href="#cb18-127" aria-hidden="true" tabindex="-1"></a><span class="in">```{r normal-simulacao}</span></span>
+<span id="cb18-128"><a href="#cb18-128" aria-hidden="true" tabindex="-1"></a><span class="co"># e) Simulação de 1.000 resistências</span></span>
+<span id="cb18-129"><a href="#cb18-129" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
+<span id="cb18-130"><a href="#cb18-130" aria-hidden="true" tabindex="-1"></a>x_normal <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">1000</span>, <span class="at">mean =</span> media_concreto, <span class="at">sd =</span> dp_concreto)</span>
+<span id="cb18-131"><a href="#cb18-131" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-132"><a href="#cb18-132" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(x_normal, <span class="at">probability =</span> <span class="cn">TRUE</span>, <span class="at">breaks =</span> <span class="dv">25</span>,</span>
+<span id="cb18-133"><a href="#cb18-133" aria-hidden="true" tabindex="-1"></a>     <span class="at">col =</span> <span class="st">"lightblue"</span>, <span class="at">border =</span> <span class="st">"white"</span>,</span>
+<span id="cb18-134"><a href="#cb18-134" aria-hidden="true" tabindex="-1"></a>     <span class="at">main =</span> <span class="st">"Resistência simulada do concreto"</span>,</span>
+<span id="cb18-135"><a href="#cb18-135" aria-hidden="true" tabindex="-1"></a>     <span class="at">xlab =</span> <span class="st">"Resistência à compressão (MPa)"</span>,</span>
+<span id="cb18-136"><a href="#cb18-136" aria-hidden="true" tabindex="-1"></a>     <span class="at">ylab =</span> <span class="st">"Densidade"</span>)</span>
+<span id="cb18-137"><a href="#cb18-137" aria-hidden="true" tabindex="-1"></a><span class="fu">curve</span>(<span class="fu">dnorm</span>(x, <span class="at">mean =</span> media_concreto, <span class="at">sd =</span> dp_concreto),</span>
+<span id="cb18-138"><a href="#cb18-138" aria-hidden="true" tabindex="-1"></a>      <span class="at">add =</span> <span class="cn">TRUE</span>, <span class="at">col =</span> <span class="st">"red"</span>, <span class="at">lwd =</span> <span class="dv">2</span>)</span>
+<span id="cb18-139"><a href="#cb18-139" aria-hidden="true" tabindex="-1"></a><span class="fu">legend</span>(<span class="st">"topright"</span>, <span class="at">legend =</span> <span class="fu">c</span>(<span class="st">"Histograma simulado"</span>, <span class="st">"Densidade teórica"</span>),</span>
+<span id="cb18-140"><a href="#cb18-140" aria-hidden="true" tabindex="-1"></a>       <span class="at">fill =</span> <span class="fu">c</span>(<span class="st">"lightblue"</span>, <span class="cn">NA</span>), <span class="at">border =</span> <span class="fu">c</span>(<span class="st">"white"</span>, <span class="cn">NA</span>),</span>
+<span id="cb18-141"><a href="#cb18-141" aria-hidden="true" tabindex="-1"></a>       <span class="at">lty =</span> <span class="fu">c</span>(<span class="cn">NA</span>, <span class="dv">1</span>), <span class="at">col =</span> <span class="fu">c</span>(<span class="cn">NA</span>, <span class="st">"red"</span>), <span class="at">lwd =</span> <span class="fu">c</span>(<span class="cn">NA</span>, <span class="dv">2</span>), <span class="at">bty =</span> <span class="st">"n"</span>)</span>
+<span id="cb18-142"><a href="#cb18-142" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-143"><a href="#cb18-143" aria-hidden="true" tabindex="-1"></a>comparacao_normal <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb18-144"><a href="#cb18-144" aria-hidden="true" tabindex="-1"></a>  <span class="at">Medida =</span> <span class="fu">c</span>(<span class="st">"Média"</span>, <span class="st">"Desvio padrão"</span>),</span>
+<span id="cb18-145"><a href="#cb18-145" aria-hidden="true" tabindex="-1"></a>  <span class="at">Teorico =</span> <span class="fu">c</span>(media_concreto, dp_concreto),</span>
+<span id="cb18-146"><a href="#cb18-146" aria-hidden="true" tabindex="-1"></a>  <span class="at">Simulado =</span> <span class="fu">c</span>(<span class="fu">mean</span>(x_normal), <span class="fu">sd</span>(x_normal))</span>
+<span id="cb18-147"><a href="#cb18-147" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb18-148"><a href="#cb18-148" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(comparacao_normal, <span class="at">digits =</span> <span class="dv">3</span>,</span>
+<span id="cb18-149"><a href="#cb18-149" aria-hidden="true" tabindex="-1"></a>             <span class="at">caption =</span> <span class="st">"Comparação entre parâmetros teóricos e simulados"</span>)</span>
+<span id="cb18-150"><a href="#cb18-150" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb18-151"><a href="#cb18-151" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-152"><a href="#cb18-152" aria-hidden="true" tabindex="-1"></a>$$X \sim Binomial(15, 0{,}08).$$</span>
+<span id="cb18-152"><a href="#cb18-152" aria-hidden="true" tabindex="-1"></a>O histograma deve acompanhar aproximadamente a curva Normal teórica. Pequenas diferenças são esperadas, pois a simulação contém erro aleatório. A proximidade entre a média e o desvio padrão simulados e os valores teóricos reforça a adequação do procedimento.</span>
 <span id="cb18-153"><a href="#cb18-153" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-154"><a href="#cb18-154" aria-hidden="true" tabindex="-1"></a><span class="in">```{r binomial-calculos}</span></span>
-<span id="cb18-155"><a href="#cb18-155" aria-hidden="true" tabindex="-1"></a>n_estacas <span class="ot">&lt;-</span> <span class="dv">15</span></span>
-<span id="cb18-156"><a href="#cb18-156" aria-hidden="true" tabindex="-1"></a>p_defeito <span class="ot">&lt;-</span> <span class="fl">0.08</span></span>
+<span id="cb18-154"><a href="#cb18-154" aria-hidden="true" tabindex="-1"></a><span class="fu">## Parte 2 – Qualidade de estacas pré-moldadas: distribuição Binomial</span></span>
+<span id="cb18-155"><a href="#cb18-155" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-156"><a href="#cb18-156" aria-hidden="true" tabindex="-1"></a>Seja $X$ o número de estacas defeituosas em um lote de 15 unidades. Considera-se independência entre as unidades e probabilidade constante de defeito igual a 8%:</span>
 <span id="cb18-157"><a href="#cb18-157" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-158"><a href="#cb18-158" aria-hidden="true" tabindex="-1"></a><span class="co"># a) P(X = 0)</span></span>
-<span id="cb18-159"><a href="#cb18-159" aria-hidden="true" tabindex="-1"></a>p2a <span class="ot">&lt;-</span> <span class="fu">dbinom</span>(<span class="dv">0</span>, <span class="at">size =</span> n_estacas, <span class="at">prob =</span> p_defeito)</span>
-<span id="cb18-160"><a href="#cb18-160" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-161"><a href="#cb18-161" aria-hidden="true" tabindex="-1"></a><span class="co"># b) P(X &lt;= 2)</span></span>
-<span id="cb18-162"><a href="#cb18-162" aria-hidden="true" tabindex="-1"></a>p2b <span class="ot">&lt;-</span> <span class="fu">pbinom</span>(<span class="dv">2</span>, <span class="at">size =</span> n_estacas, <span class="at">prob =</span> p_defeito)</span>
+<span id="cb18-158"><a href="#cb18-158" aria-hidden="true" tabindex="-1"></a>$$X \sim Binomial(15, 0{,}08).$$</span>
+<span id="cb18-159"><a href="#cb18-159" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-160"><a href="#cb18-160" aria-hidden="true" tabindex="-1"></a><span class="in">```{r binomial-calculos}</span></span>
+<span id="cb18-161"><a href="#cb18-161" aria-hidden="true" tabindex="-1"></a>n_estacas <span class="ot">&lt;-</span> <span class="dv">15</span></span>
+<span id="cb18-162"><a href="#cb18-162" aria-hidden="true" tabindex="-1"></a>p_defeito <span class="ot">&lt;-</span> <span class="fl">0.08</span></span>
 <span id="cb18-163"><a href="#cb18-163" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-164"><a href="#cb18-164" aria-hidden="true" tabindex="-1"></a><span class="co"># c) P(X &gt;= 4) = 1 - P(X &lt;= 3)</span></span>
-<span id="cb18-165"><a href="#cb18-165" aria-hidden="true" tabindex="-1"></a>p2c <span class="ot">&lt;-</span> <span class="fu">pbinom</span>(<span class="dv">3</span>, <span class="at">size =</span> n_estacas, <span class="at">prob =</span> p_defeito,</span>
-<span id="cb18-166"><a href="#cb18-166" aria-hidden="true" tabindex="-1"></a>              <span class="at">lower.tail =</span> <span class="cn">FALSE</span>)</span>
-<span id="cb18-167"><a href="#cb18-167" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-168"><a href="#cb18-168" aria-hidden="true" tabindex="-1"></a><span class="co"># d) Esperança e variância</span></span>
-<span id="cb18-169"><a href="#cb18-169" aria-hidden="true" tabindex="-1"></a>esp_binomial <span class="ot">&lt;-</span> n_estacas <span class="sc">*</span> p_defeito</span>
-<span id="cb18-170"><a href="#cb18-170" aria-hidden="true" tabindex="-1"></a>var_binomial <span class="ot">&lt;-</span> n_estacas <span class="sc">*</span> p_defeito <span class="sc">*</span> (<span class="dv">1</span> <span class="sc">-</span> p_defeito)</span>
-<span id="cb18-171"><a href="#cb18-171" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-172"><a href="#cb18-172" aria-hidden="true" tabindex="-1"></a>resultados_binomial <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
-<span id="cb18-173"><a href="#cb18-173" aria-hidden="true" tabindex="-1"></a>  <span class="at">Item =</span> <span class="fu">c</span>(<span class="st">"a"</span>, <span class="st">"b"</span>, <span class="st">"c"</span>, <span class="st">"d - esperança"</span>, <span class="st">"d - variância"</span>),</span>
-<span id="cb18-174"><a href="#cb18-174" aria-hidden="true" tabindex="-1"></a>  <span class="at">Resultado =</span> <span class="fu">c</span>(p2a, p2b, p2c, esp_binomial, var_binomial)</span>
-<span id="cb18-175"><a href="#cb18-175" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb18-176"><a href="#cb18-176" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(resultados_binomial, <span class="at">digits =</span> <span class="dv">4</span>,</span>
-<span id="cb18-177"><a href="#cb18-177" aria-hidden="true" tabindex="-1"></a>             <span class="at">caption =</span> <span class="st">"Resultados teóricos da distribuição Binomial"</span>)</span>
-<span id="cb18-178"><a href="#cb18-178" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb18-179"><a href="#cb18-179" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-180"><a href="#cb18-180" aria-hidden="true" tabindex="-1"></a>A probabilidade de não haver nenhuma estaca defeituosa é <span class="in">`r pct(p2a)`</span>, enquanto a probabilidade de existirem no máximo duas defeituosas é <span class="in">`r pct(p2b)`</span>. A ocorrência de quatro ou mais defeitos tem probabilidade de <span class="in">`r pct(p2c)`</span>, caracterizando um resultado menos frequente, mas importante para o controle de recebimento. O número esperado é <span class="in">`r round(esp_binomial, 2)`</span> estaca defeituosa por lote, e a variância é <span class="in">`r round(var_binomial, 4)`</span>.</span>
-<span id="cb18-181"><a href="#cb18-181" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-182"><a href="#cb18-182" aria-hidden="true" tabindex="-1"></a><span class="in">```{r binomial-simulacao}</span></span>
-<span id="cb18-183"><a href="#cb18-183" aria-hidden="true" tabindex="-1"></a><span class="co"># e) Simulação de 500 lotes</span></span>
-<span id="cb18-184"><a href="#cb18-184" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
-<span id="cb18-185"><a href="#cb18-185" aria-hidden="true" tabindex="-1"></a>sim_binomial <span class="ot">&lt;-</span> <span class="fu">rbinom</span>(<span class="dv">500</span>, <span class="at">size =</span> n_estacas, <span class="at">prob =</span> p_defeito)</span>
-<span id="cb18-186"><a href="#cb18-186" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-187"><a href="#cb18-187" aria-hidden="true" tabindex="-1"></a>valores_bin <span class="ot">&lt;-</span> <span class="dv">0</span><span class="sc">:</span>n_estacas</span>
-<span id="cb18-188"><a href="#cb18-188" aria-hidden="true" tabindex="-1"></a>freq_rel <span class="ot">&lt;-</span> <span class="fu">tabulate</span>(sim_binomial <span class="sc">+</span> <span class="dv">1</span>, <span class="at">nbins =</span> n_estacas <span class="sc">+</span> <span class="dv">1</span>) <span class="sc">/</span> <span class="dv">500</span></span>
-<span id="cb18-189"><a href="#cb18-189" aria-hidden="true" tabindex="-1"></a>prob_teorica <span class="ot">&lt;-</span> <span class="fu">dbinom</span>(valores_bin, <span class="at">size =</span> n_estacas, <span class="at">prob =</span> p_defeito)</span>
-<span id="cb18-190"><a href="#cb18-190" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-191"><a href="#cb18-191" aria-hidden="true" tabindex="-1"></a>comparacao_binomial <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
-<span id="cb18-192"><a href="#cb18-192" aria-hidden="true" tabindex="-1"></a>  <span class="at">Defeituosas =</span> valores_bin,</span>
-<span id="cb18-193"><a href="#cb18-193" aria-hidden="true" tabindex="-1"></a>  <span class="at">Frequencia_simulada =</span> freq_rel,</span>
-<span id="cb18-194"><a href="#cb18-194" aria-hidden="true" tabindex="-1"></a>  <span class="at">Probabilidade_teorica =</span> prob_teorica</span>
-<span id="cb18-195"><a href="#cb18-195" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb18-196"><a href="#cb18-196" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(comparacao_binomial, <span class="at">digits =</span> <span class="dv">4</span>,</span>
-<span id="cb18-197"><a href="#cb18-197" aria-hidden="true" tabindex="-1"></a>             <span class="at">caption =</span> <span class="st">"Frequências simuladas e probabilidades teóricas"</span>)</span>
-<span id="cb18-198"><a href="#cb18-198" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-199"><a href="#cb18-199" aria-hidden="true" tabindex="-1"></a><span class="fu">matplot</span>(valores_bin, <span class="fu">cbind</span>(freq_rel, prob_teorica), <span class="at">type =</span> <span class="st">"h"</span>,</span>
-<span id="cb18-200"><a href="#cb18-200" aria-hidden="true" tabindex="-1"></a>        <span class="at">lty =</span> <span class="dv">1</span>, <span class="at">lwd =</span> <span class="dv">5</span>, <span class="at">col =</span> <span class="fu">c</span>(<span class="st">"steelblue"</span>, <span class="st">"tomato"</span>),</span>
-<span id="cb18-201"><a href="#cb18-201" aria-hidden="true" tabindex="-1"></a>        <span class="at">xlab =</span> <span class="st">"Número de estacas defeituosas"</span>,</span>
-<span id="cb18-202"><a href="#cb18-202" aria-hidden="true" tabindex="-1"></a>        <span class="at">ylab =</span> <span class="st">"Frequência relativa / probabilidade"</span>,</span>
-<span id="cb18-203"><a href="#cb18-203" aria-hidden="true" tabindex="-1"></a>        <span class="at">main =</span> <span class="st">"Binomial: simulação e teoria"</span>)</span>
-<span id="cb18-204"><a href="#cb18-204" aria-hidden="true" tabindex="-1"></a><span class="fu">legend</span>(<span class="st">"topright"</span>, <span class="fu">c</span>(<span class="st">"Simulada"</span>, <span class="st">"Teórica"</span>),</span>
-<span id="cb18-205"><a href="#cb18-205" aria-hidden="true" tabindex="-1"></a>       <span class="at">col =</span> <span class="fu">c</span>(<span class="st">"steelblue"</span>, <span class="st">"tomato"</span>), <span class="at">lty =</span> <span class="dv">1</span>, <span class="at">lwd =</span> <span class="dv">4</span>, <span class="at">bty =</span> <span class="st">"n"</span>)</span>
-<span id="cb18-206"><a href="#cb18-206" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb18-207"><a href="#cb18-207" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-208"><a href="#cb18-208" aria-hidden="true" tabindex="-1"></a>A comparação evidencia que as frequências relativas tendem às probabilidades teóricas. Na prática, esse modelo pode subsidiar planos de inspeção, dimensionamento de amostras e decisões de aceitação ou rejeição de lotes, desde que as hipóteses de independência e probabilidade constante sejam razoáveis.</span>
-<span id="cb18-209"><a href="#cb18-209" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-210"><a href="#cb18-210" aria-hidden="true" tabindex="-1"></a><span class="fu">## Parte 3 – Fissuras em túnel: distribuição Poisson</span></span>
-<span id="cb18-211"><a href="#cb18-211" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-212"><a href="#cb18-212" aria-hidden="true" tabindex="-1"></a>Seja $X$ o número de fissuras por quilômetro de túnel. A taxa é $\lambda=2{,}5$ fissuras/km. Para 2 km, a taxa esperada é proporcional ao comprimento: $2 \times 2{,}5=5$.</span>
+<span id="cb18-164"><a href="#cb18-164" aria-hidden="true" tabindex="-1"></a><span class="co"># a) P(X = 0)</span></span>
+<span id="cb18-165"><a href="#cb18-165" aria-hidden="true" tabindex="-1"></a>p2a <span class="ot">&lt;-</span> <span class="fu">dbinom</span>(<span class="dv">0</span>, <span class="at">size =</span> n_estacas, <span class="at">prob =</span> p_defeito)</span>
+<span id="cb18-166"><a href="#cb18-166" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-167"><a href="#cb18-167" aria-hidden="true" tabindex="-1"></a><span class="co"># b) P(X &lt;= 2)</span></span>
+<span id="cb18-168"><a href="#cb18-168" aria-hidden="true" tabindex="-1"></a>p2b <span class="ot">&lt;-</span> <span class="fu">pbinom</span>(<span class="dv">2</span>, <span class="at">size =</span> n_estacas, <span class="at">prob =</span> p_defeito)</span>
+<span id="cb18-169"><a href="#cb18-169" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-170"><a href="#cb18-170" aria-hidden="true" tabindex="-1"></a><span class="co"># c) P(X &gt;= 4) = 1 - P(X &lt;= 3)</span></span>
+<span id="cb18-171"><a href="#cb18-171" aria-hidden="true" tabindex="-1"></a>p2c <span class="ot">&lt;-</span> <span class="fu">pbinom</span>(<span class="dv">3</span>, <span class="at">size =</span> n_estacas, <span class="at">prob =</span> p_defeito,</span>
+<span id="cb18-172"><a href="#cb18-172" aria-hidden="true" tabindex="-1"></a>              <span class="at">lower.tail =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb18-173"><a href="#cb18-173" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-174"><a href="#cb18-174" aria-hidden="true" tabindex="-1"></a><span class="co"># d) Esperança e variância</span></span>
+<span id="cb18-175"><a href="#cb18-175" aria-hidden="true" tabindex="-1"></a>esp_binomial <span class="ot">&lt;-</span> n_estacas <span class="sc">*</span> p_defeito</span>
+<span id="cb18-176"><a href="#cb18-176" aria-hidden="true" tabindex="-1"></a>var_binomial <span class="ot">&lt;-</span> n_estacas <span class="sc">*</span> p_defeito <span class="sc">*</span> (<span class="dv">1</span> <span class="sc">-</span> p_defeito)</span>
+<span id="cb18-177"><a href="#cb18-177" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-178"><a href="#cb18-178" aria-hidden="true" tabindex="-1"></a>resultados_binomial <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb18-179"><a href="#cb18-179" aria-hidden="true" tabindex="-1"></a>  <span class="at">Item =</span> <span class="fu">c</span>(<span class="st">"a"</span>, <span class="st">"b"</span>, <span class="st">"c"</span>, <span class="st">"d - esperança"</span>, <span class="st">"d - variância"</span>),</span>
+<span id="cb18-180"><a href="#cb18-180" aria-hidden="true" tabindex="-1"></a>  <span class="at">Resultado =</span> <span class="fu">c</span>(p2a, p2b, p2c, esp_binomial, var_binomial)</span>
+<span id="cb18-181"><a href="#cb18-181" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb18-182"><a href="#cb18-182" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(resultados_binomial, <span class="at">digits =</span> <span class="dv">4</span>,</span>
+<span id="cb18-183"><a href="#cb18-183" aria-hidden="true" tabindex="-1"></a>             <span class="at">caption =</span> <span class="st">"Resultados teóricos da distribuição Binomial"</span>)</span>
+<span id="cb18-184"><a href="#cb18-184" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb18-185"><a href="#cb18-185" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-186"><a href="#cb18-186" aria-hidden="true" tabindex="-1"></a>A probabilidade de não haver nenhuma estaca defeituosa é <span class="in">`r pct(p2a)`</span>, enquanto a probabilidade de existirem no máximo duas defeituosas é <span class="in">`r pct(p2b)`</span>. A ocorrência de quatro ou mais defeitos tem probabilidade de <span class="in">`r pct(p2c)`</span>, caracterizando um resultado menos frequente, mas importante para o controle de recebimento. O número esperado é <span class="in">`r round(esp_binomial, 2)`</span> estaca defeituosa por lote, e a variância é <span class="in">`r round(var_binomial, 4)`</span>.</span>
+<span id="cb18-187"><a href="#cb18-187" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-188"><a href="#cb18-188" aria-hidden="true" tabindex="-1"></a><span class="in">```{r binomial-simulacao}</span></span>
+<span id="cb18-189"><a href="#cb18-189" aria-hidden="true" tabindex="-1"></a><span class="co"># e) Simulação de 500 lotes</span></span>
+<span id="cb18-190"><a href="#cb18-190" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
+<span id="cb18-191"><a href="#cb18-191" aria-hidden="true" tabindex="-1"></a>sim_binomial <span class="ot">&lt;-</span> <span class="fu">rbinom</span>(<span class="dv">500</span>, <span class="at">size =</span> n_estacas, <span class="at">prob =</span> p_defeito)</span>
+<span id="cb18-192"><a href="#cb18-192" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-193"><a href="#cb18-193" aria-hidden="true" tabindex="-1"></a>valores_bin <span class="ot">&lt;-</span> <span class="dv">0</span><span class="sc">:</span>n_estacas</span>
+<span id="cb18-194"><a href="#cb18-194" aria-hidden="true" tabindex="-1"></a>freq_rel <span class="ot">&lt;-</span> <span class="fu">tabulate</span>(sim_binomial <span class="sc">+</span> <span class="dv">1</span>, <span class="at">nbins =</span> n_estacas <span class="sc">+</span> <span class="dv">1</span>) <span class="sc">/</span> <span class="dv">500</span></span>
+<span id="cb18-195"><a href="#cb18-195" aria-hidden="true" tabindex="-1"></a>prob_teorica <span class="ot">&lt;-</span> <span class="fu">dbinom</span>(valores_bin, <span class="at">size =</span> n_estacas, <span class="at">prob =</span> p_defeito)</span>
+<span id="cb18-196"><a href="#cb18-196" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-197"><a href="#cb18-197" aria-hidden="true" tabindex="-1"></a>comparacao_binomial <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb18-198"><a href="#cb18-198" aria-hidden="true" tabindex="-1"></a>  <span class="at">Defeituosas =</span> valores_bin,</span>
+<span id="cb18-199"><a href="#cb18-199" aria-hidden="true" tabindex="-1"></a>  <span class="at">Frequencia_simulada =</span> freq_rel,</span>
+<span id="cb18-200"><a href="#cb18-200" aria-hidden="true" tabindex="-1"></a>  <span class="at">Probabilidade_teorica =</span> prob_teorica</span>
+<span id="cb18-201"><a href="#cb18-201" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb18-202"><a href="#cb18-202" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(comparacao_binomial, <span class="at">digits =</span> <span class="dv">4</span>,</span>
+<span id="cb18-203"><a href="#cb18-203" aria-hidden="true" tabindex="-1"></a>             <span class="at">caption =</span> <span class="st">"Frequências simuladas e probabilidades teóricas"</span>)</span>
+<span id="cb18-204"><a href="#cb18-204" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-205"><a href="#cb18-205" aria-hidden="true" tabindex="-1"></a><span class="fu">matplot</span>(valores_bin, <span class="fu">cbind</span>(freq_rel, prob_teorica), <span class="at">type =</span> <span class="st">"h"</span>,</span>
+<span id="cb18-206"><a href="#cb18-206" aria-hidden="true" tabindex="-1"></a>        <span class="at">lty =</span> <span class="dv">1</span>, <span class="at">lwd =</span> <span class="dv">5</span>, <span class="at">col =</span> <span class="fu">c</span>(<span class="st">"steelblue"</span>, <span class="st">"tomato"</span>),</span>
+<span id="cb18-207"><a href="#cb18-207" aria-hidden="true" tabindex="-1"></a>        <span class="at">xlab =</span> <span class="st">"Número de estacas defeituosas"</span>,</span>
+<span id="cb18-208"><a href="#cb18-208" aria-hidden="true" tabindex="-1"></a>        <span class="at">ylab =</span> <span class="st">"Frequência relativa / probabilidade"</span>,</span>
+<span id="cb18-209"><a href="#cb18-209" aria-hidden="true" tabindex="-1"></a>        <span class="at">main =</span> <span class="st">"Binomial: simulação e teoria"</span>)</span>
+<span id="cb18-210"><a href="#cb18-210" aria-hidden="true" tabindex="-1"></a><span class="fu">legend</span>(<span class="st">"topright"</span>, <span class="fu">c</span>(<span class="st">"Simulada"</span>, <span class="st">"Teórica"</span>),</span>
+<span id="cb18-211"><a href="#cb18-211" aria-hidden="true" tabindex="-1"></a>       <span class="at">col =</span> <span class="fu">c</span>(<span class="st">"steelblue"</span>, <span class="st">"tomato"</span>), <span class="at">lty =</span> <span class="dv">1</span>, <span class="at">lwd =</span> <span class="dv">4</span>, <span class="at">bty =</span> <span class="st">"n"</span>)</span>
+<span id="cb18-212"><a href="#cb18-212" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb18-213"><a href="#cb18-213" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-214"><a href="#cb18-214" aria-hidden="true" tabindex="-1"></a><span class="in">```{r poisson-calculos}</span></span>
-<span id="cb18-215"><a href="#cb18-215" aria-hidden="true" tabindex="-1"></a>lambda_1km <span class="ot">&lt;-</span> <span class="fl">2.5</span></span>
-<span id="cb18-216"><a href="#cb18-216" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-217"><a href="#cb18-217" aria-hidden="true" tabindex="-1"></a><span class="co"># a) P(X = 0)</span></span>
-<span id="cb18-218"><a href="#cb18-218" aria-hidden="true" tabindex="-1"></a>p3a <span class="ot">&lt;-</span> <span class="fu">dpois</span>(<span class="dv">0</span>, <span class="at">lambda =</span> lambda_1km)</span>
+<span id="cb18-214"><a href="#cb18-214" aria-hidden="true" tabindex="-1"></a>A comparação evidencia que as frequências relativas tendem às probabilidades teóricas. Na prática, esse modelo pode subsidiar planos de inspeção, dimensionamento de amostras e decisões de aceitação ou rejeição de lotes, desde que as hipóteses de independência e probabilidade constante sejam razoáveis.</span>
+<span id="cb18-215"><a href="#cb18-215" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-216"><a href="#cb18-216" aria-hidden="true" tabindex="-1"></a><span class="fu">## Parte 3 – Fissuras em túnel: distribuição Poisson</span></span>
+<span id="cb18-217"><a href="#cb18-217" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-218"><a href="#cb18-218" aria-hidden="true" tabindex="-1"></a>Seja $X$ o número de fissuras por quilômetro de túnel. A taxa é $\lambda=2{,}5$ fissuras/km. Para 2 km, a taxa esperada é proporcional ao comprimento: $2 \times 2{,}5=5$.</span>
 <span id="cb18-219"><a href="#cb18-219" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-220"><a href="#cb18-220" aria-hidden="true" tabindex="-1"></a><span class="co"># b) P(X &gt;= 3) = 1 - P(X &lt;= 2)</span></span>
-<span id="cb18-221"><a href="#cb18-221" aria-hidden="true" tabindex="-1"></a>p3b <span class="ot">&lt;-</span> <span class="fu">ppois</span>(<span class="dv">2</span>, <span class="at">lambda =</span> lambda_1km, <span class="at">lower.tail =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb18-220"><a href="#cb18-220" aria-hidden="true" tabindex="-1"></a><span class="in">```{r poisson-calculos}</span></span>
+<span id="cb18-221"><a href="#cb18-221" aria-hidden="true" tabindex="-1"></a>lambda_1km <span class="ot">&lt;-</span> <span class="fl">2.5</span></span>
 <span id="cb18-222"><a href="#cb18-222" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-223"><a href="#cb18-223" aria-hidden="true" tabindex="-1"></a><span class="co"># c) P(1 &lt;= X &lt;= 4) = P(X &lt;= 4) - P(X &lt;= 0)</span></span>
-<span id="cb18-224"><a href="#cb18-224" aria-hidden="true" tabindex="-1"></a>p3c <span class="ot">&lt;-</span> <span class="fu">ppois</span>(<span class="dv">4</span>, <span class="at">lambda =</span> lambda_1km) <span class="sc">-</span> <span class="fu">ppois</span>(<span class="dv">0</span>, <span class="at">lambda =</span> lambda_1km)</span>
+<span id="cb18-223"><a href="#cb18-223" aria-hidden="true" tabindex="-1"></a><span class="co"># a) P(X = 0)</span></span>
+<span id="cb18-224"><a href="#cb18-224" aria-hidden="true" tabindex="-1"></a>p3a <span class="ot">&lt;-</span> <span class="fu">dpois</span>(<span class="dv">0</span>, <span class="at">lambda =</span> lambda_1km)</span>
 <span id="cb18-225"><a href="#cb18-225" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-226"><a href="#cb18-226" aria-hidden="true" tabindex="-1"></a><span class="co"># d) Em 2 km, lambda = 5; P(X = 5)</span></span>
-<span id="cb18-227"><a href="#cb18-227" aria-hidden="true" tabindex="-1"></a>lambda_2km <span class="ot">&lt;-</span> <span class="dv">2</span> <span class="sc">*</span> lambda_1km</span>
-<span id="cb18-228"><a href="#cb18-228" aria-hidden="true" tabindex="-1"></a>p3d <span class="ot">&lt;-</span> <span class="fu">dpois</span>(<span class="dv">5</span>, <span class="at">lambda =</span> lambda_2km)</span>
-<span id="cb18-229"><a href="#cb18-229" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-230"><a href="#cb18-230" aria-hidden="true" tabindex="-1"></a><span class="co"># e) Na Poisson, esperança e variância são iguais a lambda</span></span>
-<span id="cb18-231"><a href="#cb18-231" aria-hidden="true" tabindex="-1"></a>esp_poisson <span class="ot">&lt;-</span> lambda_1km</span>
-<span id="cb18-232"><a href="#cb18-232" aria-hidden="true" tabindex="-1"></a>var_poisson <span class="ot">&lt;-</span> lambda_1km</span>
-<span id="cb18-233"><a href="#cb18-233" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-234"><a href="#cb18-234" aria-hidden="true" tabindex="-1"></a>resultados_poisson <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
-<span id="cb18-235"><a href="#cb18-235" aria-hidden="true" tabindex="-1"></a>  <span class="at">Item =</span> <span class="fu">c</span>(<span class="st">"a"</span>, <span class="st">"b"</span>, <span class="st">"c"</span>, <span class="st">"d"</span>, <span class="st">"e - esperança"</span>, <span class="st">"e - variância"</span>),</span>
-<span id="cb18-236"><a href="#cb18-236" aria-hidden="true" tabindex="-1"></a>  <span class="at">Resultado =</span> <span class="fu">c</span>(p3a, p3b, p3c, p3d, esp_poisson, var_poisson)</span>
-<span id="cb18-237"><a href="#cb18-237" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb18-238"><a href="#cb18-238" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(resultados_poisson, <span class="at">digits =</span> <span class="dv">4</span>,</span>
-<span id="cb18-239"><a href="#cb18-239" aria-hidden="true" tabindex="-1"></a>             <span class="at">caption =</span> <span class="st">"Resultados da distribuição Poisson"</span>)</span>
-<span id="cb18-240"><a href="#cb18-240" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb18-241"><a href="#cb18-241" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-242"><a href="#cb18-242" aria-hidden="true" tabindex="-1"></a>A probabilidade de não se observar nenhuma fissura em 1 km é <span class="in">`r pct(p3a)`</span>. A probabilidade de três ou mais fissuras é <span class="in">`r pct(p3b)`</span>, e a probabilidade de ocorrerem entre uma e quatro fissuras é <span class="in">`r pct(p3c)`</span>. Em 2 km, a probabilidade de exatamente cinco fissuras é <span class="in">`r pct(p3d)`</span>. Tanto a esperança quanto a variância em 1 km são 2,5.</span>
-<span id="cb18-243"><a href="#cb18-243" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-244"><a href="#cb18-244" aria-hidden="true" tabindex="-1"></a>O modelo permite estimar a frequência de ocorrências ao longo de um comprimento definido e pode apoiar o planejamento de inspeções. Entretanto, a interpretação pressupõe taxa aproximadamente constante e ocorrências independentes. Concentrações localizadas de fissuras podem indicar heterogeneidade geológica, concentração de tensões, falhas executivas ou outros mecanismos que exigem investigação específica.</span>
-<span id="cb18-245"><a href="#cb18-245" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-246"><a href="#cb18-246" aria-hidden="true" tabindex="-1"></a><span class="fu">## Parte 4 – Confiabilidade de equipamentos: distribuição Exponencial</span></span>
+<span id="cb18-226"><a href="#cb18-226" aria-hidden="true" tabindex="-1"></a><span class="co"># b) P(X &gt;= 3) = 1 - P(X &lt;= 2)</span></span>
+<span id="cb18-227"><a href="#cb18-227" aria-hidden="true" tabindex="-1"></a>p3b <span class="ot">&lt;-</span> <span class="fu">ppois</span>(<span class="dv">2</span>, <span class="at">lambda =</span> lambda_1km, <span class="at">lower.tail =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb18-228"><a href="#cb18-228" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-229"><a href="#cb18-229" aria-hidden="true" tabindex="-1"></a><span class="co"># c) P(1 &lt;= X &lt;= 4) = P(X &lt;= 4) - P(X &lt;= 0)</span></span>
+<span id="cb18-230"><a href="#cb18-230" aria-hidden="true" tabindex="-1"></a>p3c <span class="ot">&lt;-</span> <span class="fu">ppois</span>(<span class="dv">4</span>, <span class="at">lambda =</span> lambda_1km) <span class="sc">-</span> <span class="fu">ppois</span>(<span class="dv">0</span>, <span class="at">lambda =</span> lambda_1km)</span>
+<span id="cb18-231"><a href="#cb18-231" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-232"><a href="#cb18-232" aria-hidden="true" tabindex="-1"></a><span class="co"># d) Em 2 km, lambda = 5; P(X = 5)</span></span>
+<span id="cb18-233"><a href="#cb18-233" aria-hidden="true" tabindex="-1"></a>lambda_2km <span class="ot">&lt;-</span> <span class="dv">2</span> <span class="sc">*</span> lambda_1km</span>
+<span id="cb18-234"><a href="#cb18-234" aria-hidden="true" tabindex="-1"></a>p3d <span class="ot">&lt;-</span> <span class="fu">dpois</span>(<span class="dv">5</span>, <span class="at">lambda =</span> lambda_2km)</span>
+<span id="cb18-235"><a href="#cb18-235" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-236"><a href="#cb18-236" aria-hidden="true" tabindex="-1"></a><span class="co"># e) Na Poisson, esperança e variância são iguais a lambda</span></span>
+<span id="cb18-237"><a href="#cb18-237" aria-hidden="true" tabindex="-1"></a>esp_poisson <span class="ot">&lt;-</span> lambda_1km</span>
+<span id="cb18-238"><a href="#cb18-238" aria-hidden="true" tabindex="-1"></a>var_poisson <span class="ot">&lt;-</span> lambda_1km</span>
+<span id="cb18-239"><a href="#cb18-239" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-240"><a href="#cb18-240" aria-hidden="true" tabindex="-1"></a>resultados_poisson <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb18-241"><a href="#cb18-241" aria-hidden="true" tabindex="-1"></a>  <span class="at">Item =</span> <span class="fu">c</span>(<span class="st">"a"</span>, <span class="st">"b"</span>, <span class="st">"c"</span>, <span class="st">"d"</span>, <span class="st">"e - esperança"</span>, <span class="st">"e - variância"</span>),</span>
+<span id="cb18-242"><a href="#cb18-242" aria-hidden="true" tabindex="-1"></a>  <span class="at">Resultado =</span> <span class="fu">c</span>(p3a, p3b, p3c, p3d, esp_poisson, var_poisson)</span>
+<span id="cb18-243"><a href="#cb18-243" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb18-244"><a href="#cb18-244" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(resultados_poisson, <span class="at">digits =</span> <span class="dv">4</span>,</span>
+<span id="cb18-245"><a href="#cb18-245" aria-hidden="true" tabindex="-1"></a>             <span class="at">caption =</span> <span class="st">"Resultados da distribuição Poisson"</span>)</span>
+<span id="cb18-246"><a href="#cb18-246" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb18-247"><a href="#cb18-247" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-248"><a href="#cb18-248" aria-hidden="true" tabindex="-1"></a>O tempo $T$ até a falha da betoneira tem média de 200 horas. Na distribuição Exponencial, a taxa é o inverso da média:</span>
+<span id="cb18-248"><a href="#cb18-248" aria-hidden="true" tabindex="-1"></a>A probabilidade de não se observar nenhuma fissura em 1 km é <span class="in">`r pct(p3a)`</span>. A probabilidade de três ou mais fissuras é <span class="in">`r pct(p3b)`</span>, e a probabilidade de ocorrerem entre uma e quatro fissuras é <span class="in">`r pct(p3c)`</span>. Em 2 km, a probabilidade de exatamente cinco fissuras é <span class="in">`r pct(p3d)`</span>. Tanto a esperança quanto a variância em 1 km são 2,5.</span>
 <span id="cb18-249"><a href="#cb18-249" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-250"><a href="#cb18-250" aria-hidden="true" tabindex="-1"></a>$$\lambda = 1/200 = 0{,}005 \text{ falha por hora}.$$</span>
+<span id="cb18-250"><a href="#cb18-250" aria-hidden="true" tabindex="-1"></a>O modelo permite estimar a frequência de ocorrências ao longo de um comprimento definido e pode apoiar o planejamento de inspeções. Entretanto, a interpretação pressupõe taxa aproximadamente constante e ocorrências independentes. Concentrações localizadas de fissuras podem indicar heterogeneidade geológica, concentração de tensões, falhas executivas ou outros mecanismos que exigem investigação específica.</span>
 <span id="cb18-251"><a href="#cb18-251" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-252"><a href="#cb18-252" aria-hidden="true" tabindex="-1"></a><span class="in">```{r exponencial-calculos}</span></span>
-<span id="cb18-253"><a href="#cb18-253" aria-hidden="true" tabindex="-1"></a>media_falha <span class="ot">&lt;-</span> <span class="dv">200</span></span>
-<span id="cb18-254"><a href="#cb18-254" aria-hidden="true" tabindex="-1"></a>taxa_falha <span class="ot">&lt;-</span> <span class="dv">1</span> <span class="sc">/</span> media_falha</span>
+<span id="cb18-252"><a href="#cb18-252" aria-hidden="true" tabindex="-1"></a><span class="fu">## Parte 4 – Confiabilidade de equipamentos: distribuição Exponencial</span></span>
+<span id="cb18-253"><a href="#cb18-253" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-254"><a href="#cb18-254" aria-hidden="true" tabindex="-1"></a>O tempo $T$ até a falha da betoneira tem média de 200 horas. Na distribuição Exponencial, a taxa é o inverso da média:</span>
 <span id="cb18-255"><a href="#cb18-255" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-256"><a href="#cb18-256" aria-hidden="true" tabindex="-1"></a><span class="co"># a) P(T &gt; 250)</span></span>
-<span id="cb18-257"><a href="#cb18-257" aria-hidden="true" tabindex="-1"></a>p4a <span class="ot">&lt;-</span> <span class="fu">pexp</span>(<span class="dv">250</span>, <span class="at">rate =</span> taxa_falha, <span class="at">lower.tail =</span> <span class="cn">FALSE</span>)</span>
-<span id="cb18-258"><a href="#cb18-258" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-259"><a href="#cb18-259" aria-hidden="true" tabindex="-1"></a><span class="co"># b) P(T &lt; 100)</span></span>
-<span id="cb18-260"><a href="#cb18-260" aria-hidden="true" tabindex="-1"></a>p4b <span class="ot">&lt;-</span> <span class="fu">pexp</span>(<span class="dv">100</span>, <span class="at">rate =</span> taxa_falha)</span>
+<span id="cb18-256"><a href="#cb18-256" aria-hidden="true" tabindex="-1"></a>$$\lambda = 1/200 = 0{,}005 \text{ falha por hora}.$$</span>
+<span id="cb18-257"><a href="#cb18-257" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-258"><a href="#cb18-258" aria-hidden="true" tabindex="-1"></a><span class="in">```{r exponencial-calculos}</span></span>
+<span id="cb18-259"><a href="#cb18-259" aria-hidden="true" tabindex="-1"></a>media_falha <span class="ot">&lt;-</span> <span class="dv">200</span></span>
+<span id="cb18-260"><a href="#cb18-260" aria-hidden="true" tabindex="-1"></a>taxa_falha <span class="ot">&lt;-</span> <span class="dv">1</span> <span class="sc">/</span> media_falha</span>
 <span id="cb18-261"><a href="#cb18-261" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-262"><a href="#cb18-262" aria-hidden="true" tabindex="-1"></a><span class="co"># c) Mediana: quantil de ordem 0,5</span></span>
-<span id="cb18-263"><a href="#cb18-263" aria-hidden="true" tabindex="-1"></a>q4c <span class="ot">&lt;-</span> <span class="fu">qexp</span>(<span class="fl">0.5</span>, <span class="at">rate =</span> taxa_falha)</span>
+<span id="cb18-262"><a href="#cb18-262" aria-hidden="true" tabindex="-1"></a><span class="co"># a) P(T &gt; 250)</span></span>
+<span id="cb18-263"><a href="#cb18-263" aria-hidden="true" tabindex="-1"></a>p4a <span class="ot">&lt;-</span> <span class="fu">pexp</span>(<span class="dv">250</span>, <span class="at">rate =</span> taxa_falha, <span class="at">lower.tail =</span> <span class="cn">FALSE</span>)</span>
 <span id="cb18-264"><a href="#cb18-264" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-265"><a href="#cb18-265" aria-hidden="true" tabindex="-1"></a><span class="co"># d) P(T &gt; 250 | T &gt; 150) = P(T &gt; 100), pela falta de memória</span></span>
-<span id="cb18-266"><a href="#cb18-266" aria-hidden="true" tabindex="-1"></a>p4d <span class="ot">&lt;-</span> <span class="fu">pexp</span>(<span class="dv">100</span>, <span class="at">rate =</span> taxa_falha, <span class="at">lower.tail =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb18-265"><a href="#cb18-265" aria-hidden="true" tabindex="-1"></a><span class="co"># b) P(T &lt; 100)</span></span>
+<span id="cb18-266"><a href="#cb18-266" aria-hidden="true" tabindex="-1"></a>p4b <span class="ot">&lt;-</span> <span class="fu">pexp</span>(<span class="dv">100</span>, <span class="at">rate =</span> taxa_falha)</span>
 <span id="cb18-267"><a href="#cb18-267" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-268"><a href="#cb18-268" aria-hidden="true" tabindex="-1"></a><span class="co"># Verificação pelo quociente de probabilidades</span></span>
-<span id="cb18-269"><a href="#cb18-269" aria-hidden="true" tabindex="-1"></a>p4d_verificacao <span class="ot">&lt;-</span> <span class="fu">pexp</span>(<span class="dv">250</span>, taxa_falha, <span class="at">lower.tail =</span> <span class="cn">FALSE</span>) <span class="sc">/</span></span>
-<span id="cb18-270"><a href="#cb18-270" aria-hidden="true" tabindex="-1"></a>                   <span class="fu">pexp</span>(<span class="dv">150</span>, taxa_falha, <span class="at">lower.tail =</span> <span class="cn">FALSE</span>)</span>
-<span id="cb18-271"><a href="#cb18-271" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-272"><a href="#cb18-272" aria-hidden="true" tabindex="-1"></a>resultados_exponencial <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
-<span id="cb18-273"><a href="#cb18-273" aria-hidden="true" tabindex="-1"></a>  <span class="at">Item =</span> <span class="fu">c</span>(<span class="st">"a"</span>, <span class="st">"b"</span>, <span class="st">"c - mediana (h)"</span>, <span class="st">"d"</span>, <span class="st">"d - verificação"</span>),</span>
-<span id="cb18-274"><a href="#cb18-274" aria-hidden="true" tabindex="-1"></a>  <span class="at">Resultado =</span> <span class="fu">c</span>(p4a, p4b, q4c, p4d, p4d_verificacao)</span>
-<span id="cb18-275"><a href="#cb18-275" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb18-276"><a href="#cb18-276" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(resultados_exponencial, <span class="at">digits =</span> <span class="dv">4</span>,</span>
-<span id="cb18-277"><a href="#cb18-277" aria-hidden="true" tabindex="-1"></a>             <span class="at">caption =</span> <span class="st">"Resultados da distribuição Exponencial"</span>)</span>
-<span id="cb18-278"><a href="#cb18-278" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb18-279"><a href="#cb18-279" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-280"><a href="#cb18-280" aria-hidden="true" tabindex="-1"></a>A probabilidade de a betoneira durar mais de 250 horas é <span class="in">`r pct(p4a)`</span>, e a probabilidade de falhar antes de 100 horas é <span class="in">`r pct(p4b)`</span>. O tempo mediano é <span class="in">`r round(q4c, 2)`</span> horas: metade das falhas ocorre antes e metade depois desse tempo, de acordo com o modelo.</span>
-<span id="cb18-281"><a href="#cb18-281" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-282"><a href="#cb18-282" aria-hidden="true" tabindex="-1"></a>Pela propriedade da falta de memória, após operar 150 horas, a probabilidade de durar pelo menos mais 100 horas é igual à probabilidade inicial de durar mais de 100 horas, isto é, <span class="in">`r pct(p4d)`</span>. Essa propriedade deve ser utilizada com cautela em aplicações reais, pois pressupõe taxa de falha constante e não representa processos de desgaste progressivo.</span>
-<span id="cb18-283"><a href="#cb18-283" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-284"><a href="#cb18-284" aria-hidden="true" tabindex="-1"></a><span class="in">```{r exponencial-simulacao}</span></span>
-<span id="cb18-285"><a href="#cb18-285" aria-hidden="true" tabindex="-1"></a><span class="co"># e) Simulação de 1.000 tempos de falha</span></span>
-<span id="cb18-286"><a href="#cb18-286" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
-<span id="cb18-287"><a href="#cb18-287" aria-hidden="true" tabindex="-1"></a>x_exp <span class="ot">&lt;-</span> <span class="fu">rexp</span>(<span class="dv">1000</span>, <span class="at">rate =</span> taxa_falha)</span>
-<span id="cb18-288"><a href="#cb18-288" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-289"><a href="#cb18-289" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(x_exp, <span class="at">probability =</span> <span class="cn">TRUE</span>, <span class="at">breaks =</span> <span class="dv">30</span>,</span>
-<span id="cb18-290"><a href="#cb18-290" aria-hidden="true" tabindex="-1"></a>     <span class="at">col =</span> <span class="st">"khaki"</span>, <span class="at">border =</span> <span class="st">"white"</span>,</span>
-<span id="cb18-291"><a href="#cb18-291" aria-hidden="true" tabindex="-1"></a>     <span class="at">main =</span> <span class="st">"Tempos simulados até a falha"</span>,</span>
-<span id="cb18-292"><a href="#cb18-292" aria-hidden="true" tabindex="-1"></a>     <span class="at">xlab =</span> <span class="st">"Tempo até a falha (horas)"</span>, <span class="at">ylab =</span> <span class="st">"Densidade"</span>)</span>
-<span id="cb18-293"><a href="#cb18-293" aria-hidden="true" tabindex="-1"></a><span class="fu">curve</span>(<span class="fu">dexp</span>(x, <span class="at">rate =</span> taxa_falha), <span class="at">add =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb18-294"><a href="#cb18-294" aria-hidden="true" tabindex="-1"></a>      <span class="at">col =</span> <span class="st">"red"</span>, <span class="at">lwd =</span> <span class="dv">2</span>, <span class="at">from =</span> <span class="dv">0</span>, <span class="at">to =</span> <span class="fu">max</span>(x_exp))</span>
-<span id="cb18-295"><a href="#cb18-295" aria-hidden="true" tabindex="-1"></a><span class="fu">legend</span>(<span class="st">"topright"</span>, <span class="fu">c</span>(<span class="st">"Histograma"</span>, <span class="st">"Densidade teórica"</span>),</span>
-<span id="cb18-296"><a href="#cb18-296" aria-hidden="true" tabindex="-1"></a>       <span class="at">fill =</span> <span class="fu">c</span>(<span class="st">"khaki"</span>, <span class="cn">NA</span>), <span class="at">border =</span> <span class="fu">c</span>(<span class="st">"white"</span>, <span class="cn">NA</span>),</span>
-<span id="cb18-297"><a href="#cb18-297" aria-hidden="true" tabindex="-1"></a>       <span class="at">lty =</span> <span class="fu">c</span>(<span class="cn">NA</span>, <span class="dv">1</span>), <span class="at">col =</span> <span class="fu">c</span>(<span class="cn">NA</span>, <span class="st">"red"</span>), <span class="at">lwd =</span> <span class="fu">c</span>(<span class="cn">NA</span>, <span class="dv">2</span>), <span class="at">bty =</span> <span class="st">"n"</span>)</span>
-<span id="cb18-298"><a href="#cb18-298" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb18-299"><a href="#cb18-299" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-300"><a href="#cb18-300" aria-hidden="true" tabindex="-1"></a>O gráfico apresenta assimetria à direita e maior densidade nos tempos menores, forma característica da distribuição Exponencial.</span>
-<span id="cb18-301"><a href="#cb18-301" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-302"><a href="#cb18-302" aria-hidden="true" tabindex="-1"></a><span class="fu">## Parte 5 – Capacidade de suporte do solo: distribuição Weibull</span></span>
-<span id="cb18-303"><a href="#cb18-303" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-304"><a href="#cb18-304" aria-hidden="true" tabindex="-1"></a>A capacidade de suporte $X$, em kPa, segue uma Weibull com forma $k=2$ e escala $\lambda=150$ kPa. No R, esses parâmetros são informados como <span class="in">`shape`</span> e <span class="in">`scale`</span>.</span>
+<span id="cb18-268"><a href="#cb18-268" aria-hidden="true" tabindex="-1"></a><span class="co"># c) Mediana: quantil de ordem 0,5</span></span>
+<span id="cb18-269"><a href="#cb18-269" aria-hidden="true" tabindex="-1"></a>q4c <span class="ot">&lt;-</span> <span class="fu">qexp</span>(<span class="fl">0.5</span>, <span class="at">rate =</span> taxa_falha)</span>
+<span id="cb18-270"><a href="#cb18-270" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-271"><a href="#cb18-271" aria-hidden="true" tabindex="-1"></a><span class="co"># d) P(T &gt; 250 | T &gt; 150) = P(T &gt; 100), pela falta de memória</span></span>
+<span id="cb18-272"><a href="#cb18-272" aria-hidden="true" tabindex="-1"></a>p4d <span class="ot">&lt;-</span> <span class="fu">pexp</span>(<span class="dv">100</span>, <span class="at">rate =</span> taxa_falha, <span class="at">lower.tail =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb18-273"><a href="#cb18-273" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-274"><a href="#cb18-274" aria-hidden="true" tabindex="-1"></a><span class="co"># Verificação pelo quociente de probabilidades</span></span>
+<span id="cb18-275"><a href="#cb18-275" aria-hidden="true" tabindex="-1"></a>p4d_verificacao <span class="ot">&lt;-</span> <span class="fu">pexp</span>(<span class="dv">250</span>, taxa_falha, <span class="at">lower.tail =</span> <span class="cn">FALSE</span>) <span class="sc">/</span></span>
+<span id="cb18-276"><a href="#cb18-276" aria-hidden="true" tabindex="-1"></a>                   <span class="fu">pexp</span>(<span class="dv">150</span>, taxa_falha, <span class="at">lower.tail =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb18-277"><a href="#cb18-277" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-278"><a href="#cb18-278" aria-hidden="true" tabindex="-1"></a>resultados_exponencial <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb18-279"><a href="#cb18-279" aria-hidden="true" tabindex="-1"></a>  <span class="at">Item =</span> <span class="fu">c</span>(<span class="st">"a"</span>, <span class="st">"b"</span>, <span class="st">"c - mediana (h)"</span>, <span class="st">"d"</span>, <span class="st">"d - verificação"</span>),</span>
+<span id="cb18-280"><a href="#cb18-280" aria-hidden="true" tabindex="-1"></a>  <span class="at">Resultado =</span> <span class="fu">c</span>(p4a, p4b, q4c, p4d, p4d_verificacao)</span>
+<span id="cb18-281"><a href="#cb18-281" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb18-282"><a href="#cb18-282" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(resultados_exponencial, <span class="at">digits =</span> <span class="dv">4</span>,</span>
+<span id="cb18-283"><a href="#cb18-283" aria-hidden="true" tabindex="-1"></a>             <span class="at">caption =</span> <span class="st">"Resultados da distribuição Exponencial"</span>)</span>
+<span id="cb18-284"><a href="#cb18-284" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb18-285"><a href="#cb18-285" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-286"><a href="#cb18-286" aria-hidden="true" tabindex="-1"></a>A probabilidade de a betoneira durar mais de 250 horas é <span class="in">`r pct(p4a)`</span>, e a probabilidade de falhar antes de 100 horas é <span class="in">`r pct(p4b)`</span>. O tempo mediano é <span class="in">`r round(q4c, 2)`</span> horas: metade das falhas ocorre antes e metade depois desse tempo, de acordo com o modelo.</span>
+<span id="cb18-287"><a href="#cb18-287" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-288"><a href="#cb18-288" aria-hidden="true" tabindex="-1"></a>Pela propriedade da falta de memória, após operar 150 horas, a probabilidade de durar pelo menos mais 100 horas é igual à probabilidade inicial de durar mais de 100 horas, isto é, <span class="in">`r pct(p4d)`</span>. Essa propriedade deve ser utilizada com cautela em aplicações reais, pois pressupõe taxa de falha constante e não representa processos de desgaste progressivo.</span>
+<span id="cb18-289"><a href="#cb18-289" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-290"><a href="#cb18-290" aria-hidden="true" tabindex="-1"></a><span class="in">```{r exponencial-simulacao}</span></span>
+<span id="cb18-291"><a href="#cb18-291" aria-hidden="true" tabindex="-1"></a><span class="co"># e) Simulação de 1.000 tempos de falha</span></span>
+<span id="cb18-292"><a href="#cb18-292" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
+<span id="cb18-293"><a href="#cb18-293" aria-hidden="true" tabindex="-1"></a>x_exp <span class="ot">&lt;-</span> <span class="fu">rexp</span>(<span class="dv">1000</span>, <span class="at">rate =</span> taxa_falha)</span>
+<span id="cb18-294"><a href="#cb18-294" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-295"><a href="#cb18-295" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(x_exp, <span class="at">probability =</span> <span class="cn">TRUE</span>, <span class="at">breaks =</span> <span class="dv">30</span>,</span>
+<span id="cb18-296"><a href="#cb18-296" aria-hidden="true" tabindex="-1"></a>     <span class="at">col =</span> <span class="st">"khaki"</span>, <span class="at">border =</span> <span class="st">"white"</span>,</span>
+<span id="cb18-297"><a href="#cb18-297" aria-hidden="true" tabindex="-1"></a>     <span class="at">main =</span> <span class="st">"Tempos simulados até a falha"</span>,</span>
+<span id="cb18-298"><a href="#cb18-298" aria-hidden="true" tabindex="-1"></a>     <span class="at">xlab =</span> <span class="st">"Tempo até a falha (horas)"</span>, <span class="at">ylab =</span> <span class="st">"Densidade"</span>)</span>
+<span id="cb18-299"><a href="#cb18-299" aria-hidden="true" tabindex="-1"></a><span class="fu">curve</span>(<span class="fu">dexp</span>(x, <span class="at">rate =</span> taxa_falha), <span class="at">add =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb18-300"><a href="#cb18-300" aria-hidden="true" tabindex="-1"></a>      <span class="at">col =</span> <span class="st">"red"</span>, <span class="at">lwd =</span> <span class="dv">2</span>, <span class="at">from =</span> <span class="dv">0</span>, <span class="at">to =</span> <span class="fu">max</span>(x_exp))</span>
+<span id="cb18-301"><a href="#cb18-301" aria-hidden="true" tabindex="-1"></a><span class="fu">legend</span>(<span class="st">"topright"</span>, <span class="fu">c</span>(<span class="st">"Histograma"</span>, <span class="st">"Densidade teórica"</span>),</span>
+<span id="cb18-302"><a href="#cb18-302" aria-hidden="true" tabindex="-1"></a>       <span class="at">fill =</span> <span class="fu">c</span>(<span class="st">"khaki"</span>, <span class="cn">NA</span>), <span class="at">border =</span> <span class="fu">c</span>(<span class="st">"white"</span>, <span class="cn">NA</span>),</span>
+<span id="cb18-303"><a href="#cb18-303" aria-hidden="true" tabindex="-1"></a>       <span class="at">lty =</span> <span class="fu">c</span>(<span class="cn">NA</span>, <span class="dv">1</span>), <span class="at">col =</span> <span class="fu">c</span>(<span class="cn">NA</span>, <span class="st">"red"</span>), <span class="at">lwd =</span> <span class="fu">c</span>(<span class="cn">NA</span>, <span class="dv">2</span>), <span class="at">bty =</span> <span class="st">"n"</span>)</span>
+<span id="cb18-304"><a href="#cb18-304" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb18-305"><a href="#cb18-305" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-306"><a href="#cb18-306" aria-hidden="true" tabindex="-1"></a><span class="in">```{r weibull-calculos}</span></span>
-<span id="cb18-307"><a href="#cb18-307" aria-hidden="true" tabindex="-1"></a>forma_weibull <span class="ot">&lt;-</span> <span class="dv">2</span></span>
-<span id="cb18-308"><a href="#cb18-308" aria-hidden="true" tabindex="-1"></a>escala_weibull <span class="ot">&lt;-</span> <span class="dv">150</span></span>
+<span id="cb18-306"><a href="#cb18-306" aria-hidden="true" tabindex="-1"></a>O gráfico apresenta assimetria à direita e maior densidade nos tempos menores, forma característica da distribuição Exponencial.</span>
+<span id="cb18-307"><a href="#cb18-307" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-308"><a href="#cb18-308" aria-hidden="true" tabindex="-1"></a><span class="fu">## Parte 5 – Capacidade de suporte do solo: distribuição Weibull</span></span>
 <span id="cb18-309"><a href="#cb18-309" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-310"><a href="#cb18-310" aria-hidden="true" tabindex="-1"></a><span class="co"># a) P(X &lt; 100)</span></span>
-<span id="cb18-311"><a href="#cb18-311" aria-hidden="true" tabindex="-1"></a>p5a <span class="ot">&lt;-</span> <span class="fu">pweibull</span>(<span class="dv">100</span>, <span class="at">shape =</span> forma_weibull, <span class="at">scale =</span> escala_weibull)</span>
-<span id="cb18-312"><a href="#cb18-312" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-313"><a href="#cb18-313" aria-hidden="true" tabindex="-1"></a><span class="co"># b) P(120 &lt; X &lt; 200)</span></span>
-<span id="cb18-314"><a href="#cb18-314" aria-hidden="true" tabindex="-1"></a>p5b <span class="ot">&lt;-</span> <span class="fu">pweibull</span>(<span class="dv">200</span>, forma_weibull, escala_weibull) <span class="sc">-</span></span>
-<span id="cb18-315"><a href="#cb18-315" aria-hidden="true" tabindex="-1"></a>       <span class="fu">pweibull</span>(<span class="dv">120</span>, forma_weibull, escala_weibull)</span>
-<span id="cb18-316"><a href="#cb18-316" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-317"><a href="#cb18-317" aria-hidden="true" tabindex="-1"></a><span class="co"># c) Percentil 90</span></span>
-<span id="cb18-318"><a href="#cb18-318" aria-hidden="true" tabindex="-1"></a>q5c <span class="ot">&lt;-</span> <span class="fu">qweibull</span>(<span class="fl">0.90</span>, <span class="at">shape =</span> forma_weibull, <span class="at">scale =</span> escala_weibull)</span>
-<span id="cb18-319"><a href="#cb18-319" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-320"><a href="#cb18-320" aria-hidden="true" tabindex="-1"></a><span class="co"># d) Média e desvio padrão teóricos</span></span>
-<span id="cb18-321"><a href="#cb18-321" aria-hidden="true" tabindex="-1"></a>media_weibull <span class="ot">&lt;-</span> escala_weibull <span class="sc">*</span> <span class="fu">gamma</span>(<span class="dv">1</span> <span class="sc">+</span> <span class="dv">1</span> <span class="sc">/</span> forma_weibull)</span>
-<span id="cb18-322"><a href="#cb18-322" aria-hidden="true" tabindex="-1"></a>var_weibull <span class="ot">&lt;-</span> escala_weibull<span class="sc">^</span><span class="dv">2</span> <span class="sc">*</span></span>
-<span id="cb18-323"><a href="#cb18-323" aria-hidden="true" tabindex="-1"></a>  (<span class="fu">gamma</span>(<span class="dv">1</span> <span class="sc">+</span> <span class="dv">2</span> <span class="sc">/</span> forma_weibull) <span class="sc">-</span> <span class="fu">gamma</span>(<span class="dv">1</span> <span class="sc">+</span> <span class="dv">1</span> <span class="sc">/</span> forma_weibull)<span class="sc">^</span><span class="dv">2</span>)</span>
-<span id="cb18-324"><a href="#cb18-324" aria-hidden="true" tabindex="-1"></a>dp_weibull <span class="ot">&lt;-</span> <span class="fu">sqrt</span>(var_weibull)</span>
+<span id="cb18-310"><a href="#cb18-310" aria-hidden="true" tabindex="-1"></a>A capacidade de suporte $X$, em kPa, segue uma Weibull com forma $k=2$ e escala $\lambda=150$ kPa. No R, esses parâmetros são informados como <span class="in">`shape`</span> e <span class="in">`scale`</span>.</span>
+<span id="cb18-311"><a href="#cb18-311" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-312"><a href="#cb18-312" aria-hidden="true" tabindex="-1"></a><span class="in">```{r weibull-calculos}</span></span>
+<span id="cb18-313"><a href="#cb18-313" aria-hidden="true" tabindex="-1"></a>forma_weibull <span class="ot">&lt;-</span> <span class="dv">2</span></span>
+<span id="cb18-314"><a href="#cb18-314" aria-hidden="true" tabindex="-1"></a>escala_weibull <span class="ot">&lt;-</span> <span class="dv">150</span></span>
+<span id="cb18-315"><a href="#cb18-315" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-316"><a href="#cb18-316" aria-hidden="true" tabindex="-1"></a><span class="co"># a) P(X &lt; 100)</span></span>
+<span id="cb18-317"><a href="#cb18-317" aria-hidden="true" tabindex="-1"></a>p5a <span class="ot">&lt;-</span> <span class="fu">pweibull</span>(<span class="dv">100</span>, <span class="at">shape =</span> forma_weibull, <span class="at">scale =</span> escala_weibull)</span>
+<span id="cb18-318"><a href="#cb18-318" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-319"><a href="#cb18-319" aria-hidden="true" tabindex="-1"></a><span class="co"># b) P(120 &lt; X &lt; 200)</span></span>
+<span id="cb18-320"><a href="#cb18-320" aria-hidden="true" tabindex="-1"></a>p5b <span class="ot">&lt;-</span> <span class="fu">pweibull</span>(<span class="dv">200</span>, forma_weibull, escala_weibull) <span class="sc">-</span></span>
+<span id="cb18-321"><a href="#cb18-321" aria-hidden="true" tabindex="-1"></a>       <span class="fu">pweibull</span>(<span class="dv">120</span>, forma_weibull, escala_weibull)</span>
+<span id="cb18-322"><a href="#cb18-322" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-323"><a href="#cb18-323" aria-hidden="true" tabindex="-1"></a><span class="co"># c) Percentil 90</span></span>
+<span id="cb18-324"><a href="#cb18-324" aria-hidden="true" tabindex="-1"></a>q5c <span class="ot">&lt;-</span> <span class="fu">qweibull</span>(<span class="fl">0.90</span>, <span class="at">shape =</span> forma_weibull, <span class="at">scale =</span> escala_weibull)</span>
 <span id="cb18-325"><a href="#cb18-325" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-326"><a href="#cb18-326" aria-hidden="true" tabindex="-1"></a>resultados_weibull <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
-<span id="cb18-327"><a href="#cb18-327" aria-hidden="true" tabindex="-1"></a>  <span class="at">Item =</span> <span class="fu">c</span>(<span class="st">"a"</span>, <span class="st">"b"</span>, <span class="st">"c - percentil 90 (kPa)"</span>,</span>
-<span id="cb18-328"><a href="#cb18-328" aria-hidden="true" tabindex="-1"></a>           <span class="st">"d - média (kPa)"</span>, <span class="st">"d - desvio padrão (kPa)"</span>),</span>
-<span id="cb18-329"><a href="#cb18-329" aria-hidden="true" tabindex="-1"></a>  <span class="at">Resultado =</span> <span class="fu">c</span>(p5a, p5b, q5c, media_weibull, dp_weibull)</span>
-<span id="cb18-330"><a href="#cb18-330" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb18-331"><a href="#cb18-331" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(resultados_weibull, <span class="at">digits =</span> <span class="dv">4</span>,</span>
-<span id="cb18-332"><a href="#cb18-332" aria-hidden="true" tabindex="-1"></a>             <span class="at">caption =</span> <span class="st">"Resultados da distribuição Weibull"</span>)</span>
-<span id="cb18-333"><a href="#cb18-333" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb18-334"><a href="#cb18-334" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-335"><a href="#cb18-335" aria-hidden="true" tabindex="-1"></a>A probabilidade de capacidade inferior a 100 kPa é <span class="in">`r pct(p5a)`</span>, e a probabilidade de ficar entre 120 e 200 kPa é <span class="in">`r pct(p5b)`</span>. O percentil 90 é <span class="in">`r round(q5c, 2)`</span> kPa. A média teórica é <span class="in">`r round(media_weibull, 2)`</span> kPa e o desvio padrão é <span class="in">`r round(dp_weibull, 2)`</span> kPa.</span>
-<span id="cb18-336"><a href="#cb18-336" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-337"><a href="#cb18-337" aria-hidden="true" tabindex="-1"></a><span class="in">```{r weibull-risco}</span></span>
-<span id="cb18-338"><a href="#cb18-338" aria-hidden="true" tabindex="-1"></a><span class="co"># e) Função de risco h(x) = (k/lambda)*(x/lambda)^(k-1)</span></span>
-<span id="cb18-339"><a href="#cb18-339" aria-hidden="true" tabindex="-1"></a>x_seq <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="fl">0.1</span>, <span class="dv">300</span>, <span class="at">by =</span> <span class="dv">1</span>)</span>
-<span id="cb18-340"><a href="#cb18-340" aria-hidden="true" tabindex="-1"></a>hazard <span class="ot">&lt;-</span> (forma_weibull <span class="sc">/</span> escala_weibull) <span class="sc">*</span></span>
-<span id="cb18-341"><a href="#cb18-341" aria-hidden="true" tabindex="-1"></a>          (x_seq <span class="sc">/</span> escala_weibull)<span class="sc">^</span>(forma_weibull <span class="sc">-</span> <span class="dv">1</span>)</span>
+<span id="cb18-326"><a href="#cb18-326" aria-hidden="true" tabindex="-1"></a><span class="co"># d) Média e desvio padrão teóricos</span></span>
+<span id="cb18-327"><a href="#cb18-327" aria-hidden="true" tabindex="-1"></a>media_weibull <span class="ot">&lt;-</span> escala_weibull <span class="sc">*</span> <span class="fu">gamma</span>(<span class="dv">1</span> <span class="sc">+</span> <span class="dv">1</span> <span class="sc">/</span> forma_weibull)</span>
+<span id="cb18-328"><a href="#cb18-328" aria-hidden="true" tabindex="-1"></a>var_weibull <span class="ot">&lt;-</span> escala_weibull<span class="sc">^</span><span class="dv">2</span> <span class="sc">*</span></span>
+<span id="cb18-329"><a href="#cb18-329" aria-hidden="true" tabindex="-1"></a>  (<span class="fu">gamma</span>(<span class="dv">1</span> <span class="sc">+</span> <span class="dv">2</span> <span class="sc">/</span> forma_weibull) <span class="sc">-</span> <span class="fu">gamma</span>(<span class="dv">1</span> <span class="sc">+</span> <span class="dv">1</span> <span class="sc">/</span> forma_weibull)<span class="sc">^</span><span class="dv">2</span>)</span>
+<span id="cb18-330"><a href="#cb18-330" aria-hidden="true" tabindex="-1"></a>dp_weibull <span class="ot">&lt;-</span> <span class="fu">sqrt</span>(var_weibull)</span>
+<span id="cb18-331"><a href="#cb18-331" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-332"><a href="#cb18-332" aria-hidden="true" tabindex="-1"></a>resultados_weibull <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb18-333"><a href="#cb18-333" aria-hidden="true" tabindex="-1"></a>  <span class="at">Item =</span> <span class="fu">c</span>(<span class="st">"a"</span>, <span class="st">"b"</span>, <span class="st">"c - percentil 90 (kPa)"</span>,</span>
+<span id="cb18-334"><a href="#cb18-334" aria-hidden="true" tabindex="-1"></a>           <span class="st">"d - média (kPa)"</span>, <span class="st">"d - desvio padrão (kPa)"</span>),</span>
+<span id="cb18-335"><a href="#cb18-335" aria-hidden="true" tabindex="-1"></a>  <span class="at">Resultado =</span> <span class="fu">c</span>(p5a, p5b, q5c, media_weibull, dp_weibull)</span>
+<span id="cb18-336"><a href="#cb18-336" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb18-337"><a href="#cb18-337" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(resultados_weibull, <span class="at">digits =</span> <span class="dv">4</span>,</span>
+<span id="cb18-338"><a href="#cb18-338" aria-hidden="true" tabindex="-1"></a>             <span class="at">caption =</span> <span class="st">"Resultados da distribuição Weibull"</span>)</span>
+<span id="cb18-339"><a href="#cb18-339" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb18-340"><a href="#cb18-340" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-341"><a href="#cb18-341" aria-hidden="true" tabindex="-1"></a>A probabilidade de capacidade inferior a 100 kPa é <span class="in">`r pct(p5a)`</span>, e a probabilidade de ficar entre 120 e 200 kPa é <span class="in">`r pct(p5b)`</span>. O percentil 90 é <span class="in">`r round(q5c, 2)`</span> kPa. A média teórica é <span class="in">`r round(media_weibull, 2)`</span> kPa e o desvio padrão é <span class="in">`r round(dp_weibull, 2)`</span> kPa.</span>
 <span id="cb18-342"><a href="#cb18-342" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-343"><a href="#cb18-343" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(x_seq, hazard, <span class="at">type =</span> <span class="st">"l"</span>, <span class="at">lwd =</span> <span class="dv">2</span>, <span class="at">col =</span> <span class="st">"darkgreen"</span>,</span>
-<span id="cb18-344"><a href="#cb18-344" aria-hidden="true" tabindex="-1"></a>     <span class="at">main =</span> <span class="st">"Função de risco da distribuição Weibull"</span>,</span>
-<span id="cb18-345"><a href="#cb18-345" aria-hidden="true" tabindex="-1"></a>     <span class="at">xlab =</span> <span class="st">"Capacidade de suporte (kPa)"</span>,</span>
-<span id="cb18-346"><a href="#cb18-346" aria-hidden="true" tabindex="-1"></a>     <span class="at">ylab =</span> <span class="st">"Taxa de risco h(x)"</span>)</span>
-<span id="cb18-347"><a href="#cb18-347" aria-hidden="true" tabindex="-1"></a><span class="fu">grid</span>()</span>
-<span id="cb18-348"><a href="#cb18-348" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb18-349"><a href="#cb18-349" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-350"><a href="#cb18-350" aria-hidden="true" tabindex="-1"></a>Como a forma é maior que 1, a função de risco é crescente. Matematicamente, o valor instantâneo da razão entre densidade e sobrevivência aumenta com $x$. Neste exercício, a variável é capacidade de suporte, e não tempo de vida; portanto, a função deve ser interpretada como propriedade do modelo probabilístico, sem concluir diretamente que o solo “se desgasta”. Para decisões geotécnicas, a probabilidade de baixa capacidade, os valores característicos, a variabilidade espacial, os ensaios de campo e os coeficientes de segurança são mais diretamente relevantes.</span>
-<span id="cb18-351"><a href="#cb18-351" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-352"><a href="#cb18-352" aria-hidden="true" tabindex="-1"></a><span class="fu">## Parte 6 – Precipitação diária: distribuição Gama</span></span>
-<span id="cb18-353"><a href="#cb18-353" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-354"><a href="#cb18-354" aria-hidden="true" tabindex="-1"></a>A precipitação diária $X$, em milímetros, segue uma distribuição Gama com forma 3 e taxa 0,5. Nessa parametrização:</span>
+<span id="cb18-343"><a href="#cb18-343" aria-hidden="true" tabindex="-1"></a><span class="in">```{r weibull-risco}</span></span>
+<span id="cb18-344"><a href="#cb18-344" aria-hidden="true" tabindex="-1"></a><span class="co"># e) Função de risco h(x) = (k/lambda)*(x/lambda)^(k-1)</span></span>
+<span id="cb18-345"><a href="#cb18-345" aria-hidden="true" tabindex="-1"></a>x_seq <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="fl">0.1</span>, <span class="dv">300</span>, <span class="at">by =</span> <span class="dv">1</span>)</span>
+<span id="cb18-346"><a href="#cb18-346" aria-hidden="true" tabindex="-1"></a>hazard <span class="ot">&lt;-</span> (forma_weibull <span class="sc">/</span> escala_weibull) <span class="sc">*</span></span>
+<span id="cb18-347"><a href="#cb18-347" aria-hidden="true" tabindex="-1"></a>          (x_seq <span class="sc">/</span> escala_weibull)<span class="sc">^</span>(forma_weibull <span class="sc">-</span> <span class="dv">1</span>)</span>
+<span id="cb18-348"><a href="#cb18-348" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-349"><a href="#cb18-349" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(x_seq, hazard, <span class="at">type =</span> <span class="st">"l"</span>, <span class="at">lwd =</span> <span class="dv">2</span>, <span class="at">col =</span> <span class="st">"darkgreen"</span>,</span>
+<span id="cb18-350"><a href="#cb18-350" aria-hidden="true" tabindex="-1"></a>     <span class="at">main =</span> <span class="st">"Função de risco da distribuição Weibull"</span>,</span>
+<span id="cb18-351"><a href="#cb18-351" aria-hidden="true" tabindex="-1"></a>     <span class="at">xlab =</span> <span class="st">"Capacidade de suporte (kPa)"</span>,</span>
+<span id="cb18-352"><a href="#cb18-352" aria-hidden="true" tabindex="-1"></a>     <span class="at">ylab =</span> <span class="st">"Taxa de risco h(x)"</span>)</span>
+<span id="cb18-353"><a href="#cb18-353" aria-hidden="true" tabindex="-1"></a><span class="fu">grid</span>()</span>
+<span id="cb18-354"><a href="#cb18-354" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb18-355"><a href="#cb18-355" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-356"><a href="#cb18-356" aria-hidden="true" tabindex="-1"></a>$$E(X)=\frac{\alpha}{\beta}, \qquad Var(X)=\frac{\alpha}{\beta^2}.$$</span>
+<span id="cb18-356"><a href="#cb18-356" aria-hidden="true" tabindex="-1"></a>Como a forma é maior que 1, a função de risco é crescente. Matematicamente, o valor instantâneo da razão entre densidade e sobrevivência aumenta com $x$. Neste exercício, a variável é capacidade de suporte, e não tempo de vida; portanto, a função deve ser interpretada como propriedade do modelo probabilístico, sem concluir diretamente que o solo “se desgasta”. Para decisões geotécnicas, a probabilidade de baixa capacidade, os valores característicos, a variabilidade espacial, os ensaios de campo e os coeficientes de segurança são mais diretamente relevantes.</span>
 <span id="cb18-357"><a href="#cb18-357" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-358"><a href="#cb18-358" aria-hidden="true" tabindex="-1"></a><span class="in">```{r gama-calculos}</span></span>
-<span id="cb18-359"><a href="#cb18-359" aria-hidden="true" tabindex="-1"></a>forma_gama <span class="ot">&lt;-</span> <span class="dv">3</span></span>
-<span id="cb18-360"><a href="#cb18-360" aria-hidden="true" tabindex="-1"></a>taxa_gama <span class="ot">&lt;-</span> <span class="fl">0.5</span></span>
+<span id="cb18-358"><a href="#cb18-358" aria-hidden="true" tabindex="-1"></a><span class="fu">## Parte 6 – Precipitação diária: distribuição Gama</span></span>
+<span id="cb18-359"><a href="#cb18-359" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-360"><a href="#cb18-360" aria-hidden="true" tabindex="-1"></a>A precipitação diária $X$, em milímetros, segue uma distribuição Gama com forma 3 e taxa 0,5. Nessa parametrização:</span>
 <span id="cb18-361"><a href="#cb18-361" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-362"><a href="#cb18-362" aria-hidden="true" tabindex="-1"></a><span class="co"># a) P(X &gt; 10)</span></span>
-<span id="cb18-363"><a href="#cb18-363" aria-hidden="true" tabindex="-1"></a>p6a <span class="ot">&lt;-</span> <span class="fu">pgamma</span>(<span class="dv">10</span>, <span class="at">shape =</span> forma_gama, <span class="at">rate =</span> taxa_gama,</span>
-<span id="cb18-364"><a href="#cb18-364" aria-hidden="true" tabindex="-1"></a>              <span class="at">lower.tail =</span> <span class="cn">FALSE</span>)</span>
-<span id="cb18-365"><a href="#cb18-365" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-366"><a href="#cb18-366" aria-hidden="true" tabindex="-1"></a><span class="co"># b) P(5 &lt; X &lt; 15)</span></span>
-<span id="cb18-367"><a href="#cb18-367" aria-hidden="true" tabindex="-1"></a>p6b <span class="ot">&lt;-</span> <span class="fu">pgamma</span>(<span class="dv">15</span>, <span class="at">shape =</span> forma_gama, <span class="at">rate =</span> taxa_gama) <span class="sc">-</span></span>
-<span id="cb18-368"><a href="#cb18-368" aria-hidden="true" tabindex="-1"></a>       <span class="fu">pgamma</span>(<span class="dv">5</span>, <span class="at">shape =</span> forma_gama, <span class="at">rate =</span> taxa_gama)</span>
-<span id="cb18-369"><a href="#cb18-369" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-370"><a href="#cb18-370" aria-hidden="true" tabindex="-1"></a><span class="co"># c) Percentil 95</span></span>
-<span id="cb18-371"><a href="#cb18-371" aria-hidden="true" tabindex="-1"></a>q6c <span class="ot">&lt;-</span> <span class="fu">qgamma</span>(<span class="fl">0.95</span>, <span class="at">shape =</span> forma_gama, <span class="at">rate =</span> taxa_gama)</span>
-<span id="cb18-372"><a href="#cb18-372" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-373"><a href="#cb18-373" aria-hidden="true" tabindex="-1"></a><span class="co"># d) Esperança e variância</span></span>
-<span id="cb18-374"><a href="#cb18-374" aria-hidden="true" tabindex="-1"></a>esp_gama <span class="ot">&lt;-</span> forma_gama <span class="sc">/</span> taxa_gama</span>
-<span id="cb18-375"><a href="#cb18-375" aria-hidden="true" tabindex="-1"></a>var_gama <span class="ot">&lt;-</span> forma_gama <span class="sc">/</span> taxa_gama<span class="sc">^</span><span class="dv">2</span></span>
-<span id="cb18-376"><a href="#cb18-376" aria-hidden="true" tabindex="-1"></a>dp_gama <span class="ot">&lt;-</span> <span class="fu">sqrt</span>(var_gama)</span>
-<span id="cb18-377"><a href="#cb18-377" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-378"><a href="#cb18-378" aria-hidden="true" tabindex="-1"></a>resultados_gama <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
-<span id="cb18-379"><a href="#cb18-379" aria-hidden="true" tabindex="-1"></a>  <span class="at">Item =</span> <span class="fu">c</span>(<span class="st">"a"</span>, <span class="st">"b"</span>, <span class="st">"c - percentil 95 (mm)"</span>,</span>
-<span id="cb18-380"><a href="#cb18-380" aria-hidden="true" tabindex="-1"></a>           <span class="st">"d - esperança (mm)"</span>, <span class="st">"d - variância (mm²)"</span>,</span>
-<span id="cb18-381"><a href="#cb18-381" aria-hidden="true" tabindex="-1"></a>           <span class="st">"d - desvio padrão (mm)"</span>),</span>
-<span id="cb18-382"><a href="#cb18-382" aria-hidden="true" tabindex="-1"></a>  <span class="at">Resultado =</span> <span class="fu">c</span>(p6a, p6b, q6c, esp_gama, var_gama, dp_gama)</span>
-<span id="cb18-383"><a href="#cb18-383" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb18-384"><a href="#cb18-384" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(resultados_gama, <span class="at">digits =</span> <span class="dv">4</span>,</span>
-<span id="cb18-385"><a href="#cb18-385" aria-hidden="true" tabindex="-1"></a>             <span class="at">caption =</span> <span class="st">"Resultados da distribuição Gama"</span>)</span>
-<span id="cb18-386"><a href="#cb18-386" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb18-387"><a href="#cb18-387" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-388"><a href="#cb18-388" aria-hidden="true" tabindex="-1"></a>A probabilidade de precipitação superior a 10 mm é <span class="in">`r pct(p6a)`</span>, e a probabilidade de precipitação entre 5 e 15 mm é <span class="in">`r pct(p6b)`</span>. O percentil 95 é <span class="in">`r round(q6c, 2)`</span> mm, indicando que 95% dos valores do modelo ficam abaixo desse nível e 5% o superam. A esperança é <span class="in">`r round(esp_gama, 2)`</span> mm e a variância é <span class="in">`r round(var_gama, 2)`</span> mm².</span>
-<span id="cb18-389"><a href="#cb18-389" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-390"><a href="#cb18-390" aria-hidden="true" tabindex="-1"></a><span class="in">```{r gama-simulacao}</span></span>
-<span id="cb18-391"><a href="#cb18-391" aria-hidden="true" tabindex="-1"></a><span class="co"># e) Simulação de 365 dias</span></span>
-<span id="cb18-392"><a href="#cb18-392" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
-<span id="cb18-393"><a href="#cb18-393" aria-hidden="true" tabindex="-1"></a>x_gama <span class="ot">&lt;-</span> <span class="fu">rgamma</span>(<span class="dv">365</span>, <span class="at">shape =</span> forma_gama, <span class="at">rate =</span> taxa_gama)</span>
-<span id="cb18-394"><a href="#cb18-394" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-395"><a href="#cb18-395" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(x_gama, <span class="at">probability =</span> <span class="cn">TRUE</span>, <span class="at">breaks =</span> <span class="dv">25</span>,</span>
-<span id="cb18-396"><a href="#cb18-396" aria-hidden="true" tabindex="-1"></a>     <span class="at">col =</span> <span class="st">"lightcyan"</span>, <span class="at">border =</span> <span class="st">"white"</span>,</span>
-<span id="cb18-397"><a href="#cb18-397" aria-hidden="true" tabindex="-1"></a>     <span class="at">main =</span> <span class="st">"Precipitação diária simulada"</span>,</span>
-<span id="cb18-398"><a href="#cb18-398" aria-hidden="true" tabindex="-1"></a>     <span class="at">xlab =</span> <span class="st">"Precipitação (mm)"</span>, <span class="at">ylab =</span> <span class="st">"Densidade"</span>)</span>
-<span id="cb18-399"><a href="#cb18-399" aria-hidden="true" tabindex="-1"></a><span class="fu">curve</span>(<span class="fu">dgamma</span>(x, <span class="at">shape =</span> forma_gama, <span class="at">rate =</span> taxa_gama),</span>
-<span id="cb18-400"><a href="#cb18-400" aria-hidden="true" tabindex="-1"></a>      <span class="at">add =</span> <span class="cn">TRUE</span>, <span class="at">col =</span> <span class="st">"blue"</span>, <span class="at">lwd =</span> <span class="dv">2</span>, <span class="at">from =</span> <span class="dv">0</span>, <span class="at">to =</span> <span class="fu">max</span>(x_gama))</span>
-<span id="cb18-401"><a href="#cb18-401" aria-hidden="true" tabindex="-1"></a><span class="fu">legend</span>(<span class="st">"topright"</span>, <span class="fu">c</span>(<span class="st">"Histograma"</span>, <span class="st">"Densidade teórica"</span>),</span>
-<span id="cb18-402"><a href="#cb18-402" aria-hidden="true" tabindex="-1"></a>       <span class="at">fill =</span> <span class="fu">c</span>(<span class="st">"lightcyan"</span>, <span class="cn">NA</span>), <span class="at">border =</span> <span class="fu">c</span>(<span class="st">"white"</span>, <span class="cn">NA</span>),</span>
-<span id="cb18-403"><a href="#cb18-403" aria-hidden="true" tabindex="-1"></a>       <span class="at">lty =</span> <span class="fu">c</span>(<span class="cn">NA</span>, <span class="dv">1</span>), <span class="at">col =</span> <span class="fu">c</span>(<span class="cn">NA</span>, <span class="st">"blue"</span>), <span class="at">lwd =</span> <span class="fu">c</span>(<span class="cn">NA</span>, <span class="dv">2</span>), <span class="at">bty =</span> <span class="st">"n"</span>)</span>
-<span id="cb18-404"><a href="#cb18-404" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb18-405"><a href="#cb18-405" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-406"><a href="#cb18-406" aria-hidden="true" tabindex="-1"></a>A distribuição é assimétrica à direita, permitindo representar muitos dias com precipitações menores e menos dias com valores elevados. Para a PCH, a análise probabilística da precipitação pode contribuir para o planejamento da obra, drenagem provisória e avaliação de riscos, embora estudos hidrológicos de projeto normalmente exijam séries históricas, análise de consistência, sazonalidade e modelos específicos para eventos extremos.</span>
-<span id="cb18-407"><a href="#cb18-407" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-408"><a href="#cb18-408" aria-hidden="true" tabindex="-1"></a><span class="fu">## Parte 7 – Análise integrada por simulação de Monte Carlo</span></span>
-<span id="cb18-409"><a href="#cb18-409" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-410"><a href="#cb18-410" aria-hidden="true" tabindex="-1"></a>Nesta etapa, foram geradas 10.000 resistências do concreto. A proporção simulada abaixo de 30 MPa foi comparada com a probabilidade Normal teórica.</span>
+<span id="cb18-362"><a href="#cb18-362" aria-hidden="true" tabindex="-1"></a>$$E(X)=\frac{\alpha}{\beta}, \qquad Var(X)=\frac{\alpha}{\beta^2}.$$</span>
+<span id="cb18-363"><a href="#cb18-363" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-364"><a href="#cb18-364" aria-hidden="true" tabindex="-1"></a><span class="in">```{r gama-calculos}</span></span>
+<span id="cb18-365"><a href="#cb18-365" aria-hidden="true" tabindex="-1"></a>forma_gama <span class="ot">&lt;-</span> <span class="dv">3</span></span>
+<span id="cb18-366"><a href="#cb18-366" aria-hidden="true" tabindex="-1"></a>taxa_gama <span class="ot">&lt;-</span> <span class="fl">0.5</span></span>
+<span id="cb18-367"><a href="#cb18-367" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-368"><a href="#cb18-368" aria-hidden="true" tabindex="-1"></a><span class="co"># a) P(X &gt; 10)</span></span>
+<span id="cb18-369"><a href="#cb18-369" aria-hidden="true" tabindex="-1"></a>p6a <span class="ot">&lt;-</span> <span class="fu">pgamma</span>(<span class="dv">10</span>, <span class="at">shape =</span> forma_gama, <span class="at">rate =</span> taxa_gama,</span>
+<span id="cb18-370"><a href="#cb18-370" aria-hidden="true" tabindex="-1"></a>              <span class="at">lower.tail =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb18-371"><a href="#cb18-371" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-372"><a href="#cb18-372" aria-hidden="true" tabindex="-1"></a><span class="co"># b) P(5 &lt; X &lt; 15)</span></span>
+<span id="cb18-373"><a href="#cb18-373" aria-hidden="true" tabindex="-1"></a>p6b <span class="ot">&lt;-</span> <span class="fu">pgamma</span>(<span class="dv">15</span>, <span class="at">shape =</span> forma_gama, <span class="at">rate =</span> taxa_gama) <span class="sc">-</span></span>
+<span id="cb18-374"><a href="#cb18-374" aria-hidden="true" tabindex="-1"></a>       <span class="fu">pgamma</span>(<span class="dv">5</span>, <span class="at">shape =</span> forma_gama, <span class="at">rate =</span> taxa_gama)</span>
+<span id="cb18-375"><a href="#cb18-375" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-376"><a href="#cb18-376" aria-hidden="true" tabindex="-1"></a><span class="co"># c) Percentil 95</span></span>
+<span id="cb18-377"><a href="#cb18-377" aria-hidden="true" tabindex="-1"></a>q6c <span class="ot">&lt;-</span> <span class="fu">qgamma</span>(<span class="fl">0.95</span>, <span class="at">shape =</span> forma_gama, <span class="at">rate =</span> taxa_gama)</span>
+<span id="cb18-378"><a href="#cb18-378" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-379"><a href="#cb18-379" aria-hidden="true" tabindex="-1"></a><span class="co"># d) Esperança e variância</span></span>
+<span id="cb18-380"><a href="#cb18-380" aria-hidden="true" tabindex="-1"></a>esp_gama <span class="ot">&lt;-</span> forma_gama <span class="sc">/</span> taxa_gama</span>
+<span id="cb18-381"><a href="#cb18-381" aria-hidden="true" tabindex="-1"></a>var_gama <span class="ot">&lt;-</span> forma_gama <span class="sc">/</span> taxa_gama<span class="sc">^</span><span class="dv">2</span></span>
+<span id="cb18-382"><a href="#cb18-382" aria-hidden="true" tabindex="-1"></a>dp_gama <span class="ot">&lt;-</span> <span class="fu">sqrt</span>(var_gama)</span>
+<span id="cb18-383"><a href="#cb18-383" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-384"><a href="#cb18-384" aria-hidden="true" tabindex="-1"></a>resultados_gama <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb18-385"><a href="#cb18-385" aria-hidden="true" tabindex="-1"></a>  <span class="at">Item =</span> <span class="fu">c</span>(<span class="st">"a"</span>, <span class="st">"b"</span>, <span class="st">"c - percentil 95 (mm)"</span>,</span>
+<span id="cb18-386"><a href="#cb18-386" aria-hidden="true" tabindex="-1"></a>           <span class="st">"d - esperança (mm)"</span>, <span class="st">"d - variância (mm²)"</span>,</span>
+<span id="cb18-387"><a href="#cb18-387" aria-hidden="true" tabindex="-1"></a>           <span class="st">"d - desvio padrão (mm)"</span>),</span>
+<span id="cb18-388"><a href="#cb18-388" aria-hidden="true" tabindex="-1"></a>  <span class="at">Resultado =</span> <span class="fu">c</span>(p6a, p6b, q6c, esp_gama, var_gama, dp_gama)</span>
+<span id="cb18-389"><a href="#cb18-389" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb18-390"><a href="#cb18-390" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(resultados_gama, <span class="at">digits =</span> <span class="dv">4</span>,</span>
+<span id="cb18-391"><a href="#cb18-391" aria-hidden="true" tabindex="-1"></a>             <span class="at">caption =</span> <span class="st">"Resultados da distribuição Gama"</span>)</span>
+<span id="cb18-392"><a href="#cb18-392" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb18-393"><a href="#cb18-393" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-394"><a href="#cb18-394" aria-hidden="true" tabindex="-1"></a>A probabilidade de precipitação superior a 10 mm é <span class="in">`r pct(p6a)`</span>, e a probabilidade de precipitação entre 5 e 15 mm é <span class="in">`r pct(p6b)`</span>. O percentil 95 é <span class="in">`r round(q6c, 2)`</span> mm, indicando que 95% dos valores do modelo ficam abaixo desse nível e 5% o superam. A esperança é <span class="in">`r round(esp_gama, 2)`</span> mm e a variância é <span class="in">`r round(var_gama, 2)`</span> mm².</span>
+<span id="cb18-395"><a href="#cb18-395" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-396"><a href="#cb18-396" aria-hidden="true" tabindex="-1"></a><span class="in">```{r gama-simulacao}</span></span>
+<span id="cb18-397"><a href="#cb18-397" aria-hidden="true" tabindex="-1"></a><span class="co"># e) Simulação de 365 dias</span></span>
+<span id="cb18-398"><a href="#cb18-398" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
+<span id="cb18-399"><a href="#cb18-399" aria-hidden="true" tabindex="-1"></a>x_gama <span class="ot">&lt;-</span> <span class="fu">rgamma</span>(<span class="dv">365</span>, <span class="at">shape =</span> forma_gama, <span class="at">rate =</span> taxa_gama)</span>
+<span id="cb18-400"><a href="#cb18-400" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-401"><a href="#cb18-401" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(x_gama, <span class="at">probability =</span> <span class="cn">TRUE</span>, <span class="at">breaks =</span> <span class="dv">25</span>,</span>
+<span id="cb18-402"><a href="#cb18-402" aria-hidden="true" tabindex="-1"></a>     <span class="at">col =</span> <span class="st">"lightcyan"</span>, <span class="at">border =</span> <span class="st">"white"</span>,</span>
+<span id="cb18-403"><a href="#cb18-403" aria-hidden="true" tabindex="-1"></a>     <span class="at">main =</span> <span class="st">"Precipitação diária simulada"</span>,</span>
+<span id="cb18-404"><a href="#cb18-404" aria-hidden="true" tabindex="-1"></a>     <span class="at">xlab =</span> <span class="st">"Precipitação (mm)"</span>, <span class="at">ylab =</span> <span class="st">"Densidade"</span>)</span>
+<span id="cb18-405"><a href="#cb18-405" aria-hidden="true" tabindex="-1"></a><span class="fu">curve</span>(<span class="fu">dgamma</span>(x, <span class="at">shape =</span> forma_gama, <span class="at">rate =</span> taxa_gama),</span>
+<span id="cb18-406"><a href="#cb18-406" aria-hidden="true" tabindex="-1"></a>      <span class="at">add =</span> <span class="cn">TRUE</span>, <span class="at">col =</span> <span class="st">"blue"</span>, <span class="at">lwd =</span> <span class="dv">2</span>, <span class="at">from =</span> <span class="dv">0</span>, <span class="at">to =</span> <span class="fu">max</span>(x_gama))</span>
+<span id="cb18-407"><a href="#cb18-407" aria-hidden="true" tabindex="-1"></a><span class="fu">legend</span>(<span class="st">"topright"</span>, <span class="fu">c</span>(<span class="st">"Histograma"</span>, <span class="st">"Densidade teórica"</span>),</span>
+<span id="cb18-408"><a href="#cb18-408" aria-hidden="true" tabindex="-1"></a>       <span class="at">fill =</span> <span class="fu">c</span>(<span class="st">"lightcyan"</span>, <span class="cn">NA</span>), <span class="at">border =</span> <span class="fu">c</span>(<span class="st">"white"</span>, <span class="cn">NA</span>),</span>
+<span id="cb18-409"><a href="#cb18-409" aria-hidden="true" tabindex="-1"></a>       <span class="at">lty =</span> <span class="fu">c</span>(<span class="cn">NA</span>, <span class="dv">1</span>), <span class="at">col =</span> <span class="fu">c</span>(<span class="cn">NA</span>, <span class="st">"blue"</span>), <span class="at">lwd =</span> <span class="fu">c</span>(<span class="cn">NA</span>, <span class="dv">2</span>), <span class="at">bty =</span> <span class="st">"n"</span>)</span>
+<span id="cb18-410"><a href="#cb18-410" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb18-411"><a href="#cb18-411" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-412"><a href="#cb18-412" aria-hidden="true" tabindex="-1"></a><span class="in">```{r monte-carlo}</span></span>
-<span id="cb18-413"><a href="#cb18-413" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
-<span id="cb18-414"><a href="#cb18-414" aria-hidden="true" tabindex="-1"></a>n_sim <span class="ot">&lt;-</span> <span class="dv">10000</span></span>
-<span id="cb18-415"><a href="#cb18-415" aria-hidden="true" tabindex="-1"></a>x_mc <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(n_sim, <span class="at">mean =</span> media_concreto, <span class="at">sd =</span> dp_concreto)</span>
-<span id="cb18-416"><a href="#cb18-416" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-417"><a href="#cb18-417" aria-hidden="true" tabindex="-1"></a>proporcao_simulada <span class="ot">&lt;-</span> <span class="fu">mean</span>(x_mc <span class="sc">&lt;</span> <span class="dv">30</span>)</span>
-<span id="cb18-418"><a href="#cb18-418" aria-hidden="true" tabindex="-1"></a>probabilidade_teorica <span class="ot">&lt;-</span> <span class="fu">pnorm</span>(<span class="dv">30</span>, <span class="at">mean =</span> media_concreto, <span class="at">sd =</span> dp_concreto)</span>
-<span id="cb18-419"><a href="#cb18-419" aria-hidden="true" tabindex="-1"></a>erro_absoluto <span class="ot">&lt;-</span> <span class="fu">abs</span>(proporcao_simulada <span class="sc">-</span> probabilidade_teorica)</span>
-<span id="cb18-420"><a href="#cb18-420" aria-hidden="true" tabindex="-1"></a>erro_mc_estimado <span class="ot">&lt;-</span> <span class="fu">sqrt</span>(probabilidade_teorica <span class="sc">*</span></span>
-<span id="cb18-421"><a href="#cb18-421" aria-hidden="true" tabindex="-1"></a>                          (<span class="dv">1</span> <span class="sc">-</span> probabilidade_teorica) <span class="sc">/</span> n_sim)</span>
+<span id="cb18-412"><a href="#cb18-412" aria-hidden="true" tabindex="-1"></a>A distribuição é assimétrica à direita, permitindo representar muitos dias com precipitações menores e menos dias com valores elevados. Para a PCH, a análise probabilística da precipitação pode contribuir para o planejamento da obra, drenagem provisória e avaliação de riscos, embora estudos hidrológicos de projeto normalmente exijam séries históricas, análise de consistência, sazonalidade e modelos específicos para eventos extremos.</span>
+<span id="cb18-413"><a href="#cb18-413" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-414"><a href="#cb18-414" aria-hidden="true" tabindex="-1"></a><span class="fu">## Parte 7 – Análise integrada por simulação de Monte Carlo</span></span>
+<span id="cb18-415"><a href="#cb18-415" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-416"><a href="#cb18-416" aria-hidden="true" tabindex="-1"></a>Nesta etapa, foram geradas 10.000 resistências do concreto. A proporção simulada abaixo de 30 MPa foi comparada com a probabilidade Normal teórica.</span>
+<span id="cb18-417"><a href="#cb18-417" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-418"><a href="#cb18-418" aria-hidden="true" tabindex="-1"></a><span class="in">```{r monte-carlo}</span></span>
+<span id="cb18-419"><a href="#cb18-419" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
+<span id="cb18-420"><a href="#cb18-420" aria-hidden="true" tabindex="-1"></a>n_sim <span class="ot">&lt;-</span> <span class="dv">10000</span></span>
+<span id="cb18-421"><a href="#cb18-421" aria-hidden="true" tabindex="-1"></a>x_mc <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(n_sim, <span class="at">mean =</span> media_concreto, <span class="at">sd =</span> dp_concreto)</span>
 <span id="cb18-422"><a href="#cb18-422" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-423"><a href="#cb18-423" aria-hidden="true" tabindex="-1"></a>comparacao_mc <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
-<span id="cb18-424"><a href="#cb18-424" aria-hidden="true" tabindex="-1"></a>  <span class="at">Medida =</span> <span class="fu">c</span>(<span class="st">"Proporção simulada"</span>, <span class="st">"Probabilidade teórica"</span>,</span>
-<span id="cb18-425"><a href="#cb18-425" aria-hidden="true" tabindex="-1"></a>             <span class="st">"Erro absoluto"</span>, <span class="st">"Erro-padrão Monte Carlo aproximado"</span>),</span>
-<span id="cb18-426"><a href="#cb18-426" aria-hidden="true" tabindex="-1"></a>  <span class="at">Valor =</span> <span class="fu">c</span>(proporcao_simulada, probabilidade_teorica,</span>
-<span id="cb18-427"><a href="#cb18-427" aria-hidden="true" tabindex="-1"></a>            erro_absoluto, erro_mc_estimado)</span>
-<span id="cb18-428"><a href="#cb18-428" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb18-429"><a href="#cb18-429" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(comparacao_mc, <span class="at">digits =</span> <span class="dv">5</span>,</span>
-<span id="cb18-430"><a href="#cb18-430" aria-hidden="true" tabindex="-1"></a>             <span class="at">caption =</span> <span class="st">"Comparação da simulação de Monte Carlo com a teoria"</span>)</span>
-<span id="cb18-431"><a href="#cb18-431" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-432"><a href="#cb18-432" aria-hidden="true" tabindex="-1"></a><span class="fu">barplot</span>(<span class="fu">c</span>(<span class="at">Simulado =</span> proporcao_simulada, <span class="at">Teorico =</span> probabilidade_teorica),</span>
-<span id="cb18-433"><a href="#cb18-433" aria-hidden="true" tabindex="-1"></a>        <span class="at">col =</span> <span class="fu">c</span>(<span class="st">"steelblue"</span>, <span class="st">"tomato"</span>), <span class="at">ylim =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="fl">1.15</span> <span class="sc">*</span> <span class="fu">max</span>(proporcao_simulada,</span>
-<span id="cb18-434"><a href="#cb18-434" aria-hidden="true" tabindex="-1"></a>        probabilidade_teorica)), <span class="at">ylab =</span> <span class="st">"Proporção"</span>,</span>
-<span id="cb18-435"><a href="#cb18-435" aria-hidden="true" tabindex="-1"></a>        <span class="at">main =</span> <span class="st">"Resistências inferiores a 30 MPa"</span>)</span>
-<span id="cb18-436"><a href="#cb18-436" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb18-423"><a href="#cb18-423" aria-hidden="true" tabindex="-1"></a>proporcao_simulada <span class="ot">&lt;-</span> <span class="fu">mean</span>(x_mc <span class="sc">&lt;</span> <span class="dv">30</span>)</span>
+<span id="cb18-424"><a href="#cb18-424" aria-hidden="true" tabindex="-1"></a>probabilidade_teorica <span class="ot">&lt;-</span> <span class="fu">pnorm</span>(<span class="dv">30</span>, <span class="at">mean =</span> media_concreto, <span class="at">sd =</span> dp_concreto)</span>
+<span id="cb18-425"><a href="#cb18-425" aria-hidden="true" tabindex="-1"></a>erro_absoluto <span class="ot">&lt;-</span> <span class="fu">abs</span>(proporcao_simulada <span class="sc">-</span> probabilidade_teorica)</span>
+<span id="cb18-426"><a href="#cb18-426" aria-hidden="true" tabindex="-1"></a>erro_mc_estimado <span class="ot">&lt;-</span> <span class="fu">sqrt</span>(probabilidade_teorica <span class="sc">*</span></span>
+<span id="cb18-427"><a href="#cb18-427" aria-hidden="true" tabindex="-1"></a>                          (<span class="dv">1</span> <span class="sc">-</span> probabilidade_teorica) <span class="sc">/</span> n_sim)</span>
+<span id="cb18-428"><a href="#cb18-428" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-429"><a href="#cb18-429" aria-hidden="true" tabindex="-1"></a>comparacao_mc <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb18-430"><a href="#cb18-430" aria-hidden="true" tabindex="-1"></a>  <span class="at">Medida =</span> <span class="fu">c</span>(<span class="st">"Proporção simulada"</span>, <span class="st">"Probabilidade teórica"</span>,</span>
+<span id="cb18-431"><a href="#cb18-431" aria-hidden="true" tabindex="-1"></a>             <span class="st">"Erro absoluto"</span>, <span class="st">"Erro-padrão Monte Carlo aproximado"</span>),</span>
+<span id="cb18-432"><a href="#cb18-432" aria-hidden="true" tabindex="-1"></a>  <span class="at">Valor =</span> <span class="fu">c</span>(proporcao_simulada, probabilidade_teorica,</span>
+<span id="cb18-433"><a href="#cb18-433" aria-hidden="true" tabindex="-1"></a>            erro_absoluto, erro_mc_estimado)</span>
+<span id="cb18-434"><a href="#cb18-434" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb18-435"><a href="#cb18-435" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(comparacao_mc, <span class="at">digits =</span> <span class="dv">5</span>,</span>
+<span id="cb18-436"><a href="#cb18-436" aria-hidden="true" tabindex="-1"></a>             <span class="at">caption =</span> <span class="st">"Comparação da simulação de Monte Carlo com a teoria"</span>)</span>
 <span id="cb18-437"><a href="#cb18-437" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-438"><a href="#cb18-438" aria-hidden="true" tabindex="-1"></a>A proporção simulada foi <span class="in">`r round(proporcao_simulada, 5)`</span> (<span class="in">`r pct(proporcao_simulada)`</span>), enquanto o valor teórico foi <span class="in">`r round(probabilidade_teorica, 5)`</span> (<span class="in">`r pct(probabilidade_teorica)`</span>). O erro absoluto foi <span class="in">`r round(erro_absoluto, 5)`</span>, compatível com a flutuação aleatória esperada em uma simulação finita.</span>
-<span id="cb18-439"><a href="#cb18-439" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-440"><a href="#cb18-440" aria-hidden="true" tabindex="-1"></a>A simulação de Monte Carlo é útil quando o sistema possui várias fontes de incerteza, relações complexas ou integrais difíceis de obter analiticamente. Na engenharia civil, pode auxiliar na análise de confiabilidade, propagação de incertezas de materiais e carregamentos, estimativa de risco e comparação de alternativas. Todavia, a qualidade da resposta depende da adequação das distribuições, dos parâmetros, das dependências entre variáveis e da quantidade de simulações. A simulação complementa, mas não substitui, o julgamento técnico, a investigação de campo, o controle tecnológico e as normas aplicáveis.</span>
-<span id="cb18-441"><a href="#cb18-441" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-442"><a href="#cb18-442" aria-hidden="true" tabindex="-1"></a><span class="fu">## Síntese dos principais resultados</span></span>
+<span id="cb18-438"><a href="#cb18-438" aria-hidden="true" tabindex="-1"></a><span class="fu">barplot</span>(<span class="fu">c</span>(<span class="at">Simulado =</span> proporcao_simulada, <span class="at">Teorico =</span> probabilidade_teorica),</span>
+<span id="cb18-439"><a href="#cb18-439" aria-hidden="true" tabindex="-1"></a>        <span class="at">col =</span> <span class="fu">c</span>(<span class="st">"steelblue"</span>, <span class="st">"tomato"</span>), <span class="at">ylim =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="fl">1.15</span> <span class="sc">*</span> <span class="fu">max</span>(proporcao_simulada,</span>
+<span id="cb18-440"><a href="#cb18-440" aria-hidden="true" tabindex="-1"></a>        probabilidade_teorica)), <span class="at">ylab =</span> <span class="st">"Proporção"</span>,</span>
+<span id="cb18-441"><a href="#cb18-441" aria-hidden="true" tabindex="-1"></a>        <span class="at">main =</span> <span class="st">"Resistências inferiores a 30 MPa"</span>)</span>
+<span id="cb18-442"><a href="#cb18-442" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb18-443"><a href="#cb18-443" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-444"><a href="#cb18-444" aria-hidden="true" tabindex="-1"></a><span class="in">```{r sintese}</span></span>
-<span id="cb18-445"><a href="#cb18-445" aria-hidden="true" tabindex="-1"></a>sintese <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
-<span id="cb18-446"><a href="#cb18-446" aria-hidden="true" tabindex="-1"></a>  <span class="at">Aplicacao =</span> <span class="fu">c</span>(<span class="st">"Concreto"</span>, <span class="st">"Estacas"</span>, <span class="st">"Fissuras"</span>, <span class="st">"Betoneira"</span>,</span>
-<span id="cb18-447"><a href="#cb18-447" aria-hidden="true" tabindex="-1"></a>                <span class="st">"Solo"</span>, <span class="st">"Precipitação"</span>, <span class="st">"Monte Carlo"</span>),</span>
-<span id="cb18-448"><a href="#cb18-448" aria-hidden="true" tabindex="-1"></a>  <span class="at">Distribuicao =</span> <span class="fu">c</span>(<span class="st">"Normal"</span>, <span class="st">"Binomial"</span>, <span class="st">"Poisson"</span>, <span class="st">"Exponencial"</span>,</span>
-<span id="cb18-449"><a href="#cb18-449" aria-hidden="true" tabindex="-1"></a>                   <span class="st">"Weibull"</span>, <span class="st">"Gama"</span>, <span class="st">"Normal simulada"</span>),</span>
-<span id="cb18-450"><a href="#cb18-450" aria-hidden="true" tabindex="-1"></a>  <span class="at">Indicador =</span> <span class="fu">c</span>(<span class="st">"P(X &lt; 30 MPa)"</span>, <span class="st">"P(X &lt;= 2 defeitos)"</span>,</span>
-<span id="cb18-451"><a href="#cb18-451" aria-hidden="true" tabindex="-1"></a>                <span class="st">"P(X &gt;= 3 por km)"</span>, <span class="st">"P(T &gt; 250 h)"</span>,</span>
-<span id="cb18-452"><a href="#cb18-452" aria-hidden="true" tabindex="-1"></a>                <span class="st">"P(X &lt; 100 kPa)"</span>, <span class="st">"P(X &gt; 10 mm)"</span>,</span>
-<span id="cb18-453"><a href="#cb18-453" aria-hidden="true" tabindex="-1"></a>                <span class="st">"Proporção X &lt; 30 MPa"</span>),</span>
-<span id="cb18-454"><a href="#cb18-454" aria-hidden="true" tabindex="-1"></a>  <span class="at">Resultado =</span> <span class="fu">c</span>(p1a, p2b, p3b, p4a, p5a, p6a, proporcao_simulada)</span>
-<span id="cb18-455"><a href="#cb18-455" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb18-456"><a href="#cb18-456" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(sintese, <span class="at">digits =</span> <span class="dv">4</span>,</span>
-<span id="cb18-457"><a href="#cb18-457" aria-hidden="true" tabindex="-1"></a>             <span class="at">caption =</span> <span class="st">"Síntese de indicadores probabilísticos"</span>)</span>
-<span id="cb18-458"><a href="#cb18-458" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb18-459"><a href="#cb18-459" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-460"><a href="#cb18-460" aria-hidden="true" tabindex="-1"></a>Em conjunto, os resultados mostram que cada distribuição responde a uma estrutura de fenômeno diferente. A Normal foi usada para uma medida contínua aproximadamente simétrica; a Binomial, para contar defeitos em número fixo de unidades; a Poisson, para contar ocorrências em determinado comprimento; a Exponencial, para tempos de falha com taxa constante; e Weibull e Gama, para variáveis contínuas positivas e assimétricas.</span>
-<span id="cb18-461"><a href="#cb18-461" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-462"><a href="#cb18-462" aria-hidden="true" tabindex="-1"></a><span class="fu"># Conclusão</span></span>
-<span id="cb18-463"><a href="#cb18-463" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-464"><a href="#cb18-464" aria-hidden="true" tabindex="-1"></a>O estudo atingiu o objetivo de aplicar distribuições especiais de probabilidade a situações relacionadas à implantação de uma Pequena Central Hidrelétrica. Foram calculadas probabilidades, esperanças, variâncias, desvios padrão e quantis, e as simulações permitiram comparar frequências empíricas com resultados teóricos.</span>
+<span id="cb18-444"><a href="#cb18-444" aria-hidden="true" tabindex="-1"></a>A proporção simulada foi <span class="in">`r round(proporcao_simulada, 5)`</span> (<span class="in">`r pct(proporcao_simulada)`</span>), enquanto o valor teórico foi <span class="in">`r round(probabilidade_teorica, 5)`</span> (<span class="in">`r pct(probabilidade_teorica)`</span>). O erro absoluto foi <span class="in">`r round(erro_absoluto, 5)`</span>, compatível com a flutuação aleatória esperada em uma simulação finita.</span>
+<span id="cb18-445"><a href="#cb18-445" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-446"><a href="#cb18-446" aria-hidden="true" tabindex="-1"></a>A simulação de Monte Carlo é útil quando o sistema possui várias fontes de incerteza, relações complexas ou integrais difíceis de obter analiticamente. Na engenharia civil, pode auxiliar na análise de confiabilidade, propagação de incertezas de materiais e carregamentos, estimativa de risco e comparação de alternativas. Todavia, a qualidade da resposta depende da adequação das distribuições, dos parâmetros, das dependências entre variáveis e da quantidade de simulações. A simulação complementa, mas não substitui, o julgamento técnico, a investigação de campo, o controle tecnológico e as normas aplicáveis.</span>
+<span id="cb18-447"><a href="#cb18-447" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-448"><a href="#cb18-448" aria-hidden="true" tabindex="-1"></a><span class="fu">## Síntese dos principais resultados</span></span>
+<span id="cb18-449"><a href="#cb18-449" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-450"><a href="#cb18-450" aria-hidden="true" tabindex="-1"></a><span class="in">```{r sintese}</span></span>
+<span id="cb18-451"><a href="#cb18-451" aria-hidden="true" tabindex="-1"></a>sintese <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb18-452"><a href="#cb18-452" aria-hidden="true" tabindex="-1"></a>  <span class="at">Aplicacao =</span> <span class="fu">c</span>(<span class="st">"Concreto"</span>, <span class="st">"Estacas"</span>, <span class="st">"Fissuras"</span>, <span class="st">"Betoneira"</span>,</span>
+<span id="cb18-453"><a href="#cb18-453" aria-hidden="true" tabindex="-1"></a>                <span class="st">"Solo"</span>, <span class="st">"Precipitação"</span>, <span class="st">"Monte Carlo"</span>),</span>
+<span id="cb18-454"><a href="#cb18-454" aria-hidden="true" tabindex="-1"></a>  <span class="at">Distribuicao =</span> <span class="fu">c</span>(<span class="st">"Normal"</span>, <span class="st">"Binomial"</span>, <span class="st">"Poisson"</span>, <span class="st">"Exponencial"</span>,</span>
+<span id="cb18-455"><a href="#cb18-455" aria-hidden="true" tabindex="-1"></a>                   <span class="st">"Weibull"</span>, <span class="st">"Gama"</span>, <span class="st">"Normal simulada"</span>),</span>
+<span id="cb18-456"><a href="#cb18-456" aria-hidden="true" tabindex="-1"></a>  <span class="at">Indicador =</span> <span class="fu">c</span>(<span class="st">"P(X &lt; 30 MPa)"</span>, <span class="st">"P(X &lt;= 2 defeitos)"</span>,</span>
+<span id="cb18-457"><a href="#cb18-457" aria-hidden="true" tabindex="-1"></a>                <span class="st">"P(X &gt;= 3 por km)"</span>, <span class="st">"P(T &gt; 250 h)"</span>,</span>
+<span id="cb18-458"><a href="#cb18-458" aria-hidden="true" tabindex="-1"></a>                <span class="st">"P(X &lt; 100 kPa)"</span>, <span class="st">"P(X &gt; 10 mm)"</span>,</span>
+<span id="cb18-459"><a href="#cb18-459" aria-hidden="true" tabindex="-1"></a>                <span class="st">"Proporção X &lt; 30 MPa"</span>),</span>
+<span id="cb18-460"><a href="#cb18-460" aria-hidden="true" tabindex="-1"></a>  <span class="at">Resultado =</span> <span class="fu">c</span>(p1a, p2b, p3b, p4a, p5a, p6a, proporcao_simulada)</span>
+<span id="cb18-461"><a href="#cb18-461" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb18-462"><a href="#cb18-462" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(sintese, <span class="at">digits =</span> <span class="dv">4</span>,</span>
+<span id="cb18-463"><a href="#cb18-463" aria-hidden="true" tabindex="-1"></a>             <span class="at">caption =</span> <span class="st">"Síntese de indicadores probabilísticos"</span>)</span>
+<span id="cb18-464"><a href="#cb18-464" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb18-465"><a href="#cb18-465" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-466"><a href="#cb18-466" aria-hidden="true" tabindex="-1"></a>A distribuição Normal possibilitou avaliar a resistência do concreto e a distribuição da média amostral. A Binomial representou o número de estacas defeituosas em lotes de tamanho fixo. A Poisson foi adequada para modelar a contagem de fissuras por extensão de túnel. A Exponencial descreveu o tempo até a falha da betoneira sob a hipótese de taxa constante. A Weibull representou uma variável positiva e flexível associada à capacidade do solo, enquanto a Gama descreveu a precipitação positiva e assimétrica.</span>
+<span id="cb18-466"><a href="#cb18-466" aria-hidden="true" tabindex="-1"></a>Em conjunto, os resultados mostram que cada distribuição responde a uma estrutura de fenômeno diferente. A Normal foi usada para uma medida contínua aproximadamente simétrica; a Binomial, para contar defeitos em número fixo de unidades; a Poisson, para contar ocorrências em determinado comprimento; a Exponencial, para tempos de falha com taxa constante; e Weibull e Gama, para variáveis contínuas positivas e assimétricas.</span>
 <span id="cb18-467"><a href="#cb18-467" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-468"><a href="#cb18-468" aria-hidden="true" tabindex="-1"></a>As simulações apresentaram comportamento próximo ao previsto pelos modelos, confirmando numericamente os cálculos e demonstrando a utilidade do método de Monte Carlo. No contexto da engenharia civil, a modelagem probabilística transforma a variabilidade em indicadores quantitativos, permitindo reconhecer cenários de risco, planejar inspeções, avaliar confiabilidade e fundamentar decisões.</span>
+<span id="cb18-468"><a href="#cb18-468" aria-hidden="true" tabindex="-1"></a><span class="fu"># Conclusão</span></span>
 <span id="cb18-469"><a href="#cb18-469" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-470"><a href="#cb18-470" aria-hidden="true" tabindex="-1"></a>Por fim, os resultados não devem ser interpretados isoladamente como critérios de projeto ou de aceitação. Sua utilização prática exige dados representativos, validação das hipóteses, consideração das dependências entre variáveis, atendimento às normas técnicas e análise conjunta com aspectos geotécnicos, estruturais, hidrológicos, executivos e de segurança.</span>
+<span id="cb18-470"><a href="#cb18-470" aria-hidden="true" tabindex="-1"></a>O estudo atingiu o objetivo de aplicar distribuições especiais de probabilidade a situações relacionadas à implantação de uma Pequena Central Hidrelétrica. Foram calculadas probabilidades, esperanças, variâncias, desvios padrão e quantis, e as simulações permitiram comparar frequências empíricas com resultados teóricos.</span>
 <span id="cb18-471"><a href="#cb18-471" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-472"><a href="#cb18-472" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-472"><a href="#cb18-472" aria-hidden="true" tabindex="-1"></a>A distribuição Normal possibilitou avaliar a resistência do concreto e a distribuição da média amostral. A Binomial representou o número de estacas defeituosas em lotes de tamanho fixo. A Poisson foi adequada para modelar a contagem de fissuras por extensão de túnel. A Exponencial descreveu o tempo até a falha da betoneira sob a hipótese de taxa constante. A Weibull representou uma variável positiva e flexível associada à capacidade do solo, enquanto a Gama descreveu a precipitação positiva e assimétrica.</span>
 <span id="cb18-473"><a href="#cb18-473" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-474"><a href="#cb18-474" aria-hidden="true" tabindex="-1"></a><span class="fu"># Referências</span></span>
+<span id="cb18-474"><a href="#cb18-474" aria-hidden="true" tabindex="-1"></a>As simulações apresentaram comportamento próximo ao previsto pelos modelos, confirmando numericamente os cálculos e demonstrando a utilidade do método de Monte Carlo. No contexto da engenharia civil, a modelagem probabilística transforma a variabilidade em indicadores quantitativos, permitindo reconhecer cenários de risco, planejar inspeções, avaliar confiabilidade e fundamentar decisões.</span>
 <span id="cb18-475"><a href="#cb18-475" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-476"><a href="#cb18-476" aria-hidden="true" tabindex="-1"></a>**obs: Inserir no corpo do texto com referencias.dib para aparecer automatico**</span>
+<span id="cb18-476"><a href="#cb18-476" aria-hidden="true" tabindex="-1"></a>Por fim, os resultados não devem ser interpretados isoladamente como critérios de projeto ou de aceitação. Sua utilização prática exige dados representativos, validação das hipóteses, consideração das dependências entre variáveis, atendimento às normas técnicas e análise conjunta com aspectos geotécnicos, estruturais, hidrológicos, executivos e de segurança.</span>
 <span id="cb18-477"><a href="#cb18-477" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-478"><a href="#cb18-478" aria-hidden="true" tabindex="-1"></a>BUSSAB, W. O.; MORETTIN, P. A. *Estatística Básica*. São Paulo: Saraiva.</span>
+<span id="cb18-478"><a href="#cb18-478" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb18-479"><a href="#cb18-479" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-480"><a href="#cb18-480" aria-hidden="true" tabindex="-1"></a>MONTGOMERY, D. C.; RUNGER, G. C. *Estatística Aplicada e Probabilidade para Engenheiros*. Rio de Janeiro: LTC.</span>
+<span id="cb18-480"><a href="#cb18-480" aria-hidden="true" tabindex="-1"></a><span class="fu"># Referências</span></span>
 <span id="cb18-481"><a href="#cb18-481" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-482"><a href="#cb18-482" aria-hidden="true" tabindex="-1"></a>R CORE TEAM. *R: A Language and Environment for Statistical Computing*. Vienna: R Foundation for Statistical Computing.</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
+<span id="cb18-482"><a href="#cb18-482" aria-hidden="true" tabindex="-1"></a>**obs: Inserir no corpo do texto com referencias.dib para aparecer automatico**</span>
+<span id="cb18-483"><a href="#cb18-483" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-484"><a href="#cb18-484" aria-hidden="true" tabindex="-1"></a>BUSSAB, W. O.; MORETTIN, P. A. *Estatística Básica*. São Paulo: Saraiva.</span>
+<span id="cb18-485"><a href="#cb18-485" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-486"><a href="#cb18-486" aria-hidden="true" tabindex="-1"></a>MONTGOMERY, D. C.; RUNGER, G. C. *Estatística Aplicada e Probabilidade para Engenheiros*. Rio de Janeiro: LTC.</span>
+<span id="cb18-487"><a href="#cb18-487" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-488"><a href="#cb18-488" aria-hidden="true" tabindex="-1"></a>R CORE TEAM. *R: A Language and Environment for Statistical Computing*. Vienna: R Foundation for Statistical Computing.</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
 
