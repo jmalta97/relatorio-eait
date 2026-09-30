@@ -75,7 +75,7 @@ O relatório foi elaborado nas seguintes etapas:
 7. elaboração de tabelas e gráficos para comparar teoria e simulação;
 8. interpretação dos resultados no contexto do projeto da PCH.
 
-Foram adotados os parâmetros indicados no enunciado e nos exemplos de código: Normal com média 35 MPa e desvio padrão 4 MPa; Binomial com 15 estacas e probabilidade de defeito de 0,08; Poisson com taxa de 2,5 fissuras por quilômetro; Exponencial com média de 200 horas; Weibull com forma 2 e escala 150 kPa; e Gama com forma 3 e taxa 0,5. Na distribuição Gama, o R usa a parametrização por **taxa**, de modo que a escala corresponde a `1/taxa`.
+Foram adotados os parâmetros indicados no enunciado e nos exemplos de código: Normal com média 35 MPa e desvio padrão 4 MPa; Binomial com 15 estacas e probabilidade de defeito de 0,08; Poisson com taxa de 2,5 fissuras por quilômetro; Exponencial com média de 200 horas; Weibull com forma 2 e escala 150 kPa; e Gama com forma 3 e taxa 0,5. Na distribuição Gama, o R usa a parametrização por taxa, de modo que a escala corresponde a `1/taxa`.
 
 ## Funções empregadas no R
 
@@ -83,7 +83,7 @@ As funções iniciadas por `d` calculam densidades ou probabilidades pontuais; a
 
 # Resultados e discussão
 
-## Parte 1 – Controle de qualidade do concreto: distribuição Normal
+## Controle de qualidade do concreto: distribuição Normal
 
 Seja $X$ a resistência à compressão do concreto, em MPa. Considera-se:
 
@@ -151,7 +151,7 @@ knitr::kable(comparacao_normal, digits = 3,
 
 O histograma deve acompanhar aproximadamente a curva Normal teórica. Pequenas diferenças são esperadas, pois a simulação contém erro aleatório. A proximidade entre a média e o desvio padrão simulados e os valores teóricos reforça a adequação do procedimento.
 
-## Parte 2 – Qualidade de estacas pré-moldadas: distribuição Binomial
+## Qualidade de estacas pré-moldadas: distribuição Binomial
 
 Seja $X$ o número de estacas defeituosas em um lote de 15 unidades. Considera-se independência entre as unidades e probabilidade constante de defeito igual a 8%:
 
@@ -213,7 +213,7 @@ legend("topright", c("Simulada", "Teórica"),
 
 A comparação evidencia que as frequências relativas tendem às probabilidades teóricas. Na prática, esse modelo pode subsidiar planos de inspeção, dimensionamento de amostras e decisões de aceitação ou rejeição de lotes, desde que as hipóteses de independência e probabilidade constante sejam razoáveis.
 
-## Parte 3 – Fissuras em túnel: distribuição Poisson
+## Fissuras em túnel: distribuição Poisson
 
 Seja $X$ o número de fissuras por quilômetro de túnel. A taxa é $\lambda=2{,}5$ fissuras/km. Para 2 km, a taxa esperada é proporcional ao comprimento: $2 \times 2{,}5=5$.
 
@@ -249,7 +249,7 @@ A probabilidade de não se observar nenhuma fissura em 1 km é `r pct(p3a)`. A p
 
 O modelo permite estimar a frequência de ocorrências ao longo de um comprimento definido e pode apoiar o planejamento de inspeções. Entretanto, a interpretação pressupõe taxa aproximadamente constante e ocorrências independentes. Concentrações localizadas de fissuras podem indicar heterogeneidade geológica, concentração de tensões, falhas executivas ou outros mecanismos que exigem investigação específica.
 
-## Parte 4 – Confiabilidade de equipamentos: distribuição Exponencial
+## Confiabilidade de equipamentos: distribuição Exponencial
 
 O tempo $T$ até a falha da betoneira tem média de 200 horas. Na distribuição Exponencial, a taxa é o inverso da média:
 
@@ -305,7 +305,7 @@ legend("topright", c("Histograma", "Densidade teórica"),
 
 O gráfico apresenta assimetria à direita e maior densidade nos tempos menores, forma característica da distribuição Exponencial.
 
-## Parte 5 – Capacidade de suporte do solo: distribuição Weibull
+## Capacidade de suporte do solo: distribuição Weibull
 
 A capacidade de suporte $X$, em kPa, segue uma Weibull com forma $k=2$ e escala $\lambda=150$ kPa. No R, esses parâmetros são informados como `shape` e `scale`.
 
@@ -355,7 +355,7 @@ grid()
 
 Como a forma é maior que 1, a função de risco é crescente. Matematicamente, o valor instantâneo da razão entre densidade e sobrevivência aumenta com $x$. Neste exercício, a variável é capacidade de suporte, e não tempo de vida; portanto, a função deve ser interpretada como propriedade do modelo probabilístico, sem concluir diretamente que o solo “se desgasta”. Para decisões geotécnicas, a probabilidade de baixa capacidade, os valores característicos, a variabilidade espacial, os ensaios de campo e os coeficientes de segurança são mais diretamente relevantes.
 
-## Parte 6 – Precipitação diária: distribuição Gama
+## Precipitação diária: distribuição Gama
 
 A precipitação diária $X$, em milímetros, segue uma distribuição Gama com forma 3 e taxa 0,5. Nessa parametrização:
 
@@ -411,7 +411,7 @@ legend("topright", c("Histograma", "Densidade teórica"),
 
 A distribuição é assimétrica à direita, permitindo representar muitos dias com precipitações menores e menos dias com valores elevados. Para a PCH, a análise probabilística da precipitação pode contribuir para o planejamento da obra, drenagem provisória e avaliação de riscos, embora estudos hidrológicos de projeto normalmente exijam séries históricas, análise de consistência, sazonalidade e modelos específicos para eventos extremos.
 
-## Parte 7 – Análise integrada por simulação de Monte Carlo
+## Análise integrada por simulação de Monte Carlo
 
 Nesta etapa, foram geradas 10.000 resistências do concreto. A proporção simulada abaixo de 30 MPa foi comparada com a probabilidade Normal teórica.
 
