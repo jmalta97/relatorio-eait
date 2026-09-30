@@ -1,7 +1,7 @@
 ---
 # Só mude aqui!!!!
-author: "Nome do Aluno"
-title: "Relatório de Aula Prática XX"
+author: "Jair Malta e Wesley Pinheiro"
+title: "Relatório de Aula Prática 05"
 bibliography: referencias.bib
 # A partir daqui nao faca alteracoes!!!!!
 link-citations: true
@@ -25,101 +25,458 @@ execute:
 ---
 
 
-## 📌 Introdução
+```{r configuracao, include=TRUE}
+# Configuração geral do relatório
+knitr::opts_chunk$set(
+  echo = TRUE,       # exibe os códigos no relatório
+  warning = FALSE,   # oculta avisos não essenciais
+  message = FALSE,   # oculta mensagens de carregamento
+  fig.align = "center",
+  fig.width = 8,
+  fig.height = 5,
+  digits = 4
+)
 
-Descreva o contexto da prática e sua importância.
+# Função auxiliar para apresentar probabilidades em percentual
+pct <- function(x, casas = 2) {
+  paste0(formatC(100 * x, format = "f", digits = casas), "%")
+}
 
-> Exemplo: análise da variabilidade em experimentos físicos utilizando uma catapulta.
-
-
-
-## 🎯 Objetivos
-
-### Objetivo geral
-
-Descrever o objetivo principal da prática.
-
-### Objetivos específicos
-
-- Coletar dados experimentais  
-- Aplicar estatística descritiva  
-- Construir gráficos  
-- Interpretar resultados  
-
----
-
-## 📚  Fundamentação Teórica
-
-Apresente os conceitos principais:
-
-- Média
-- Variância
-- Desvio padrão
-- Amostragem
-
-$$
-\bar{x} = \frac{1}{n}\sum_{i=1}^{n} x_i
-$$
-
----
-
-## ⚙️ Metodologia
-
-::: {.callout-note}
-Descreva como o experimento foi realizado.
-:::
-
-- Materiais utilizados  
-- Procedimento  
-- Número de repetições  
-
----
-
-## 🔍 Resultados e Discussão
-
-Apresente e interprete os resultados obtidos a partir dos dados coletados.
-
-- Descreva os principais resultados numéricos (média, variabilidade, etc.).
-- Comente o comportamento dos dados observados nos gráficos.
-- Indique se há presença de valores discrepantes (outliers).
-- Avalie se os dados apresentam simetria ou tendência.
-
-Em seguida, discuta os resultados à luz dos conceitos teóricos:
-
-- Os resultados estão de acordo com o esperado?
-- Há grande variabilidade? O que isso significa no contexto do experimento?
-- Quais fatores podem ter influenciado os resultados?
-- Existem possíveis fontes de erro experimental?
-
-Procure não apenas descrever, mas **interpretar os dados**.
-
-### 💬 Exemplo de como citar uma referência bibliográfica
-
-Depois de inserido as informaçõe no arquivo **referencias.bib**, use:
-
-- Segundo @Rbasico2022
-- Tudo é um objeto em R [@Rbasico2022]
-
-### 📊  Análise de Dados
-
-```{r}
-distancia <- c(10.2, 9.8, 10.5, 10.1, 9.9, 10.3)
-distancia
+# Semente única para tornar as simulações reproduzíveis
+set.seed(123)
 ```
 
-## 🧠 Considerações finais
+# Introdução
 
-Apresente uma síntese dos principais pontos observados no experimento.
+A construção de uma Pequena Central Hidrelétrica (PCH) envolve decisões que precisam considerar a variabilidade dos materiais, dos processos executivos, dos equipamentos, das condições geotécnicas e dos fenômenos hidrológicos. Mesmo quando o projeto é desenvolvido com critérios técnicos e procedimentos de controle, variáveis como resistência do concreto, ocorrência de defeitos, número de fissuras, tempo até a falha de equipamentos, capacidade de suporte do solo e precipitação não apresentam resultados perfeitamente determinísticos. Por esse motivo, a probabilidade e a estatística constituem instrumentos importantes para quantificar incertezas e apoiar decisões de engenharia.
 
-- Retome o objetivo da prática e indique se ele foi alcançado.
-- Destaque os principais aprendizados obtidos.
-- Comente brevemente sobre a qualidade dos dados coletados.
-- Sugira possíveis melhorias no procedimento experimental.
+Segundo Bussab e Morettin, os modelos probabilísticos permitem representar fenômenos aleatórios por meio de variáveis e distribuições de probabilidade. Montgomery e Runger destacam a aplicação desses modelos em problemas de engenharia, especialmente no controle da qualidade, na confiabilidade e na análise de riscos. Neste trabalho, distribuições discretas e contínuas são aplicadas a situações associadas à implantação de uma PCH, com cálculos teóricos e simulações desenvolvidos na linguagem R, mantida pelo R Core Team.
 
-Evite repetir apenas os resultados; foque nas **conclusões e reflexões** sobre a prática realizada.
+O objetivo geral é identificar a distribuição adequada para cada fenômeno, calcular probabilidades, medidas de posição e dispersão e quantis, além de empregar simulações de Monte Carlo para verificar os resultados teóricos. As interpretações relacionam os valores obtidos ao controle tecnológico, à segurança, à confiabilidade operacional, ao planejamento e à tomada de decisão na engenharia civil.
 
-## Aprenda Quarto
+# Desenvolvimento
 
-Acesse [Quarto](https://quarto.org/).
+## Procedimento metodológico
 
-## 📖 Referências
+O relatório foi elaborado nas seguintes etapas:
+
+1. identificação da variável aleatória e classificação como discreta ou contínua;
+2. escolha da distribuição indicada pelo enunciado;
+3. definição dos parâmetros de cada distribuição;
+4. cálculo das probabilidades teóricas pelas funções de distribuição disponíveis no R;
+5. cálculo de esperança, variância, desvio padrão e quantis, quando solicitados;
+6. geração de amostras pseudoaleatórias com semente fixa, garantindo a reprodutibilidade;
+7. elaboração de tabelas e gráficos para comparar teoria e simulação;
+8. interpretação dos resultados no contexto do projeto da PCH.
+
+Foram adotados os parâmetros indicados no enunciado e nos exemplos de código: Normal com média 35 MPa e desvio padrão 4 MPa; Binomial com 15 estacas e probabilidade de defeito de 0,08; Poisson com taxa de 2,5 fissuras por quilômetro; Exponencial com média de 200 horas; Weibull com forma 2 e escala 150 kPa; e Gama com forma 3 e taxa 0,5. Na distribuição Gama, o R usa a parametrização por **taxa**, de modo que a escala corresponde a `1/taxa`.
+
+## Funções empregadas no R
+
+As funções iniciadas por `d` calculam densidades ou probabilidades pontuais; as iniciadas por `p` calculam probabilidades acumuladas; as iniciadas por `q` calculam quantis; e as iniciadas por `r` geram valores pseudoaleatórios. Assim, por exemplo, `pnorm()` calcula probabilidades acumuladas da Normal, `dbinom()` calcula probabilidades pontuais da Binomial e `rpois()` gera observações Poisson.
+
+# Resultados e discussão
+
+## Parte 1 – Controle de qualidade do concreto: distribuição Normal
+
+Seja $X$ a resistência à compressão do concreto, em MPa. Considera-se:
+
+$$X \sim N(35, 4^2).$$
+
+A média é 35 MPa e o desvio padrão é 4 MPa. A distribuição Normal é apropriada para representar uma variável contínua concentrada em torno de um valor médio, com variações para ambos os lados.
+
+```{r normal-calculos}
+# Parâmetros
+media_concreto <- 35
+dp_concreto <- 4
+
+# a) P(X < 30)
+p1a <- pnorm(30, mean = media_concreto, sd = dp_concreto)
+
+# b) P(32 < X < 38)
+p1b <- pnorm(38, mean = media_concreto, sd = dp_concreto) -
+       pnorm(32, mean = media_concreto, sd = dp_concreto)
+
+# c) Percentil 5
+q1c <- qnorm(0.05, mean = media_concreto, sd = dp_concreto)
+
+# d) P(média de 10 amostras < 33)
+n_amostras <- 10
+erro_padrao <- dp_concreto / sqrt(n_amostras)
+p1d <- pnorm(33, mean = media_concreto, sd = erro_padrao)
+
+resultados_normal <- data.frame(
+  Item = c("a", "b", "c", "d"),
+  Resultado = c(p1a, p1b, q1c, p1d),
+  Unidade = c("probabilidade", "probabilidade", "MPa", "probabilidade")
+)
+knitr::kable(resultados_normal, digits = 4,
+             caption = "Resultados teóricos da distribuição Normal")
+```
+
+**Interpretação.** A probabilidade de uma amostra apresentar resistência inferior a 30 MPa é `r pct(p1a)`. Esse resultado representa a parcela esperada da produção abaixo do limite considerado e deve ser analisado em conjunto com as especificações, os critérios de aceitação e os resultados do controle tecnológico. A probabilidade de a resistência ficar entre 32 e 38 MPa é `r pct(p1b)`, indicando a concentração de resultados em uma faixa próxima da média.
+
+O percentil de 5% é `r round(q1c, 2)` MPa. Portanto, teoricamente, 5% das resistências ficam abaixo desse valor. Para a média de 10 amostras, a dispersão é reduzida de 4 MPa para um erro padrão de `r round(erro_padrao, 3)` MPa; por isso, a probabilidade de a média ser inferior a 33 MPa é `r pct(p1d)`. A redução decorre do uso da distribuição amostral da média, cujo desvio padrão é $\sigma/\sqrt{n}$.
+
+```{r normal-simulacao}
+# e) Simulação de 1.000 resistências
+set.seed(123)
+x_normal <- rnorm(1000, mean = media_concreto, sd = dp_concreto)
+
+hist(x_normal, probability = TRUE, breaks = 25,
+     col = "lightblue", border = "white",
+     main = "Resistência simulada do concreto",
+     xlab = "Resistência à compressão (MPa)",
+     ylab = "Densidade")
+curve(dnorm(x, mean = media_concreto, sd = dp_concreto),
+      add = TRUE, col = "red", lwd = 2)
+legend("topright", legend = c("Histograma simulado", "Densidade teórica"),
+       fill = c("lightblue", NA), border = c("white", NA),
+       lty = c(NA, 1), col = c(NA, "red"), lwd = c(NA, 2), bty = "n")
+
+comparacao_normal <- data.frame(
+  Medida = c("Média", "Desvio padrão"),
+  Teorico = c(media_concreto, dp_concreto),
+  Simulado = c(mean(x_normal), sd(x_normal))
+)
+knitr::kable(comparacao_normal, digits = 3,
+             caption = "Comparação entre parâmetros teóricos e simulados")
+```
+
+O histograma deve acompanhar aproximadamente a curva Normal teórica. Pequenas diferenças são esperadas, pois a simulação contém erro aleatório. A proximidade entre a média e o desvio padrão simulados e os valores teóricos reforça a adequação do procedimento.
+
+## Parte 2 – Qualidade de estacas pré-moldadas: distribuição Binomial
+
+Seja $X$ o número de estacas defeituosas em um lote de 15 unidades. Considera-se independência entre as unidades e probabilidade constante de defeito igual a 8%:
+
+$$X \sim Binomial(15, 0{,}08).$$
+
+```{r binomial-calculos}
+n_estacas <- 15
+p_defeito <- 0.08
+
+# a) P(X = 0)
+p2a <- dbinom(0, size = n_estacas, prob = p_defeito)
+
+# b) P(X <= 2)
+p2b <- pbinom(2, size = n_estacas, prob = p_defeito)
+
+# c) P(X >= 4) = 1 - P(X <= 3)
+p2c <- pbinom(3, size = n_estacas, prob = p_defeito,
+              lower.tail = FALSE)
+
+# d) Esperança e variância
+esp_binomial <- n_estacas * p_defeito
+var_binomial <- n_estacas * p_defeito * (1 - p_defeito)
+
+resultados_binomial <- data.frame(
+  Item = c("a", "b", "c", "d - esperança", "d - variância"),
+  Resultado = c(p2a, p2b, p2c, esp_binomial, var_binomial)
+)
+knitr::kable(resultados_binomial, digits = 4,
+             caption = "Resultados teóricos da distribuição Binomial")
+```
+
+A probabilidade de não haver nenhuma estaca defeituosa é `r pct(p2a)`, enquanto a probabilidade de existirem no máximo duas defeituosas é `r pct(p2b)`. A ocorrência de quatro ou mais defeitos tem probabilidade de `r pct(p2c)`, caracterizando um resultado menos frequente, mas importante para o controle de recebimento. O número esperado é `r round(esp_binomial, 2)` estaca defeituosa por lote, e a variância é `r round(var_binomial, 4)`.
+
+```{r binomial-simulacao}
+# e) Simulação de 500 lotes
+set.seed(123)
+sim_binomial <- rbinom(500, size = n_estacas, prob = p_defeito)
+
+valores_bin <- 0:n_estacas
+freq_rel <- tabulate(sim_binomial + 1, nbins = n_estacas + 1) / 500
+prob_teorica <- dbinom(valores_bin, size = n_estacas, prob = p_defeito)
+
+comparacao_binomial <- data.frame(
+  Defeituosas = valores_bin,
+  Frequencia_simulada = freq_rel,
+  Probabilidade_teorica = prob_teorica
+)
+knitr::kable(comparacao_binomial, digits = 4,
+             caption = "Frequências simuladas e probabilidades teóricas")
+
+matplot(valores_bin, cbind(freq_rel, prob_teorica), type = "h",
+        lty = 1, lwd = 5, col = c("steelblue", "tomato"),
+        xlab = "Número de estacas defeituosas",
+        ylab = "Frequência relativa / probabilidade",
+        main = "Binomial: simulação e teoria")
+legend("topright", c("Simulada", "Teórica"),
+       col = c("steelblue", "tomato"), lty = 1, lwd = 4, bty = "n")
+```
+
+A comparação evidencia que as frequências relativas tendem às probabilidades teóricas. Na prática, esse modelo pode subsidiar planos de inspeção, dimensionamento de amostras e decisões de aceitação ou rejeição de lotes, desde que as hipóteses de independência e probabilidade constante sejam razoáveis.
+
+## Parte 3 – Fissuras em túnel: distribuição Poisson
+
+Seja $X$ o número de fissuras por quilômetro de túnel. A taxa é $\lambda=2{,}5$ fissuras/km. Para 2 km, a taxa esperada é proporcional ao comprimento: $2 \times 2{,}5=5$.
+
+```{r poisson-calculos}
+lambda_1km <- 2.5
+
+# a) P(X = 0)
+p3a <- dpois(0, lambda = lambda_1km)
+
+# b) P(X >= 3) = 1 - P(X <= 2)
+p3b <- ppois(2, lambda = lambda_1km, lower.tail = FALSE)
+
+# c) P(1 <= X <= 4) = P(X <= 4) - P(X <= 0)
+p3c <- ppois(4, lambda = lambda_1km) - ppois(0, lambda = lambda_1km)
+
+# d) Em 2 km, lambda = 5; P(X = 5)
+lambda_2km <- 2 * lambda_1km
+p3d <- dpois(5, lambda = lambda_2km)
+
+# e) Na Poisson, esperança e variância são iguais a lambda
+esp_poisson <- lambda_1km
+var_poisson <- lambda_1km
+
+resultados_poisson <- data.frame(
+  Item = c("a", "b", "c", "d", "e - esperança", "e - variância"),
+  Resultado = c(p3a, p3b, p3c, p3d, esp_poisson, var_poisson)
+)
+knitr::kable(resultados_poisson, digits = 4,
+             caption = "Resultados da distribuição Poisson")
+```
+
+A probabilidade de não se observar nenhuma fissura em 1 km é `r pct(p3a)`. A probabilidade de três ou mais fissuras é `r pct(p3b)`, e a probabilidade de ocorrerem entre uma e quatro fissuras é `r pct(p3c)`. Em 2 km, a probabilidade de exatamente cinco fissuras é `r pct(p3d)`. Tanto a esperança quanto a variância em 1 km são 2,5.
+
+O modelo permite estimar a frequência de ocorrências ao longo de um comprimento definido e pode apoiar o planejamento de inspeções. Entretanto, a interpretação pressupõe taxa aproximadamente constante e ocorrências independentes. Concentrações localizadas de fissuras podem indicar heterogeneidade geológica, concentração de tensões, falhas executivas ou outros mecanismos que exigem investigação específica.
+
+## Parte 4 – Confiabilidade de equipamentos: distribuição Exponencial
+
+O tempo $T$ até a falha da betoneira tem média de 200 horas. Na distribuição Exponencial, a taxa é o inverso da média:
+
+$$\lambda = 1/200 = 0{,}005 \text{ falha por hora}.$$
+
+```{r exponencial-calculos}
+media_falha <- 200
+taxa_falha <- 1 / media_falha
+
+# a) P(T > 250)
+p4a <- pexp(250, rate = taxa_falha, lower.tail = FALSE)
+
+# b) P(T < 100)
+p4b <- pexp(100, rate = taxa_falha)
+
+# c) Mediana: quantil de ordem 0,5
+q4c <- qexp(0.5, rate = taxa_falha)
+
+# d) P(T > 250 | T > 150) = P(T > 100), pela falta de memória
+p4d <- pexp(100, rate = taxa_falha, lower.tail = FALSE)
+
+# Verificação pelo quociente de probabilidades
+p4d_verificacao <- pexp(250, taxa_falha, lower.tail = FALSE) /
+                   pexp(150, taxa_falha, lower.tail = FALSE)
+
+resultados_exponencial <- data.frame(
+  Item = c("a", "b", "c - mediana (h)", "d", "d - verificação"),
+  Resultado = c(p4a, p4b, q4c, p4d, p4d_verificacao)
+)
+knitr::kable(resultados_exponencial, digits = 4,
+             caption = "Resultados da distribuição Exponencial")
+```
+
+A probabilidade de a betoneira durar mais de 250 horas é `r pct(p4a)`, e a probabilidade de falhar antes de 100 horas é `r pct(p4b)`. O tempo mediano é `r round(q4c, 2)` horas: metade das falhas ocorre antes e metade depois desse tempo, de acordo com o modelo.
+
+Pela propriedade da falta de memória, após operar 150 horas, a probabilidade de durar pelo menos mais 100 horas é igual à probabilidade inicial de durar mais de 100 horas, isto é, `r pct(p4d)`. Essa propriedade deve ser utilizada com cautela em aplicações reais, pois pressupõe taxa de falha constante e não representa processos de desgaste progressivo.
+
+```{r exponencial-simulacao}
+# e) Simulação de 1.000 tempos de falha
+set.seed(123)
+x_exp <- rexp(1000, rate = taxa_falha)
+
+hist(x_exp, probability = TRUE, breaks = 30,
+     col = "khaki", border = "white",
+     main = "Tempos simulados até a falha",
+     xlab = "Tempo até a falha (horas)", ylab = "Densidade")
+curve(dexp(x, rate = taxa_falha), add = TRUE,
+      col = "red", lwd = 2, from = 0, to = max(x_exp))
+legend("topright", c("Histograma", "Densidade teórica"),
+       fill = c("khaki", NA), border = c("white", NA),
+       lty = c(NA, 1), col = c(NA, "red"), lwd = c(NA, 2), bty = "n")
+```
+
+O gráfico apresenta assimetria à direita e maior densidade nos tempos menores, forma característica da distribuição Exponencial.
+
+## Parte 5 – Capacidade de suporte do solo: distribuição Weibull
+
+A capacidade de suporte $X$, em kPa, segue uma Weibull com forma $k=2$ e escala $\lambda=150$ kPa. No R, esses parâmetros são informados como `shape` e `scale`.
+
+```{r weibull-calculos}
+forma_weibull <- 2
+escala_weibull <- 150
+
+# a) P(X < 100)
+p5a <- pweibull(100, shape = forma_weibull, scale = escala_weibull)
+
+# b) P(120 < X < 200)
+p5b <- pweibull(200, forma_weibull, escala_weibull) -
+       pweibull(120, forma_weibull, escala_weibull)
+
+# c) Percentil 90
+q5c <- qweibull(0.90, shape = forma_weibull, scale = escala_weibull)
+
+# d) Média e desvio padrão teóricos
+media_weibull <- escala_weibull * gamma(1 + 1 / forma_weibull)
+var_weibull <- escala_weibull^2 *
+  (gamma(1 + 2 / forma_weibull) - gamma(1 + 1 / forma_weibull)^2)
+dp_weibull <- sqrt(var_weibull)
+
+resultados_weibull <- data.frame(
+  Item = c("a", "b", "c - percentil 90 (kPa)",
+           "d - média (kPa)", "d - desvio padrão (kPa)"),
+  Resultado = c(p5a, p5b, q5c, media_weibull, dp_weibull)
+)
+knitr::kable(resultados_weibull, digits = 4,
+             caption = "Resultados da distribuição Weibull")
+```
+
+A probabilidade de capacidade inferior a 100 kPa é `r pct(p5a)`, e a probabilidade de ficar entre 120 e 200 kPa é `r pct(p5b)`. O percentil 90 é `r round(q5c, 2)` kPa. A média teórica é `r round(media_weibull, 2)` kPa e o desvio padrão é `r round(dp_weibull, 2)` kPa.
+
+```{r weibull-risco}
+# e) Função de risco h(x) = (k/lambda)*(x/lambda)^(k-1)
+x_seq <- seq(0.1, 300, by = 1)
+hazard <- (forma_weibull / escala_weibull) *
+          (x_seq / escala_weibull)^(forma_weibull - 1)
+
+plot(x_seq, hazard, type = "l", lwd = 2, col = "darkgreen",
+     main = "Função de risco da distribuição Weibull",
+     xlab = "Capacidade de suporte (kPa)",
+     ylab = "Taxa de risco h(x)")
+grid()
+```
+
+Como a forma é maior que 1, a função de risco é crescente. Matematicamente, o valor instantâneo da razão entre densidade e sobrevivência aumenta com $x$. Neste exercício, a variável é capacidade de suporte, e não tempo de vida; portanto, a função deve ser interpretada como propriedade do modelo probabilístico, sem concluir diretamente que o solo “se desgasta”. Para decisões geotécnicas, a probabilidade de baixa capacidade, os valores característicos, a variabilidade espacial, os ensaios de campo e os coeficientes de segurança são mais diretamente relevantes.
+
+## Parte 6 – Precipitação diária: distribuição Gama
+
+A precipitação diária $X$, em milímetros, segue uma distribuição Gama com forma 3 e taxa 0,5. Nessa parametrização:
+
+$$E(X)=\frac{\alpha}{\beta}, \qquad Var(X)=\frac{\alpha}{\beta^2}.$$
+
+```{r gama-calculos}
+forma_gama <- 3
+taxa_gama <- 0.5
+
+# a) P(X > 10)
+p6a <- pgamma(10, shape = forma_gama, rate = taxa_gama,
+              lower.tail = FALSE)
+
+# b) P(5 < X < 15)
+p6b <- pgamma(15, shape = forma_gama, rate = taxa_gama) -
+       pgamma(5, shape = forma_gama, rate = taxa_gama)
+
+# c) Percentil 95
+q6c <- qgamma(0.95, shape = forma_gama, rate = taxa_gama)
+
+# d) Esperança e variância
+esp_gama <- forma_gama / taxa_gama
+var_gama <- forma_gama / taxa_gama^2
+dp_gama <- sqrt(var_gama)
+
+resultados_gama <- data.frame(
+  Item = c("a", "b", "c - percentil 95 (mm)",
+           "d - esperança (mm)", "d - variância (mm²)",
+           "d - desvio padrão (mm)"),
+  Resultado = c(p6a, p6b, q6c, esp_gama, var_gama, dp_gama)
+)
+knitr::kable(resultados_gama, digits = 4,
+             caption = "Resultados da distribuição Gama")
+```
+
+A probabilidade de precipitação superior a 10 mm é `r pct(p6a)`, e a probabilidade de precipitação entre 5 e 15 mm é `r pct(p6b)`. O percentil 95 é `r round(q6c, 2)` mm, indicando que 95% dos valores do modelo ficam abaixo desse nível e 5% o superam. A esperança é `r round(esp_gama, 2)` mm e a variância é `r round(var_gama, 2)` mm².
+
+```{r gama-simulacao}
+# e) Simulação de 365 dias
+set.seed(123)
+x_gama <- rgamma(365, shape = forma_gama, rate = taxa_gama)
+
+hist(x_gama, probability = TRUE, breaks = 25,
+     col = "lightcyan", border = "white",
+     main = "Precipitação diária simulada",
+     xlab = "Precipitação (mm)", ylab = "Densidade")
+curve(dgamma(x, shape = forma_gama, rate = taxa_gama),
+      add = TRUE, col = "blue", lwd = 2, from = 0, to = max(x_gama))
+legend("topright", c("Histograma", "Densidade teórica"),
+       fill = c("lightcyan", NA), border = c("white", NA),
+       lty = c(NA, 1), col = c(NA, "blue"), lwd = c(NA, 2), bty = "n")
+```
+
+A distribuição é assimétrica à direita, permitindo representar muitos dias com precipitações menores e menos dias com valores elevados. Para a PCH, a análise probabilística da precipitação pode contribuir para o planejamento da obra, drenagem provisória e avaliação de riscos, embora estudos hidrológicos de projeto normalmente exijam séries históricas, análise de consistência, sazonalidade e modelos específicos para eventos extremos.
+
+## Parte 7 – Análise integrada por simulação de Monte Carlo
+
+Nesta etapa, foram geradas 10.000 resistências do concreto. A proporção simulada abaixo de 30 MPa foi comparada com a probabilidade Normal teórica.
+
+```{r monte-carlo}
+set.seed(123)
+n_sim <- 10000
+x_mc <- rnorm(n_sim, mean = media_concreto, sd = dp_concreto)
+
+proporcao_simulada <- mean(x_mc < 30)
+probabilidade_teorica <- pnorm(30, mean = media_concreto, sd = dp_concreto)
+erro_absoluto <- abs(proporcao_simulada - probabilidade_teorica)
+erro_mc_estimado <- sqrt(probabilidade_teorica *
+                          (1 - probabilidade_teorica) / n_sim)
+
+comparacao_mc <- data.frame(
+  Medida = c("Proporção simulada", "Probabilidade teórica",
+             "Erro absoluto", "Erro-padrão Monte Carlo aproximado"),
+  Valor = c(proporcao_simulada, probabilidade_teorica,
+            erro_absoluto, erro_mc_estimado)
+)
+knitr::kable(comparacao_mc, digits = 5,
+             caption = "Comparação da simulação de Monte Carlo com a teoria")
+
+barplot(c(Simulado = proporcao_simulada, Teorico = probabilidade_teorica),
+        col = c("steelblue", "tomato"), ylim = c(0, 1.15 * max(proporcao_simulada,
+        probabilidade_teorica)), ylab = "Proporção",
+        main = "Resistências inferiores a 30 MPa")
+```
+
+A proporção simulada foi `r round(proporcao_simulada, 5)` (`r pct(proporcao_simulada)`), enquanto o valor teórico foi `r round(probabilidade_teorica, 5)` (`r pct(probabilidade_teorica)`). O erro absoluto foi `r round(erro_absoluto, 5)`, compatível com a flutuação aleatória esperada em uma simulação finita.
+
+A simulação de Monte Carlo é útil quando o sistema possui várias fontes de incerteza, relações complexas ou integrais difíceis de obter analiticamente. Na engenharia civil, pode auxiliar na análise de confiabilidade, propagação de incertezas de materiais e carregamentos, estimativa de risco e comparação de alternativas. Todavia, a qualidade da resposta depende da adequação das distribuições, dos parâmetros, das dependências entre variáveis e da quantidade de simulações. A simulação complementa, mas não substitui, o julgamento técnico, a investigação de campo, o controle tecnológico e as normas aplicáveis.
+
+## Síntese dos principais resultados
+
+```{r sintese}
+sintese <- data.frame(
+  Aplicacao = c("Concreto", "Estacas", "Fissuras", "Betoneira",
+                "Solo", "Precipitação", "Monte Carlo"),
+  Distribuicao = c("Normal", "Binomial", "Poisson", "Exponencial",
+                   "Weibull", "Gama", "Normal simulada"),
+  Indicador = c("P(X < 30 MPa)", "P(X <= 2 defeitos)",
+                "P(X >= 3 por km)", "P(T > 250 h)",
+                "P(X < 100 kPa)", "P(X > 10 mm)",
+                "Proporção X < 30 MPa"),
+  Resultado = c(p1a, p2b, p3b, p4a, p5a, p6a, proporcao_simulada)
+)
+knitr::kable(sintese, digits = 4,
+             caption = "Síntese de indicadores probabilísticos")
+```
+
+Em conjunto, os resultados mostram que cada distribuição responde a uma estrutura de fenômeno diferente. A Normal foi usada para uma medida contínua aproximadamente simétrica; a Binomial, para contar defeitos em número fixo de unidades; a Poisson, para contar ocorrências em determinado comprimento; a Exponencial, para tempos de falha com taxa constante; e Weibull e Gama, para variáveis contínuas positivas e assimétricas.
+
+# Conclusão
+
+O estudo atingiu o objetivo de aplicar distribuições especiais de probabilidade a situações relacionadas à implantação de uma Pequena Central Hidrelétrica. Foram calculadas probabilidades, esperanças, variâncias, desvios padrão e quantis, e as simulações permitiram comparar frequências empíricas com resultados teóricos.
+
+A distribuição Normal possibilitou avaliar a resistência do concreto e a distribuição da média amostral. A Binomial representou o número de estacas defeituosas em lotes de tamanho fixo. A Poisson foi adequada para modelar a contagem de fissuras por extensão de túnel. A Exponencial descreveu o tempo até a falha da betoneira sob a hipótese de taxa constante. A Weibull representou uma variável positiva e flexível associada à capacidade do solo, enquanto a Gama descreveu a precipitação positiva e assimétrica.
+
+As simulações apresentaram comportamento próximo ao previsto pelos modelos, confirmando numericamente os cálculos e demonstrando a utilidade do método de Monte Carlo. No contexto da engenharia civil, a modelagem probabilística transforma a variabilidade em indicadores quantitativos, permitindo reconhecer cenários de risco, planejar inspeções, avaliar confiabilidade e fundamentar decisões.
+
+Por fim, os resultados não devem ser interpretados isoladamente como critérios de projeto ou de aceitação. Sua utilização prática exige dados representativos, validação das hipóteses, consideração das dependências entre variáveis, atendimento às normas técnicas e análise conjunta com aspectos geotécnicos, estruturais, hidrológicos, executivos e de segurança.
+
+
+
+# Referências
+
+**obs: Inserir no corpo do texto com referencias.dib para aparecer automatico**
+
+BUSSAB, W. O.; MORETTIN, P. A. *Estatística Básica*. São Paulo: Saraiva.
+
+MONTGOMERY, D. C.; RUNGER, G. C. *Estatística Aplicada e Probabilidade para Engenheiros*. Rio de Janeiro: LTC.
+
+R CORE TEAM. *R: A Language and Environment for Statistical Computing*. Vienna: R Foundation for Statistical Computing.
