@@ -56,7 +56,7 @@ body {
 
 A construção de uma Pequena Central Hidrelétrica (PCH) envolve decisões que precisam considerar a variabilidade dos materiais, dos processos executivos, dos equipamentos, das condições geotécnicas e dos fenômenos hidrológicos. Mesmo quando o projeto é desenvolvido com critérios técnicos e procedimentos de controle, variáveis como resistência do concreto, ocorrência de defeitos, número de fissuras, tempo até a falha de equipamentos, capacidade de suporte do solo e precipitação não apresentam resultados perfeitamente determinísticos. Por esse motivo, a probabilidade e a estatística constituem instrumentos importantes para quantificar incertezas e apoiar decisões de engenharia.
 
-Segundo Bussab e Morettin, os modelos probabilísticos permitem representar fenômenos aleatórios por meio de variáveis e distribuições de probabilidade. Montgomery e Runger destacam a aplicação desses modelos em problemas de engenharia, especialmente no controle da qualidade, na confiabilidade e na análise de riscos. Neste trabalho, distribuições discretas e contínuas são aplicadas a situações associadas à implantação de uma PCH, com cálculos teóricos e simulações desenvolvidos na linguagem R, mantida pelo R Core Team.
+Segundo @bussab2024 e Morettin, os modelos probabilísticos permitem representar fenômenos aleatórios por meio de variáveis e distribuições de probabilidade. Montgomery e Runger destacam a aplicação desses modelos em problemas de engenharia, especialmente no controle da qualidade, na confiabilidade e na análise de riscos. Neste trabalho, distribuições discretas e contínuas são aplicadas a situações associadas à implantação de uma PCH, com cálculos teóricos e simulações desenvolvidos na linguagem R, mantida pelo @rcoreteam2024.
 
 O objetivo geral é identificar a distribuição adequada para cada fenômeno, calcular probabilidades, medidas de posição e dispersão e quantis, além de empregar simulações de Monte Carlo para verificar os resultados teóricos. As interpretações relacionam os valores obtidos ao controle tecnológico, à segurança, à confiabilidade operacional, ao planejamento e à tomada de decisão na engenharia civil.
 
@@ -477,12 +477,3 @@ Por fim, os resultados não devem ser interpretados isoladamente como critérios
 
 
 
-# Referências
-
-**obs: Inserir no corpo do texto com referencias.dib para aparecer automatico**
-
-BUSSAB, W. O.; MORETTIN, P. A. *Estatística Básica*. São Paulo: Saraiva.
-
-MONTGOMERY, D. C.; RUNGER, G. C. *Estatística Aplicada e Probabilidade para Engenheiros*. Rio de Janeiro: LTC.
-
-R CORE TEAM. *R: A Language and Environment for Statistical Computing*. Vienna: R Foundation for Statistical Computing.

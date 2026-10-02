@@ -59,7 +59,27 @@ div.sourceCode
 @media screen {
 pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
-</style>
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
 
 
 <script src="index_files/libs/clipboard/clipboard.min.js"></script>
@@ -132,18 +152,24 @@ window.Quarto = {
   <li><a href="#síntese-dos-principais-resultados" id="toc-síntese-dos-principais-resultados" class="nav-link" data-scroll-target="#síntese-dos-principais-resultados"><span class="header-section-number">3.8</span> Síntese dos principais resultados</a></li>
   </ul></li>
   <li><a href="#conclusão" id="toc-conclusão" class="nav-link" data-scroll-target="#conclusão"><span class="header-section-number">4</span> Conclusão</a></li>
-  <li><a href="#referências" id="toc-referências" class="nav-link" data-scroll-target="#referências"><span class="header-section-number">5</span> Referências</a></li>
   </ul>
 </nav>
 </div>
 <main class="content" id="quarto-document-content">
 <div class="logos" style="display: flex; justify-content: center; align-items: center; height: 200px; gap: 20px;">
+
   <a href="https://ufsj.edu.br">
+
     <img src="imagens/ufsj.png" width="220px">
+
   </a>
+
   <a href="https://ufsj.edu.br/defim">
+
     <img src="imagens/defim.png" width="220px">
+
   </a>
+
 </div>
 
 <header id="title-block-header" class="quarto-title-block default">
@@ -166,7 +192,7 @@ window.Quarto = {
     <div>
     <div class="quarto-title-meta-heading">Data de Publicação</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">30 de setembro de 2026</p>
+      <p class="date">2 de outubro de 2026</p>
     </div>
   </div>
   
@@ -209,7 +235,7 @@ body {
 <section id="introdução" class="level1" data-number="1">
 <h1 data-number="1"><span class="header-section-number">1</span> Introdução</h1>
 <p>A construção de uma Pequena Central Hidrelétrica (PCH) envolve decisões que precisam considerar a variabilidade dos materiais, dos processos executivos, dos equipamentos, das condições geotécnicas e dos fenômenos hidrológicos. Mesmo quando o projeto é desenvolvido com critérios técnicos e procedimentos de controle, variáveis como resistência do concreto, ocorrência de defeitos, número de fissuras, tempo até a falha de equipamentos, capacidade de suporte do solo e precipitação não apresentam resultados perfeitamente determinísticos. Por esse motivo, a probabilidade e a estatística constituem instrumentos importantes para quantificar incertezas e apoiar decisões de engenharia.</p>
-<p>Segundo Bussab e Morettin, os modelos probabilísticos permitem representar fenômenos aleatórios por meio de variáveis e distribuições de probabilidade. Montgomery e Runger destacam a aplicação desses modelos em problemas de engenharia, especialmente no controle da qualidade, na confiabilidade e na análise de riscos. Neste trabalho, distribuições discretas e contínuas são aplicadas a situações associadas à implantação de uma PCH, com cálculos teóricos e simulações desenvolvidos na linguagem R, mantida pelo R Core Team.</p>
+<p>Segundo <span class="citation" data-cites="bussab2024">Bussab e Morettin (<a href="#ref-bussab2024" role="doc-biblioref">2024</a>)</span> e Morettin, os modelos probabilísticos permitem representar fenômenos aleatórios por meio de variáveis e distribuições de probabilidade. Montgomery e Runger destacam a aplicação desses modelos em problemas de engenharia, especialmente no controle da qualidade, na confiabilidade e na análise de riscos. Neste trabalho, distribuições discretas e contínuas são aplicadas a situações associadas à implantação de uma PCH, com cálculos teóricos e simulações desenvolvidos na linguagem R, mantida pelo <span class="citation" data-cites="rcoreteam2024">R Core Team (<a href="#ref-rcoreteam2024" role="doc-biblioref">2024</a>)</span>.</p>
 <p>O objetivo geral é identificar a distribuição adequada para cada fenômeno, calcular probabilidades, medidas de posição e dispersão e quantis, além de empregar simulações de Monte Carlo para verificar os resultados teóricos. As interpretações relacionam os valores obtidos ao controle tecnológico, à segurança, à confiabilidade operacional, ao planejamento e à tomada de decisão na engenharia civil.</p>
 </section>
 <section id="desenvolvimento" class="level1" data-number="2">
@@ -1089,18 +1115,19 @@ body {
 <p>A distribuição Normal possibilitou avaliar a resistência do concreto e a distribuição da média amostral. A Binomial representou o número de estacas defeituosas em lotes de tamanho fixo. A Poisson foi adequada para modelar a contagem de fissuras por extensão de túnel. A Exponencial descreveu o tempo até a falha da betoneira sob a hipótese de taxa constante. A Weibull representou uma variável positiva e flexível associada à capacidade do solo, enquanto a Gama descreveu a precipitação positiva e assimétrica.</p>
 <p>As simulações apresentaram comportamento próximo ao previsto pelos modelos, confirmando numericamente os cálculos e demonstrando a utilidade do método de Monte Carlo. No contexto da engenharia civil, a modelagem probabilística transforma a variabilidade em indicadores quantitativos, permitindo reconhecer cenários de risco, planejar inspeções, avaliar confiabilidade e fundamentar decisões.</p>
 <p>Por fim, os resultados não devem ser interpretados isoladamente como critérios de projeto ou de aceitação. Sua utilização prática exige dados representativos, validação das hipóteses, consideração das dependências entre variáveis, atendimento às normas técnicas e análise conjunta com aspectos geotécnicos, estruturais, hidrológicos, executivos e de segurança.</p>
-</section>
-<section id="referências" class="level1" data-number="5">
-<h1 data-number="5"><span class="header-section-number">5</span> Referências</h1>
-<p><strong>obs: Inserir no corpo do texto com referencias.dib para aparecer automatico</strong></p>
-<p>BUSSAB, W. O.; MORETTIN, P. A. <em>Estatística Básica</em>. São Paulo: Saraiva.</p>
-<p>MONTGOMERY, D. C.; RUNGER, G. C. <em>Estatística Aplicada e Probabilidade para Engenheiros</em>. Rio de Janeiro: LTC.</p>
-<p>R CORE TEAM. <em>R: A Language and Environment for Statistical Computing</em>. Vienna: R Foundation for Statistical Computing.</p>
 <!-- -->
 
+
 </section>
 
-</main>
+<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">Referências</h2><div id="refs" class="references csl-bib-body" data-entry-spacing="0" role="list">
+<div id="ref-bussab2024" class="csl-entry" role="listitem">
+BUSSAB, W. DE O.; MORETTIN, P. A. <strong>Estatística básica</strong>. 10. ed. São Paulo: SaraivaUni, 2024.
+</div>
+<div id="ref-rcoreteam2024" class="csl-entry" role="listitem">
+R CORE TEAM. <strong><a href="https://www.R-project.org/">R: A Language and Environment for Statistical Computing</a></strong>. Vienna, Austria: R Foundation for Statistical Computing, 2024.
+</div>
+</div></section></div></main>
 <!-- /main column -->
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
@@ -1611,7 +1638,7 @@ body {
 <span id="cb18-56"><a href="#cb18-56" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb18-57"><a href="#cb18-57" aria-hidden="true" tabindex="-1"></a>A construção de uma Pequena Central Hidrelétrica (PCH) envolve decisões que precisam considerar a variabilidade dos materiais, dos processos executivos, dos equipamentos, das condições geotécnicas e dos fenômenos hidrológicos. Mesmo quando o projeto é desenvolvido com critérios técnicos e procedimentos de controle, variáveis como resistência do concreto, ocorrência de defeitos, número de fissuras, tempo até a falha de equipamentos, capacidade de suporte do solo e precipitação não apresentam resultados perfeitamente determinísticos. Por esse motivo, a probabilidade e a estatística constituem instrumentos importantes para quantificar incertezas e apoiar decisões de engenharia.</span>
 <span id="cb18-58"><a href="#cb18-58" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-59"><a href="#cb18-59" aria-hidden="true" tabindex="-1"></a>Segundo Bussab e Morettin, os modelos probabilísticos permitem representar fenômenos aleatórios por meio de variáveis e distribuições de probabilidade. Montgomery e Runger destacam a aplicação desses modelos em problemas de engenharia, especialmente no controle da qualidade, na confiabilidade e na análise de riscos. Neste trabalho, distribuições discretas e contínuas são aplicadas a situações associadas à implantação de uma PCH, com cálculos teóricos e simulações desenvolvidos na linguagem R, mantida pelo R Core Team.</span>
+<span id="cb18-59"><a href="#cb18-59" aria-hidden="true" tabindex="-1"></a>Segundo @bussab2024 e Morettin, os modelos probabilísticos permitem representar fenômenos aleatórios por meio de variáveis e distribuições de probabilidade. Montgomery e Runger destacam a aplicação desses modelos em problemas de engenharia, especialmente no controle da qualidade, na confiabilidade e na análise de riscos. Neste trabalho, distribuições discretas e contínuas são aplicadas a situações associadas à implantação de uma PCH, com cálculos teóricos e simulações desenvolvidos na linguagem R, mantida pelo @rcoreteam2024.</span>
 <span id="cb18-60"><a href="#cb18-60" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb18-61"><a href="#cb18-61" aria-hidden="true" tabindex="-1"></a>O objetivo geral é identificar a distribuição adequada para cada fenômeno, calcular probabilidades, medidas de posição e dispersão e quantis, além de empregar simulações de Monte Carlo para verificar os resultados teóricos. As interpretações relacionam os valores obtidos ao controle tecnológico, à segurança, à confiabilidade operacional, ao planejamento e à tomada de decisão na engenharia civil.</span>
 <span id="cb18-62"><a href="#cb18-62" aria-hidden="true" tabindex="-1"></a></span>
@@ -2030,17 +2057,7 @@ body {
 <span id="cb18-475"><a href="#cb18-475" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb18-476"><a href="#cb18-476" aria-hidden="true" tabindex="-1"></a>Por fim, os resultados não devem ser interpretados isoladamente como critérios de projeto ou de aceitação. Sua utilização prática exige dados representativos, validação das hipóteses, consideração das dependências entre variáveis, atendimento às normas técnicas e análise conjunta com aspectos geotécnicos, estruturais, hidrológicos, executivos e de segurança.</span>
 <span id="cb18-477"><a href="#cb18-477" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-478"><a href="#cb18-478" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-479"><a href="#cb18-479" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-480"><a href="#cb18-480" aria-hidden="true" tabindex="-1"></a><span class="fu"># Referências</span></span>
-<span id="cb18-481"><a href="#cb18-481" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-482"><a href="#cb18-482" aria-hidden="true" tabindex="-1"></a>**obs: Inserir no corpo do texto com referencias.dib para aparecer automatico**</span>
-<span id="cb18-483"><a href="#cb18-483" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-484"><a href="#cb18-484" aria-hidden="true" tabindex="-1"></a>BUSSAB, W. O.; MORETTIN, P. A. *Estatística Básica*. São Paulo: Saraiva.</span>
-<span id="cb18-485"><a href="#cb18-485" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-486"><a href="#cb18-486" aria-hidden="true" tabindex="-1"></a>MONTGOMERY, D. C.; RUNGER, G. C. *Estatística Aplicada e Probabilidade para Engenheiros*. Rio de Janeiro: LTC.</span>
-<span id="cb18-487"><a href="#cb18-487" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-488"><a href="#cb18-488" aria-hidden="true" tabindex="-1"></a>R CORE TEAM. *R: A Language and Environment for Statistical Computing*. Vienna: R Foundation for Statistical Computing.</span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
+<span id="cb18-478"><a href="#cb18-478" aria-hidden="true" tabindex="-1"></a></span></code></pre></div><button title="Copiar para a área de transferência" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
 
