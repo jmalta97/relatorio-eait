@@ -250,7 +250,7 @@ knitr::kable(resultados_normal, digits = 4,
              caption = "Resultados teóricos da distribuição Normal")
 ```
 
-**Interpretação.** A probabilidade de uma amostra apresentar resistência inferior a 30 MPa é `r pct(p1a)`. Esse resultado representa a parcela esperada da produção abaixo do limite considerado e deve ser analisado em conjunto com as especificações, os critérios de aceitação e os resultados do controle tecnológico. A probabilidade de a resistência ficar entre 32 e 38 MPa é `r pct(p1b)`, indicando a concentração de resultados em uma faixa próxima da média.
+A probabilidade de uma amostra apresentar resistência inferior a 30 MPa é `r pct(p1a)`. Esse resultado representa a parcela esperada da produção abaixo do limite considerado e deve ser analisado em conjunto com as especificações, os critérios de aceitação e os resultados do controle tecnológico. A probabilidade de a resistência ficar entre 32 e 38 MPa é `r pct(p1b)`, indicando a concentração de resultados em uma faixa próxima da média.
 
 O percentil de 5% é `r round(q1c, 2)` MPa. Portanto, teoricamente, 5% das resistências ficam abaixo desse valor. Para a média de 10 amostras, a dispersão é reduzida de 4 MPa para um erro padrão de `r round(erro_padrao, 3)` MPa; por isso, a probabilidade de a média ser inferior a 33 MPa é `r pct(p1d)`. A redução decorre do uso da distribuição amostral da média, cujo desvio padrão é $\sigma/\sqrt{n}$.
 
