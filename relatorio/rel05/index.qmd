@@ -113,14 +113,14 @@ Na prática, a distribuição Binomial é empregada em situações como análise
 Em projetos de engenharia, por exemplo, pode ser utilizada para estimar a probabilidade de um determinado número de componentes apresentar defeitos dentro de um lote de fabricação.
  
 ## Distribuição Poisson
-Segundo, a distribuição de Poisson é utilizada para modelar a ocorrência de eventos discretos e independentes ao longo do tempo, espaço ou qualquer outra unidade de observação.
+A distribuição de Poisson é utilizada para modelar a ocorrência de eventos discretos e independentes ao longo do tempo, espaço ou qualquer outra unidade de observação.
 
 Sua função de probabilidade é dada por:
 
 $$P(X=x)=\frac{e^{-\lambda}\lambda^x}{x!}\tag{5}$$
 
 
-onde λ\lambdaλ representa o número médio de ocorrências no intervalo analisado.
+onde λ\lambdaλ  representa o número médio de ocorrências no intervalo analisado.
 
 Uma característica importante é que sua média e variância possuem o mesmo valor:
 
@@ -138,7 +138,7 @@ Sua função densidade é expressa por:
 $$f(x)=\lambda e^{-\lambda x},\qquad x\geq 0\tag{7}$$
 
 
-De acprdo com @nelson2004, uma de suas propriedades mais relevantes é a chamada propriedade de ausência de memória (memoryless property), segundo a qual a probabilidade de sobrevivência futura independe do tempo já transcorrido.
+De acordo com @nelson2004, uma de suas propriedades mais relevantes é a chamada propriedade de ausência de memória (memoryless property), segundo a qual a probabilidade de sobrevivência futura independe do tempo já transcorrido.
 
 Essa característica torna a distribuição Exponencial particularmente útil para modelagem de falhas de sistemas eletrônicos, intervalos entre chegadas de clientes, ocorrências de defeitos e análises preliminares de confiabilidade.
 
@@ -156,13 +156,16 @@ $$f(x)=\frac{\beta}{\eta}\left(\frac{x}{\eta}\right)^{\beta-1}\exp\left[-\left(\
 onde:
 
 β\betaβ = parâmetro de forma;
+
 η\etaη = parâmetro de escala.
 
 A interpretação do parâmetro de forma possui grande relevância:
 
-β<1\beta<1β<1: falhas prematuras;
-β=1\beta=1β=1: taxa de falha constante (equivalente à Exponencial);
-β>1\beta>1β>1: desgaste progressivo.
+- β<1: falhas prematuras;
+
+- β=1: taxa de falha constante (equivalente à Exponencial);
+
+- β>1: desgaste progressivo.
 
 Essa flexibilidade explica sua ampla aplicação em estudos de durabilidade de materiais, vida útil de equipamentos mecânicos, estruturas civis e sistemas industriais.
 
@@ -180,6 +183,7 @@ $$f(x)=\frac{x^{\alpha-1}e^{-x/\theta}}{\Gamma(\alpha)\theta^\alpha},\qquad x>0\
 onde:
 
 α\alphaα = representa o parâmetro de forma;
+
 θ\thetaθ = representa o parâmetro de escala.
 
 A distribuição Gama é particularmente adequada para modelar tempos de espera associados à ocorrência acumulada de múltiplos eventos.
