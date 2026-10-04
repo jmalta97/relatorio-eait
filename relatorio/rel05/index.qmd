@@ -81,6 +81,132 @@ Foram adotados os parâmetros indicados no enunciado e nos exemplos de código: 
 
 As funções iniciadas por `d` calculam densidades ou probabilidades pontuais; as iniciadas por `p` calculam probabilidades acumuladas; as iniciadas por `q` calculam quantis; e as iniciadas por `r` geram valores pseudoaleatórios. Assim, por exemplo, `pnorm()` calcula probabilidades acumuladas da Normal, `dbinom()` calcula probabilidades pontuais da Binomial e `rpois()` gera observações Poisson.
 
+# Fundamentação Teórica
+
+## Distribuição Normal
+A distribuição Normal, também denominada distribuição Gaussiana, é uma das distribuições de probabilidade mais importantes da estatística. Sua relevância decorre principalmente do Teorema Central do Limite, segundo o qual a soma ou média de um grande número de variáveis aleatórias independentes tende a apresentar comportamento aproximadamente normal, independentemente da distribuição original dos dados, @montgomery2018.
+
+A distribuição é caracterizada por sua forma simétrica em torno da média e por ser completamente definida por dois parâmetros: média (μ\muμ) e desvio padrão (σ\sigmaσ). Sua função densidade de probabilidade é dada por:
+
+$$f(x)=\frac{1}{\sigma\sqrt{2\pi}}\exp\left[-\frac{(x-\mu)^2}{2\sigma^2}\right]\tag{1}$$
+
+
+Uma de suas principais propriedades é a conhecida regra 68-95-99,7, que indica que aproximadamente 68% dos valores encontram-se dentro de um desvio padrão da média, 95% dentro de dois desvios e 99,7% dentro de três desvios padrão.
+
+Na engenharia, a distribuição Normal é amplamente utilizada para modelar variáveis contínuas sujeitas a múltiplas fontes independentes de variabilidade, como resistência dos materiais, propriedades geotécnicas, variações dimensionais e medições experimentais.
+
+## Distribuição Binomial
+A distribuição Binomial descreve o comportamento probabilístico de experimentos compostos por um número fixo de tentativas independentes, nas quais cada tentativa possui apenas dois resultados possíveis: sucesso ou fracasso.
+
+Segundo @devore2016 e @ross2019, formalmente, para "n" ensaios independentes e probabilidade de sucesso "p", a probabilidade de ocorrência de exatamente "x" sucessos é dada por:
+
+$$P(X=x)=\binom{n}{x}p^x(1-p)^{n-x}\tag{2}$$
+
+A média e a variância são definidas respectivamente por:
+
+$$E(X)=np\tag{3}$$
+
+$$Var(X)=np(1-p)\tag{4}$$
+
+Na prática, a distribuição Binomial é empregada em situações como análise de conformidade de produtos, inspeção de qualidade, avaliação de falhas em amostras e estudos envolvendo eventos do tipo "ocorre/não ocorre".
+
+Em projetos de engenharia, por exemplo, pode ser utilizada para estimar a probabilidade de um determinado número de componentes apresentar defeitos dentro de um lote de fabricação.
+ 
+## Distribuição Poisson
+Segundo, a distribuição de Poisson é utilizada para modelar a ocorrência de eventos discretos e independentes ao longo do tempo, espaço ou qualquer outra unidade de observação.
+
+Sua função de probabilidade é dada por:
+
+$$P(X=x)=\frac{e^{-\lambda}\lambda^x}{x!}\tag{5}$$
+
+
+onde λ\lambdaλ representa o número médio de ocorrências no intervalo analisado.
+
+Uma característica importante é que sua média e variância possuem o mesmo valor:
+
+$$E(X)=Var(X)=λ\tag{6}$$
+
+Esta distribuição é frequentemente empregada para representar o número de acidentes em rodovias, falhas em equipamentos, fissuras em estruturas, atendimentos em sistemas de manutenção ou qualquer fenômeno em que eventos ocorram de forma aleatória ao longo de determinado período.
+
+Além disso, a distribuição de Poisson pode ser interpretada como uma aproximação da distribuição Binomial quando o número de ensaios é elevado e a probabilidade de ocorrência é reduzida.
+
+## Distribuição Exponencial
+A distribuição Exponencial é amplamente utilizada na análise do tempo entre ocorrências sucessivas de eventos modelados por um processo de Poisson.
+
+Sua função densidade é expressa por:
+
+$$f(x)=\lambda e^{-\lambda x},\qquad x\geq 0\tag{7}$$
+
+
+De acprdo com @nelson2004, uma de suas propriedades mais relevantes é a chamada propriedade de ausência de memória (memoryless property), segundo a qual a probabilidade de sobrevivência futura independe do tempo já transcorrido.
+
+Essa característica torna a distribuição Exponencial particularmente útil para modelagem de falhas de sistemas eletrônicos, intervalos entre chegadas de clientes, ocorrências de defeitos e análises preliminares de confiabilidade.
+
+No contexto da engenharia, a distribuição Exponencial representa adequadamente componentes cuja taxa de falha permanece aproximadamente constante durante sua vida útil.
+
+## Distribuição Weibull
+
+A distribuição Weibull é considerada uma das distribuições mais versáteis da engenharia de confiabilidade devido à sua capacidade de representar diferentes mecanismos de falha.
+
+Sua função densidade é:
+
+$$f(x)=\frac{\beta}{\eta}\left(\frac{x}{\eta}\right)^{\beta-1}\exp\left[-\left(\frac{x}{\eta}\right)^\beta\right],\qquad x\geq 0\tag{8}$$
+
+
+onde:
+
+β\betaβ = parâmetro de forma;
+η\etaη = parâmetro de escala.
+
+A interpretação do parâmetro de forma possui grande relevância:
+
+β<1\beta<1β<1: falhas prematuras;
+β=1\beta=1β=1: taxa de falha constante (equivalente à Exponencial);
+β>1\beta>1β>1: desgaste progressivo.
+
+Essa flexibilidade explica sua ampla aplicação em estudos de durabilidade de materiais, vida útil de equipamentos mecânicos, estruturas civis e sistemas industriais.
+
+Na engenharia civil, por exemplo, a distribuição Weibull tem sido empregada para modelar resistência de materiais frágeis, degradação estrutural e confiabilidade de infraestruturas.
+
+
+## Distribuição Gama
+
+A distribuição Gama é uma generalização da distribuição Exponencial e possui ampla utilização na modelagem de fenômenos positivos e assimétricos.
+
+Sua função densidade pode ser expressa como:
+
+$$f(x)=\frac{x^{\alpha-1}e^{-x/\theta}}{\Gamma(\alpha)\theta^\alpha},\qquad x>0\tag{9}$$
+
+onde:
+
+α\alphaα = representa o parâmetro de forma;
+θ\thetaθ = representa o parâmetro de escala.
+
+A distribuição Gama é particularmente adequada para modelar tempos de espera associados à ocorrência acumulada de múltiplos eventos.
+
+Em aplicações de engenharia e gestão de riscos, é frequentemente utilizada para representar precipitações acumuladas, vazões hidrológicas, tempos de manutenção e variáveis que apresentam assimetria positiva.
+
+Uma de suas vantagens é permitir diferentes formatos de distribuição por meio do ajuste de seus parâmetros, proporcionando maior flexibilidade em comparação à distribuição Exponencial.
+
+## Análise Integrada com Simulação de Monte Carlo
+A Simulação de Monte Carlo constitui uma das principais ferramentas para análise probabilística de sistemas complexos. Seu princípio fundamental consiste em substituir valores determinísticos por distribuições de probabilidade que representam a incerteza associada aos parâmetros de entrada.
+
+Segundo @metropolis1949 , o método baseia-se na geração repetida de números aleatórios, permitindo construir empiricamente a distribuição da variável de interesse. Posteriormente, trabalhos de @rubinstein2017 consolidaram a metodologia como uma das técnicas mais utilizadas em engenharia, finanças e pesquisa operacional.
+
+O procedimento geralmente envolve quatro etapas:
+
+Definição das variáveis aleatórias de entrada;
+Escolha das distribuições probabilísticas adequadas;
+Geração de milhares ou milhões de cenários;
+Análise estatística dos resultados simulados.
+
+Sua principal vantagem é permitir a propagação explícita das incertezas ao longo do modelo, fornecendo informações que não podem ser obtidas por abordagens determinísticas tradicionais.
+
+No contexto da engenharia civil e geotécnica, a Simulação de Monte Carlo é empregada em análises de confiabilidade estrutural, estabilidade de taludes, capacidade de carga de fundações, previsão de custos, planejamento de obras e avaliação de riscos associados a parâmetros geotécnicos naturalmente variáveis.
+
+Dessa forma, as distribuições Normal, Binomial, Poisson, Exponencial, Weibull e Gama podem ser utilizadas como modelos probabilísticos das variáveis de entrada, enquanto a Simulação de Monte Carlo atua como mecanismo de integração dessas incertezas para estimar a variabilidade dos resultados finais.
+
+
 # Resultados e discussão
 
 ## Controle de qualidade do concreto: distribuição Normal
